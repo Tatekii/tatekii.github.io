@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="树型结构   节点不能闭环    只有一个根节点    除了根节点，每个节点有且只有一个父节点    深度：节点到根节点的最长路径经过节点个数    高度：节点到叶节点最长路径经过节点个数    树的高度：根节点到叶节点的最长路径经过节点个数   二叉树最多只有两个子节点的树结构 二叉树是 n 个有限元素的集合，该集合或者为空、或者由一个称为根（root）的元素及两个不相交的、被分别称为左子树和右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="树型结构   节点不能闭环    只有一个根节点    除了根节点，每个节点有且只有一个父节点    深度：节点到根节点的最长路径经过节点个数    高度：节点到叶节点最长路径经过节点个数    树的高度：根节点到叶节点的最长路径经过节点个数   二叉树最多只有两个子节点的树结构 二叉树是 n 个有限元素的集合，该集合或者为空、或者由一个称为根（root）的元素及两个不相交的、被分别称为左子树和右">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2022-03-01T10:36:38.488Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>二叉树 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="二叉树">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      49 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">二叉树</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月1日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="树型结构"><a href="#树型结构" class="headerlink" title="树型结构"></a>树型结构</h2><ul>
+<li><p>  节点不能闭环</p>
+</li>
+<li><p>  只有一个根节点</p>
+</li>
+<li><p>  除了根节点，每个节点有且只有一个父节点</p>
+</li>
+<li><p>  深度：节点到根节点的最长路径经过节点个数</p>
+</li>
+<li><p>  高度：节点到叶节点最长路径经过节点个数</p>
+</li>
+<li><p>  树的高度：根节点到叶节点的最长路径经过节点个数</p>
+</li>
+</ul>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>最多只有两个子节点的树结构</p>
+<p>二叉树是 n 个有限元素的集合，该集合或者为空、或者由一个称为根（root）的元素及两个不相交的、被分别称为左子树和右子树的二叉树组成</p>
+<h4 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h4><p>任意节点的左右子树高度差不大于 1</p>
+<h4 id="满二叉树：每一层节点数都达到最大值"><a href="#满二叉树：每一层节点数都达到最大值" class="headerlink" title="满二叉树：每一层节点数都达到最大值"></a>满二叉树：每一层节点数都达到最大值</h4><ul>
+<li>  一个层数为 k 的满二叉树总结点数为：2^k-1</li>
+<li>  第 i 层上的结点数为：2^(i-1)</li>
+<li>  一个层数为 k 的满二叉树的叶子结点个数（也就是最后一层）：2^(k-1)</li>
+</ul>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>如果对满二叉树的结点进行编号, 约定编号从根结点起, 自上而下, 自左而右。则深度为 k 的, 有 n 个结点的二叉树, 当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应时, 称之为完全二叉树。</p>
+<h4 id="二叉搜索树【BST】：右子大于父大于左子"><a href="#二叉搜索树【BST】：右子大于父大于左子" class="headerlink" title="二叉搜索树【BST】：右子大于父大于左子"></a>二叉搜索树【BST】：右子大于父大于左子</h4><blockquote>
+<p>二叉搜索树的中序遍历得到升序排列</p>
+</blockquote>
+<h2 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BinaryTree</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">const</span> Node = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) </span>&#123;
+		<span class="hljs-built_in">this</span>.val = val;
+		<span class="hljs-built_in">this</span>.left = <span class="hljs-literal">null</span>;
+		<span class="hljs-built_in">this</span>.right = <span class="hljs-literal">null</span>;
+	&#125;;
+	<span class="hljs-keyword">let</span> root = <span class="hljs-literal">null</span>;
+&#125;</code></pre></div>
+
+<ul>
+<li>前序遍历<blockquote>
+<p>root -&gt; left -&gt; right</p>
+</blockquote>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preOrderTraverse</span>(<span class="hljs-params">node</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> res = [];
+	<span class="hljs-keyword">let</span> stack = [node];
+
+	<span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">let</span> curNode = stack.pop();
+		res.push(curNode.val);
+		curNode.left &amp;&amp; stack.push(curNode.left);
+		curNode.right &amp;&amp; stack.push(curNode.right);
+	&#125;
+	<span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+
+<ul>
+<li>中序遍历<blockquote>
+<p>left -&gt; root -&gt; right</p>
+</blockquote>
+</li>
+<li>后序遍历<blockquote>
+<p>left -&gt; right -&gt; root</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="二叉树算法题"><a href="#二叉树算法题" class="headerlink" title="二叉树算法题"></a>二叉树算法题</h2><ul>
+<li>  计算路径</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pathSum</span>(<span class="hljs-params">root, sum</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> [];
+	<span class="hljs-keyword">if</span> (root.value === sum) <span class="hljs-keyword">return</span> [root.value];
+	<span class="hljs-keyword">const</span> paths = [];
+
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">searchPath</span>(<span class="hljs-params">node, target, prePath</span>) </span>&#123;
+		<span class="hljs-keyword">const</span> target = sum - node.val;
+		<span class="hljs-keyword">const</span> curPath = [...prePath, node.val];
+		<span class="hljs-keyword">if</span> (!node.left &amp;&amp; !node.right &amp;&amp; target === <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-comment">// 一直要到叶子结点</span>
+			paths.push(curPath);
+			<span class="hljs-keyword">return</span>;
+		&#125;
+		node.left &amp;&amp; searchPath(node.left, target, curPath);
+		node.right &amp;&amp; searchPath(node.right, target, curPath);
+	&#125;
+
+	searchPath(root, sum, []);
+	<span class="hljs-keyword">return</span> paths;
+&#125;</code></pre></div>
+
+<ul>
+<li>  二叉树镜像 / 翻转二叉树</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mirrorTree</span>(<span class="hljs-params">root</span>)</span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mirror</span>(<span class="hljs-params">node</span>)</span>&#123;
+    <span class="hljs-keyword">if</span>(!node) <span class="hljs-keyword">return</span>
+    [node.left,node.right] = [node.right,node.left]
+    mirror(node.left)
+    mirror(node.right)
+  &#125;
+  mirror(root）
+  <span class="hljs-keyword">return</span> root
+&#125;
+
+<span class="hljs-comment">// stack</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mirrorTree</span>(<span class="hljs-params">root</span>)</span>&#123;
+  <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> root
+  <span class="hljs-keyword">const</span> swap = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> [node.left,node.right] = [node.right,node.left]
+  <span class="hljs-keyword">const</span> stack = [root]
+  <span class="hljs-keyword">while</span>(stack.length&gt;<span class="hljs-number">0</span>)&#123;
+    <span class="hljs-keyword">const</span> node = stack.pop()
+    swap(node)
+    node.left &amp;&amp; stack.push(node.left)
+    node.right &amp;&amp; stack.push(node.right)
+  &#125;
+  <span class="hljs-keyword">return</span> root
+&#125;</code></pre></div>
+
+<ul>
+<li>  计算二叉树的最大深度</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">val</span>) </span>&#123;
+	<span class="hljs-built_in">this</span>.val = val;
+	<span class="hljs-built_in">this</span>.left = <span class="hljs-built_in">this</span>.right = <span class="hljs-literal">null</span>;
+&#125;
+<span class="hljs-comment">// 后序遍历</span>
+<span class="hljs-comment">// DFS</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxDepth</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> root ? <span class="hljs-built_in">Math</span>.max(maxDepth(root.left), maxDepth(root.right)) + <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+	<span class="hljs-comment">// 递归深度加1</span>
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">const</span> left = maxDepth(root.left);
+	<span class="hljs-keyword">const</span> right = maxDepth(root.right);
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(left, right) + <span class="hljs-number">1</span>;
+&#125;
+
+<span class="hljs-comment">// BFS</span>
+<span class="hljs-comment">//递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxDepth</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> max = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> max;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BFS</span>(<span class="hljs-params">node, dep</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;
+		max = <span class="hljs-built_in">Math</span>.max(max, ++dep);
+		BFS(node.left, dep);
+		BFS(node.right, dep);
+	&#125;
+	BFS(root, <span class="hljs-number">0</span>);
+	<span class="hljs-keyword">return</span> max;
+&#125;
+
+<span class="hljs-comment">// 栈实现</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxDepth</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">const</span> stack = [[root, <span class="hljs-number">0</span>]];
+	<span class="hljs-keyword">let</span> max = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">const</span> [node, dep] = stack.pop();
+		max = <span class="hljs-built_in">Math</span>.max(max, dep + <span class="hljs-number">1</span>);
+		node.left &amp;&amp; stack.push(node.left, dep + <span class="hljs-number">1</span>);
+		node.right &amp;&amp; stack.push(node.right, dep + <span class="hljs-number">1</span>);
+	&#125;
+	<span class="hljs-keyword">return</span> max;
+&#125;</code></pre></div>
+
+<ul>
+<li>二叉搜素树中第 k 大的值<blockquote>
+<p>二叉搜索树 + 逆向中序遍历 =&gt; 降序排列 val</p>
+</blockquote>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kthLargest</span>(<span class="hljs-params">root, k</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span>;
+	<span class="hljs-keyword">let</span> res = root.val;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DFS</span>(<span class="hljs-params">node</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;
+		DFS(node.right);
+		<span class="hljs-keyword">if</span> (--k === <span class="hljs-number">0</span>) &#123;
+			res = node.val;
+			<span class="hljs-keyword">return</span>;
+		&#125;
+		DFS(node.right);
+	&#125;
+	DFS(root);
+	<span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+
+<ul>
+<li>二叉树的最近公共祖先<br>  对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowestCommonAncestor</span>(<span class="hljs-params">root, p, q</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">if</span> (root === p || root === q) <span class="hljs-keyword">return</span> root;
+	<span class="hljs-keyword">const</span> l = lowerCommonAncestor(root.left, p, q);
+	<span class="hljs-keyword">const</span> r = lowerCommonAncestor(root.right, p, q);
+	l &amp;&amp; r ? root : l || r;
+&#125;</code></pre></div>
+
+<ul>
+<li>二叉搜索树的最近公共祖先<br>  二叉搜索树中 rightTree &gt; root &gt; leftTree</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lowestCommonAncestor</span>(<span class="hljs-params">root, p, q</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (root.val &lt; p.val &amp;&amp; root.val &lt; q.val) &#123;
+		<span class="hljs-keyword">return</span> lowestCommonAncestor(root.right, p, q);
+	&#125;
+	<span class="hljs-keyword">if</span> (root.val &gt; p.val &amp;&amp; root.val &gt; q.val) &#123;
+		<span class="hljs-keyword">return</span> lowestCommonAncestor(root.left, p, q);
+	&#125;
+	<span class="hljs-keyword">return</span> root;
+&#125;</code></pre></div>
+
+<ul>
+<li>  二叉搜索树节点间最小差</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 中序排列后，最小差就是该数组中相邻元素最小差</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minDiffInBST</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> pre = <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">let</span> min = <span class="hljs-built_in">Number</span>.MAX_SAFE_INTEGER;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DFS</span>(<span class="hljs-params">node</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;
+		DFS(node.left);
+		<span class="hljs-keyword">if</span> (pre === <span class="hljs-literal">null</span>) &#123;
+			<span class="hljs-comment">// init阶段</span>
+			pre = node.val;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			min = <span class="hljs-built_in">Math</span>.min(min, node.val - pre);
+			pre = node.val;
+		&#125;
+		<span class="hljs-comment">// 中序列遍历，pre存储上一个值，由于BST特性，cur.val永远大于pre</span>
+		DFS(node.right);
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 使用辅助栈</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minDiffInBST</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> pre = <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">let</span> min = <span class="hljs-built_in">Number</span>.MAX_SAFE_INTEGER;
+	<span class="hljs-keyword">const</span> stack = [];
+	<span class="hljs-keyword">while</span> (root || stack.length &gt; <span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">while</span> (root) &#123;
+			stack.push(root);
+			root = root.left;
+		&#125;
+		<span class="hljs-keyword">const</span> node = stack.pop();
+		<span class="hljs-keyword">if</span> (pre === <span class="hljs-literal">null</span>) &#123;
+			pre = node.val;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			min = <span class="hljs-built_in">Math</span>.min(min, node.val - pre);
+			pre = node.val;
+		&#125;
+		root = node.right;
+	&#125;
+	<span class="hljs-keyword">return</span> min;
+&#125;</code></pre></div>
+
+<ul>
+<li>层序遍历，打印二叉树<br>  [[第一层],[第二层],[第三层]]</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>  <span class="hljs-title">levelOrder</span> (<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> stack = [[root, <span class="hljs-number">0</span>]];
+	<span class="hljs-keyword">const</span> res = [];
+	<span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">const</span> [node, level] = stack.shift();
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">if</span> (!res[level]) res[level] = [];
+		res[level].push(node.val);
+
+		node.left &amp;&amp; stack.push([node.left, level + <span class="hljs-number">1</span>]);
+		node.right &amp;&amp; stack.push(node.right, level + <span class="hljs-number">1</span>);
+	&#125;
+	<span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-keyword">const</span> levelOrder = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> stack = [root];
+	<span class="hljs-keyword">const</span> res = [];
+	<span class="hljs-keyword">if</span> (root) &#123;
+		<span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-keyword">const</span> preLevelSize = stack.length;
+			<span class="hljs-keyword">const</span> curLevel = [];
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; preLevelSize; i++) &#123;
+				<span class="hljs-keyword">const</span> n = stack.shift();
+				<span class="hljs-keyword">if</span> (!n) <span class="hljs-keyword">break</span>;
+				curLevel.push(n.val);
+				n.left &amp;&amp; stack.push(n.left);
+				n.right &amp;&amp; stack.push(n.right);
+			&#125;
+			res.push(curLevel);
+		&#125;
+	&#125;
+
+	<span class="hljs-keyword">return</span> res;
+&#125;;</code></pre></div>
+
+<ul>
+<li>判断平衡二叉树<br>  平衡二叉树，左右子树深度差不大于 1</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isBalanced</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> res = <span class="hljs-literal">true</span>;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">node</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">let</span> left = dfs(node.left);
+		<span class="hljs-keyword">let</span> right = dfs(node.right);
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.abs(left - right) &gt; <span class="hljs-number">1</span>) res = <span class="hljs-literal">false</span>;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(left, right) + <span class="hljs-number">1</span>;
+	&#125;
+	dfs(root);
+	<span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isBalanced</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">node</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		<span class="hljs-keyword">const</span> left = dfs(node.left);
+		<span class="hljs-keyword">const</span> right = dfs(node.right);
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.abs(left - right) &gt; <span class="hljs-number">1</span> || left === -<span class="hljs-number">1</span> || right === -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(left, right) + <span class="hljs-number">1</span>;
+	&#125;
+	<span class="hljs-keyword">return</span> dfs(root) !== -<span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+
+<ul>
+<li>  判断对称二叉树</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 对称的二叉树</span>
+<span class="hljs-comment">// l = r</span>
+<span class="hljs-comment">// l.right = r.left &amp;&amp; l.left = r.right</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isMirrorTree</span>(<span class="hljs-params">root</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recur</span>(<span class="hljs-params">l, r</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (l == <span class="hljs-literal">null</span> &amp;&amp; r == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">if</span> (l == <span class="hljs-literal">null</span> || r == <span class="hljs-literal">null</span> || l !== r) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		<span class="hljs-keyword">return</span> recur(l.left, r.right) &amp;&amp; recur(l.right, l, left);
+	&#125;
+	<span class="hljs-keyword">return</span> recur(root.left, root.right);
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/vue_diff%E7%AE%97%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue的diff算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
+                        <span class="hidden-mobile">前端涉及到的数据存储</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

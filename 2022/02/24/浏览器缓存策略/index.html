@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="强缓存浏览器在本地验证资源是否过期，如果没过期直接使用本地缓存，并返回200和显示(from memory cache &#x2F; from disk cache)(根据内存空闲情况和资源类型，并且memory cache页面关闭后会清理，下次加载是从disk cache) 强缓存字段Expires  http 1.0  时间戳格式Expires: Wed, 22 Oct 2018 08:41:00 GM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器缓存策略">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="强缓存浏览器在本地验证资源是否过期，如果没过期直接使用本地缓存，并返回200和显示(from memory cache &#x2F; from disk cache)(根据内存空闲情况和资源类型，并且memory cache页面关闭后会清理，下次加载是从disk cache) 强缓存字段Expires  http 1.0  时间戳格式Expires: Wed, 22 Oct 2018 08:41:00 GM">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-09-24T08:14:29.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>浏览器缓存策略 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="浏览器缓存策略">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浏览器缓存策略</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月24日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h1><p>浏览器在本地验证资源是否过期，如果没过期直接使用本地缓存，并返回<code>200</code>和显示(<code>from memory cache / from disk cache)</code>(根据内存空闲情况和资源类型，并且memory cache页面关闭后会清理，下次加载是从disk cache)</p>
+<h2 id="强缓存字段"><a href="#强缓存字段" class="headerlink" title="强缓存字段"></a>强缓存字段</h2><h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a><code>Expires</code></h3><ul>
+<li> http 1.0</li>
+<li> 时间戳格式<code>Expires: Wed, 22 Oct 2018 08:41:00 GMT</code></li>
+<li> ⚠️使用本地时间验证，与服务器时间之间的误差或者本地时间的修改都后会造成缓存失效</li>
+</ul>
+<h3 id="Cache-control"><a href="#Cache-control" class="headerlink" title="Cache-control"></a><code>Cache-control</code></h3><ul>
+<li> http 1.1</li>
+<li>可选参数：<ul>
+<li><code>public</code>,<code>private</code><ul>
+<li><code>public</code> 表示该资源可以被所有客户端和代理服务器缓存</li>
+<li><code>private</code> 表示该资源仅能客户端缓存[<em>默认值</em>]</li>
+</ul>
+</li>
+<li><code>max-age</code><em>相对资源首次被请求的时间</em><ul>
+<li>单位为毫秒，表示多长时间后过期</li>
+<li>可设置为 <strong>0</strong> 立即请求新资源</li>
+</ul>
+</li>
+<li><code>s-maxage</code> 会在<code>public</code>字段生效时覆盖<code>Expires</code>和<code>max-age</code> </li>
+<li><code>no-cache</code>,<code>no-store</code><ul>
+<li><code>no-cache</code> 会缓存资源，但要协商缓存验证</li>
+<li><code>no-store</code> 不缓存</li>
+</ul>
+</li>
+<li><code>max-age=0 || no-cache</code>会进入协商缓存</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a><code>Pragma</code></h3><ul>
+<li> 只为了兼容http1.0</li>
+<li> <code>Pragma = no-cache</code>与<code>Cache-Control: no-cache</code>效果一致</li>
+</ul>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><p><code>Cache-Control -&gt; Expires</code></p>
+<h1 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h1><p>浏览器携带缓存标识向服务器发起请求，询问服务器缓存有效性，协商缓存生效，返回<code>304</code>和<code>Not Modified</code>，协商缓存失效，返回<code>200</code>和请求结果</p>
+<h2 id="协商缓存字段"><a href="#协商缓存字段" class="headerlink" title="协商缓存字段"></a>协商缓存字段</h2><h3 id="Last-modified-If-Modified-Since"><a href="#Last-modified-If-Modified-Since" class="headerlink" title="Last-modified + If-Modified-Since"></a><code>Last-modified + If-Modified-Since</code></h3><ul>
+<li><p>服务器返回资源的同时在<code>response header</code>中添加 <code>Last-Modified</code>字段，值是该资源在服务器上的最后修改时间<br>  <code>Last-Modified: Fri, 22 Jul 2016 01:47:00 GMT</code></p>
+</li>
+<li><p> 再次请求该资源时，浏览器检测到资源中存在 <code>Last-Modified</code>字段，则会将这个时间戳作为<code>If-Modified-Since</code>的值加入请求头中发送给服务器</p>
+</li>
+<li><p> 服务器根据自身资源的修改时间和来自请求的时间戳判断资源是否更新，返回相对应的结果</p>
+</li>
+</ul>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li>本地打开缓存文件，即使没有对文件进行修改，但还是会造成 <code>Last-Modified</code> 被修改</li>
+<li><code>Last-Modified</code> 只能以秒计时，如果在不可感知的时间内修改完成文件，则不能体现被修改过</li>
+</ul>
+<h3 id="ETag-If-Not-Match"><a href="#ETag-If-Not-Match" class="headerlink" title="ETag + If-Not-Match"></a><code>ETag + If-Not-Match</code></h3><ul>
+<li><p> 服务器为资源进行hash计算生成唯一的标识符<code>Etag</code>加入返回头，资源的修改会导致标识改变</p>
+</li>
+<li><p> 浏览器请求时将资源自带的标识作为<code>If-None-Match</code>的值加入请求头中发送给服务器</p>
+</li>
+<li><p> 服务器根据同一资源标识是否一致返回相应结果</p>
+</li>
+<li><p><code>ETag:\W 弱验证</code>: 新旧资源不需要逐字节一一对应新旧资源的比较会使用较为宽松的算法</p>
+</li>
+<li><p><code>If-Match条件请求</code>: 在请求方法为 GET 和 HEAD 的情况下，服务器仅在请求的资源匹配该ETag值时才会返回资源。而对于 PUT 或其他非安全方法来说，只有在满足条件的情况下才可以将数据上传。例如:Range请求 or 避免更新丢失（用户上传覆盖其他用户提交的更新）</p>
+<h1 id="缓存策略"><a href="#缓存策略" class="headerlink" title="缓存策略"></a>缓存策略</h1></li>
+</ul>
+<ol>
+<li><p>先判断<code>Cache-Control</code>，在<code>Cache-Control</code>的<code>max-age</code>之内，直接返回<code>200 from cache</code>；</p>
+</li>
+<li><p>没有<code>Cache-Control</code>再判断<code>Expires</code>，在<code>Expires</code>之内，直接返回<code>200 from cache</code></p>
+</li>
+<li><p><code>Cache-Control=no-cache/no-store</code>或者不符合<code>Expires</code>，浏览器向服务器发送请求</p>
+</li>
+<li><p> 服务器判断<code>If-Modified-Since</code>和<code>If-None-Match</code>，两者同时出现时会忽略<code>If-Modified-Since</code>，有效则返回<code>304</code>，失效则返回新资源。</p>
+</li>
+</ol>
+<h2 id="用户行为的影响"><a href="#用户行为的影响" class="headerlink" title="用户行为的影响"></a>用户行为的影响</h2><ol>
+<li><em>地址栏</em>访问，链接跳转是正常用户行为，将会触发浏览器缓存机制；</li>
+<li><em>F5</em>刷新，进行协商缓存判断；</li>
+<li><em>ctrl+F5</em>刷新，指定强缓存和协商缓存都失效。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">栈算法题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <span class="hidden-mobile">算法题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

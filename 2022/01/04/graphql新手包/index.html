@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GraphQlGraphQL是一个旨在简化前端和后端之间通信的规范。它主要由服务端的 schema 语言和客户端的查询语言组成。【_查询语法和 schema 语法几乎是相等的_】。 gql的 api 需要完整描述期望返回的数据，相对于RestFul API减少了数据的冗余。修改一下官网的示例： &#x2F;&#x2F; 描述你的数据 &#x2F;&#x2F; 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="graphql新手包">
+<meta property="og:url" content="http://yoursite.com/2022/01/04/graphql%E6%96%B0%E6%89%8B%E5%8C%85/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="GraphQlGraphQL是一个旨在简化前端和后端之间通信的规范。它主要由服务端的 schema 语言和客户端的查询语言组成。【_查询语法和 schema 语法几乎是相等的_】。 gql的 api 需要完整描述期望返回的数据，相对于RestFul API减少了数据的冗余。修改一下官网的示例： &#x2F;&#x2F; 描述你的数据 &#x2F;&#x2F; 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-04T07:38:08.000Z">
+<meta property="article:modified_time" content="2022-01-04T07:38:08.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="graphql">
+<meta property="article:tag" content="apollo">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>graphql新手包 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="graphql新手包">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-04 15:38" pubdate>
+        2022年1月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">graphql新手包</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月4日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="GraphQl"><a href="#GraphQl" class="headerlink" title="GraphQl"></a>GraphQl</h2><p><code>GraphQL</code>是一个旨在简化前端和后端之间通信的规范。它主要由服务端的 schema 语言和客户端的查询语言组成。<br>【_查询语法和 schema 语法几乎是相等的_】。</p>
+<p><code>gql</code>的 api 需要完整描述期望返回的数据，相对于<code>RestFul API</code>减少了数据的冗余。修改一下官网的示例：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 描述你的数据</span>
+<span class="hljs-comment">// 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的数据类型</span>
+type Project &#123;
+  name: <span class="hljs-built_in">String</span>
+  tagline: <span class="hljs-built_in">String</span>
+  contributors: [User]
+&#125;
+
+<span class="hljs-comment">// 请求你所要的数据</span>
+<span class="hljs-comment">// 请求project中，name值为字符串‘GraphQl’的数据，并返回他的tagline字段</span>
+&#123;
+  <span class="hljs-function"><span class="hljs-title">project</span>(<span class="hljs-params">name: <span class="hljs-string">&quot;GraphQL&quot;</span></span>)</span> &#123;
+    tagline
+  &#125;
+&#125;
+
+<span class="hljs-comment">// 得到可预测的结果</span>
+&#123;
+  <span class="hljs-string">&quot;project&quot;</span>: &#123;
+    <span class="hljs-string">&quot;tagline&quot;</span>: <span class="hljs-string">&quot;A query language for APIs&quot;</span>
+  &#125;
+&#125;</code></pre></div>
+
+<ul>
+<li><p>  gql 实体资源不能通过 URL 识别</p>
+</li>
+<li><p>与 gql 服务器的<strong>全部</strong>数据交互基于一个指定的<code>URL</code>通<br>  道</p>
+</li>
+<li><p>标准的 gql GET 请求</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">http:<span class="hljs-comment">//myapi/graphql?query=&#123;me&#123;name&#125;&#125;</span>
+
+&#123;
+  me&#123;
+    name
+  &#125;
+&#125;</code></pre></div></li>
+<li><p>标准的 gql POST 请求</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">content-type:application/json
+
+&#123;
+  <span class="hljs-string">&quot;query&quot;</span>: 查询的对象及参数,
+  <span class="hljs-string">&quot;operationName&quot;</span>: <span class="hljs-string">&quot;...&quot;</span>,
+  <span class="hljs-string">&quot;variables&quot;</span>: 变量形式的参数传参
+&#125;
+
+<span class="hljs-comment">// 并且一般会发起两次请求，先发一次OPTION，</span></code></pre></div></li>
+</ul>
+<h3 id="gql-文件"><a href="#gql-文件" class="headerlink" title="gql 文件"></a>gql 文件</h3><ul>
+<li>  比较方便的管理 gql 接口的方式就是预先编写<code>.graphql</code>文件，方便复用和拓展。</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 在一个gql文件内声明多个query，需要命名query，并支持es6结构引用。单个query请求文件则可不命名。</span>
+
+query queryxxx(
+  $variable1: <span class="hljs-built_in">String</span>
+  $variable2: [<span class="hljs-built_in">String</span>]
+)&#123;
+  myCoWorkers(
+    name:$variable1
+    gender:$variable2
+  )&#123;
+    name
+    age
+    gender
+    nation
+  &#125;
+&#125;
+</code></pre></div>
+
+<ul>
+<li>  也可以在请求时手动编写（需安装’graphql-tag’）</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">$apollo.query(
+  query:gql<span class="hljs-string">`query tagList &#123;</span>
+<span class="hljs-string">      tags &#123;</span>
+<span class="hljs-string">        id,</span>
+<span class="hljs-string">        label</span>
+<span class="hljs-string">      &#125;</span>
+<span class="hljs-string">    &#125;`</span>
+)</code></pre></div>
+
+<h2 id="ApolloClient"><a href="#ApolloClient" class="headerlink" title="ApolloClient"></a>ApolloClient</h2><p><code>Apollo</code>是实现 gql 标准的客户端，(可以理解成使用 gql 的<code>axios</code>)。各大框架和开发场景都有对应的整合库，如<code>VueApollo</code>。</p>
+<h3 id="常用-api-选项"><a href="#常用-api-选项" class="headerlink" title="常用 api/选项"></a>常用 api/选项</h3><p><a target="_blank" rel="noopener" href="https://vue-apollo.netlify.app/zh-cn/api/smart-query.html#%E9%80%89%E9%A1%B9">https://vue-apollo.netlify.app/zh-cn/api/smart-query.html#%E9%80%89%E9%A1%B9</a></p>
+<ul>
+<li><p>  query 查询表（可以是 query，mutation）</p>
+</li>
+<li><p>  variables 变量</p>
+</li>
+<li><p>fetchPolicy 缓存选项</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section"># cache-first[default]</span>
+
+Apollo Client 首先对缓存执行查询。如果缓存中存在所有请求的数据，则返回该数据。否则，Apollo Client 会针对您的 GraphQL 服务器执行查询，并在缓存数据后返回该数据。
+
+<span class="hljs-section"># cache-only</span>
+
+Apollo Client 仅针对缓存执行查询。在这种情况下，它永远不会查询您的服务器。
+如果缓存不包含所有请求字段的数据，则会引发错误。
+
+<span class="hljs-section"># cache-and-network</span>
+
+Apollo Client 对缓存和 GraphQL 服务器执行完整查询。如果服务器端查询的结果修改了缓存字段，则查询会自动更新。
+
+<span class="hljs-section"># network-only</span>
+
+Apollo Client 会针对您的 GraphQL 服务器执行完整查询，而无需先检查缓存。查询的结果存储在缓存中。
+
+<span class="hljs-section"># no-cache</span>
+
+与 network-only 类似, 但不缓存结果。
+
+<span class="hljs-section"># standby</span>
+
+使用与 cache-first 相同的逻辑，除了当基础字段值更改时此查询不会自动更新。您仍然可以使用 refetch 和 updateQueries 手动更新此查询。</code></pre></div></li>
+<li><p>  pollInterval 轮询（间隔 x 毫秒）</p>
+</li>
+<li><p>  fetchMore 加载更多（可以改变个别或全部参数发送同一个请求，需手动处理请求结果）</p>
+</li>
+</ul>
+<h3 id="使用-Apollo（vue-v2）"><a href="#使用-Apollo（vue-v2）" class="headerlink" title="使用 Apollo（vue v2）"></a>使用 Apollo（vue v2）</h3><ul>
+<li><p>安装<code>Apollo</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn add vue-apollo graphql apollo-boost
+
+#  apollo-boost 是创建apollo client的懒人包，包含常用的默认值，无需繁琐的手动配置
+
+or
+
+npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http apollo-cache-inmemory graphql-tag</code></pre></div></li>
+<li><p>封装<code>ApolloClient</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> ApolloClient <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-boost&quot;</span>;
+<span class="hljs-keyword">const</span> $apollo = <span class="hljs-keyword">new</span> ApolloClient(&#123;<span class="hljs-attr">uri</span>:<span class="hljs-string">&#x27;xxx&#x27;</span>&#125;)
+
+<span class="hljs-comment">// or</span>
+
+<span class="hljs-comment">// 封装举例</span>
+<span class="hljs-comment">// 超时</span>
+<span class="hljs-keyword">import</span> ApolloLinkTimeout <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-link-timeout&quot;</span>;
+<span class="hljs-keyword">const</span> timeoutLink = <span class="hljs-keyword">new</span> ApolloLinkTimeout(<span class="hljs-number">30000</span>);
+
+<span class="hljs-comment">// 缓存</span>
+<span class="hljs-keyword">import</span> &#123; InMemoryCache &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;apollo-cache-inmemory&#x27;</span>
+<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> InMemoryCache()
+
+<span class="hljs-comment">// link</span>
+<span class="hljs-keyword">const</span> httpLink = createHttpLink(&#123; <span class="hljs-attr">uri</span>: <span class="hljs-string">&#x27;xxx&#x27;</span> &#125;);
+<span class="hljs-keyword">const</span> timeoutHttpLink = timeoutLink.concat(httpLink);
+
+<span class="hljs-keyword">const</span> apolloClient = <span class="hljs-keyword">new</span> ApolloClient(&#123;
+  version:<span class="hljs-string">&#x27;&#x27;</span>,
+  name:<span class="hljs-string">&#x27;&#x27;</span>,
+  link: timeoutHttpLink,<span class="hljs-comment">//同时提供时优先级高于uri，提供更精细化的配置</span>
+
+  cache: <span class="hljs-comment">// InMemoryCache (&#123;......&#125;) 缓存控制 www.apollographql.com/docs/react/caching/cache-configuration/`</span>
+
+  defaultOptions:&#123;
+      watchQuery: &#123;
+        fetchPolicy: <span class="hljs-string">&#x27;cache-and-network&#x27;</span>,
+        errorPolicy: <span class="hljs-string">&#x27;ignore&#x27;</span>,
+      &#125;,
+      query: &#123;
+        fetchPolicy: <span class="hljs-string">&#x27;network-only&#x27;</span>,
+        errorPolicy: <span class="hljs-string">&#x27;all&#x27;</span>,
+      &#125;,
+      mutate: &#123;
+        errorPolicy: <span class="hljs-string">&#x27;all&#x27;</span>,
+      &#125;
+    &#125;<span class="hljs-comment">//&#x27;各种查询的默认策略&#x27;</span>
+
+  &#125;);</code></pre></div></li>
+<li><p>使用方法</p>
+<ul>
+<li><h4 id="apollo-provider"><a href="#apollo-provider" class="headerlink" title="apollo provider"></a>apollo provider</h4><p>  使用 apollo 组件，需先生成<code>apollo provider</code>，为 vue 实例提供 apollo 能力</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">Vue.use(VueApollo);
+
+<span class="hljs-keyword">const</span> apolloProvider = <span class="hljs-keyword">new</span> VueApollo(&#123;
+	defaultClient: apolloClient,
+&#125;);
+<span class="hljs-keyword">new</span> Vue(&#123;
+	el: <span class="hljs-string">&quot;#app&quot;</span>,
+	<span class="hljs-comment">// 像 vue-router 或 vuex 一样注入 apolloProvider</span>
+	apolloProvider,
+	render: <span class="hljs-function">(<span class="hljs-params">h</span>) =&gt;</span> h(App),
+&#125;);</code></pre></div>
+
+<p>  引入后之后，在你的每个 vue 组件实例上将多出$apollo 对象指向 apollo 客户端。</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">this</span>.$apollo ===&gt;
+&#123;<span class="hljs-attr">query</span>:[....],
+&#125;</code></pre></div>
+
+<p>  并且与 data 选项平行的 apollo 选择中可以自定义各种 gql 查询，并且他们的结果将作为 vue 变量来使用</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> &#123;
+    a:<span class="hljs-number">1</span>
+  &#125;
+&#125;,
+apollo:&#123;
+  fetchB:&#123;
+    query:...,
+    variables:...,
+    fetchPolicy:...,
+    ...各种apollo的api选项
+  &#125;
+&#125;</code></pre></div></li>
+<li><h4 id="apollo-组件"><a href="#apollo-组件" class="headerlink" title="apollo 组件"></a>apollo 组件</h4><p>  在组件模版中编写 gql 查询，同时通过插槽<code>slot</code>分发请求结果,分别有<code>ApolloQuery</code>,<code>ApolloMutation</code>,<code>ApolloSubscribeToMore</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;template&gt;
+  &lt;!-- Apollo 查询 --&gt;
+  &lt;ApolloQuery :query=<span class="hljs-string">&quot;/* 一些查询 */&quot;</span>&gt;
+    &lt;!-- 结果将自动更新 --&gt;
+    &lt;template slot-scope=<span class="hljs-string">&quot;&#123; result: &#123; data, loading &#125; &#125;&quot;</span>&gt;
+      &lt;!-- 一些内容 --&gt;
+      &lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;loading&quot;</span>&gt;Loading...&lt;/div&gt;
+      &lt;ul v-<span class="hljs-keyword">else</span>&gt;
+        &lt;li v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;user of data.users&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;user&quot;</span>&gt;
+          &#123;&#123; user.name &#125;&#125;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/template&gt;
+  &lt;/ApolloQuery&gt;
+&lt;/template&gt;</code></pre></div></li>
+<li><h4 id="纯-api-封装"><a href="#纯-api-封装" class="headerlink" title="纯 api 封装"></a>纯 api 封装</h4><p>  基本上没有侵入性的使用方法，封装成函数式的 api，不需要在实例中插入<code>Apollo Provider</code>和<code>vue.use(vueApollo)</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 伪代码</span>
+<span class="hljs-keyword">import</span> apolloclient
+<span class="hljs-keyword">import</span> gql图表文件
+<span class="hljs-comment">// apollo请求基于promise</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> xxxapi = <span class="hljs-keyword">async</span> (params) =&gt; &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> $apollo.query(&#123;
+    query:，
+    variables:&#123;&#125;,
+    fetchPolicy,
+    ...
+    ...各种参数
+  &#125;)
+&#125;</code></pre></div>
+<p>  然后在你的 js 代码中引入,熟悉的味道熟悉的配方</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>相较于<code>restful</code>少了大量处理数据的步骤，接口天然更加安全(参数类型参数数量对不上都会请求失败)，apollo 功能也是十分强大（轮询，分页，缓存），再回去用 restful 会有一种略难受的感觉。并且后端的同学也表示舒服。</p>
+<p>之后打算在别的项目里陆续试一试智能查询和 apollo 组件，看看有没有耦合度低的接入方式或者复用的 apollo 组件。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/graphql/">graphql</a>
+                    
+                      <a class="hover-with-bg" href="/tags/apollo/">apollo</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/10/cli%E5%88%9D%E4%BD%93%E9%AA%8C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">脚手架搭建&Lerna新手包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/09/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">js设计模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

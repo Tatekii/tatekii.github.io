@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ref:https:&#x2F;&#x2F;github.com&#x2F;CyC2018 面向对象的设计思想面向对象的设计思想是从自然界中来的，因为在自然界中就存在类（Class）和实例（Instance）的概念。    Class 是一种抽象概念，比如我们定义的 Class——Student ，是指学生这个概念，    而实例（Instance）则是一个个具体的 Student ，比如， Michael 和 Bob 是两个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="ref:https:&#x2F;&#x2F;github.com&#x2F;CyC2018 面向对象的设计思想面向对象的设计思想是从自然界中来的，因为在自然界中就存在类（Class）和实例（Instance）的概念。    Class 是一种抽象概念，比如我们定义的 Class——Student ，是指学生这个概念，    而实例（Instance）则是一个个具体的 Student ，比如， Michael 和 Bob 是两个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2022/02/24/images/proto.png">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-07-06T13:50:37.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/2022/02/24/images/proto.png">
+  
+  
+  <title>面向对象 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="面向对象">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">面向对象</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年7月6日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>ref:<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3.md">https://github.com/CyC2018</a></p>
+<h2 id="面向对象的设计思想"><a href="#面向对象的设计思想" class="headerlink" title="面向对象的设计思想"></a>面向对象的设计思想</h2><p>面向对象的设计思想是从自然界中来的，因为在自然界中就存在类（Class）和实例（Instance）的概念。</p>
+<ul>
+<li><p>  Class 是一种抽象概念，比如我们定义的 Class——Student ，是指学生这个概念，</p>
+</li>
+<li><p>  而实例（Instance）则是一个个具体的 Student ，比如， Michael 和 Bob 是两个具体的 Student 。</p>
+</li>
+<li><p>  面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现。</p>
+</li>
+<li><p>  面向对象是把构成问题事务分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描叙某个事物在整个解决问题的步骤中的行为。</p>
+</li>
+</ul>
+<h2 id="面向对象三要素"><a href="#面向对象三要素" class="headerlink" title="面向对象三要素"></a>面向对象三要素</h2><h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外接口使之与外部发生联系。用户无需知道对象内部的细节，但可以通过对象对外提供的接口来访问该对象。</p>
+<ul>
+<li>  减少耦合：可以独立地开发和测试</li>
+<li>  减轻维护的负担：可以更容易被程序员理解，并且在调试的时候可以不影响其他模块</li>
+<li>有效地调节性能：可以通过剖析确定哪些模块影响了系统的性能<br>  提高软件的可重用性</li>
+<li>  降低了构建大型系统的风险：即使整个系统不可用，但是这些独立的模块却有可能是可用的</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 以下 Person 类封装 name、gender、age 等属性，外界只能通过 get() 方法获取一个 Person 对象的 name 属性和 gender 属性，而无法获取 age 属性，但是 age 属性可以供 work() 方法使用。</span>
+
+<span class="hljs-comment">// 注意到 gender 属性使用 int 数据类型进行存储，封装使得用户注意不到这种实现细节。并且在需要修改 gender 属性使用的数据类型时，也可以在不影响客户端代码的情况下进行。</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
+
+    private <span class="hljs-built_in">String</span> name;
+    private int gender;
+    private int age;
+
+    <span class="hljs-built_in">String</span> <span class="hljs-function"><span class="hljs-title">getName</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-built_in">String</span> <span class="hljs-function"><span class="hljs-title">getGender</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">return</span> gender == <span class="hljs-number">0</span> ? <span class="hljs-string">&quot;man&quot;</span> : <span class="hljs-string">&quot;woman&quot;</span>;
+    &#125;
+
+    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">work</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-number">18</span> &lt;= age &amp;&amp; age &lt;= <span class="hljs-number">50</span>) &#123;
+            System.out.println(name + <span class="hljs-string">&quot; is working very hard!&quot;</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            System.out.println(name + <span class="hljs-string">&quot; can&#x27;t work any more!&quot;</span>);
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ul>
+<li><p>  子类可以访问父类非 private 属性</p>
+</li>
+<li><p>  里氏替换原则，子类对象必须能够替换掉父类对象。</p>
+</li>
+<li><p>  提高代码的复用性，继承是多态的前提。</p>
+</li>
+</ul>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><ul>
+<li><p>  父类或接口定义的引用变量可以指向子类或实例对象，即多种不同状态</p>
+</li>
+<li><p>  提高了程序的扩展性</p>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  下面的代码中，乐器类（Instrument）有两个子类：Wind 和 Percussion，它们都覆盖了父类的 play() 方法，并且在 main() 方法中使用父类 Instrument 来引用 Wind 和 Percussion 对象。在Instrument 引用调用 play() 方法时，会执行实际引用对象所在类的 play() 方法，而不是 Instrument 的方法。</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instrument</span> </span>&#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;Instument is playing...&quot;</span>);
+    &#125;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Instrument</span> </span>&#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;Wind is playing...&quot;</span>);
+    &#125;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Percussion</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Instrument</span> </span>&#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;Percussion is playing...&quot;</span>);
+    &#125;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Music</span> </span>&#123;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>)</span> &#123;
+        List&lt;Instrument&gt; instruments = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        instruments.add(<span class="hljs-keyword">new</span> Wind());
+        instruments.add(<span class="hljs-keyword">new</span> Percussion());
+        <span class="hljs-keyword">for</span>(Instrument instrument : instruments) &#123;
+            instrument.play();
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+
+<h2 id="六大基本原则："><a href="#六大基本原则：" class="headerlink" title="六大基本原则："></a>六大基本原则：</h2><ul>
+<li><p><code>Single Responsibility Principle：单一职责原则</code></p>
+<p>  一个类应该只有一个发生变化的原因，只负责一项职责</p>
+</li>
+<li><p><code>Open Closed Principle：开闭原则</code></p>
+<p>  对修改封闭，对拓展开放</p>
+</li>
+<li><p><code>Liskov Substitution Principle：里氏替换原则</code></p>
+<p>  子类能完全替代父类</p>
+</li>
+<li><p><code>Law of Demeter：迪米特法则</code></p>
+<p>  功能模块之间尽量减少相互作用，保持相互独立</p>
+</li>
+<li><p><code>Interface Segregation Principle：接口隔离原则</code></p>
+<p>  用多个借口将功能解耦</p>
+</li>
+<li><p><code>Dependence Inversion Principle：依赖倒置原则</code></p>
+<p>  高层模块不应该依赖低层模块，二者都应该依赖其抽象，对抽象接口进行编程</p>
+</li>
+</ul>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><code>JavaScript</code> 是一种基于原型的语言 (prototype-based language)</p>
+<p>区别于其他面向对象的语言实例中复制父类的全部属性，js 则使用原型去访问公有属性。</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>每个构造函数都有一个原型对象，而每个实例都包含一个指向原型对象的内部指针<code>__proto__</code>。如果这个原型对象是另一个构造函数的实例，则这个原型对象也可以访问自己的原型对象，这样层层递进链式访问的关系就叫做<code>原型链</code>。</p>
+<p>js 中查找属性时，先查找实例自身，后查找原型对象，再沿着原型链不断上溯，直到原型链的尽头.</p>
+<h3 id="特殊的Object和Function"><a href="#特殊的Object和Function" class="headerlink" title="特殊的Object和Function"></a>特殊的<code>Object</code>和<code>Function</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Function</span>.prototype = <span class="hljs-string">&quot;function&quot;</span>
+<span class="hljs-built_in">Function</span>.prototype = <span class="hljs-built_in">Function</span>.__proto__<span class="hljs-comment">//f()&#123;[native code]&#125;</span>
+
+<span class="hljs-comment">// 所有引用类型都继承自Object</span>
+<span class="hljs-built_in">Function</span>.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype <span class="hljs-comment">// true</span>
+</code></pre></div>
+
+<h3 id="只有函数才有prototype"><a href="#只有函数才有prototype" class="headerlink" title="只有函数才有prototype"></a>只有函数才有<code>prototype</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f1</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+f1.__proto__ === <span class="hljs-built_in">Function</span>.prototype; <span class="hljs-comment">// f1直接由Function构造而来</span>
+
+<span class="hljs-keyword">const</span> obj1 = &#123;&#125;;
+obj1.prototype; <span class="hljs-comment">// undefined</span></code></pre></div>
+
+<h3 id="原形链的终点"><a href="#原形链的终点" class="headerlink" title="原形链的终点"></a>原形链的终点</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.prototype === <span class="hljs-string">&#x27;object&#x27;</span>
+<span class="hljs-comment">// 意味着Object的原型是也是一个对象</span>
+
+<span class="hljs-comment">// 而对象的构造器也是Object，则会出现死循环</span>
+！【<span class="hljs-built_in">Object</span>.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype】！
+
+
+<span class="hljs-comment">// 为了让原型链有终点。Javascript规定，</span>
+<span class="hljs-built_in">Object</span>.prototype.__proto__ === <span class="hljs-literal">null</span></code></pre></div>
+
+<p><img src="../images/proto.png" srcset="/img/loading.gif" lazyload alt="proto"></p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f1</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+f1.__proto__ = <span class="hljs-built_in">Function</span>.prototype = <span class="hljs-function"><span class="hljs-title">f</span>(<span class="hljs-params"></span>)</span>&#123; [native code] &#125;
+f1.__proto__.__proto__ = <span class="hljs-built_in">Object</span>.prototype = &#123;<span class="hljs-attr">constructor</span>: ƒ, <span class="hljs-attr">__defineGetter__</span>: ƒ, <span class="hljs-attr">__defineSetter__</span>: ƒ, <span class="hljs-attr">hasOwnProperty</span>: ƒ, <span class="hljs-attr">__lookupGetter__</span>: ƒ, …&#125;
+f1.__proto__.__proto__.__proto__ = <span class="hljs-literal">null</span>
+
+<span class="hljs-keyword">const</span> obj = &#123;&#125;
+obj.__proto__ = <span class="hljs-built_in">Object</span>.prototype
+obj.__proto__.__proto__ = <span class="hljs-literal">null</span></code></pre></div>
+
+<h3 id="相关方法"><a href="#相关方法" class="headerlink" title="相关方法"></a>相关方法</h3><ul>
+<li><p><code>Object.getPrototype()</code>/<code>__proto__</code></p>
+<p>  返回指定对象的原型（隐式原型）</p>
+<p>  <code>__proto__</code>虽然在绝大数浏览器都能正常工作，但官方不推荐且已标为废弃，使用<code>Object.getPrototypeOf()</code>替代</p>
+</li>
+<li><p><code>Object.prototype.isPrototypeOf()</code></p>
+<p>  判断对象是否在另一个对象原型链上</p>
+</li>
+</ul>
+<h2 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h2><ol>
+<li>函数的 <code>this</code> 指向函数运行时的执行上下文</li>
+<li>当函数被当作对象的方法调用时,<code>this</code> 指向调用对象</li>
+<li>new 操作符生成的对象 <code>this</code> 指向自己</li>
+<li>箭头函数的<code>this</code>取决于外部函数体的<code>this</code></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/js%E9%97%AD%E5%8C%85/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">作用域链与闭包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/">
+                        <span class="hidden-mobile">js面试题集</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

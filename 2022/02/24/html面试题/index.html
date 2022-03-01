@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="HTML5 新特性移除 纯表现的元素&#x2F;可以用css实现的元素：basefont，big，center，font, s，strike  对可用性产生负面影响的元素：frame,frameset  语意化更好的标签，比如header,nav,section,article,footer,aside  增强了input类型:color,date,datetime-local,range,tel,sear">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML面试题">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="HTML5 新特性移除 纯表现的元素&#x2F;可以用css实现的元素：basefont，big，center，font, s，strike  对可用性产生负面影响的元素：frame,frameset  语意化更好的标签，比如header,nav,section,article,footer,aside  增强了input类型:color,date,datetime-local,range,tel,sear">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-07-06T01:03:52.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>HTML面试题 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HTML面试题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTML面试题</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年7月6日 上午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="HTML5-新特性"><a href="#HTML5-新特性" class="headerlink" title="HTML5 新特性"></a>HTML5 新特性</h1><h3 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h3><ul>
+<li><p>纯表现的元素/可以用css实现的元素：<code>basefont</code>，<code>big</code>，<code>center</code>，<code>font</code>, <code>s</code>，<code>strike</code></p>
+</li>
+<li><p>对可用性产生负面影响的元素：<code>frame</code>,<code>frameset</code></p>
+</li>
+<li><p>语意化更好的标签，比如<code>header,nav,section,article,footer,aside</code></p>
+</li>
+<li><p>增强了<code>input</code>类型:<code>color</code>,<code>date</code>,<code>datetime-local</code>,<code>range</code>,<code>tel</code>,<code>search</code>,<code>url</code></p>
+</li>
+<li><p>新的表单元素:<code>datalist,progress,meter,output,keygen</code></p>
+</li>
+<li><p>表单校验(数据格式，数据范围，占位符，必填等)</p>
+</li>
+<li><p><code>canvas</code> API和内联 <code>svg</code></p>
+</li>
+<li><p><code>audio/video</code> 音视频元素</p>
+</li>
+<li><p><code>manifest</code>web应用离线缓存</p>
+</li>
+<li><p>地理定位<code>geolocation</code> API</p>
+</li>
+<li><p><code>webworker</code>将JS计算交给后台线程</p>
+</li>
+<li><p><code>websocket</code>全双工的支持服务端推送的持久化连接协议</p>
+</li>
+<li><p>webStorage：<code>localStorage sessionStorage</code></p>
+</li>
+<li><p><code>history</code>API</p>
+</li>
+</ul>
+<h3 id="HTML5-哪些标签可以做-SEO"><a href="#HTML5-哪些标签可以做-SEO" class="headerlink" title="HTML5 哪些标签可以做 SEO"></a>HTML5 哪些标签可以做 SEO</h3><p><code>title、meta、header、footer、nav、article、aside</code></p>
+<h1 id="meta元数据标签"><a href="#meta元数据标签" class="headerlink" title="meta元数据标签"></a>meta元数据标签</h1><ul>
+<li><code>charset</code> 字符编码</li>
+<li><code>keywords</code>关键词和爬虫</li>
+<li><code>viewport</code> scale页面缩放</li>
+<li><code>CSP</code>内容安全策略</li>
+</ul>
+<h1 id="HTML5-的离线存储"><a href="#HTML5-的离线存储" class="headerlink" title="HTML5 的离线存储"></a>HTML5 的离线存储</h1><p>在用户没有联网时，可以正常访问站点或应用；在联网的情况下，更新用户机器上的缓存文件。</p>
+<ol>
+<li>页面头部加入一个 manifest 的属性</li>
+<li>在 cache.manifest 文件的编写离线存储的资源</li>
+<li>在离线状态下，操作 window.applicationCache 进行需求实现</li>
+</ol>
+<h4 id="浏览器是如何对-HTML5-的离线存储资源进行管理和加载的"><a href="#浏览器是如何对-HTML5-的离线存储资源进行管理和加载的" class="headerlink" title="浏览器是如何对 HTML5 的离线存储资源进行管理和加载的"></a>浏览器是如何对 HTML5 的离线存储资源进行管理和加载的</h4><ul>
+<li><p>在线的情况下，浏览器发现 HTML 头部有 manifest 属性，它会请求 manifest 文件，如果是第一次访问 app，浏览器会根据 manifest 文件的内容下载相应的资源并且进行离线存储。</p>
+</li>
+<li><p>如果已经访问过 app，并且资源已经离线存储，浏览器会使用离线的资源加载页面，然后浏览器会对比新的 manifest 文件，如果文件没有发生改变，就不做任何操作，否则就会重新下载文件中的资源并进行离线存储。</p>
+</li>
+<li><p>离线的情况下，浏览器直接使用离线存储的资源。</p>
+</li>
+</ul>
+<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><p>HTML 文档中的每个元素都使用一个矩形盒子来描述其占用空间，这个模型称为盒模型。盒模型包含四个区域：<code>margin</code>（外边距），<code>border</code>（边框），<code>padding</code>（内边距），<code>content</code>（内容区域）</p>
+<blockquote>
+<p>outline和box-shadow都会从margin box区域开始计算</p>
+</blockquote>
+<h2 id="标准模型和-IE-模型"><a href="#标准模型和-IE-模型" class="headerlink" title="标准模型和 IE 模型"></a>标准模型和 IE 模型</h2><ul>
+<li>标准模型<code>box-sizing:content-box</code>,对其设置宽高只作用于<code>content box</code>区域</li>
+<li>ie 模型<code>box-sizing:border-box</code>,对其设置宽高会作用于<code>content box</code>,<code>padding box</code>和 <code>border box</code>区域</li>
+</ul>
+<h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><p><code>display block</code></p>
+<ol>
+<li><p>独占一行</p>
+</li>
+<li><p>可以设置 width，height，margin，padding，border 属性</p>
+</li>
+<li><p>默认宽度是容器的 100%</p>
+</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">article; <span class="hljs-comment">// h5</span>
+div;
+header; <span class="hljs-comment">// h5</span>
+section; <span class="hljs-comment">// h5</span>
+address; <span class="hljs-comment">// h5</span>
+ol;
+ul;
+aside; <span class="hljs-comment">// h5</span>
+footer; <span class="hljs-comment">// h5</span>
+audio; <span class="hljs-comment">// h5</span>
+video; <span class="hljs-comment">// h5</span>
+canvas; <span class="hljs-comment">// h5</span>
+hgroup; <span class="hljs-comment">// h5</span>
+p;
+h1 - h6;
+table;
+form;</code></pre></div>
+<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><p><code>display inline</code></p>
+<ol>
+<li>行内排列</li>
+<li>不能设置 <code>width</code>、<code>height</code>,默认高度和宽度就是内容的高度和宽度</li>
+<li>可以设置 <code>margin-left/right</code>，无法设置 <code>margin-top\bottom</code></li>
+<li><code>border</code> 和 <code>padding</code> 可以设置，但是 <code>border-top</code> 和 <code>padding-top</code> 到页面顶部后就不再增加</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">img; <span class="hljs-comment">//可以设置宽高</span>
+span;
+label;
+strong;
+a;
+input; <span class="hljs-comment">//可以设置宽高</span>
+select; <span class="hljs-comment">//可以设置宽高</span>
+textarea; <span class="hljs-comment">//可以设置宽高</span></code></pre></div>
+
+
+<h2 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h2><p><code>display line-block</code></p>
+<p>在行内排列的块级元素</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 兼容</span>
+div &#123;
+    display： inline-block；
+    zoom： <span class="hljs-number">1</span>；   <span class="hljs-comment">//在IE下触发hasLayout</span>
+    display：inline；<span class="hljs-comment">//一旦触发了hasLayout设置display：inline和display：block效果相似。</span>
+&#125;</code></pre></div>
+
+
+<h1 id="DOM元素的尺寸和位置"><a href="#DOM元素的尺寸和位置" class="headerlink" title="DOM元素的尺寸和位置"></a>DOM元素的尺寸和位置</h1><ol>
+<li><p><code>HTMLElement.style</code>【只能获取内联样式】</p>
+</li>
+<li><p><code>window.getComputedStyle(HTMLElement)</code>【获取包含所有样式属性的对象</p>
+</li>
+<li><p><code>HTMLElement.getBoundingClientRect()</code>【描绘元素为相对窗口的矩形盒子】</p>
+</li>
+<li><p><code>HTMLElement.offsetWidth/offsetHeight </code> 【content+padding+border+scrollbar】</p>
+</li>
+<li><p><code>HTMLElement.clientWidth/clientHeight</code> 【content+padding】</p>
+</li>
+<li><p><code>HTMLElement.scrollWidth/scrollHeight </code>// 【包含滚出可是区域部分的clientWidth/clientHeight】</p>
+</li>
+<li><p><code>HTMLElement.scrollTop</code>// 【从元素的左上角开始，滚动出元素的上半部分的 width/height】</p>
+</li>
+</ol>
+<p>！滚动到底</p>
+<blockquote>
+<p>ele.scrollHeight - ele.scrollTop === ele.clientHeight</p>
+</blockquote>
+<p>！元素进入可视范围(懒加载)</p>
+<blockquote>
+<p>要加载元素的.offsetTop - 容器.scrollTop &lt;= document.documentElement.clientHeight</p>
+</blockquote>
+<blockquote>
+<p>要加载元素getBoundingClientRect()后的top &lt;= document.documentElement.clientHeight<br>！js获取这些属性会触发重排</p>
+</blockquote>
+<h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><p>（Block Formatting Context） 块级格式化上下文,是一个对块级盒子的布局及浮动相互影响有特殊规则的区域</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><blockquote>
+<p>一句话就是BFC内外不会互相影响。。。</p>
+</blockquote>
+<ul>
+<li><p>BFC内盒子之间会发生外边距合并</p>
+</li>
+<li><p>BFC内浮动元素参与高度计算（高度塌陷）</p>
+</li>
+<li><p>BFC内盒子不会超出BFC边界（浮动覆盖）</p>
+<h3 id="下列方式会创建BFC："><a href="#下列方式会创建BFC：" class="headerlink" title="下列方式会创建BFC："></a>下列方式会创建BFC：</h3><ul>
+<li>根元素<code>HTML</code></li>
+<li>浮动元素：<code>float</code> 不为 <code>none</code></li>
+<li>绝对定位元素：<code>position</code> 为 <code>absolute</code> 或 <code>fixed</code></li>
+<li><code>overflow</code> 不为 <code>visible</code></li>
+<li><code>display</code> 为 <code>flow-root</code></li>
+<li>行内块元素<code>display</code> 为 <code>inline-block</code></li>
+<li>弹性元素<code>display</code> 为 <code>flex</code> 或 <code>inline-flex</code> 元素的直接子元素</li>
+<li>网格元素<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素</li>
+<li>表格元素<code>display</code> 为 <code>table``table-cell</code>或<code>table-xxx</code>等匿名表格元素</li>
+</ul>
+</li>
+</ul>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><ul>
+<li>用父元素伪类清除浮动</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-comment">/* 通用 */</span>
+<span class="hljs-selector-class">.clearfather</span>:after &#123;
+  content: <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-attribute">clear</span>: both;
+  <span class="hljs-attribute">display</span>: block;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">overflow</span>: hidden;
+&#125;
+<span class="hljs-selector-class">.clearfather</span> &#123;
+  *zoom: <span class="hljs-number">1</span>; <span class="hljs-comment">/* ie6/7 */</span>
+&#125;</code></pre></div>
+
+<ul>
+<li>空 div 清除浮动</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-class">.clearfloat</span> &#123;
+  <span class="hljs-attribute">clear</span>: both;
+&#125;</code></pre></div>
+
+<ul>
+<li>父元素 BFC</li>
+</ul>
+<p>设置能触发 BFC 的属性均可</p>
+<h1 id="超链接伪类顺序"><a href="#超链接伪类顺序" class="headerlink" title="超链接伪类顺序"></a>超链接伪类顺序</h1><p>被点击访问过的超链接样式不在具有 hover 和 active 了解决方法是改变 CSS 属性排列顺序: <code>L-V-H-A</code></p>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:link</span> &#123;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:visited</span> &#123;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span> &#123;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span> &#123;
+&#125;</code></pre></div>
+<h1 id="优雅降级和渐进增强"><a href="#优雅降级和渐进增强" class="headerlink" title="优雅降级和渐进增强"></a>优雅降级和渐进增强</h1><p>_优雅降级_：Web 站点在所有新式浏览器中都能正常工作，如果用户使用的是旧式浏览器，则代码会针对旧版本的 IE 进行降级处理，使之在旧式浏览器上以某种形式降级体验而不至于完全不能使用。</p>
+<p>_渐进增强_：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能，向页面增加不影响基础浏览器的额外样式和功能。当浏览器支持时，它们会自定地呈现出来并发挥作用。</p>
+<h1 id="常见空-VOID-元素"><a href="#常见空-VOID-元素" class="headerlink" title="常见空 VOID 元素"></a>常见空 VOID 元素</h1><p><code>br、hr、img、input、link、meta</code></p>
+<h1 id="window-load-和-DOMContentLoaded-的区别"><a href="#window-load-和-DOMContentLoaded-的区别" class="headerlink" title="window.load 和 DOMContentLoaded 的区别"></a><code>window.load</code> 和 <code>DOMContentLoaded</code> 的区别</h1><ul>
+<li><code>window.load</code>当整个页面及所有依赖资源如样式表和图片都已完成加载时，将触发load事件。</li>
+<li><code>DOMContentLoaded</code>纯HTML加载完</li>
+</ul>
+<h1 id="visibilityState"><a href="#visibilityState" class="headerlink" title="visibilityState"></a><code>visibilityState</code></h1><p>通过<code>visibilityState</code>的值检测页面当前是否可见，以及打开页面的时间等<br>在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放</p>
+<h1 id="外边距重叠"><a href="#外边距重叠" class="headerlink" title="外边距重叠"></a>外边距重叠</h1><ol>
+<li>同层相邻块级元素之间外边距重叠</li>
+<li>子元素与父元素的外边距重叠</li>
+<li>空元素(margin-top直接贴到margin-bottom时)</li>
+</ol>
+<h1 id="link-和-import-有什么区别"><a href="#link-和-import-有什么区别" class="headerlink" title="link 和@import 有什么区别"></a>link 和@import 有什么区别</h1><ul>
+<li><p><code>link</code>  是 XHTML 标签，除了加载 CSS 外，还可以定义 RSS ，rel和图标等；<code>@import</code> 只能加载 CSS。</p>
+</li>
+<li><p><code>link</code> 支持并行下载；<code>@import</code> 串行下载且需放在样式表顶层。</p>
+</li>
+<li><p><code>@import</code> 是在 CSS2.1 提出的，低版本的浏览器（IE5 以下）不支持。</p>
+</li>
+<li><p><code>link</code> 支持使用 Javascript 控制 DOM 去改变样式；而<code>@import</code> 不支持。</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HTML/">HTML</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/flex/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">flex布局</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/js%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">js数据类型的判断与转换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

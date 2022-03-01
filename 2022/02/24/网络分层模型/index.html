@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="OSI 参考模型OSI参考模型（OSI&#x2F;RM）的全称是开放系统互连参考模型（Open System Interconnection Reference Model，OSI&#x2F;RM），它是由国际标准化组织（International Standard Organization，ISO）提出的一个网络系统互连模型。  在这个 OSI 七层模型中，每一层都为其上一层提供服务和访问接口  不同主机之间的相同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络分层模型">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="OSI 参考模型OSI参考模型（OSI&#x2F;RM）的全称是开放系统互连参考模型（Open System Interconnection Reference Model，OSI&#x2F;RM），它是由国际标准化组织（International Standard Organization，ISO）提出的一个网络系统互连模型。  在这个 OSI 七层模型中，每一层都为其上一层提供服务和访问接口  不同主机之间的相同">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2022-02-24T12:42:31.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="http">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>网络分层模型 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="网络分层模型">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">网络分层模型</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年2月24日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h1><p><code>OSI参考模型（OSI/RM）</code>的全称是开放系统互连参考模型<code>（Open System Interconnection Reference Model，OSI/RM）</code>，它是由国际标准化组织（International Standard Organization，ISO）提出的一个网络系统互连模型。</p>
+<ul>
+<li><p>在这个 OSI 七层模型中，每一层都为其上一层提供服务和访问接口</p>
+</li>
+<li><p>不同主机之间的相同层称为<strong>对等层</strong></p>
+</li>
+<li></li>
+<li><p>对等层之间互相通信需要遵守一定的规则，如通信的内容、通信的方式，我们将其称为<strong>协议</strong>（Protocol）。</p>
+</li>
+<li><p>我们将某个主机上运行的某种协议的集合称为<strong>协议栈</strong>。主机正是利用这个协议栈来接收和发送数据的。</p>
+</li>
+<li><p>OSI 参考模型通过将协议栈划分为不同的层次，可以简化问题的分析、处理过程以及网络系统设计的复杂性。</p>
+</li>
+</ul>
+<h2 id="OSI-参考模型中各层的作用"><a href="#OSI-参考模型中各层的作用" class="headerlink" title="OSI 参考模型中各层的作用"></a>OSI 参考模型中各层的作用</h2><h3 id="物理层Physical-Layer"><a href="#物理层Physical-Layer" class="headerlink" title="物理层Physical Layer"></a>物理层<code>Physical Layer</code></h3><ul>
+<li>利用传输介质为数据链路层提供物理信道，传输二进制数据</li>
+<li>数据的单位称为比特<code>bit</code></li>
+</ul>
+<h3 id="数据链路层Data-Link-Layer"><a href="#数据链路层Data-Link-Layer" class="headerlink" title="数据链路层Data Link Layer"></a>数据链路层<code>Data Link Layer</code></h3><blockquote>
+<p>相邻节点</p>
+</blockquote>
+<ul>
+<li>物理地址寻址、数据的成帧、流量控制、检错重发等。控制帧在物理信道的传输</li>
+<li>数据的单位称为帧<code>frame</code></li>
+<li>协议<ul>
+<li><code>ARP</code>（Address Resolution Protocol，地址解析协议）IP地址映射到MAC地址</li>
+<li><code>RARP</code>（Reverse Address Resolution Protocol，逆地址解析协议）</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络层Network-Layer"><a href="#网络层Network-Layer" class="headerlink" title="网络层Network Layer"></a>网络层<code>Network Layer</code></h3><blockquote>
+<p>不相邻节点</p>
+</blockquote>
+<ul>
+<li>将传输层数据封装成包，并根据IP地址选择路由路径并在网络中传输</li>
+<li>数据的单位称为包<code>packet</code></li>
+<li>协议<ul>
+<li><code>IP</code> 协议（Internet Protocol，网际协议）<ol>
+<li><code>IP协议</code>是为计算机网络相互连接进行通信而设计的协议。在因特网中，它是能使连接到网上的所有计算机网络实现相互通信的一套规则，规定了计算机在因特网上进行通信时应当遵守的规则</li>
+<li><code>IP协议</code>屏蔽了下层各种物理子网的差异，向上层提供给统一格式的<code>IP数据报</code></li>
+<li><code>IP数据报</code>传送使用<code>非连接式</code>的传送方式。非连接式的传送方式是指IP传送时，源设备与目的设备双方不必事先连接，即可将IP数据报送达。即源设备完全不用理会目的设备，而只是单纯地将IP数据报逐一送出。至于目的设备是否收到每个信息包、是否收到正确的信息包等，则由上层的协议(例如<code>TCP</code>)来负责检查</li>
+</ol>
+</li>
+<li><code>ICMP</code> 协议（Internet Control Message Protocol，网际控制报文协议）</li>
+<li><code>IGMP</code> 协议（Internet Group Management Protocol，网际组管理协议）</li>
+</ul>
+</li>
+</ul>
+<h3 id="传输层Transport-Layer"><a href="#传输层Transport-Layer" class="headerlink" title="传输层Transport Layer"></a>传输层<code>Transport Layer</code></h3><ul>
+<li><p>提供端对端的接口，向两个主机中进程之间的通信提供服务，根据协议可向会话层交付可靠的网络连接，同时对于高层屏蔽了低层的技术细节</p>
+</li>
+<li><p>数据的单位称为数据段<code>Segment</code>或报文</p>
+</li>
+<li><p>协议</p>
+<ul>
+<li><p><code>TCP</code>（Transmission Control Protocol）传输控制协议</p>
+<ol>
+<li>面向连接（握手繁琐）</li>
+<li>可靠交付，保证数据的完整和顺序无差错</li>
+<li>单播点对点</li>
+<li>头部较大——20字节</li>
+<li>队头阻塞</li>
+</ol>
+</li>
+<li><p><code>UDP</code>（User Datagram Protocol）用户数据协议</p>
+<ol>
+<li>面向报文（无需握手，对应用层交下来的报文，添加首部后直接乡下交付为IP层）</li>
+<li>不可靠交付，数据发送不受丢包和网络波动影响</li>
+<li>单播和广播，</li>
+<li>头部较小——8字节</li>
+<li>直播，在线会议，语音，即时通信</li>
+<li>没有拥塞机制</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="会话层Session-Layer"><a href="#会话层Session-Layer" class="headerlink" title="会话层Session Layer"></a>会话层<code>Session Layer</code></h3><ul>
+<li>管理表示层之间的连接（会话）</li>
+<li>组织和协调两个会话进程之间的通信,并对数据交换进行管理</li>
+</ul>
+<h3 id="表示层Presentation-Layer"><a href="#表示层Presentation-Layer" class="headerlink" title="表示层Presentation Layer"></a>表示层<code>Presentation Layer</code></h3><ul>
+<li>处理数据编码、数据格式转换和加密解密</li>
+</ul>
+<h3 id="应用层Application-Layer"><a href="#应用层Application-Layer" class="headerlink" title="应用层Application Layer"></a>应用层<code>Application Layer</code></h3><ul>
+<li>应用程序访问网络服务的接口</li>
+<li>协议<ul>
+<li><code>HTTP</code>（Hyper Text Transfer Protocol，超文本传输协议）</li>
+<li><code>FTP</code>（File Transfer Protocol，文件传输协议）</li>
+<li>邮件相关的<code>POP3</code>（Post Office Protocol - V3）和<code>SMTP</code>（Simple Mail Transfer Protocol，简单邮件传输协议）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="TCP-IP-分层模型"><a href="#TCP-IP-分层模型" class="headerlink" title="TCP/IP 分层模型"></a>TCP/IP 分层模型</h1><ul>
+<li>TCP/IP 分层模型（TCP/IP Layering Model）被称作因特网分层模型(Internet Layering Model)、因特网参考模型(Internet Reference Model)</li>
+</ul>
+<h2 id="TCP-IP-中各层的作用"><a href="#TCP-IP-中各层的作用" class="headerlink" title="TCP/IP 中各层的作用"></a>TCP/IP 中各层的作用</h2><h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><blockquote>
+<p>对应着 OSI/RM 的数据链路层+物理层</p>
+</blockquote>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><blockquote>
+<p>对应OSI/RM 的表示层+会话层+应用层</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/http/">http</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+                        <span class="hidden-mobile">虚拟列表的简单实现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

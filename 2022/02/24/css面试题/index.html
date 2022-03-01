@@ -1,0 +1,903 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CSS3 新特性   边框属性border-radius，box-shadow，border-image   背景控制background-size,background-origin   文字效果和自动换行text-shadow,word-wrap   自定义字体@font-face   2d&#x2F;3d 变换，过渡和动画transition&#96;&#96;animation   CSS 多列布局CSS Mult">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS面试题">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="CSS3 新特性   边框属性border-radius，box-shadow，border-image   背景控制background-size,background-origin   文字效果和自动换行text-shadow,word-wrap   自定义字体@font-face   2d&#x2F;3d 变换，过渡和动画transition&#96;&#96;animation   CSS 多列布局CSS Mult">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-06-24T04:00:20.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>CSS面试题 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSS面试题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      52 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS面试题</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年6月24日 中午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="CSS3-新特性"><a href="#CSS3-新特性" class="headerlink" title="CSS3 新特性"></a>CSS3 新特性</h2><ul>
+<li>  边框属性<code>border-radius</code>，<code>box-shadow</code>，<code>border-image</code></li>
+<li>  背景控制<code>background-size,background-origin</code></li>
+<li>  文字效果和自动换行<code>text-shadow,word-wrap</code></li>
+<li>  自定义字体<code>@font-face</code></li>
+<li>  2d/3d 变换，过渡和动画<code>transition``animation</code></li>
+<li>  CSS 多列布局<code>CSS Multi-column Layout</code></li>
+<li>  盒模型属性<code>box-sizing</code></li>
+<li>  弹性盒子<code>flex</code></li>
+<li>  更强大的多媒体查询</li>
+</ul>
+<h2 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h2><ul>
+<li><p>IE</p>
+<ul>
+<li>双边距<ul>
+<li>  <code>display:inline</code></li>
+</ul>
+</li>
+<li>默认高度<code>16px</code><ul>
+<li>  <code>font-size:0</code></li>
+<li>  <code>overflow:hidden</code></li>
+</ul>
+</li>
+<li>超链接内 img 会有边框<ul>
+<li>  <code>border:0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3px bug</p>
+<ul>
+<li>  <code>display:block</code></li>
+<li>  <code>vertical-align:top</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="position-跟-display、margin-collapse、overflow、float-这些特性相互叠加后会怎样"><a href="#position-跟-display、margin-collapse、overflow、float-这些特性相互叠加后会怎样" class="headerlink" title="position 跟 display、margin collapse、overflow、float 这些特性相互叠加后会怎样"></a>position 跟 display、margin collapse、overflow、float 这些特性相互叠加后会怎样</h2><ul>
+<li>  如果元素的 display 为 none，那么元素不被渲染，position，float 不起作用；</li>
+<li>  如果元素拥有 position:absolute;或 position:fixed;属性，那么元素将为绝对定位，float 不起作用。</li>
+<li>  如果元素 float 属性不是 none，元素会脱离文档流，根据 float 属性值来显示。</li>
+<li>  有浮动、绝对定位，inline-block 属性的元素，margin 不会和垂直方向上的其他元素 margin 折叠。</li>
+</ul>
+<h2 id="画三角形"><a href="#画三角形" class="headerlink" title="画三角形"></a>画三角形</h2><ul>
+<li>  不同边 border 之间 45 度拼接</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">div</span>&#123;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">0</span>;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span>;
+  <span class="hljs-attribute">border-top</span>:<span class="hljs-number">50px</span> red solid;
+  <span class="hljs-attribute">border-left</span>:<span class="hljs-number">50px</span> $(背景色) solid;
+  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">50px</span> $(背景色) solid;
+&#125;</code></pre></div>
+
+<h2 id="画椭圆"><a href="#画椭圆" class="headerlink" title="画椭圆"></a>画椭圆</h2><p><code>border-radius属性</code></p>
+<ul>
+<li>border-radius 是简写属性<ul>
+<li>  border-top-left-radius</li>
+<li>  border-top-right-radius</li>
+<li>  border-bottom-right-radius</li>
+<li>  border-bottom-left-radius</li>
+<li>  top 左右，bottom 右左，顺时针顺序</li>
+<li>  “/“ 用来分隔水平方向和垂直方向</li>
+</ul>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-comment">/* 绘制半椭圆 */</span>
+<span class="hljs-selector-tag">div</span>&#123;
+ <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+ <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;
+ <span class="hljs-attribute">border-style</span>: solid;
+ <span class="hljs-attribute">border-color</span>: <span class="hljs-number">#f00</span>;
+ <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>/<span class="hljs-number">100%</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>；
+ /* 水平方向上四个角的半径都为<span class="hljs-number">50%</span> /  垂直方向 左右上半径为<span class="hljs-number">100%</span>，左右下为<span class="hljs-number">0</span>*/
+&#125;</code></pre></div>
+
+<h2 id="文本控制"><a href="#文本控制" class="headerlink" title="文本控制"></a>文本控制</h2><ul>
+<li>  单行文本居中，多行文本左对齐</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">div</span>&#123;
+  <span class="hljs-attribute">text-align</span>:center
+&#125;
+<span class="hljs-selector-tag">p</span>&#123;
+  <span class="hljs-attribute">display</span>:inline-block;
+  <span class="hljs-attribute">text-align</span><span class="hljs-selector-pseudo">:left</span>
+&#125;</code></pre></div>
+
+<ul>
+<li>  多行文本省略号</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">p</span>:after&#123;
+  content:<span class="hljs-string">&#x27;...&#x27;</span>
+&#125;</code></pre></div>
+
+<ul>
+<li>  单行文本溢出省略</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-attribute">overflow</span>: hidden；
+/* （文字长度超出限定宽度，则隐藏超出的内容） */
+white-space: nowrap；
+/* （设置文字在一行显示，不能换行） */
+text-overflow: ellipsis；
+/* （规定当文本溢出时，显示省略符号来代表被修剪的文本） */</code></pre></div>
+
+<ul>
+<li>  多行文本溢出</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS">-webkit-line-clamp: <span class="hljs-number">2</span>；
+/* （用来限制在一个块元素显示的文本的行数，<span class="hljs-number">2</span> 表示最多显示 <span class="hljs-number">2</span> 行。为了实现该效果，它需要组合其他的 WebKit 属性） */
+display: -webkit-box；
+/* （和 <span class="hljs-number">1</span> 结合使用，将对象作为弹性伸缩盒子模型显示 ） */
+-webkit-box-orient: vertical；
+/* （和 <span class="hljs-number">1</span> 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ） */
+overflow: hidden；
+/* （文本溢出限定的宽度就隐藏内容） */
+text-overflow: ellipsis；
+/* （多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本) */</code></pre></div>
+
+<h2 id="dpr-1px-边框"><a href="#dpr-1px-边框" class="headerlink" title="dpr 1px 边框"></a>dpr 1px 边框</h2><ul>
+<li>  伪元素配合媒体查询<code>transform:scale()</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-class">.onePx_border</span>:after&#123;
+    /* 整个div边框 */
+    content: <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#cccccc</span>;
+    <span class="hljs-comment">/* 注意宽高和圆角单位都要配合媒体查询 */</span>
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">26px</span>;？？？
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>/<span class="hljs-number">200%</span>/<span class="hljs-number">333%</span>
+    height: <span class="hljs-number">100%</span>/<span class="hljs-number">200%</span>/<span class="hljs-number">333%</span>
+
+
+    /* 单独一边的边框 */
+    content: <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#cccccc</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;
+&#125;
+<span class="hljs-keyword">@media</span> <span class="hljs-keyword">only</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">2</span>) &#123;
+  <span class="hljs-selector-class">.onePx_border</span>:after &#123;
+    -webkit-transform: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
+    -webkit-<span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+  &#125;
+
+<span class="hljs-keyword">@media</span> <span class="hljs-keyword">only</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">3</span>) &#123;
+  <span class="hljs-selector-class">.onePx_border</span>:after &#123;
+    -webkit-transform: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.3</span>);
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.3</span>);
+    -webkit-<span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+  &#125;
+&#125;</code></pre></div>
+
+<ul>
+<li><p>rem + viewport</p>
+<ol>
+<li>整体缩放 px 单位</li>
+</ol>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script&gt;
+  (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-comment">// scale</span>
+    <span class="hljs-keyword">var</span> clientWidth = <span class="hljs-built_in">window</span>.screen.width;
+    <span class="hljs-keyword">var</span> dpr = <span class="hljs-built_in">window</span>.devicePixelRatio;
+    <span class="hljs-keyword">var</span> vp = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;meta&#x27;</span>);
+    vp.name = <span class="hljs-string">&#x27;viewport&#x27;</span>;
+    vp.content = <span class="hljs-string">`initial-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> <span class="hljs-regexp">/ dpr&#125;, maximum-scale=$&#123;1.0 * 1 /</span> dpr&#125;</span>, minimum-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> / dpr&#125;</span>, user-scalable=no, width=device-width`</span>;
+    <span class="hljs-keyword">var</span> m = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&#x27;meta&#x27;</span>)[<span class="hljs-number">0</span>];
+    m.parentNode.insertBefore(vp, m);
+
+    <span class="hljs-comment">// rem</span>
+    <span class="hljs-built_in">document</span>.documentElement.style.fontSize = ?
+  &#125;)();
+&lt;/script&gt;</code></pre></div>
+
+<ol start="2">
+<li>其他元素使用 rem 单位</li>
+</ol>
+</li>
+</ul>
+<h2 id="垂直居中-div"><a href="#垂直居中-div" class="headerlink" title="垂直居中 div"></a>垂直居中 div</h2><ul>
+<li>  绝对定位+上下左右 0+margin 0</li>
+<li>  绝对定位+负 margin</li>
+<li>  绝对定位+负 translate</li>
+<li>  flex+justify-content+align-items</li>
+<li>  table-cell+vertical-align</li>
+</ul>
+<h2 id="三栏布局-左右固定中间自适应"><a href="#三栏布局-左右固定中间自适应" class="headerlink" title="三栏布局(左右固定中间自适应)"></a>三栏布局(左右固定中间自适应)</h2><ol>
+<li><p>绝对定位</p>
+</li>
+<li><p>左右浮动【自适应元素要放在最后】</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+			* &#123;
+<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+			&#125;
+<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+			&#125;
+			.container &#123;
+<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+			&#125;
+			.column &#123;
+<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+			&#125;
+			.left &#123;
+<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+			&#125;
+			.center &#123;
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+			&#125;
+			.right &#123;
+<span class="css">				<span class="hljs-attribute">float</span>: right;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+			&#125;
+			/*左右浮动至左右并处于同一行
+          *未浮动的center内容会被浮动元素环绕
+          */
+		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></li>
+<li><p>全部左浮，-margin 移到上一行【自适应元素放在最前】</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+			* &#123;
+<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+			&#125;
+<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+			&#125;
+			.container &#123;
+<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+			&#125;
+			.column &#123;
+<span class="css">				<span class="hljs-attribute">position</span>: relative;</span>
+				/**
+<span class="css">        *设置定位，元素需要手动移动至<span class="hljs-attribute">padding</span>空隙中</span>
+        */
+<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+			&#125;
+			.left &#123;
+<span class="css">				<span class="hljs-attribute">right</span>: <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+			&#125;
+			.center &#123;
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+			&#125;
+			.right &#123;
+<span class="css">				<span class="hljs-attribute">left</span>: <span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+			&#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></li>
+<li><p>全部左浮，center 元素需要撑开 center-wrapper【自适应元素放在最前】</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+			* &#123;
+<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+			&#125;
+<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+			&#125;
+			.container &#123;
+<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+			&#125;
+			.column &#123;
+<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+			&#125;
+			.left &#123;
+<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+			&#125;
+			.center-wrapper &#123;
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+			&#125;
+			.center &#123;
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+			&#125;
+			.right &#123;
+<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+			&#125;
+			/**
+       *3，4方法类似
+<span class="css">       * -<span class="hljs-number">100%</span>的<span class="hljs-attribute">margin-left</span>将元素移到上行最左</span>
+<span class="css">       * -自身宽度<span class="hljs-attribute">margin-left</span>将元素移到上行最右</span>
+<span class="css">       * 并通过给center加<span class="hljs-attribute">padding</span></span>
+       */
+		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column center-wrapper&quot;</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;column right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></li>
+<li><p>flex</p>
+<p> <code>flex-grow</code>:1 自适应填充剩余空间</p>
+</li>
+<li><p>grid</p>
+<p> <code>grid-template-column/row</code>中给自适应元素写 auto 大小</p>
+</li>
+<li><p>table<br> table 下的<code>table-cell</code>会自动自适应没写 width 的元素</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;
+	<span class="hljs-attribute">display</span>: table;
+	<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+&#125;
+<span class="hljs-selector-class">.wrapper</span> <span class="hljs-selector-tag">div</span> &#123;
+	<span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;
+	<span class="hljs-attribute">display</span>: table-cell;
+&#125;
+<span class="hljs-selector-class">.main</span> &#123;
+	<span class="hljs-attribute">background</span>: pink;
+&#125;
+<span class="hljs-selector-class">.left</span> &#123;
+	<span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+	<span class="hljs-attribute">background</span>: red;
+&#125;
+<span class="hljs-selector-class">.right</span> &#123;
+	<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;
+	<span class="hljs-attribute">background</span>: yellow;
+&#125;</code></pre></div></li>
+</ol>
+<h2 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h2><h3 id="像素"><a href="#像素" class="headerlink" title="像素"></a>像素</h3><ul>
+<li>  物理像素:物理成像点</li>
+<li>  css 像素:开发逻辑单位</li>
+<li>  设备独立像素:设备屏幕呈现的像素量</li>
+<li>  dpi 设备像素比:物理像素/设备独立像素(用多少个物理像素渲染一个设备独立像素)</li>
+</ul>
+<h3 id="移动端适配"><a href="#移动端适配" class="headerlink" title="移动端适配"></a>移动端适配</h3><ul>
+<li>使用rem<code>postcss-pxtorem</code> / 大屏设备显示过大</li>
+<li>使用vw/vh<code>postcss-px-to-viewport</code> / 大屏设备显示过大</li>
+<li>百分比单位</li>
+<li>px 为主，搭配 vw/vh、媒体查询与 flex 进行布局</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/axios%E5%92%8Cfetch/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">axios和fetch</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/">
+                        <span class="hidden-mobile">div高度为宽度一半</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

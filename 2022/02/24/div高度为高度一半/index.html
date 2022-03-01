@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="知识点position属性 static 正常流，默认值 top, right, bottom, left 和 z-index 属性无效。   relative 相对正常流偏移 原位置有预留空间   absolute 移出正常文档流 相对于最近的 非static 定位祖先元素偏移 不为元素预留空间   fixed 移出正常文档流 相对于屏幕视口（viewport）的位置来指定元素位置 不为元素预留">
+<meta property="og:type" content="article">
+<meta property="og:title" content="div高度为宽度一半">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="知识点position属性 static 正常流，默认值 top, right, bottom, left 和 z-index 属性无效。   relative 相对正常流偏移 原位置有预留空间   absolute 移出正常文档流 相对于最近的 非static 定位祖先元素偏移 不为元素预留空间   fixed 移出正常文档流 相对于屏幕视口（viewport）的位置来指定元素位置 不为元素预留">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-11-18T09:22:08.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>div高度为宽度一半 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="div高度为宽度一半">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">div高度为宽度一半</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年11月18日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="position属性"><a href="#position属性" class="headerlink" title="position属性"></a>position属性</h2><ul>
+<li><code>static</code><ul>
+<li>正常流，默认值</li>
+<li>top, right, bottom, left 和 z-index 属性无效。</li>
+</ul>
+</li>
+<li><code>relative</code><ul>
+<li>相对正常流偏移</li>
+<li>原位置有预留空间</li>
+</ul>
+</li>
+<li><code>absolute</code><ul>
+<li>移出正常文档流</li>
+<li>相对于最近的 非static 定位祖先元素偏移</li>
+<li>不为元素预留空间</li>
+</ul>
+</li>
+<li><code>fixed</code><ul>
+<li>移出正常文档流</li>
+<li>相对于屏幕视口（viewport）的位置来指定元素位置</li>
+<li>不为元素预留空间<blockquote>
+<p>当元素祖先的 transform, perspective 或 filter 属性非 none 时，容器由视口改为该祖先。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><code>sticky</code><ul>
+<li>相对定位和固定定位的混合</li>
+<li>须指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</li>
+<li>跨越特定阈值前为相对定位，之后为固定定位</li>
+</ul>
+</li>
+</ul>
+<h2 id="包含块"><a href="#包含块" class="headerlink" title="包含块"></a>包含块</h2><h3 id="包含块的作用"><a href="#包含块的作用" class="headerlink" title="包含块的作用"></a>包含块的作用</h3><p>  元素的尺寸及位置，常常会受它的包含块所影响。对于一些属性，例如 width,height,padding,margin，绝对定位元素的偏移值（比如 position 被置为 absolute 或 fixed），当我们对其赋予百分比值时，其参考值是包含块的尺寸。</p>
+<h3 id="确定包含块"><a href="#确定包含块" class="headerlink" title="确定包含块"></a>确定包含块</h3><blockquote>
+<p>一个元素的包含块并不一定父元素的内容区</p>
+</blockquote>
+<p>元素的包含块由其<code>position</code>决定：</p>
+<ul>
+<li><code>static 、 relative 或 sticky </code>，包含块可能由它的最近的祖先块元素（比如说inline-block, block 或 list-item元素）的内容区的边缘组成（<code>content</code>）</li>
+<li><code>absolute</code> ，包含块就是由它的最近的 <code>position 的值不是 static</code> （也就是值为fixed, absolute, relative 或 sticky）的祖先元素的内边距区的边缘组成（<code>content+padding</code>）</li>
+<li><code>fixed</code>，在连续媒体的情况下(continuous media)包含块是 viewport ,在分页媒体(paged media)下的情况下包含块是分页区域(page area)。<blockquote>
+<p>当元素祖先的 transform, perspective 或 filter 属性非 none 时,包含块是这个元素的内边距区 content+padding</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="根据包含块计算"><a href="#根据包含块计算" class="headerlink" title="根据包含块计算"></a>根据包含块计算</h3><ul>
+<li>要计算 <code>height</code> <code>top</code> 及 <code>bottom</code> 中的百分值，是通过包含块的 <code>height</code> 的值</li>
+<li>要计算 <code>width</code>, <code>left</code>, <code>right</code>, <strong><code>padding</code>!, <code>margin</code></strong> 这些属性由包含块的 <code>width</code> 属性的值来计算它的百分值。</li>
+</ul>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol>
+<li><p>实现一个div垂直水平居中高度为宽度的一半自适应</p>
+<div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 外层wrapper */</span>
+<span class="hljs-selector-class">.outer-wrapper</span>&#123;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">display</span>:flex;
+  <span class="hljs-comment">/* flex默认行排列，所以这里设置侧轴对齐 */</span>
+  <span class="hljs-attribute">align-items</span>:center
+&#125;
+<span class="hljs-comment">/* 内层wrapper */</span>
+<span class="hljs-selector-class">.inner-wrapper</span>&#123;
+  <span class="hljs-attribute">position</span>:relative;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding-bottom</span>:<span class="hljs-number">50%</span>;
+  <span class="hljs-comment">/* padding,margin值的百分比是相较于父元素width */</span>
+&#125;
+
+<span class="hljs-selector-class">.div</span>&#123;
+  <span class="hljs-attribute">position</span>:absolute;
+  <span class="hljs-comment">/* 两个position设置都是为了确定包含块 */</span>
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-comment">/* 这里的高度就=&gt;inner-wrapper[height+padding]=&gt;outer-wrapper[width]*50% */</span>
+&#125;
+</code></pre></div></li>
+<li><p>实现div正方形大小自适应</p>
+</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span>&#123;
+  <span class="hljs-attribute">position</span>:relative;
+  <span class="hljs-attribute">padding-top</span>:<span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">50%</span>;
+  <span class="hljs-comment">/* 同样相较于包含块的尺寸百分比 */</span>
+  <span class="hljs-comment">/* width和padding都等于wrapper包含块的宽度的一半 */</span>
+&#125;
+<span class="hljs-selector-class">.div</span>&#123;
+  <span class="hljs-attribute">position</span>:absolute;
+  <span class="hljs-attribute">top</span>:<span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>:<span class="hljs-number">0</span>;
+  <span class="hljs-comment">/* 偏移到wrapper位置 */</span>
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">100%</span>;
+&#125;
+
+
+<span class="hljs-comment">/* 也可使用伪元素撑开高度 */</span>
+<span class="hljs-selector-class">.div</span>&#123;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">50%</span>;
+  <span class="hljs-comment">/* 触发BFC避免塌陷 */</span>
+  <span class="hljs-attribute">display</span>:flow-root
+&#125;
+<span class="hljs-selector-class">.div</span><span class="hljs-selector-pseudo">::after</span>&#123;
+  <span class="hljs-attribute">content</span>:<span class="hljs-string">&#x27;&#x27;</span>;
+  <span class="hljs-attribute">margin-top</span>:<span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">display</span>:block
+&#125;</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/css/">css</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/">
+                        <span class="hidden-mobile">es6新特性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

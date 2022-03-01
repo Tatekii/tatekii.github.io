@@ -1,0 +1,1167 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="React 构建用户页面的 javascript 库，并不是完整的 MVC 框架  IntroReact.createElementJSX 元素只是调用 React.createElement(component, props, ...children) 的语法糖 ReactDOM.render(element, container[, callback)在提供的 container 里渲染一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-beginner">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/react_rookie/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="React 构建用户页面的 javascript 库，并不是完整的 MVC 框架  IntroReact.createElementJSX 元素只是调用 React.createElement(component, props, ...children) 的语法糖 ReactDOM.render(element, container[, callback)在提供的 container 里渲染一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2022/02/24/images/react_new.png">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2022-02-24T12:42:32.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/2022/02/24/images/react_new.png">
+  
+  
+  <title>react-beginner - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="react-beginner">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">react-beginner</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年2月24日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><blockquote>
+<p>构建用户页面的 javascript 库，并不是完整的 MVC 框架</p>
+</blockquote>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><h3 id="React-createElement"><a href="#React-createElement" class="headerlink" title="React.createElement"></a><code>React.createElement</code></h3><p>JSX 元素只是调用 <code>React.createElement(component, props, ...children)</code> 的语法糖</p>
+<h3 id="ReactDOM-render-element-container-callback"><a href="#ReactDOM-render-element-container-callback" class="headerlink" title="ReactDOM.render(element, container[, callback)"></a><code>ReactDOM.render(element, container[, callback)</code></h3><p>在提供的 <code>container</code> 里渲染一个 React 元素，并返回对该组件的引用（或者针对无状态组件返回 null）。</p>
+<p>如果 React 元素之前已经在 <code>container</code> 里渲染过，这将会对其执行更新操作，并仅会在必要时改变 DOM 以映射最新的 React 元素。</p>
+<p>如果提供了可选的回调函数，该回调将在组件被渲染或更新之后被执行。</p>
+<h2 id="JSX-语法"><a href="#JSX-语法" class="headerlink" title="JSX 语法"></a>JSX 语法</h2><ul>
+<li>  语法糖，更能体现 react 的声明式特点，逻辑和页面标签写在一起</li>
+<li>  jsx 不是标准的 ECMAScript 语法，babel 编译</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> title = (
+	<span class="hljs-comment">// 推荐使用小括号包裹</span>
+	&lt;h1&gt;我是个title&lt;/h1&gt;
+);</code></pre></div>
+
+<ul>
+<li>  jsx 中的属性名驼峰命名</li>
+<li>  <code>&#123;..中可以写js表达式，区别vue的双括号..&#125;</code></li>
+</ul>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-comment">// if else</span>
+<span class="hljs-keyword">if</span>()&#123;
+  <span class="hljs-keyword">return</span> xxx
+&#125;<span class="hljs-keyword">else</span>&#123;
+  <span class="hljs-keyword">return</span> xxx
+&#125;
+
+<span class="hljs-comment">// 三元表达式</span>
+<span class="hljs-keyword">return</span> flag ? (.&lt;dv&gt;..) : (..&lt;dv&gt;.)
+
+<span class="hljs-comment">// 逻辑与运算符</span>
+<span class="hljs-keyword">return</span> flag &amp;&amp; (..&lt;dv&gt;.)</code></pre></div>
+
+<h3 id="循环渲染"><a href="#循环渲染" class="headerlink" title="循环渲染"></a>循环渲染</h3><blockquote>
+<p>key 的作用和 vue 一样用于 diff 时复用节点</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> data = [&#123;&#125;...&#123;&#125;...&#123;&#125;]
+<span class="hljs-keyword">const</span> list = (
+  &#123;data.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;item.id&#125;</span>&gt;</span>&#123;item.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  &#125;)&#125;
+)</code></pre></div>
+
+<h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><ul>
+<li><p>行内样式,双括号</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> title = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">color:</span> &quot;<span class="hljs-attr">red</span>&quot; &#125;&#125;&gt;</span>我是个title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;</code></pre></div></li>
+<li><p>className</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> title = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</span>我是个title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;</code></pre></div>
+
+<blockquote>
+<p>组件是 react 一等公民</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>组件：复用，独立，组合</p>
+</blockquote>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><h2 id="函数组件（使用函数创建）"><a href="#函数组件（使用函数创建）" class="headerlink" title="函数组件（使用函数创建）"></a>函数组件（使用函数创建）</h2><ul>
+<li>  大写首字母</li>
+<li>  必须 return</li>
+<li>  包括箭头函数</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Com1</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Com1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+&#125;
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Com1</span> /&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;app&quot;</span>));</code></pre></div>
+
+<blockquote>
+<p>babel 转译后,function 运行在严格模式下,严格模式的 this 指向 null</p>
+</blockquote>
+<h2 id="类组件"><a href="#类组件" class="headerlink" title="类组件"></a>类组件</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">-大写首字母 - <span class="hljs-keyword">extends</span>自<span class="hljs-string">`React.Component`</span> - 必须<span class="hljs-keyword">return</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCom2</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>我是Com2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+	&#125;
+&#125;</code></pre></div>
+
+<h2 id="「state」"><a href="#「state」" class="headerlink" title="「state」"></a>「state」</h2><ul>
+<li>  一般写法</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Com3</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">this</span>.state = &#123;<span class="hljs-attr">xxx</span>:xxx&#125;
+    <span class="hljs-built_in">this</span>.func1 = <span class="hljs-built_in">this</span>.func1.bind(<span class="hljs-built_in">this</span>)
+  &#125;
+  <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">this</span>.setState(xxx:xxx)
+    <span class="hljs-comment">// 需要手动派发 `setState()`</span>
+  &#125;
+  render() =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">xxx</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.func1&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xxx</span>&gt;</span></span>
+&#125;</code></pre></div>
+
+<ul>
+<li>  使用赋值语句简写</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Com3</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;
+  state = &#123;<span class="hljs-attr">xxx</span>:xxx&#125;
+  func1 = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-built_in">this</span>.setState(xxx:xxx)
+  &#125;
+  render() =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">xxx</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;this.func1&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">xxx</span>&gt;</span></span>
+&#125;</code></pre></div>
+
+<h2 id="「props」"><a href="#「props」" class="headerlink" title="「props」"></a>「props」</h2><p>组件内部不用声明<code>props</code>,组件实例持有有一个<code>props</code>数组</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    &lt;Com1 prop1=<span class="hljs-string">&#x27;&#x27;</span> prop2=&#123;<span class="hljs-number">666</span>&#125;/&gt;
+  )
+&#125;</code></pre></div>
+
+<ul>
+<li>  标签属性可以用展开运算符</li>
+<li>  props 校验<a target="_blank" rel="noopener" href="https://react.docschina.org/docs/typechecking-with-proptypes.html">https://react.docschina.org/docs/typechecking-with-proptypes.html</a></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">Com1.propTypes = &#123;
+  prop1:PropTypes.string.isRequired,<span class="hljs-comment">// isRequired</span>
+  prop2:PropTypes.number
+  prop3;PropTypes.func <span class="hljs-comment">// function</span>
+&#125;
+Com1.defaultProps = &#123;
+  prop1:<span class="hljs-string">&#x27;xxx&#x27;</span>,
+  prop2:<span class="hljs-number">123</span>
+&#125;</code></pre></div>
+
+<ul>
+<li>  同样也可以写在 class 内</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Com3</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;
+  state = &#123;<span class="hljs-attr">xxx</span>:xxx&#125;
+  func1 = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-built_in">this</span>.setState(xxx:xxx)
+  &#125;
+  <span class="hljs-keyword">static</span> propTypes = &#123;
+    prop1:PropTypes.string.isRequired,<span class="hljs-comment">// isRequired</span>
+    prop2:PropTypes.number
+    prop3:PropTypes.func <span class="hljs-comment">// function</span>
+  &#125;
+  <span class="hljs-keyword">static</span> defaultProps = &#123;
+    prop1:<span class="hljs-string">&#x27;xxx&#x27;</span>,
+    prop2:<span class="hljs-number">123</span>
+  &#125;
+&#125;</code></pre></div>
+
+<ul>
+<li>  <code>constructor</code>中要使用<code>this.props</code>就必须接收并<code>super</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span>&#123;
+  <span class="hljs-built_in">super</span>(props)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.props);
+&#125;
+</code></pre></div>
+
+<h3 id="「refs」"><a href="#「refs」" class="headerlink" title="「refs」"></a>「refs」</h3><h4 id="1-字符串形式-过时-API"><a href="#1-字符串形式-过时-API" class="headerlink" title="1.字符串形式( 过时 API )"></a>1.字符串形式( <em>过时 API</em> )</h4><div class="hljs code-wrapper"><pre><code class="hljs js">&lt;xxx ref=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</code></pre></div>
+
+<h4 id="2-回调函数"><a href="#2-回调函数" class="headerlink" title="2.回调函数"></a>2.回调函数</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;xxx ref=&#123;<span class="hljs-function"><span class="hljs-params">c</span>=&gt;</span><span class="hljs-built_in">this</span>.input1=c&#125;&gt;
+<span class="hljs-comment">// 就能挂载在 实例.input1 上</span></code></pre></div>
+
+<blockquote>
+<p>组件渲染时先会把 ref 清空(为 null),再赋值</p>
+</blockquote>
+<blockquote>
+<p>使用 class 内绑定函数接收 node 可以避免上述</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">saveNode = <span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> <span class="hljs-built_in">this</span>.input1 = c
+<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    &lt;input ref=&#123;<span class="hljs-built_in">this</span>.saveNode&#125;&gt;&lt;/input&gt;
+  )
+&#125;</code></pre></div>
+
+<h4 id="3-createRef"><a href="#3-createRef" class="headerlink" title="3.createRef"></a>3.createRef</h4><p>单一 ref 专用</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">input1 = React.createRef()
+<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    &lt;input ref=&#123;<span class="hljs-built_in">this</span>.input1&#125;&gt;&lt;/input&gt;
+  )
+&#125;
+<span class="hljs-comment">// this.input1.current</span></code></pre></div>
+
+<h1 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h1><h2 id="🚮旧生命周期-lt-16"><a href="#🚮旧生命周期-lt-16" class="headerlink" title="🚮旧生命周期(&lt;=16)"></a>🚮旧生命周期(&lt;=16)</h2><h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><ul>
+<li>  <code>constructor</code></li>
+<li>  <code>componentWillMount</code></li>
+<li>  <code>render</code></li>
+<li>  <code>componentDidMount</code></li>
+</ul>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><ul>
+<li>  <code>componentWillReceiveProps</code></li>
+<li>  <code>shouldComponentUpdate</code>&lt;– setState()</li>
+<li>  <code>componentWillUpdate</code>&lt;—- forceUpdate()</li>
+<li>  <code>render</code></li>
+<li>  <code>componentDidUpdate</code></li>
+</ul>
+<h3 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h3><ul>
+<li>  <code>componentWillUnmount</code></li>
+</ul>
+<h2 id="💡新生命周期-gt-16"><a href="#💡新生命周期-gt-16" class="headerlink" title="💡新生命周期(&gt;16)"></a>💡新生命周期(&gt;16)</h2><p><img src="../images/react_new.png" srcset="/img/loading.gif" lazyload alt="生命周期"><br>示意图:<a target="_blank" rel="noopener" href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/</a></p>
+<h3 id="过时钩子"><a href="#过时钩子" class="headerlink" title="过时钩子"></a>过时钩子</h3><ul>
+<li><p><code>UNSAFE_componentWillMount</code></p>
+<blockquote>
+<p>在此方法中同步调用 setState() 不会触发额外渲染</p>
+</blockquote>
+</li>
+<li><p><code>UNSAFE_componentWillReceiveProps</code></p>
+<blockquote>
+<p>在组件接受新的props之前调用</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><code>UNSAFE_componentWillUpdate</code></li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 1.</span>
+<span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)
+
+// 2.不常用,仅适用于<span class="hljs-title">props</span>派生<span class="hljs-title">state</span>的情况,但会在每次<span class="hljs-title">render</span>之前调用
+<span class="hljs-title">static</span> <span class="hljs-title">getDerivedStateFromProps</span>(<span class="hljs-params">prop,state</span>)
+
+// 3.纯函数
+<span class="hljs-title">render</span>
+
+// 4.组件挂载到<span class="hljs-title">DOM</span>后
+<span class="hljs-title">componentDidMount</span></code></pre></div>
+
+
+<h3 id="更新-1"><a href="#更新-1" class="headerlink" title="更新"></a>更新</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//1. 不常用</span>
+<span class="hljs-keyword">static</span> getDerivedStateFromProps(prop,state)
+
+<span class="hljs-comment">//2.判断是否更新组件，</span>
+<span class="hljs-comment">//  默认行为是true </span>
+<span class="hljs-comment">//  当 props 或 state 发生变化时，shouldComponentUpdate() 会在渲染执行之前被调用</span>
+<span class="hljs-comment">// 使用forceUpdate可以跳过该方法</span>
+shouldComponentUpdate = ():boolean
+
+<span class="hljs-comment">//3.</span>
+render
+
+<span class="hljs-comment">//4.获取最近一次DOM更新前的DOM信息</span>
+getSnapshotBeforeUpdate = (prevProps,prevState):snapshot
+
+<span class="hljs-comment">//5.</span>
+componentDidUpdate(prevProps,preState,snapshot)</code></pre></div>
+
+<h3 id="销毁-1"><a href="#销毁-1" class="headerlink" title="销毁"></a>销毁</h3><ul>
+<li>  <code>componentWillUnmount</code></li>
+</ul>
+<h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// /src/setupProxy.js</span>
+<span class="hljs-comment">// CommonJS语法</span>
+
+<span class="hljs-keyword">const</span> proxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http-proxy-middleware&quot;</span>);
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">app</span>) </span>&#123;
+	app.use(
+		proxy(<span class="hljs-string">&quot;/api1&quot;</span>, &#123;
+			target: <span class="hljs-string">&quot;http://xxxxxx&quot;</span>,
+			changeOrigin: <span class="hljs-literal">true</span>, <span class="hljs-comment">// Host字段</span>
+			pathRewrite: &#123; <span class="hljs-string">&quot;/api1&quot;</span>: <span class="hljs-string">&quot;&quot;</span> &#125;,
+		&#125;)
+	);
+&#125;;</code></pre></div>
+
+<h1 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h1><ol>
+<li><p><code>Props</code></p>
+</li>
+<li><p><code>PubSubJS</code>发布订阅模式<br><a target="_blank" rel="noopener" href="https://github.com/mroderick/PubSubJS">https://github.com/mroderick/PubSubJS</a></p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// create a function to subscribe to topics</span>
+<span class="hljs-keyword">var</span> mySubscriber = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">msg, data</span>) </span>&#123;
+	<span class="hljs-built_in">console</span>.log(msg, data);
+&#125;;
+
+<span class="hljs-comment">// add the function to the list of subscribers for a particular topic</span>
+<span class="hljs-comment">// we&#x27;re keeping the returned token, in order to be able to unsubscribe</span>
+<span class="hljs-comment">// from the topic later on</span>
+<span class="hljs-keyword">var</span> token = PubSub.subscribe(<span class="hljs-string">&quot;MY TOPIC&quot;</span>, mySubscriber);
+
+<span class="hljs-comment">// publish a topic asynchronously</span>
+PubSub.publish(<span class="hljs-string">&quot;MY TOPIC&quot;</span>, <span class="hljs-string">&quot;hello world!&quot;</span>);
+
+<span class="hljs-comment">// publish a topic synchronously, which is faster in some environments,</span>
+<span class="hljs-comment">// but will get confusing when one topic triggers new topics in the</span>
+<span class="hljs-comment">// same execution chain</span>
+<span class="hljs-comment">// USE WITH CAUTION, HERE BE DRAGONS!!!</span>
+PubSub.publishSync(<span class="hljs-string">&quot;MY TOPIC&quot;</span>, <span class="hljs-string">&quot;hello world!&quot;</span>);</code></pre></div></li>
+<li><p><code>Context</code></p>
+<blockquote>
+<p>类似 vue 的 provide 和 inject</p>
+</blockquote>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//祖先组件中</span>
+<span class="hljs-keyword">const</span> MyContext1 = React.createContext(defaultValue);
+<span class="hljs-keyword">const</span> MyContext2  = React.createContext(defaultValue);
+<span class="hljs-comment">// defaultValue在不传value时生效</span>
+
+<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    <span class="hljs-comment">// value应使用state属性避免意外的consumer更新</span>
+    &lt;Mycontext1.Provider value=&#123;&#125;&gt;
+      &lt;MyContext2.Provider value=&#123;&#125;&gt;
+        ...&lt;children /&gt;
+      &lt;/MyContext2.Provider&gt;
+    &lt;/Mycontext1.Provider&gt;
+  )
+&#125;
+</code></pre></div>
+
+ <div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-comment">// 子组件中</span>
+
+<span class="hljs-comment">// class</span>
+<span class="hljs-keyword">static</span> contextType = MyContext1 
+<span class="hljs-comment">//只适用于消费一个context的情况</span>
+<span class="hljs-built_in">this</span>.context<span class="hljs-comment">//取值</span>
+
+
+<span class="hljs-comment">// class&amp;hooks</span>
+&lt;MyContext2.Consumer&gt;
+  &#123;
+    value=&gt;(
+      <span class="hljs-comment">// render...</span>
+    )
+  &#125;
+&lt;/MyContext2.Consumer&gt;</code></pre></div></li>
+<li><p><code>Redux</code></p>
+</li>
+</ol>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><h2 id="根路由标签"><a href="#根路由标签" class="headerlink" title="根路由标签"></a>根路由标签</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; BrowserRouter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;
+<span class="hljs-keyword">import</span> &#123; HashRouter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;
+ReactDOM.render(
+	&lt;React.StrictMode&gt;
+		&lt;BrowserRouter&gt;
+			&lt;App&gt;&lt;/App&gt;
+		&lt;/BrowserRouter&gt;
+		<span class="hljs-comment">/* &lt;HashRouter&gt;</span>
+<span class="hljs-comment">			&lt;App /&gt;</span>
+<span class="hljs-comment">		&lt;/HashRouter&gt; */</span>
+	&lt;/React.StrictMode&gt;,
+	<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;root&quot;</span>)
+);</code></pre></div>
+
+<h2 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/xxx&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX1&#125;&quot;</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX2&#125;&quot;</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- ComXXX1 ComXXX2都渲染 --&gt;</span>&lt;/Route
+	&gt;&lt;/Route
+&gt;</code></pre></div>
+
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
+	/* Switch标签内只会渲染第一个匹配成功的组件 */
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">exact</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;Home&#125;&quot;</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/about&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;About&#125;&quot;</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/:user&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;User&#125;&quot;</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;NoMatch&#125;&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span></code></pre></div>
+
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">exact</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX1&#125;&quot;</span>&gt;</span> <span class="hljs-comment">&lt;!-- 严格匹配 --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></code></pre></div>
+
+<h2 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h2><ul>
+<li><code>match</code><ul>
+<li>  ⭐️<code>params</code> - (object) key／value 与动态路径的 URL 对应解析</li>
+</ul>
+</li>
+<li><code>location</code><ul>
+<li>  <code>pathname</code> - (string 类型) URL 路径</li>
+<li>  ⭐️<code>search</code>- (string 类型) URL 中的查询字符串</li>
+<li>  <code>hash</code> - (string 类型) URL 的哈希片段</li>
+<li>  ⭐️<code>state </code>- (object 类型) 提供给例如使用 push(path, state) 操将 location 放入堆栈时的特定 location 状态。只在浏览器和内存历史中可用。</li>
+</ul>
+</li>
+<li>  <code>history</code></li>
+</ul>
+<h3 id="URL-传-params"><a href="#URL-传-params" class="headerlink" title="URL 传 params"></a>URL 传 params</h3><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=`/<span class="hljs-attr">xxx</span>/$&#123;<span class="hljs-attr">xxx.param1</span>&#125;`&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx/param1:param1&quot;</span>&gt;</span> // props.match.params // &#123;param1:xxx&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></code></pre></div>
+
+<h3 id="URL-传-search"><a href="#URL-传-search" class="headerlink" title="URL 传 search"></a>URL 传 search</h3><p>使用<code>querrystring</code>处理 urlencode</p>
+<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=`/<span class="hljs-attr">xxx</span>?<span class="hljs-attr">param1</span>=<span class="hljs-string">$&#123;xxx.param1&#125;&amp;param2</span>=<span class="hljs-string">$&#123;xxx.param2&#125;</span>`&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span>&gt;</span>
+	// props.location.search // &quot;?param1=xxx&amp;param1=xxx&quot; //
+	qs.parse(props.location.search.slice(1)) =&gt; &#123;...&#125;&lt;/Route
+&gt;</code></pre></div>
+
+<h3 id="传-state"><a href="#传-state" class="headerlink" title="传 state"></a>传 state</h3><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;&#123;pathname:</span>&#x27;/<span class="hljs-attr">xxx</span>&#x27;,<span class="hljs-attr">state:</span>&#123;<span class="hljs-attr">param1:xxx.param1</span>&#125;&#125;&#125;&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span>&gt;</span> // props.location.state<span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></code></pre></div>
+
+<h2 id="编程式路由"><a href="#编程式路由" class="headerlink" title="编程式路由"></a>编程式路由</h2><p><code>this.props.history</code></p>
+<ul>
+<li><code>history</code><ul>
+<li>  <code>go</code>(n) - (function 类型) 将 history 堆栈中的指针调整 n</li>
+<li>  <code>goBack</code>() - (function 类型) 等同于 go(-1)</li>
+<li>  <code>goForward</code>() - (function 类型) 等同于 go(1)</li>
+<li>  <code>push</code>(path, [state]) - (function 类型) 在 history 堆栈添加个新目</li>
+<li>  <code>replace</code>(path, [state]) - (function 类型) 替换在 history 堆中的</li>
+</ul>
+</li>
+</ul>
+<h2 id="withRouter"><a href="#withRouter" class="headerlink" title="withRouter"></a>withRouter</h2><p>可以通过 <code>withRouter</code> 高阶组件访问 <code>history</code> 对象的属性和最近的 <code>&lt;Route&gt;</code> 的 <code>match</code> 。 当路由渲染时， <code>withRouter</code> 会将已经更新的 <code>match</code> ， <code>location</code> 和 <code>history</code> 属性传递给被包裹的组件。</p>
+<h1 id="组件库"><a href="#组件库" class="headerlink" title="组件库"></a>组件库</h1><ul>
+<li><code>antd</code>的样式按需引入<br>  (<a target="_blank" rel="noopener" href="https://3x.ant.design/docs/react/use-with-create-react-app-cn)[https://3x.ant.design/docs/react/use-with-create-react-app-cn]">https://3x.ant.design/docs/react/use-with-create-react-app-cn)[https://3x.ant.design/docs/react/use-with-create-react-app-cn]</a></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./config-overrides.js</span>
+<span class="hljs-keyword">const</span> &#123; override, fixBabelImports, addLessLoader &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">`customize-cra`</span>);
+
+<span class="hljs-built_in">module</span>.exports = override(
+	fixBabelImports(<span class="hljs-string">&quot;import&quot;</span>, &#123;
+		libraryName: <span class="hljs-string">&quot;antd&quot;</span>,
+		libraryDirectory: <span class="hljs-string">&quot;es&quot;</span>,
+		style: <span class="hljs-literal">true</span>,
+	&#125;)
+);</code></pre></div>
+
+<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><ul>
+<li><code>action</code><ul>
+<li>  同步<code>action&lt;object&gt;</code></li>
+<li>  异步<code>action&lt;function&gt;</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs">原生只能处理同步action,action中的switch机制
+</code></pre></div>
+</li>
+<li>  <code>reducer</code></li>
+<li><code>store</code><ul>
+<li>  <code>dispatch</code></li>
+<li>  <code>subscribe</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h2><ul>
+<li><p><code>reducer</code><br>  reducer 就是一个纯函数:</p>
+<blockquote>
+<p>纯函数:</p>
+<ol>
+<li>不修改参数</li>
+<li>不产生副作用</li>
+<li>不调用不纯的方法<code>Math.random()``new Date()</code><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> initState = <span class="hljs-number">0</span>;
+interface Action &#123;
+	type: string;
+	data: number;
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countReducer</span>(<span class="hljs-params">preState = initState, action: Action</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> &#123; type, data &#125; = action;
+	<span class="hljs-keyword">switch</span> (type) &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;increment&quot;</span>:
+			<span class="hljs-keyword">return</span> preState + data;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;decrement&quot;</span>:
+			<span class="hljs-keyword">return</span> preState - data;
+		<span class="hljs-keyword">default</span>:
+			<span class="hljs-keyword">return</span> preState;
+	&#125;
+&#125;</code></pre></div></li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>container</code></p>
+<p>  使用哟 container 包裹 ui 组件,container 负责与 store 的交互,操作和数据通过 props 传给 ui 组件.</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// container.ts</span>
+
+<span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;
+
+<span class="hljs-keyword">import</span> XXXUI <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../XXX&quot;</span>;
+
+<span class="hljs-keyword">import</span> &#123;
+XXXaction,XXXaction
+&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../redux/ACTIONS&quot;</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">state</span>) </span>&#123;
+  ...
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>)</span>&#123;
+  <span class="hljs-keyword">return</span>&#123;
+    ...
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> CountContainer = connect(mapStateToProps,mapDispatchToProps)(XXXUI);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> CountContainer;</code></pre></div></li>
+<li><p><code>多个reducer</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// store.ts</span>
+<span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, combineReducers &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;redux&quot;</span>;
+<span class="hljs-keyword">import</span> countReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./reducers/count&quot;</span>;
+<span class="hljs-keyword">import</span> peopleReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./reducers/peolple&quot;</span>;
+<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;redux-thunk&quot;</span>;
+
+<span class="hljs-keyword">const</span> allReducer = combineReducers(&#123;
+	count: countReducer,
+	people: peopleReducer,
+&#125;);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(allReducer, applyMiddleware(thunk));</code></pre></div></li>
+</ul>
+<h2 id="redux-devtools"><a href="#redux-devtools" class="headerlink" title="redux-devtools"></a>redux-devtools</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn add redux-devtools-extension
+
+<span class="hljs-comment">// store.ts</span>
+<span class="hljs-keyword">import</span> &#123; composeWithDevtools&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-devtools-extension&#x27;</span>
+...
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(
+  allReducer, composeWithDevtools(applyMiddleware(thunk))
+)
+</code></pre></div>
+
+<h2 id="减少样板代码"><a href="#减少样板代码" class="headerlink" title="减少样板代码"></a>减少样板代码</h2><ul>
+<li><p>redux-actions<br>  <a target="_blank" rel="noopener" href="https://github.com/redux-utilities/redux-actions">https://github.com/redux-utilities/redux-actions</a><br>  协助生成 action creator</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; createAction &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-actions&#x27;</span>
+...
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> increment = createAction(<span class="hljs-string">&#x27;INCREMENT&#x27;</span>)
+
+
+<span class="hljs-keyword">import</span> &#123; handleActions &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux-action&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> handleActions(&#123;
+  INCREMENT:<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state + <span class="hljs-number">1</span>
+&#125;,<span class="hljs-number">0</span>)</code></pre></div></li>
+<li><p>  cli(yeoman)</p>
+</li>
+</ul>
+<h1 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h1><p>函数式组件获得类组件能力</p>
+<h2 id="StateHook"><a href="#StateHook" class="headerlink" title="StateHook"></a>StateHook</h2><p><code>const [currentValue,setNewValue] = React.useState(initValue)</code><br><code>setNewValue(newValue) or setNewValue(value=&gt;&#123;...newValue&#125;)</code></p>
+<h2 id="EffectHook"><a href="#EffectHook" class="headerlink" title="EffectHook"></a>EffectHook</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">React.useEffect(<span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-comment">// 副作用操作</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">// willUnMount</span>
+	&#125;;
+&#125;, [stateValue]); <span class="hljs-comment">// 为[]则相当于didMount</span></code></pre></div>
+
+<p>三种情况</p>
+<ol>
+<li>useEffect(fn) -&gt; Mount+Update</li>
+<li>useEffect(fn,[]) -&gt; Mount</li>
+<li>useEffect(fn,[dep]) -&gt; Mount 和 dep 变化时</li>
+</ol>
+<h2 id="RefHook"><a href="#RefHook" class="headerlink" title="RefHook"></a>RefHook</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xxxRef = React.useRef();</code></pre></div>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h2><ul>
+<li><p>对象式</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">setState(<span class="hljs-string">`stateChange(状态改变对象)`</span>, [callBack]);</code></pre></div></li>
+<li><p>函数式</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">setState(<span class="hljs-string">`updater(返回stateChange对象的函数)`</span>,[callback])
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updater</span>(<span class="hljs-params">state,props</span>)</span>&#123;
+  ... 接收state和props参数
+&#125;</code></pre></div></li>
+<li><p>  <code>callback</code>在<code>render()</code>后调用</p>
+</li>
+</ul>
+<h2 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h2><p><code>React.lazy</code>使用 dynamic import 标准,返回一个 promise,在 pending 状态期间渲染 loading 组件</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123;lazy,Suspense&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+
+<span class="hljs-keyword">const</span> Com1 = lazy(<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./Com1/index&#x27;</span>)&#125;)
+
+
+<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    &lt;NavLink to=<span class="hljs-string">&quot;/com1&quot;</span>&gt;Com1&lt;/NavLink&gt;
+
+
+    &lt;Suspense fallback=&#123;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Loading</span> /&gt;</span></span>&#125;&gt;
+      &lt;Route path=<span class="hljs-string">&quot;/com1&quot;</span> component=&#123;Com1&#125; /&gt;
+    &lt;/Suspense&gt;
+  )
+&#125;</code></pre></div>
+
+<h2 id="JSX-Fragment"><a href="#JSX-Fragment" class="headerlink" title="JSX Fragment"></a>JSX Fragment</h2><blockquote>
+<p>代替根 div</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs html">import &#123; Fragment &#125;&gt; from &#x27;react`
+<span class="hljs-tag">&lt;<span class="hljs-name">Fragment</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Fragment</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 可以拥有key --&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 短语法 --&gt;</span>
+<span class="hljs-tag">&lt;&gt;</span>
+...
+<span class="hljs-tag">&lt;/&gt;</span></code></pre></div>
+
+<h2 id="子组件更新"><a href="#子组件更新" class="headerlink" title="子组件更新"></a>子组件更新</h2><blockquote>
+<p>一般子组件即使 props 没改变或者没接受 props 也会随父组件 rerender</p>
+</blockquote>
+<p><code>PureComponent</code>**_<strong>浅层</strong>_**比较<code>props</code>和<code>state</code>,同时<code>shouldComponentUpdate</code> 将跳过所有子组件树的 <code>prop</code> 更新</p>
+<h2 id="组件-composition"><a href="#组件-composition" class="headerlink" title="组件 composition"></a>组件 composition</h2><blockquote>
+<p>组件可以接受任意 props，包括基本数据类型</p>
+</blockquote>
+<blockquote>
+<p>将 jsx 元素以及函数通过 props 传递实现类似 vue slot 效果</p>
+</blockquote>
+<blockquote>
+<p>向组件内部动态传入内容</p>
+</blockquote>
+<ol>
+<li><code>.children</code>获得组件标签内内容</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBorder</span>(<span class="hljs-params">props</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> (
+		&lt;div className=&#123;<span class="hljs-string">&quot;FancyBorder FancyBorder-&quot;</span> + props.color&#125;&gt;
+			&#123;props.children&#125;
+		&lt;/div&gt;
+	);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">WelcomeDialog</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">return</span> (
+		&lt;FancyBorder color=<span class="hljs-string">&quot;blue&quot;</span>&gt;
+			&lt;h1 className=<span class="hljs-string">&quot;Dialog-title&quot;</span>&gt;Welcome&lt;/h1&gt;
+			&lt;p className=<span class="hljs-string">&quot;Dialog-message&quot;</span>&gt;
+				Thank you <span class="hljs-keyword">for</span> visiting our spacecraft!
+			&lt;/p&gt;
+		&lt;/FancyBorder&gt;
+	);
+&#125;</code></pre></div>
+
+<ol start="2">
+<li>或者使用约定名称</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SplitPane</span>(<span class="hljs-params">props</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> (
+		&lt;div className=<span class="hljs-string">&quot;SplitPane&quot;</span>&gt;
+			&lt;div className=<span class="hljs-string">&quot;SplitPane-left&quot;</span>&gt;&#123;props.left&#125;&lt;/div&gt;
+			&lt;div className=<span class="hljs-string">&quot;SplitPane-right&quot;</span>&gt;&#123;props.right&#125;&lt;/div&gt;
+		&lt;/div&gt;
+	);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">SplitPane</span> <span class="hljs-attr">left</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Contacts</span> /&gt;</span>&#125; right=&#123;<span class="hljs-tag">&lt;<span class="hljs-name">Chat</span> /&gt;</span>&#125; /&gt;</span>;
+&#125;</code></pre></div>
+
+<ol start="3">
+<li>通过 props 传递携带另一个 props 的函数</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">A</span> <span class="hljs-attr">customizeFn</span>=<span class="hljs-string">&#123;(p1)</span>=&gt;</span>&#123;<span class="hljs-tag">&lt;<span class="hljs-name">B</span> <span class="hljs-attr">p1</span>=<span class="hljs-string">&#123;p1&#125;/</span>&gt;</span>&#125;&#125;/&gt;</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">const</span> [state,changeState] = React.useState(<span class="hljs-number">123</span>)
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;我是A组件&lt;/div&gt;
+    &#123;props.customizeFn(state)&#125;
+  )
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">B</span>(<span class="hljs-params">props</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;我是B我收到了&#123;props.p1&#125;&lt;/div&gt;
+  )
+&#125;</code></pre></div>
+
+<h2 id="错误边界"><a href="#错误边界" class="headerlink" title="错误边界"></a>错误边界</h2><p>错误边界是一种 React 组件，这种组件可以捕获发生在其子组件树任何位置的 JavaScript 错误，并打印这些错误，同时展示降级 UI，而并不会渲染那些发生崩溃的子组件树。错误边界在渲染期间、生命周期方法和整个组件树的构造函数中捕获错误。</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">getDerivedStateFromError</span>(<span class="hljs-params">error</span>)</span> &#123;
+  <span class="hljs-comment">// 更新 state 使下一次渲染能够显示降级后的 UI</span>
+  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">hasError</span>: <span class="hljs-literal">true</span> &#125;;
+&#125;
+
+<span class="hljs-function"><span class="hljs-title">componentDidCatch</span>(<span class="hljs-params">error, errorInfo</span>)</span> &#123;
+  <span class="hljs-comment">// 你同样可以将错误日志上报给服务器</span>
+  logErrorToMyService(error, errorInfo);
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/node%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">node相关知识点</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/react%E6%8B%BE%E9%81%97/">
+                        <span class="hidden-mobile">react拾遗</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

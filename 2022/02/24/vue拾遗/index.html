@@ -1,0 +1,971 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="生命周期1. initLifecycle(vm)&amp;#123; &#x2F;&#x2F; 初始化生命周期 &#x2F;&#x2F;关联&#96;$parent&#96;,并将自己添加进父组件的&#96;$children&#96;数组,生成自己的&#96;$children&#96;数组和&#96;$refs&#96;对象,并指定&#96;$root&#96;指针   var parent &#x3D; options.parent;   parent.$children.push(vm);   vm.$parent &#x3D; pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue拾遗">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/vue%E6%8B%BE%E9%81%97/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="生命周期1. initLifecycle(vm)&amp;#123; &#x2F;&#x2F; 初始化生命周期 &#x2F;&#x2F;关联&#96;$parent&#96;,并将自己添加进父组件的&#96;$children&#96;数组,生成自己的&#96;$children&#96;数组和&#96;$refs&#96;对象,并指定&#96;$root&#96;指针   var parent &#x3D; options.parent;   parent.$children.push(vm);   vm.$parent &#x3D; pa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-07-09T00:40:44.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>vue拾遗 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue拾遗">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      81 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue拾遗</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年7月9日 早上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-number">1.</span> <span class="hljs-function"><span class="hljs-title">initLifecycle</span>(<span class="hljs-params">vm</span>)</span>&#123; <span class="hljs-comment">// 初始化生命周期</span>
+<span class="hljs-comment">//关联`$parent`,并将自己添加进父组件的`$children`数组,生成自己的`$children`数组和`$refs`对象,并指定`$root`指针</span>
+  <span class="hljs-keyword">var</span> parent = options.parent;
+  parent.$children.push(vm);
+  vm.$parent = parent;
+  vm.$root = parent ? parent.$root : vm;
+  vm.$children = [];
+  vm.$refs = &#123;&#125;;
+  vm._watcher = <span class="hljs-literal">null</span>;
+  vm._inactive = <span class="hljs-literal">null</span>;
+  vm._directInactive = <span class="hljs-literal">false</span>;
+  vm._isMounted = <span class="hljs-literal">false</span>;<span class="hljs-comment">// 判断是否mount的flag</span>
+  vm._isDestroyed = <span class="hljs-literal">false</span>;
+  vm._isBeingDestroyed = <span class="hljs-literal">false</span>;
+&#125;
+
+<span class="hljs-number">2.</span> <span class="hljs-function"><span class="hljs-title">initEvents</span>(<span class="hljs-params">vm</span>)</span>&#123;<span class="hljs-comment">// 初始化组件级别的监听者</span>
+  <span class="hljs-keyword">var</span> listeners = vm.$options._parentListeners;
+  <span class="hljs-keyword">if</span> (listeners) &#123;
+    updateComponentListeners(vm, listeners);
+  &#125;
+&#125;
+
+<span class="hljs-number">3.</span> <span class="hljs-function"><span class="hljs-title">initRender</span>(<span class="hljs-params">vm</span>)</span>&#123;<span class="hljs-comment">//绑定createElement方法，绑定$attrs,$listeners,初始化插槽</span>
+    vm.$slots = resolveSlots(options._renderChildren, renderContext);
+    vm.$scopedSlots = emptyObject;
+    <span class="hljs-comment">// bind the createElement fn to this instance</span>
+    <span class="hljs-comment">// so that we get proper render context inside it.</span>
+    <span class="hljs-comment">// args order: tag, data, children, normalizationType, alwaysNormalize</span>
+    <span class="hljs-comment">// internal version is used by render functions compiled from templates</span>
+    vm._c = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b, c, d</span>) </span>&#123; <span class="hljs-keyword">return</span> createElement(vm, a, b, c, d, <span class="hljs-literal">false</span>); &#125;;
+    <span class="hljs-comment">// normalization is always applied for the public version, used in</span>
+    <span class="hljs-comment">// user-written render functions.</span>
+    vm.$createElement = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b, c, d</span>) </span>&#123; <span class="hljs-keyword">return</span> createElement(vm, a, b, c, d, <span class="hljs-literal">true</span>); &#125;;
+    defineReactive$$1(vm, <span class="hljs-string">&#x27;$attrs&#x27;</span>, parentData &amp;&amp; parentData.attrs || emptyObject, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+      !isUpdatingChildComponent &amp;&amp; warn(<span class="hljs-string">&quot;$attrs is readonly.&quot;</span>, vm);
+    &#125;, <span class="hljs-literal">true</span>);
+    defineReactive$$1(vm, <span class="hljs-string">&#x27;$listeners&#x27;</span>, options._parentListeners || emptyObject, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+      !isUpdatingChildComponent &amp;&amp; warn(<span class="hljs-string">&quot;$listeners is readonly.&quot;</span>, vm);
+    &#125;, <span class="hljs-literal">true</span>);
+&#125;
+
+<span class="hljs-number">4.</span> callHook(vm, <span class="hljs-string">&#x27;⭐️beforeCreate&#x27;</span>);
+
+<span class="hljs-number">5.</span> initInjections(vm); <span class="hljs-comment">// resolve injections before data/props</span>
+
+<span class="hljs-number">6.</span> initState(vm);<span class="hljs-comment">//初始化状态</span>
+<span class="hljs-comment">//包括props，methods，data，computed，watch</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initState</span> (<span class="hljs-params">vm</span>) </span>&#123;
+      initProps(vm, opts.props);
+      initMethods(vm, opts.methods);
+      initData(vm);
+      initComputed(vm, opts.computed);
+      initWatch(vm, opts.watch);
+    &#125;
+<span class="hljs-comment">//</span>
+<span class="hljs-number">7.</span> initProvide(vm); <span class="hljs-comment">// resolve provide after data/props</span>
+<span class="hljs-number">8.</span> callHook(vm, <span class="hljs-string">&#x27;⭐️created&#x27;</span>);
+<span class="hljs-number">9.</span> mountComponent () &#123;
+      <span class="hljs-number">10.</span> callHook(vm, <span class="hljs-string">&#x27;⭐️beforeMount&#x27;</span>);
+
+      <span class="hljs-keyword">let</span> updateComponent;
+
+      updateComponent = <span class="hljs-function">() =&gt;</span> &#123;
+        vm._update(vm._render(), hydrating);
+
+        ------update函数
+        Vue.prototype._update = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">vnode, hydrating</span>) </span>&#123;
+
+          <span class="hljs-keyword">if</span> (!prevVnode) &#123;
+            <span class="hljs-comment">// initial render</span>
+            vm.$el = vm.__patch__(vm.$el, vnode, hydrating, <span class="hljs-literal">false</span> <span class="hljs-comment">/* removeOnly */</span>);
+          &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-comment">// updates</span>
+            vm.$el = vm.__patch__(prevVnode, vnode);
+        &#125;;
+        ------
+      &#125;;
+
+
+      ------更新逻辑
+      <span class="hljs-keyword">new</span> Watcher(vm, updateComponent, noop, &#123;
+          before: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">before</span> (<span class="hljs-params"></span>) </span>&#123;
+          <span class="hljs-keyword">if</span> (vm._isMounted) &#123;
+            callHook(vm, <span class="hljs-string">&#x27;beforeUpdate&#x27;</span>);
+          &#125;
+        &#125;
+      subs[i].notify  ---&gt; Watcher.prototype.update()
+      callHook(vm, <span class="hljs-string">&#x27;⭐️beforeDestroy&#x27;</span>);
+      ------
+  &#125;, <span class="hljs-literal">true</span> <span class="hljs-comment">/* isRenderWatcher */</span>);
+
+      vm._isMounted = <span class="hljs-literal">true</span>;
+      callHook(vm, <span class="hljs-string">&#x27;mounted&#x27;</span>);
+    &#125;
+<span class="hljs-number">14.</span> Vue.prototype.$destroy = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+
+    <span class="hljs-number">15.</span> callHook(vm, <span class="hljs-string">&#x27;⭐️beforeDestroy&#x27;</span>);
+    <span class="hljs-comment">// 销毁实例，子实例，从父组件children中删除，销毁所有事件和指令</span>
+    remove(parent.$children, vm);
+    vm._watcher.teardown();
+    vm.__patch__(vm._vnode, <span class="hljs-literal">null</span>);
+    <span class="hljs-comment">// fire destroyed hook</span>
+    <span class="hljs-number">16.</span> callHook(vm, <span class="hljs-string">&#x27;⭐️destroyed&#x27;</span>);
+
+    vm.$off();
+    vm.$el.__vue__ = <span class="hljs-literal">null</span>;
+    vm.$vnode.parent = <span class="hljs-literal">null</span>;
+  &#125;;
+&#125;
+
+<span class="hljs-comment">// keep-alive</span>
+callHook(vm, <span class="hljs-string">&#x27;⭐️activated&#x27;</span>);
+callHook(vm, <span class="hljs-string">&#x27;⭐️deactivated&#x27;</span>);</code></pre></div>
+
+<h3 id="beforeCreate-之前做了什么"><a href="#beforeCreate-之前做了什么" class="headerlink" title="beforeCreate 之前做了什么"></a>beforeCreate 之前做了什么</h3><ul>
+<li>  绑定<code>$root</code></li>
+<li>  绑定<code>$parent</code></li>
+<li>  将实例 push 进父组件<code>$children</code></li>
+<li>  绑定<code>$attrs</code>和<code>$listener</code></li>
+</ul>
+<h3 id="created-之前做了什么"><a href="#created-之前做了什么" class="headerlink" title="created 之前做了什么"></a>created 之前做了什么</h3><ul>
+<li>  绑定<code>injections</code></li>
+<li>  初始化<code>props,data,methods,watch,computed</code></li>
+<li>  绑定<code>provider</code></li>
+</ul>
+<h1 id="响应式原理"><a href="#响应式原理" class="headerlink" title="响应式原理"></a>响应式原理</h1><h3 id="defineReactive"><a href="#defineReactive" class="headerlink" title="defineReactive"></a><code>defineReactive</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">defineReactive (
+  ...
+) &#123;
+  <span class="hljs-keyword">const</span> dep = <span class="hljs-keyword">new</span> Dep()
+  ...
+  <span class="hljs-built_in">Object</span>.defineProperty(obj, key, &#123;
+    enumerable: <span class="hljs-literal">true</span>,
+    configurable: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// render函数接触data触发getter</span>
+    get: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reactiveGetter</span> (<span class="hljs-params"></span>) </span>&#123;
+      <span class="hljs-keyword">if</span> (Dep.target) &#123;
+        <span class="hljs-comment">// 此时Dep.target已经是渲染watcher</span>
+        <span class="hljs-comment">// 执行depend</span>
+⭐️        dep.depend()
+        <span class="hljs-keyword">if</span> (childOb) &#123;
+          ...
+        &#125;
+      &#125;
+      <span class="hljs-keyword">return</span> value
+    &#125;,
+    set: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reactiveSetter</span> (<span class="hljs-params">newVal</span>) </span>&#123;
+      <span class="hljs-keyword">if</span> (newVal === value || (newVal !== newVal &amp;&amp; value !== value)) &#123;
+        <span class="hljs-keyword">return</span>
+      &#125;
+      val = newVal
+
+🔥    dep.notify()
+    &#125;
+  &#125;)
+&#125;</code></pre></div>
+
+<h3 id="mountComponent"><a href="#mountComponent" class="headerlink" title="mountComponent "></a><code>mountComponent </code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">mountComponent (...): Component &#123;
+  callHook(vm, <span class="hljs-string">&#x27;beforeMount&#x27;</span>)
+
+  <span class="hljs-keyword">let</span> updateComponent;
+⭐️ <span class="hljs-comment">// render函数生成虚拟DOM，期间会访问数据</span>
+  updateComponent = <span class="hljs-function">() =&gt;</span> &#123;
+    vm._update(vm._render(), hydrating);
+  &#125;;
+
+⭐️ <span class="hljs-comment">//组件`mount`过程中会实例化一个渲染`watcher`，传入updateComponent函数</span>
+  vm._watcher = <span class="hljs-keyword">new</span> Watcher(vm, updateComponent, noop, &#123;
+    before () &#123;
+      <span class="hljs-keyword">if</span> (vm._isMounted) &#123;
+        callHook(vm, <span class="hljs-string">&#x27;beforeUpdate&#x27;</span>)
+      &#125;
+    &#125;
+  &#125;, <span class="hljs-literal">true</span> <span class="hljs-comment">/* isRenderWatcher */</span>)
+
+  <span class="hljs-keyword">if</span> (vm.$vnode == <span class="hljs-literal">null</span>) &#123;
+    vm._isMounted = <span class="hljs-literal">true</span>
+    callHook(vm, <span class="hljs-string">&#x27;mounted&#x27;</span>)
+  &#125;
+&#125;</code></pre></div>
+
+<h3 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a><code>Watcher</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Watcher</span> </span>&#123;
+  <span class="hljs-title">constructor</span> (<span class="hljs-params"></span>
+<span class="hljs-params">    vm,</span>
+<span class="hljs-params">    expOrFn,</span>
+<span class="hljs-params">    cb,</span>
+<span class="hljs-params">    options</span>
+<span class="hljs-params">  </span>) &#123;
+    <span class="hljs-built_in">this</span>.vm = vm;
+    vm._watchers.push(<span class="hljs-built_in">this</span>);
+
+    <span class="hljs-built_in">this</span>.deps = [];
+    <span class="hljs-built_in">this</span>.newDeps = [];
+    <span class="hljs-built_in">this</span>.depIds = <span class="hljs-keyword">new</span> _Set();
+    <span class="hljs-built_in">this</span>.newDepIds = <span class="hljs-keyword">new</span> _Set();
+
+    <span class="hljs-comment">// parse expression for getter</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> expOrFn === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;
+⭐️ <span class="hljs-comment">// getter此时为传入的updateComponent函数</span>
+      <span class="hljs-built_in">this</span>.getter = expOrFn;
+    &#125;
+  &#125;
+
+  get () &#123;
+⭐️  <span class="hljs-comment">//首先触发watcher中的get（）</span>
+    <span class="hljs-comment">// pushTarget方法</span>
+    pushTarget(<span class="hljs-built_in">this</span>)
+    <span class="hljs-keyword">let</span> value
+
+⭐️  <span class="hljs-comment">// 调用getter</span>
+    value = <span class="hljs-built_in">this</span>.getter.call(vm, vm)
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.deep) &#123;
+      traverse(value)
+    &#125;
+⭐️ <span class="hljs-comment">// 当前组件收集完成后清理</span>
+    popTarget()
+    <span class="hljs-built_in">this</span>.cleanupDeps()
+
+    <span class="hljs-keyword">return</span> value
+  &#125;
+
+
+  addDep (dep: Dep) &#123;
+    <span class="hljs-keyword">const</span> id = dep.id
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.newDepIds.has(id)) &#123;
+      <span class="hljs-built_in">this</span>.newDepIds.add(id)
+      <span class="hljs-built_in">this</span>.newDeps.push(dep)
+      <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.depIds.has(id)) &#123;
+⭐️ <span class="hljs-comment">//执行addSub</span>
+        dep.addSub(<span class="hljs-built_in">this</span>)
+      &#125;
+    &#125;
+  &#125;
+
+⭐️<span class="hljs-comment">// 对比新旧订阅列表，清空依赖</span>
+  cleanupDeps () &#123;
+    <span class="hljs-keyword">let</span> i = <span class="hljs-built_in">this</span>.deps.length
+    <span class="hljs-keyword">while</span> (i--) &#123;
+      <span class="hljs-keyword">const</span> dep = <span class="hljs-built_in">this</span>.deps[i]
+      <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.newDepIds.has(dep.id)) &#123;
+        <span class="hljs-comment">//清空依赖</span>
+        dep.removeSub(<span class="hljs-built_in">this</span>)
+      &#125;
+    &#125;
+    <span class="hljs-comment">// 每次更新页面，render依赖收集的时候</span>
+    <span class="hljs-comment">// 将不展示于页面上的数据的依赖移除</span>
+    <span class="hljs-comment">// 考虑v-if</span>
+    [<span class="hljs-built_in">this</span>.depIds,<span class="hljs-built_in">this</span>.newDepIds]=[<span class="hljs-built_in">this</span>.newDepIds,<span class="hljs-built_in">this</span>.depIds]
+    <span class="hljs-built_in">this</span>.newDepIds.clear()
+    [<span class="hljs-built_in">this</span>.deps,<span class="hljs-built_in">this</span>.newDeps] = [<span class="hljs-built_in">this</span>.newDeps,<span class="hljs-built_in">this</span>.deps]
+    <span class="hljs-built_in">this</span>.newDeps.length = <span class="hljs-number">0</span>
+  &#125;
+🔥  update () &#123;
+    <span class="hljs-comment">/* istanbul ignore else */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.lazy) &#123;
+      <span class="hljs-built_in">this</span>.dirty = <span class="hljs-literal">true</span>;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.sync) &#123;
+      <span class="hljs-comment">// 同步立即run</span>
+      <span class="hljs-built_in">this</span>.run();
+    &#125; <span class="hljs-keyword">else</span> &#123;
+🔥    queueWatcher(<span class="hljs-built_in">this</span>);
+    &#125;
+  &#125;
+  <span class="hljs-comment">// ...</span>
+&#125;</code></pre></div>
+
+<h3 id="Dep"><a href="#Dep" class="headerlink" title="Dep"></a><code>Dep</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
+  <span class="hljs-keyword">static</span> target: ?Watcher;
+  id: number;
+  subs: <span class="hljs-built_in">Array</span>&lt;Watcher&gt;;
+
+  <span class="hljs-title">constructor</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-built_in">this</span>.id = uid++
+    <span class="hljs-built_in">this</span>.subs = []
+  &#125;
+ <span class="hljs-comment">// 将watcher加入subs</span>
+  addSub (sub: Watcher) &#123;
+    <span class="hljs-built_in">this</span>.subs.push(sub)
+  &#125;
+
+⭐️  removeSub (sub: Watcher) &#123;
+    remove(<span class="hljs-built_in">this</span>.subs, sub)
+  &#125;
+
+⭐️   depend () &#123;
+    <span class="hljs-keyword">if</span> (Dep.target) &#123;
+ <span class="hljs-comment">// 执行当前watcher中的addDep函数</span>
+      Dep.target.addDep(<span class="hljs-built_in">this</span>)
+    &#125;
+  &#125;
+
+🔥  notify () &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = subs.length; i &lt; l; i++) &#123;
+      subs[i].update()
+    &#125;
+  &#125;
+&#125;
+
+⭐️ <span class="hljs-comment">// target置空</span>
+Dep.target = <span class="hljs-literal">null</span>
+
+<span class="hljs-keyword">const</span> targetStack = []
+
+⭐️ <span class="hljs-comment">// 将Dep.target 指向当前watcher</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pushTarget</span> (<span class="hljs-params">_target: ?Watcher</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (Dep.target) targetStack.push(Dep.target)
+  Dep.target = _target
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">popTarget</span> (<span class="hljs-params"></span>) </span>&#123;
+  Dep.target = targetStack.pop()
+&#125;</code></pre></div>
+
+<h2 id="⭐️-收集依赖-⭐️"><a href="#⭐️-收集依赖-⭐️" class="headerlink" title="⭐️ 收集依赖 ⭐️"></a>⭐️ 收集依赖 ⭐️</h2><ol>
+<li>实例 initState 阶段为 data 数据添加 getter,setter 绑定,并为每个数据生成一个<code>Dep</code>实例</li>
+<li>mountComponent 执行过程中，组件实例化一个渲染<code>Watcher</code>，并指定为<code>Dep.target</code></li>
+<li><code>render</code>函数执行访问数据触发数据的 getter，将当前组件渲染<code>Watcher</code>添加到该数据持有的<code>Dep.subs</code>数组中</li>
+<li>同时渲染<code>Watcher</code>也有一个<code>deps</code>数组保存自己订阅了谁，这样做的意义是在下次<code>Watcher.update</code>时将不再显示页面上的数据绑定移除(对比新旧<code>deps</code>数组)<blockquote>
+<p>可以理解成 data 数据的 subs 数组中每个 watcher 即代表一个受该数据响应式影响的组件实例</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="🔥-派发更新-🔥"><a href="#🔥-派发更新-🔥" class="headerlink" title="🔥 派发更新 🔥"></a>🔥 派发更新 🔥</h2><ol>
+<li>修改数据触发 setter，执行该数据持有的<code>Dep.notify</code>方法</li>
+<li>遍历当前数据<code>Dep.subs</code>中的每一个<code>Watcher</code>，执行其<code>Watcher.update()</code></li>
+<li>vue 不会每次数据更新就立刻去更新视图，而是用队列管理这些回调任务<code>queueWatcher</code></li>
+<li>队列会判断 watcher 是否重复，并且进行排序【先父后子】【自定义 watcher&gt;渲染 watcher】</li>
+<li>在下一个 tick 执行这个队列的回调<code>updateComponent</code>函数，<code>patch</code>实例</li>
+</ol>
+<h1 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a><code>nextTick</code></h1><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> callbacks = []
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flushCallbacks</span> (<span class="hljs-params"></span>) </span>&#123;
+  pending = <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">const</span> copies = callbacks.slice(<span class="hljs-number">0</span>)
+  callbacks.length = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; copies.length; i++) &#123;
+    copies[i]()
+  &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">nextTick</span> (<span class="hljs-params">cb?: <span class="hljs-built_in">Function</span>, ctx?: <span class="hljs-built_in">Object</span></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> _resolve
+  callbacks.push(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (cb) &#123;
+      <span class="hljs-keyword">try</span> &#123;
+        cb.call(ctx)
+      &#125; <span class="hljs-keyword">catch</span> (e) &#123;
+        handleError(e, ctx, <span class="hljs-string">&#x27;nextTick&#x27;</span>)
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_resolve) &#123;
+      _resolve(ctx)
+    &#125;
+  &#125;)
+  <span class="hljs-keyword">if</span> (!pending) &#123;
+    pending = <span class="hljs-literal">true</span>
+⭐️    timerFunc() <span class="hljs-comment">// &lt;---------------</span>
+  &#125;
+&#125;
+
+<span class="hljs-comment">// promise</span>
+timerFunc = <span class="hljs-function">() =&gt;</span> &#123;
+	p.then(flushCallbacks);
+&#125;;
+<span class="hljs-comment">// MutationObserver</span>
+<span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> MutationObserver(flushCallbacks);
+<span class="hljs-keyword">const</span> textNode = <span class="hljs-built_in">document</span>.createTextNode(<span class="hljs-built_in">String</span>(counter));
+observer.observe(textNode, &#123;
+	characterData: <span class="hljs-literal">true</span>,
+&#125;);
+timerFunc = <span class="hljs-function">() =&gt;</span> &#123;
+	counter = (counter + <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>;
+	textNode.data = <span class="hljs-built_in">String</span>(counter);
+&#125;;
+<span class="hljs-comment">// setImmediate</span>
+timerFunc = <span class="hljs-function">() =&gt;</span> &#123;
+	setImmediate(flushCallbacks);
+&#125;;
+<span class="hljs-comment">// setTimeout</span>
+timerFunc = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-built_in">setTimeout</span>(flushCallbacks, <span class="hljs-number">0</span>);
+&#125;;</code></pre></div>
+<p>派发更新时<code>queueWatcher</code>使用<code>nextTick()</code>来执行<code>watcher</code>队列,则手动调用<code>nextTick()</code>也会将自己的cb加入callbacks数组中,<code>timerFunc</code>执行时我们的cb是在所有watcher执行完后执行的,所以拿到了最新的DOM</p>
+<h1 id="组件生命周期关系"><a href="#组件生命周期关系" class="headerlink" title="组件生命周期关系"></a>组件生命周期关系</h1><ul>
+<li>  组件的调用顺序都是先父后子,渲染完成的顺序是先子后父。</li>
+<li>  组件的销毁操作是先父后子，销毁完成的顺序是先子后父。</li>
+</ul>
+<h3 id="加载渲染过程"><a href="#加载渲染过程" class="headerlink" title="加载渲染过程"></a>加载渲染过程</h3><p>父 beforeCreate-&gt;父 created-&gt;父 beforeMount-&gt;子 beforeCreate-&gt;子 created-&gt;子 beforeMount- &gt;子 mounted-&gt;父 mounted</p>
+<h3 id="子组件更新过程"><a href="#子组件更新过程" class="headerlink" title="子组件更新过程"></a>子组件更新过程</h3><p>父 beforeUpdate-&gt;子 beforeUpdate-&gt;子 updated-&gt;父 updated</p>
+<h3 id="销毁过程"><a href="#销毁过程" class="headerlink" title="销毁过程"></a>销毁过程</h3><p>父 beforeDestroy-&gt;子 beforeDestroy-&gt;子 destroyed-&gt;父 destroyed</p>
+<h1 id="计算属性和侦听属性"><a href="#计算属性和侦听属性" class="headerlink" title="计算属性和侦听属性"></a>计算属性和侦听属性</h1><h2 id="Computed"><a href="#Computed" class="headerlink" title="Computed"></a><code>Computed</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">initComputed (vm: Component, <span class="hljs-attr">computed</span>: <span class="hljs-built_in">Object</span>) &#123;
+
+  <span class="hljs-keyword">const</span> watchers = vm._computedWatchers = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>)
+
+  <span class="hljs-keyword">const</span> isSSR = isServerRendering()
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> computed) &#123;
+    <span class="hljs-keyword">const</span> userDef = computed[key]
+    <span class="hljs-keyword">const</span> getter = <span class="hljs-keyword">typeof</span> userDef === <span class="hljs-string">&#x27;function&#x27;</span> ? userDef : userDef.get
+    ...
+
+⭐️<span class="hljs-number">1</span>      watchers[key] = <span class="hljs-keyword">new</span> Watcher(
+        vm,
+        getter || noop,
+        noop,
+        &#123; <span class="hljs-attr">computed</span>: <span class="hljs-literal">true</span> &#125;
+      )
+
+    <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> vm)) &#123;
+⭐️<span class="hljs-number">2</span>      defineComputed(vm, key, userDef)
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">&#x27;production&#x27;</span>) &#123;
+      <span class="hljs-keyword">if</span> (key <span class="hljs-keyword">in</span> vm.$data) &#123;
+        <span class="hljs-comment">// ... key名称被data或者prop占用的警告</span>
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">createComputedGetter (key) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">computedGetter</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">const</span> watcher = <span class="hljs-built_in">this</span>._computedWatchers &amp;&amp; <span class="hljs-built_in">this</span>._computedWatchers[key]
+    <span class="hljs-keyword">if</span> (watcher) &#123;
+⭐️<span class="hljs-number">2</span>      watcher.depend()
+      <span class="hljs-keyword">return</span> watcher.evaluate()
+    &#125;
+  &#125;
+&#125;</code></pre></div>
+
+<ol>
+<li>实例 initState 阶段遍历 Computed 内的 key，为每个 key 创建 computed watcher</li>
+<li>利用 Object.defineProperty 给 key 值添加 getter</li>
+<li>渲染函数访问到 computed 内的属性时候触发 getter，生成一个 Dep 实例，并且此时 Dep.target 是渲染 watcher，渲染 watcher 就订阅了这个 key 的变化</li>
+<li>执行这个 compute key 的计算逻辑，访问依赖的数据会触发其中响应式数据的 getter，则 computed watcher 也就订阅了 data 的变化，最后也返回计算值并缓存起来</li>
+<li>当依赖的响应式数据变化时，响应的 computed watcher 会收到通知</li>
+<li>computed watcher 会重新求值，比较两次运算结果，结果改变时才会通知渲染 watcher 更新</li>
+</ol>
+<h2 id="Watch"><a href="#Watch" class="headerlink" title="Watch"></a><code>Watch</code></h2><ul>
+<li>  deep</li>
+<li>  immediate</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">initWatch (vm: Component, <span class="hljs-attr">watch</span>: <span class="hljs-built_in">Object</span>) &#123;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> watch) &#123;
+    <span class="hljs-keyword">const</span> handler = watch[key]
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(handler)) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; handler.length; i++) &#123;
+        <span class="hljs-comment">// 遍历handlers</span>
+        createWatcher(vm, key, handler[i])
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      createWatcher(vm, key, handler)
+    &#125;
+  &#125;
+&#125;</code></pre></div>
+
+<ol>
+<li>遍历 Watch 内的 key</li>
+<li>遍历每一个 handler，为每一个 handler 创建 user watcher</li>
+<li>user watcher 会被添加进订阅响应数据的 subs 数组完成订阅</li>
+<li>响应式数据的变化会通知到 user watcher</li>
+<li>渲染函数如果访问这个 watch 属性，也同理会被推入该 watch 属性的 subs 数组,订阅其变化</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/topK/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">topK问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/vue3/">
+                        <span class="hidden-mobile">vue3proxy</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

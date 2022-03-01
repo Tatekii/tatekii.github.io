@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="堆 堆就是完全二叉树 完全二叉树：除了深度最深的一层外所有层节点数都满员 深度：从根节点到该节点经历的节点个数   每一个节点都比左右子节点大–&gt;最大堆，最大值在根节点  每一个节点都比左右子节点小–&gt;最小堆，最小值在根节点  完全二叉树可以使用数组来存储   建立堆 将节点与父节点比较  &#x2F;&#x2F;小顶堆 function buildHeap(items,heapSize)&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆及相关算法">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/%E5%A0%86/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="堆 堆就是完全二叉树 完全二叉树：除了深度最深的一层外所有层节点数都满员 深度：从根节点到该节点经历的节点个数   每一个节点都比左右子节点大–&gt;最大堆，最大值在根节点  每一个节点都比左右子节点小–&gt;最小堆，最小值在根节点  完全二叉树可以使用数组来存储   建立堆 将节点与父节点比较  &#x2F;&#x2F;小顶堆 function buildHeap(items,heapSize)&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
+<meta property="article:modified_time" content="2021-04-19T14:03:39.000Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>堆及相关算法 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="堆及相关算法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-24 20:43" pubdate>
+        2022年2月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      49 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">堆及相关算法</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年4月19日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><ul>
+<li><p>堆就是完全二叉树</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">完全二叉树：除了深度最深的一层外所有层节点数都满员
+深度：从根节点到该节点经历的节点个数
+</code></pre></div>
+</li>
+<li><p>每一个节点都比左右子节点大–&gt;最大堆，最大值在根节点</p>
+</li>
+<li><p>每一个节点都比左右子节点小–&gt;最小堆，最小值在根节点</p>
+</li>
+<li><p>完全二叉树可以使用数组来存储</p>
+</li>
+</ul>
+<h3 id="建立堆"><a href="#建立堆" class="headerlink" title="建立堆"></a>建立堆</h3><ul>
+<li>将节点与父节点比较</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//小顶堆</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items,heapSize</span>)</span>&#123;
+  <span class="hljs-keyword">while</span>(heapSize&lt;items.length - <span class="hljs-number">1</span>)&#123;
+  <span class="hljs-comment">// items 第一个是&lt;empty item&gt;</span>
+    heapSize++
+    heapify(items,heapSize)
+  &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items,i</span>)</span>&#123;
+  <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>) &gt; <span class="hljs-number">0</span> &amp;&amp; items[i] &lt; items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
+    [items[i],items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] =  [items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],items[i]]
+    <span class="hljs-comment">// 交换位置</span>
+    i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+  &#125; 
+&#125;</code></pre></div>
+
+<ul>
+<li>将节点与子节点比较</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//大顶堆</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> heapSize = items.length - <span class="hljs-number">1</span>  <span class="hljs-comment">// &lt;-- items.length - 1 !</span>
+  <span class="hljs-comment">// 最后叶子节点的索引值</span>
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">Math</span>.floor(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123; <span class="hljs-comment">// &lt;-i&gt;=1 !</span>
+    <span class="hljs-comment">// i 为最后一个非 叶子 节点的索引，i还有子节点</span>
+    heapify(items,heapSize,i)
+  &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items, heapSize, i</span>) </span>&#123;
+  <span class="hljs-comment">// 自上而下式堆化</span>
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;
+      <span class="hljs-keyword">var</span> maxIndex = i;
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i &lt;= heapSize &amp;&amp; items[maxIndex] &lt; items[i*<span class="hljs-number">2</span>] ) &#123;
+        <span class="hljs-comment">// 这里的等号意味着万一这个节点是最后的节点呢</span>
+          maxIndex = i*<span class="hljs-number">2</span>;
+      &#125;
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; items[maxIndex] &lt; items[i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] ) &#123;
+          maxIndex = i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;
+      &#125;
+      <span class="hljs-keyword">if</span> (maxIndex === i) <span class="hljs-keyword">break</span>;
+      [items[i],items[maxIndex]] = [items[maxIndex],items[i]]
+      i = maxIndex; 
+  &#125;
+&#125;</code></pre></div>
+
+
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><ol>
+<li>建立大顶堆/小顶堆</li>
+<li>则索引1位置为当前堆的 最大值/最小值</li>
+<li>循环将[1]与[末尾]交换位置，并且缩小堆的大小（相当于将上一次的最值移出堆）</li>
+<li>一直堆化</li>
+<li>大顶堆得到升序 / 小顶堆得到降序排列</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapSort</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-comment">// 输入需要为[,]</span>
+  <span class="hljs-comment">// const heap = [,]</span>
+  <span class="hljs-comment">// let i = 0</span>
+  <span class="hljs-comment">// while(i&lt;arr.length)&#123;</span>
+  <span class="hljs-comment">//   heap.push(arr[i++])</span>
+  <span class="hljs-comment">// &#125;</span>
+
+  <span class="hljs-keyword">const</span> heapSize  =  arr.length - <span class="hljs-number">1</span>
+  buildHeap(arr,heapSize)
+  
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = heapSize ; i&gt;<span class="hljs-number">1</span> ;i--)&#123;
+    [arr[i],arr[<span class="hljs-number">1</span>]]=[arr[<span class="hljs-number">1</span>],arr[i]]
+    heapSize --
+    heapify(arr,heapSize,<span class="hljs-number">1</span>)
+  &#125;
+  <span class="hljs-keyword">return</span> arr
+&#125;</code></pre></div>
+
+
+<h3 id="topK问题"><a href="#topK问题" class="headerlink" title="topK问题"></a>topK问题</h3><p>求出前k个最大/最小值，或者出现次数最多/最少的k个值</p>
+<ul>
+<li>求大值，建立最小堆</li>
+<li>求小值，建立最大堆<div class="hljs code-wrapper"><pre><code class="hljs javascript">
+<span class="hljs-comment">// 比如求前k个最大值</span>
+<span class="hljs-comment">// 先用前k个数据建立小顶堆</span>
+<span class="hljs-comment">// 为什么求前k大建立小顶堆？？？</span>
+<span class="hljs-comment">// 如果建立大顶堆，交换堆顶后，堆顶依然是最大的，依次比较之后的数据只会改变堆顶而已，收集不了别的值</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">topK</span>(<span class="hljs-params">data,k</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> heap = [,...data]
+  <span class="hljs-keyword">const</span> heapSize = k
+  buildHeap(heap,heapSize)
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j = k ; j &lt;data.length ;j++)&#123;
+    <span class="hljs-comment">// 将余下的数据依次与堆顶比较</span>
+    <span class="hljs-comment">// 比小顶堆的堆顶大则交换</span>
+    <span class="hljs-keyword">if</span>(heap[<span class="hljs-number">1</span>] &lt; data[j])&#123;
+      heap[<span class="hljs-number">1</span>] = data[j]
+      heapify(heap,k,<span class="hljs-number">1</span>)
+    &#125;
+  &#125;
+
+  heap.shift()
+  <span class="hljs-keyword">return</span> heap
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items ,heapSize</span>)</span>&#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">Math</span>.floor(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123;
+    heapify(items,heapSize,i)
+  &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items,heapSize,i</span>)</span>&#123;
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    <span class="hljs-keyword">let</span> minIndex = i
+    <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i &lt;= heapSize &amp;&amp; items[minIndex] &gt; items[i*<span class="hljs-number">2</span>] ) &#123;
+        <span class="hljs-comment">// 这里的等号意味着万一这个节点是最后的节点呢</span>
+        minIndex = i*<span class="hljs-number">2</span>;
+      &#125;
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; items[minIndex] &gt; items[i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] ) &#123;
+        minIndex = i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;
+      &#125;
+      <span class="hljs-keyword">if</span> (minIndex === i) <span class="hljs-keyword">break</span>;
+      [items[i],items[minIndex]] = [items[minIndex],items[i]]
+      i = minIndex; 
+  &#125;
+&#125;
+
+
+
+</code></pre></div></li>
+</ul>
+<h3 id="中位数问题"><a href="#中位数问题" class="headerlink" title="中位数问题"></a>中位数问题</h3><p><code>n</code>个数据中的中位数</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">  [1,2,3] =&gt; 2
+  [1,2,3,4] =&gt; 2,3
+  当 n % 2 !== 0 时，中位数为：arr[(n-1)/2]
+  当 n % 2 === 0 时，中位数为：arr[n/2], arr[n/2 + 1]
+</code></pre></div>
+<ul>
+<li><p>将前<code>n/2//偶数</code>||<code>（Math.floor(n/2)）+ 1//奇数</code>堆化为大顶堆，后<code>Math.floor(n/2)</code>堆化为小顶堆。</p>
+</li>
+<li><p>结果分别为两个堆顶<code>偶数</code>/前面的堆顶<code>奇数</code></p>
+</li>
+<li><p>动态数组，则把插入的数据与堆顶比较</p>
+<ul>
+<li>【升序】大于大顶堆的顶则加入小顶堆</li>
+<li>【降序】小于小顶堆则加入大顶堆</li>
+<li> 加入后再次堆化，如果堆大小不满足分割中位数要求则继续调整</li>
+</ul>
+</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Median</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">this</span>.maxHeap = <span class="hljs-keyword">new</span> MaxHeap()
+  <span class="hljs-built_in">this</span>.minHeap = <span class="hljs-keyword">new</span> MinHeap()
+&#125;
+Median.prototype.addNum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">num</span>)</span>&#123;
+  <span class="hljs-keyword">if</span>(num &lt; <span class="hljs-built_in">this</span>.maxHeap.getTop() || !<span class="hljs-built_in">this</span>.maxHeap.getSize())&#123;
+    <span class="hljs-built_in">this</span>.maxHeap.insert(num)
+  &#125;<span class="hljs-keyword">else</span>&#123;
+    <span class="hljs-built_in">this</span>.minHeap.insert(num)
+  &#125;
+
+  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.maxHeap.getSize() - <span class="hljs-built_in">this</span>.minHeap.getSize() &gt; <span class="hljs-number">1</span>)&#123;
+    <span class="hljs-comment">//奇数分布</span>
+    <span class="hljs-comment">//大顶堆size比小顶堆大1</span>
+    <span class="hljs-built_in">this</span>.minHeap.insert(<span class="hljs-built_in">this</span>.maxHeap.rmTop())
+    <span class="hljs-comment">//不符合则大顶堆顶插入小顶堆</span>
+  &#125;
+  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.minHeap.getSize() &gt; <span class="hljs-built_in">this</span>.maxHeap.getSize())&#123;
+    <span class="hljs-built_in">this</span>.maxHeap.insert(<span class="hljs-built_in">this</span>.minHeap.rmTop())
+    <span class="hljs-comment">// </span>
+  &#125;
+&#125;
+Median.prototype.getMedianNum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-comment">// return console.log(this.maxHeap.getSize());</span>
+  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.maxHeap.getSize() &amp;&amp; <span class="hljs-built_in">this</span>.maxHeap.getSize() === <span class="hljs-built_in">this</span>.minHeap.getSize())&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">this</span>.maxHeap.getTop() + <span class="hljs-built_in">this</span>.minHeap.getTop())/<span class="hljs-number">2</span>
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.maxHeap.getTop()
+&#125;
+
+<span class="hljs-comment">// 大顶堆</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MaxHeap</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">const</span> heap = [,]
+  <span class="hljs-built_in">this</span>.getSize = <span class="hljs-function">() =&gt;</span> heap.length - <span class="hljs-number">1</span>
+  <span class="hljs-built_in">this</span>.getTop = <span class="hljs-function">() =&gt;</span> heap.length &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
+  <span class="hljs-built_in">this</span>.insert = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
+    <span class="hljs-comment">//插入式建堆</span>
+    heap.push(num)
+    <span class="hljs-keyword">let</span> i = heap.length - <span class="hljs-number">1</span>
+    <span class="hljs-comment">// push 进去的索引</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &gt; heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
+      <span class="hljs-comment">// 大顶堆，与父节点比较，大于则交换</span>
+      [heap[i],heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],heap[i]]
+      i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+    &#125;
+  &#125;
+  <span class="hljs-built_in">this</span>.rmTop = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(!heap.length &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span>(heap.length === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.pop()
+    <span class="hljs-keyword">const</span> num = heap[<span class="hljs-number">1</span>]
+    heap[<span class="hljs-number">1</span>] = heap.pop()<span class="hljs-comment">// 拿走了top值，并用末尾节点填充</span>
+    heapify(<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> num
+  &#125;
+  <span class="hljs-keyword">const</span> heapify = <span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> &#123;
+    <span class="hljs-comment">// 堆化</span>
+    <span class="hljs-keyword">const</span> heapSize = heap.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+      <span class="hljs-keyword">let</span> maxIndex = i
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i] &gt; heap[i]) maxIndex = <span class="hljs-number">2</span>*i
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span>] &gt; heap[maxIndex]) maxIndex = <span class="hljs-number">2</span>*i+<span class="hljs-number">1</span> <span class="hljs-comment">// !!!!!!</span>
+      <span class="hljs-keyword">if</span>(maxIndex === i) <span class="hljs-keyword">break</span>
+      [heap[i],heap[maxIndex]] = [heap[maxIndex],heap[i]]
+      <span class="hljs-comment">// 重新赋值i开始下级循环</span>
+      i = maxIndex
+    &#125;
+  &#125;
+&#125;
+
+
+<span class="hljs-comment">// 小顶堆</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MinHeap</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">const</span> heap = [,]
+  <span class="hljs-built_in">this</span>.getSize = <span class="hljs-function">() =&gt;</span> heap.length - <span class="hljs-number">1</span>
+  <span class="hljs-built_in">this</span>.getTop = <span class="hljs-function">() =&gt;</span> heap.length &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
+  <span class="hljs-built_in">this</span>.insert = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
+    heap.push(num)
+    <span class="hljs-keyword">let</span> i = heap.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &lt; heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
+      <span class="hljs-comment">// 小顶堆，与父节点比较，小于则交换</span>
+      [heap[i],heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],heap[i]]
+      i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+    &#125;
+  &#125;
+  <span class="hljs-built_in">this</span>.rmTop = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(!heap.length&gt;<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span>(heap.length === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.pop()
+    <span class="hljs-keyword">const</span> num = heap[<span class="hljs-number">1</span>]
+    heap[<span class="hljs-number">1</span>] = heap.pop()
+    heapify(<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> num
+  &#125;
+  <span class="hljs-keyword">const</span> heapify = <span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> heapSize = heap.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+      <span class="hljs-keyword">let</span> minIndex = i
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i] &lt; heap[i]) minIndex = <span class="hljs-number">2</span>*i
+      <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span>] &lt; heap[minIndex]) minIndex = <span class="hljs-number">2</span>*i+<span class="hljs-number">1</span>
+      <span class="hljs-keyword">if</span>(minIndex === i) <span class="hljs-keyword">break</span>
+      [heap[i],heap[minIndex]] = [heap[minIndex],heap[i]]
+      <span class="hljs-comment">// 重新赋值i开始下级循环</span>
+      i = minIndex
+    &#125;
+  &#125;
+&#125;
+
+
+<span class="hljs-comment">// 二分查找法</span>
+<span class="hljs-keyword">const</span> MedianFinder = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">this</span>.data = []
+&#125;
+MedianFinder.prototype.addMun = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> data = <span class="hljs-built_in">this</span>.data
+  <span class="hljs-keyword">if</span>(data.length&lt;<span class="hljs-number">1</span>)&#123;
+    data.push(num)
+    <span class="hljs-keyword">return</span> 
+  &#125;
+  <span class="hljs-keyword">let</span> L = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">let</span> R = data.length - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">while</span>(L&lt;=R)&#123;
+    <span class="hljs-keyword">let</span> M = <span class="hljs-built_in">Math</span>.floor((L+R)/<span class="hljs-number">2</span>)
+    <span class="hljs-keyword">if</span>(data[M]===num)&#123;
+      data.splice(M,<span class="hljs-number">0</span>,num)
+      <span class="hljs-keyword">return</span> 
+    &#125;
+    <span class="hljs-keyword">if</span>(data[M]&lt;num)&#123;
+      L ++
+    &#125;<span class="hljs-keyword">else</span>&#123;
+      R --
+    &#125;
+  &#125;
+  data.splice(R+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,num)
+&#125;
+MedianFinder.prototype.findMedian = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> len = <span class="hljs-built_in">this</span>.data.length
+  <span class="hljs-keyword">if</span>(!len) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((len-<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>)
+  <span class="hljs-keyword">if</span>(len%<span class="hljs-number">2</span>===<span class="hljs-number">0</span>)&#123;
+    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">this</span>.data[mid]+ <span class="hljs-built_in">this</span>.data[mid+<span class="hljs-number">1</span>])/<span class="hljs-number">2</span>
+  &#125;<span class="hljs-keyword">else</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.data[mid]
+  &#125;
+&#125;</code></pre></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">文件夹内批量映射为模块</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <span class="hidden-mobile">操作字符串算法题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
