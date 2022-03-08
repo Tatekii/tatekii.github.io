@@ -26,10 +26,10 @@
 <meta property="og:description" content="实现 EventEmitter  &#x2F;&#x2F; 请实现下面的自定义事件 Event 对象的接口，功能见注释(测试1) &#x2F;&#x2F; 该 Event 对象的接口需要能被其他对象拓展复用(测试2) &#x2F;&#x2F; 测试1 Event.on(&quot;test&quot;, function (result) &amp;#123; 	console.log(result); &amp;#125;); Event.on(&quot;tes">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-02-24T12:42:28.000Z">
+<meta property="article:modified_time" content="2022-03-08T02:35:58.959Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="面试">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      23k 字
+      21k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      192 分钟
+      179 分钟
     </span>
   
 
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年2月24日 晚上
+                  本文最后更新于：2022年3月8日 上午
                 
               </p>
             
@@ -436,7 +436,9 @@ event.fire(<span class="hljs-string">&quot;sleep&quot;</span>);
 	F.prototype = proto;
 	<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">new</span> F();
 	<span class="hljs-keyword">if</span> (propertiesObject) &#123;
-		<span class="hljs-built_in">Object</span>.defineProperty(res, propertiesObject);
+		<span class="hljs-built_in">Reflect</span>.ownKeys(propertiesObject).forEach(<span class="hljs-function"><span class="hljs-params">key</span>=&gt;</span>&#123;
+			<span class="hljs-built_in">Reflect</span>.set(res,key,propertiesObject[key])
+		&#125;)
 	&#125;
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div>
@@ -692,8 +694,9 @@ myArray.name = <span class="hljs-string">&quot;啦啦啦&quot;</span>;
 <span class="hljs-built_in">Function</span>.prototype._bind = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context, ...args1</span>) </span>&#123;
 	context = context || <span class="hljs-built_in">window</span>;
 	<span class="hljs-keyword">const</span> originFn = <span class="hljs-built_in">this</span>;
+
 	<span class="hljs-keyword">const</span> boundFn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args2</span>) </span>&#123;
-		<span class="hljs-keyword">return</span> originFn.apply(boundFn.prototype.isPrototypeOf(<span class="hljs-built_in">this</span>) ? <span class="hljs-built_in">this</span> : context, [
+		<span class="hljs-keyword">return</span> originFn.apply(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> originFn ? <span class="hljs-built_in">this</span> : context, [
 			<span class="hljs-comment">// 如果绑定函数被new调用</span>
 			<span class="hljs-comment">// 则this指向生的成新对象</span>
 			...args1,
@@ -709,78 +712,6 @@ myArray.name = <span class="hljs-string">&quot;啦啦啦&quot;</span>;
 	<span class="hljs-comment">// 使用notBFn间接连接boundFn和originFn原型链</span>
 	<span class="hljs-keyword">return</span> boundFn;
 &#125;;</code></pre></div>
-
-<ul>
-<li>  手动实现一个 es5 继承</li>
-</ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Human</span>(<span class="hljs-params">color</span>) </span>&#123;
-	<span class="hljs-built_in">this</span>.skinColor = color;
-	<span class="hljs-built_in">this</span>.creature = <span class="hljs-string">&quot;Human&quot;</span>;
-&#125;
-Human.prototype.eat = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name + <span class="hljs-string">&quot;在恰饭&quot;</span>);
-&#125;;
-<span class="hljs-comment">// 1.借用构造函数</span>
-<span class="hljs-comment">// 只能继承构造函数中的属性</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params">name</span>) </span>&#123;
-	Human.call(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;yellow&quot;</span>);
-	<span class="hljs-built_in">this</span>.name = name;
-&#125;
-<span class="hljs-keyword">let</span> a1 = <span class="hljs-keyword">new</span> Asian(<span class="hljs-string">&quot;李华&quot;</span>);
-<span class="hljs-comment">//a1.eat() // 报错</span>
-<span class="hljs-comment">// Asian &#123; skinColor: &#x27;yellow&#x27;, type: &#x27;Human&#x27;, name: &#x27;李华&#x27; &#125;</span>
-
-<span class="hljs-comment">// 2.原型继承</span>
-<span class="hljs-comment">// 子类共享原型，修改互相影响</span>
-<span class="hljs-comment">// 不能继承对父类构造函数的传参</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">African</span>(<span class="hljs-params">name</span>) </span>&#123;
-	<span class="hljs-built_in">this</span>.name = name;
-&#125;
-African.prototype = <span class="hljs-keyword">new</span> Human();
-<span class="hljs-keyword">let</span> f1 = <span class="hljs-keyword">new</span> African(<span class="hljs-string">&quot;housaiin&quot;</span>);
-f1.eat();
-<span class="hljs-comment">// Human &#123; name: &#x27;housaiin&#x27; &#125;</span>
-<span class="hljs-comment">// housaiin在恰饭</span>
-
-<span class="hljs-comment">// 3.组合继承1+2</span>
-<span class="hljs-comment">// 子类共享原型</span>
-<span class="hljs-comment">// 父类构造函数调用两次</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Japanese</span>(<span class="hljs-params">name</span>) </span>&#123;
-	Human.call(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;yellow&quot;</span>);
-	<span class="hljs-built_in">this</span>.name = name;
-&#125;
-Japanese.prototype = <span class="hljs-keyword">new</span> Human();
-<span class="hljs-keyword">let</span> j1 = <span class="hljs-keyword">new</span> Japanese(<span class="hljs-string">&quot;tatekii&quot;</span>);
-j1.eat();
-<span class="hljs-comment">// Human &#123; skinColor: &#x27;yellow&#x27;, creature: &#x27;Human&#x27;, name: &#x27;tatekii&#x27; &#125;</span>
-<span class="hljs-comment">// tatekii在恰饭</span>
-
-<span class="hljs-comment">// 4.原型式继承</span>
-<span class="hljs-comment">// 继承关系混乱，分不清是谁构造的</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Japanese</span>(<span class="hljs-params">name</span>) </span>&#123;
-	Human.call(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;yellow&quot;</span>);
-	<span class="hljs-built_in">this</span>.name = name;
-&#125;
-Japanese.prototype = Human.prototype;
-<span class="hljs-keyword">let</span> j2 = <span class="hljs-keyword">new</span> Japanese(<span class="hljs-string">&quot;wasabi&quot;</span>);
-j2.constructor; <span class="hljs-comment">//  Human</span>
-
-<span class="hljs-comment">// 5.寄生继承</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">French</span>(<span class="hljs-params">name</span>) </span>&#123;
-	Human.call(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;white&quot;</span>);
-	<span class="hljs-built_in">this</span>.name = name;
-&#125;
-French.prototype = <span class="hljs-built_in">Object</span>.create(Human.prototype);
-French.prototype.constructor = French;
-<span class="hljs-comment">// 连接到父类原型链上但通过object.create将父子原型隔开</span>
-<span class="hljs-comment">// 确保子类实例们不会互相影响</span>
-<span class="hljs-comment">// 同时将构造函数指向自己</span>
-<span class="hljs-keyword">let</span> f2 = <span class="hljs-keyword">new</span> French(<span class="hljs-string">&quot;Hugo&quot;</span>);
-f2.eat();
-<span class="hljs-comment">// Human &#123; skinColor: &#x27;white&#x27;, creature: &#x27;Human&#x27;, name: &#x27;Hugo&#x27; &#125;</span>
-<span class="hljs-comment">// Hugo在恰饭</span>
-f2.constructor; <span class="hljs-comment">// French</span></code></pre></div>
 
 <ul>
 <li>  手动实现一个迭代器</li>
@@ -1453,9 +1384,9 @@ b.x; <span class="hljs-comment">// &#123;name:666,x:&#123;name:222&#125;&#125; &
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                     
                   </div>
                 

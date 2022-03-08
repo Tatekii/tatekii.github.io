@@ -18,16 +18,16 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="webpack优化打包时间 loader的作用范围include,exclude 模块搜索机制module.exports &#x3D; &amp;#123;   &#x2F;&#x2F;...   resolve: &amp;#123;     modules: [path.resolve(__dirname, &amp;#x27;src&amp;#x27;), &amp;#x27;node_modules&amp;#x27;], &#x2F;&#x2F; 搜索位置     extensio">
+    <meta name="description" content="【打包时间】 缩小loader的作用范围include,exclude 缩小模块搜索范围module.exports &#x3D; &amp;#123;   &#x2F;&#x2F;...   resolve: &amp;#123;     modules: [path.resolve(__dirname, &amp;#x27;src&amp;#x27;), &amp;#x27;node_modules&amp;#x27;], &#x2F;&#x2F; 搜索位置     extensions:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端性能优化">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="webpack优化打包时间 loader的作用范围include,exclude 模块搜索机制module.exports &#x3D; &amp;#123;   &#x2F;&#x2F;...   resolve: &amp;#123;     modules: [path.resolve(__dirname, &amp;#x27;src&amp;#x27;), &amp;#x27;node_modules&amp;#x27;], &#x2F;&#x2F; 搜索位置     extensio">
+<meta property="og:description" content="【打包时间】 缩小loader的作用范围include,exclude 缩小模块搜索范围module.exports &#x3D; &amp;#123;   &#x2F;&#x2F;...   resolve: &amp;#123;     modules: [path.resolve(__dirname, &amp;#x27;src&amp;#x27;), &amp;#x27;node_modules&amp;#x27;], &#x2F;&#x2F; 搜索位置     extensions:">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/24/images/script.png">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-07-07T11:46:50.000Z">
+<meta property="article:modified_time" content="2022-03-03T06:51:29.665Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.6k 字
+      5.2k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48 分钟
+      43 分钟
     </span>
   
 
@@ -239,25 +239,27 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月7日 晚上
+                  本文最后更新于：2022年3月3日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h1><h2 id="打包时间"><a href="#打包时间" class="headerlink" title="打包时间"></a>打包时间</h2><ul>
-<li>loader的作用范围<code>include</code>,<code>exclude</code></li>
-<li>模块搜索机制<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
+              <h1 id="【打包时间】"><a href="#【打包时间】" class="headerlink" title="【打包时间】"></a>【打包时间】</h1><ul>
+<li>缩小loader的作用范围<code>include</code>,<code>exclude</code></li>
+<li>缩小模块搜索范围<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
   <span class="hljs-comment">//...</span>
   resolve: &#123;
     modules: [path.resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>), <span class="hljs-string">&#x27;node_modules&#x27;</span>], <span class="hljs-comment">// 搜索位置</span>
     extensions:[<span class="hljs-string">&quot;.js&quot;</span>,<span class="hljs-string">&quot;.jsx&quot;</span>] <span class="hljs-comment">// 搜索的后缀名,虽然写的时候可以省略,但会增加搜索的性能损耗</span>
   &#125;
-&#125;;</code></pre></div>
-<h2 id="打包量"><a href="#打包量" class="headerlink" title="打包量"></a>打包量</h2></li>
-<li>tree shaking</li>
+&#125;;</code></pre></div></li>
 </ul>
-<h1 id="打包优化"><a href="#打包优化" class="headerlink" title="打包优化"></a>打包优化</h1><ul>
-<li><h3 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
+<h1 id="【打包优化】"><a href="#【打包优化】" class="headerlink" title="【打包优化】"></a>【打包优化】</h1><ul>
+<li><p>资源压缩</p>
+<p>  css/js/图片压缩</p>
+</li>
+<li><p>代码分割<br>分离第三方库去设置长缓存</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
   chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
       config.optimizationsplitChunks(&#123;
         chunks: <span class="hljs-string">&#x27;all&#x27;</span>,
@@ -277,12 +279,30 @@
       &#125;)
     &#125;
 &#125;</code></pre></div></li>
-<li><h3 id="配合拆包的缓存策略"><a href="#配合拆包的缓存策略" class="headerlink" title="配合拆包的缓存策略"></a>配合拆包的缓存策略</h3></li>
+<li><p>babel优化<br>babel会在在每个需要编译的地方都加上helper函数，造成冗余</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// .babelrc</span>
+
+<span class="hljs-string">&quot;plugins&quot;</span>: [
+        <span class="hljs-string">&quot;@babel/plugin-transform-runtime&quot;</span>
+]
+<span class="hljs-comment">// 自动移除语法转换后内联的辅助函数（inline Babel helpers），使用@babel/runtime/helpers里的辅助函数来替代；</span></code></pre></div></li>
+<li><p>按需打包组件（如element-ui</p>
+</li>
 </ul>
-<hr>
-<h1 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h1><ul>
-<li><h2 id="图片资源"><a href="#图片资源" class="headerlink" title="图片资源"></a>图片资源</h2><ol>
-<li><h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> imgList = [...document.querySelectAll(<span class="hljs-string">&#x27;img&#x27;</span>)]
+<h1 id="【加载阶段】"><a href="#【加载阶段】" class="headerlink" title="【加载阶段】"></a>【加载阶段】</h1><h2 id="白屏loading提示或者骨架屏"><a href="#白屏loading提示或者骨架屏" class="headerlink" title="白屏loading提示或者骨架屏"></a>白屏loading提示或者骨架屏</h2><h2 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h2>  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
+  routes: [
+    &#123;
+      path: <span class="hljs-string">&#x27;/home&#x27;</span>,
+      component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/home&#x27;</span>),
+    &#125;,
+    &#123;
+      path: <span class="hljs-string">&#x27;/about&#x27;</span>,
+      component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/home&#x27;</span>),
+    &#125;,
+  ],
+&#125;)</code></pre></div>
+<h2 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h2>  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 主要逻辑</span>
+<span class="hljs-keyword">const</span> imgList = [...document.querySelectAll(<span class="hljs-string">&#x27;img&#x27;</span>)]
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyLoad</span>(<span class="hljs-params">imgList</span>)</span>&#123;
   <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>
   <span class="hljs-keyword">const</span> len = imgList.length
@@ -304,14 +324,31 @@
   &#125;
 &#125;
 <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">&#x27;scroll&#x27;</span>,_.debounce(lazyLoad))
-<span class="hljs-comment">// 加上节流</span></code></pre></div></li>
-<li><h3 id="精灵图和icon-font"><a href="#精灵图和icon-font" class="headerlink" title="精灵图和icon-font"></a>精灵图和icon-font</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">svg-sprite-loader</code></pre></div></li>
-</ol>
+<span class="hljs-comment">//</span></code></pre></div>
+<h2 id="虚拟列表"><a href="#虚拟列表" class="headerlink" title="虚拟列表"></a>虚拟列表</h2><p>  动态渲染长列表</p>
+<h2 id="图片占位符"><a href="#图片占位符" class="headerlink" title="图片占位符"></a>图片占位符</h2><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/sqip">sqip</a></p>
+<h2 id="优化文档结构"><a href="#优化文档结构" class="headerlink" title="优化文档结构"></a>优化文档结构</h2><ul>
+<li><p>css资源请求放在文档最前，避免阻塞渲染</p>
 </li>
-<li><h2 id="请求数量"><a href="#请求数量" class="headerlink" title="请求数量"></a>请求数量</h2><ol>
-<li><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><ol>
-<li>安装<code>html-webpack-plugin</code></li>
-<li>修改<code>public/index.html</code><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<li><p>脚本放在最后且非核心代码异步加载</p>
+<p>异步加载的方式</p>
+<ol>
+<li>动态创建script标签</li>
+<li>script<code>defer</code></li>
+<li>script<code>async</code><br><img src="../images/script.png" srcset="/img/loading.gif" lazyload alt="script"></li>
+</ol>
+<ul>
+<li>普通的<code>script</code>，html解析暂停，立即下载和执行这个脚本</li>
+<li><code>&lt;script async&gt;</code>，html解析和该脚本的加载同时进行，下载完后执行脚本时暂停html解析</li>
+<li><code>&lt;script defer&gt;</code>，html解析和该脚本的加载同时进行，脚本在页面解析完成后才执行—&gt;<code>DOMContentLoaded</code> 之前执行</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用CDN"><a href="#使用CDN" class="headerlink" title="使用CDN"></a>使用CDN</h2><ol>
+<li><p>安装<code>html-webpack-plugin</code></p>
+</li>
+<li><p>修改<code>public/index.html</code></p>
+   <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
@@ -337,10 +374,7 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">noscript</span>&gt;</span>
-      &lt;strong
-        &gt;We&#x27;re sorry but moviapp doesn&#x27;t work properly without JavaScript
-        enabled. Please enable it to continue.&lt;/strong
-      &gt;
+      <span class="hljs-comment">&lt;!--  --&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">noscript</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
@@ -355,11 +389,8 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre></div></li>
-</ol>
-<ul>
-<li>配置<code>vue.config.js</code></li>
-</ul>
- <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 判断生产环境</span>
+<li><p>配置<code>vue.config.js</code></p>
+   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 判断生产环境</span>
 <span class="hljs-keyword">const</span> isProduction = process.env.NODE_ENV === <span class="hljs-string">&quot;production&quot;</span>;
 <span class="hljs-keyword">const</span> cdn = &#123;
   <span class="hljs-comment">// 随便抓几个</span>
@@ -390,91 +421,8 @@
   &#125;,
 &#125;;</code></pre></div></li>
 </ol>
-<ul>
-<li><h3 id="第三方库按需加载"><a href="#第三方库按需加载" class="headerlink" title="第三方库按需加载"></a>第三方库按需加载</h3><ol>
-<li>elementui官网配置方法不适用</li>
-<li>vuecli中babel配置文件为<code>babel.config.js</code></li>
-<li>安装<code>babel-plugin-component</code></li>
-<li>配置<code>babel.config.js</code></li>
-</ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
-  presets: [
-    <span class="hljs-string">&#x27;@vue/cli-plugin-babel/preset&#x27;</span>
-  ],
-  plugins: [
-    [
-      <span class="hljs-string">&quot;component&quot;</span>,<span class="hljs-comment">// 插件位置</span>
-      &#123;
-        <span class="hljs-string">&quot;libraryName&quot;</span>: <span class="hljs-string">&quot;element-ui&quot;</span>,
-        <span class="hljs-string">&quot;styleLibraryName&quot;</span>: <span class="hljs-string">&quot;theme-chalk&quot;</span>
-      &#125;
-    ]
-  ]
-&#125;
-</code></pre></div>
-
-<ul>
-<li>修改<code>main.js</code><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; MenuItem,Container,Header,Aside,Main,Input,Footer,Avatar, Menu, Table, TableColumn, Pagination ,Button&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;element-ui&quot;</span>;
-
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> [MenuItem,Container,Header,Aside,Main,Input,Footer,Avatar, Menu, Table, TableColumn, Pagination,Button]) &#123;
-  Vue.use(item);
-&#125;</code></pre></div></li>
-<li>也可以单独独立出自定义组件,二次封装<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// eleui.js</span>
-<span class="hljs-keyword">import</span> &#123; MenuItem,Container,Header,Aside,Main,Input,Footer,Avatar, Menu, Table, TableColumn, Pagination ,Button&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;element-ui&quot;</span>;
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  install : <span class="hljs-function">(<span class="hljs-params">Vue</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> co <span class="hljs-keyword">of</span> [MenuItem,Container,Header,Aside,Main,Input,Footer,Avatar, Menu, Table, TableColumn, Pagination ,Button])&#123;
-      Vue.use(co)
-    &#125;
-  &#125;
-&#125;
-
-
-<span class="hljs-comment">// main.js</span>
-<span class="hljs-keyword">import</span> eleUI <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./eleUI.js&#x27;</span>
-Vue.use(eleUI)</code></pre></div></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h3 id="前端路由懒加载"><a href="#前端路由懒加载" class="headerlink" title="前端路由懒加载"></a>前端路由懒加载</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
-  routes: [
-    &#123;
-      path: <span class="hljs-string">&#x27;/home&#x27;</span>,
-      component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/home&#x27;</span>),
-    &#125;,
-    &#123;
-      path: <span class="hljs-string">&#x27;/about&#x27;</span>,
-      component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/home&#x27;</span>),
-    &#125;,
-  ],
-&#125;)</code></pre></div></li>
-</ul>
-<h2 id="资源大小"><a href="#资源大小" class="headerlink" title="资源大小"></a>资源大小</h2><h3 id="代码混淆压缩"><a href="#代码混淆压缩" class="headerlink" title="代码混淆压缩"></a>代码混淆压缩</h3><ul>
-<li>uglyjs<h3 id="服务器gzip"><a href="#服务器gzip" class="headerlink" title="服务器gzip"></a>服务器gzip</h3><h3 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h3></li>
-<li><code>tinify</code></li>
-<li><code>base64</code></li>
-<li><code>webp</code></li>
-</ul>
-<h2 id="非核心代码异步加载"><a href="#非核心代码异步加载" class="headerlink" title="非核心代码异步加载"></a>非核心代码异步加载</h2><ul>
-<li><p>异步加载的方式</p>
-<ol>
-<li>动态创建script标签</li>
-<li>script<code>defer</code></li>
-<li>script<code>async</code></li>
-</ol>
-</li>
-<li><p>script/script async/script defer的区别</p>
-<ul>
-<li>普通的<code>script</code>，html解析暂停，立即下载和执行这个脚本</li>
-<li><code>&lt;script async&gt;</code>，html解析和该脚本的加载同时进行，下载完后执行脚本时暂停html解析</li>
-<li><code>&lt;script defer&gt;</code>，html解析和该脚本的加载同时进行，脚本在页面解析完成后才执行—&gt;<code>DOMContentLoaded</code> 之前执行</li>
-</ul>
-<p>  <img src="../images/script.png" srcset="/img/loading.gif" lazyload alt="script"></p>
-</li>
+<h2 id="代码混淆压缩"><a href="#代码混淆压缩" class="headerlink" title="代码混淆压缩"></a>代码混淆压缩</h2><ul>
+<li>uglyjs<h2 id="gzip压缩"><a href="#gzip压缩" class="headerlink" title="gzip压缩"></a>gzip压缩</h2></li>
 </ul>
 <h2 id="预解析DNS"><a href="#预解析DNS" class="headerlink" title="预解析DNS"></a>预解析DNS</h2><p><code>DNS Prefetch</code> 是一种DNS 预解析技术，当浏览网页时，浏览器会在加载网页时对网页中的域名进行解析缓存，这样在单击当前网页中的连接时就无需进行DNS的解析，减少用户等待时间，提高用户体验。</p>
 <ol>
@@ -493,20 +441,40 @@ Vue.use(eleUI)</code></pre></div></li>
 <li><code>SSR:server side render</code></li>
 <li><code>prerender-spa-plugin</code>不适用于个性化的，内容变化大，多路由的页面<br>可以用来优化单页应用</li>
 </ul>
-<hr>
-<h1 id="运行阶段"><a href="#运行阶段" class="headerlink" title="运行阶段"></a>运行阶段</h1><ol>
-<li>DOM样式通过class修改</li>
-<li>DOM离线后修改（<code>display:none</code>,<code>Document Fragment</code>）或者使用虚拟DOM</li>
-<li>减少获取DOM样式属性像offsetHeight（导致立即重排），和加入循环。。。</li>
-<li>避免table布局</li>
+<h1 id="【运行时】"><a href="#【运行时】" class="headerlink" title="【运行时】"></a>【运行时】</h1><h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ul>
+<li>合理使用浏览器缓存策略</li>
+<li>不频繁操作DOM，使用虚拟DOM或<code>fragment</code></li>
+<li>读取元素的位置大小属性（如<code>scrollTop</code>,<code>offsetHeight</code>…）浏览器会即时计算一次，也触发了重排，更不能将这些属性放入循环中</li>
+<li>使用事件委托</li>
+<li>使用<code>Web Worker</code><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2></li>
+<li>避免<code>css</code>选择器嵌套过深</li>
+<li>避免大量使用<code>id</code>选择器，每个<code>id</code>都会变为一个单独的全局变量</li>
+<li>避免使用<code>table</code>，<code>table</code>会频繁触发重排</li>
+<li>更换<code>class</code>代替直接修改<code>style</code></li>
 <li>合理使用GPU加速<ul>
-<li> <code>translate</code>代替修改几何信息<code>left,top...</code></li>
+<li> <code>css3</code>动画代替修改几何信息<code>left,top...</code></li>
 <li> <code>opacity</code>代替<code>visibility</code></li>
 <li> 复杂动画元素脱离文档流<code>position:absolute/fixed</code></li>
-<li> 加上<code>will-change</code>属性</li>
+<li> 加上<code>will-change</code>属性的元素会交给合成层渲染（GPU</li>
 </ul>
 </li>
-</ol>
+</ul>
+<h1 id="【资源优化】"><a href="#【资源优化】" class="headerlink" title="【资源优化】"></a>【资源优化】</h1><h2 id="图片资源"><a href="#图片资源" class="headerlink" title="图片资源"></a>图片资源</h2><h3 id="高效图片格式"><a href="#高效图片格式" class="headerlink" title="高效图片格式"></a>高效图片格式</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/WebP">WebP</a></li>
+<li>矢量图<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a></li>
+<li>Base64位图 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Base64">base64</a><h3 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;picture&gt;
+	&lt;source srcset=<span class="hljs-string">&quot;banner_w1000.jpg&quot;</span> media=<span class="hljs-string">&quot;(min-width: 801px)&quot;</span>&gt;
+	&lt;source srcset=<span class="hljs-string">&quot;banner_w800.jpg&quot;</span> media=<span class="hljs-string">&quot;(max-width: 800px)&quot;</span>&gt;
+	&lt;img src=<span class="hljs-string">&quot;banner_w800.jpg&quot;</span> alt=<span class="hljs-string">&quot;&quot;</span>&gt;
+&lt;/picture&gt;</code></pre></div>
+<h3 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h3></li>
+<li><a target="_blank" rel="noopener" href="https://tinypng.com/">tinypng</a></li>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/image-minimizer-webpack-plugin/#root">webpack插件</a></li>
+</ul>
+<h3 id="小图合并"><a href="#小图合并" class="headerlink" title="小图合并"></a>小图合并</h3><ul>
+<li>合并雪碧图</li>
+<li>使用<code>icon-font</code>字体图标<div class="hljs code-wrapper"><pre><code class="hljs javascript">svg-sprite-loader</code></pre></div></li>
+</ul>
 
             </div>
             <hr>
@@ -534,9 +502,9 @@ Vue.use(eleUI)</code></pre></div></li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
+                      <a href="/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端涉及到的数据存储</span>
+                        <span class="hidden-mobile">二叉树</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

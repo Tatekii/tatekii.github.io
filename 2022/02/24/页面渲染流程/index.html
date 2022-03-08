@@ -26,7 +26,7 @@
 <meta property="og:description" content="步骤【DNS解析】 查找浏览器DNS缓存 查找系统HOST文件 DNS查询 主机和本地域名服务器之间使用递归查询，本地域名服务器要负责一直到查询得出结果 本地域名服务器和其他服务器之间的使用迭代查询，域名服务器会告诉本地服务器下一次去询问谁，防止单台域名服务器压力过大     DNS请求使用UDP协议，如果请求失败则使用TCP重试  1. 本地DNS服务器查找自己缓存 2. 本地DNS服务器向【根">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-09-26T00:04:06.000Z">
+<meta property="article:modified_time" content="2022-03-03T05:56:44.795Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月26日 早上
+                  本文最后更新于：2022年3月3日 下午
                 
               </p>
             
@@ -320,7 +320,7 @@
 <h3 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h3><p>浏览器依据Render树和设备屏幕信息<strong>重排</strong>一次，从 <code>&lt;html&gt;标签</code> 开始往下依次计算所有的节点几何尺寸和位置</p>
 <h3 id="Paint"><a href="#Paint" class="headerlink" title="Paint"></a>Paint</h3><p>根据上一步得到的像素信息<strong>重绘</strong>页面</p>
 <h3 id="Display"><a href="#Display" class="headerlink" title="Display"></a>Display</h3><p>GPU合成各图层，显示在屏幕上</p>
-<h1 id="重点概念"><a href="#重点概念" class="headerlink" title="重点概念"></a>重点概念</h1><h3 id="重排reflow"><a href="#重排reflow" class="headerlink" title="重排reflow"></a>重排<code>reflow</code></h3><ul>
+<h1 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h1><h3 id="重排reflow"><a href="#重排reflow" class="headerlink" title="重排reflow"></a>重排<code>reflow</code></h3><ul>
 <li>有些情况下，比如修改了元素的样式，浏览器并不会立刻reflow，而是会把这样的操作积攒一批，然后做一次处理，这又叫异步 reflow 或增量异步 reflow。</li>
 <li>在有些情况下，比如窗口<code>resize</code>，改变了页面默认的字体等。对于这些操作，浏览器会马上进行 reflow。</li>
 <li>除了渲染树的直接变化，当获取一些需要计算的属性时，浏览器为取得正确的值也会触发重排,这些属性包括：<code>offsetXXX、scrollXXX、clientXXX、getComputedStyle()</code></li>
@@ -398,8 +398,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/17/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E6%96%B0%E6%89%8B%E5%8C%85/">
-                        <span class="hidden-mobile">代码提交规范新手包</span>
+                      <a href="/2022/02/24/react_diff%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">react-diff</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

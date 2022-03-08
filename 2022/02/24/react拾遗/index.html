@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="⭐️ 生命周期Commit 将状态变化渲染到视图中   beforeMutation mutation layout  ⭐️Hooks⭐️ReduxcreateStore&#x2F;* * @param &amp;#123;Function&amp;#125; reducer * @param &amp;#123;any&amp;#125; preloadedState 初始化的state * @param &amp;#123;Function&amp;">
+    <meta name="description" content="⭐️ReduxcreateStore&#x2F;* * @param &amp;#123;Function&amp;#125; reducer * @param &amp;#123;any&amp;#125; preloadedState 初始化的state * @param &amp;#123;Function&amp;#125; enhancer 中间件 *&#x2F; export default function createStore(reducer,p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react拾遗">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/react%E6%8B%BE%E9%81%97/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="⭐️ 生命周期Commit 将状态变化渲染到视图中   beforeMutation mutation layout  ⭐️Hooks⭐️ReduxcreateStore&#x2F;* * @param &amp;#123;Function&amp;#125; reducer * @param &amp;#123;any&amp;#125; preloadedState 初始化的state * @param &amp;#123;Function&amp;">
+<meta property="og:description" content="⭐️ReduxcreateStore&#x2F;* * @param &amp;#123;Function&amp;#125; reducer * @param &amp;#123;any&amp;#125; preloadedState 初始化的state * @param &amp;#123;Function&amp;#125; enhancer 中间件 *&#x2F; export default function createStore(reducer,p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-02-24T12:42:41.000Z">
+<meta property="article:modified_time" content="2022-03-03T06:12:13.513Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="react">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.2k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25 分钟
+      27 分钟
     </span>
   
 
@@ -238,20 +238,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年2月24日 晚上
+                  本文最后更新于：2022年3月3日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="⭐️-生命周期"><a href="#⭐️-生命周期" class="headerlink" title="⭐️ 生命周期"></a>⭐️ 生命周期</h1><h2 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h2><blockquote>
-<p>将状态变化渲染到视图中</p>
-</blockquote>
-<ol>
-<li>beforeMutation</li>
-<li>mutation</li>
-<li>layout</li>
-</ol>
-<h1 id="⭐️Hooks"><a href="#⭐️Hooks" class="headerlink" title="⭐️Hooks"></a>⭐️Hooks</h1><h1 id="⭐️Redux"><a href="#⭐️Redux" class="headerlink" title="⭐️Redux"></a>⭐️Redux</h1><h2 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a><code>createStore</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span>
+              <h1 id="⭐️Redux"><a href="#⭐️Redux" class="headerlink" title="⭐️Redux"></a>⭐️Redux</h1><h2 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a><code>createStore</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span>
 <span class="hljs-comment">* @param &#123;Function&#125; reducer</span>
 <span class="hljs-comment">* @param &#123;any&#125; preloadedState 初始化的state</span>
 <span class="hljs-comment">* @param &#123;Function&#125; enhancer 中间件</span>
@@ -314,7 +306,7 @@
 &#125;
 </code></pre></div>
 
-<h1 id="⭐️React-redux"><a href="#⭐️React-redux" class="headerlink" title="⭐️React-redux"></a>⭐️React-redux</h1><h2 id="connect"><a href="#connect" class="headerlink" title="connect"></a><code>connect</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// connect(...)(UI组件)</span>
+<h1 id="⭐️React-redux"><a href="#⭐️React-redux" class="headerlink" title="⭐️React-redux"></a>⭐️React-redux</h1><h2 id="connect-API在Class组件中"><a href="#connect-API在Class组件中" class="headerlink" title="connect API在Class组件中"></a><code>connect API在Class组件中</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// connect(...)(UI组件)</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params">mapStateToProps = state =&gt; state,mapDispatchToToProps = ()=&gt;&#123;&#125;</span>) =&gt; (<span class="hljs-params">WrapComponent</span>) =&gt; </span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConnectComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;
     <span class="hljs-keyword">static</span> contextTypes = &#123;
@@ -363,11 +355,11 @@
 &#125;</code></pre></div>
 
 <h1 id="⭐️-面试题"><a href="#⭐️-面试题" class="headerlink" title="⭐️ 面试题"></a>⭐️ 面试题</h1><ul>
-<li><p><code>useEffec</code>(fn,[])和 componentDidMount 的区别</p>
+<li><p><code>useEffect</code>(fn,[])和 componentDidMount 的区别</p>
 <ol>
-<li><code>useEffec</code>(fn,[])在<code>commit</code>执行完之后异步执行 fn 回调</li>
+<li><code>useEffect</code>(fn,[])在<code>commit</code>执行完之后异步执行 fn 回调</li>
 <li><code>componentDidMount</code>在<code>commit中的mutation</code>执行完时候和<code>layout</code>同步执行</li>
-<li><code>useLayoutEffec</code>能实现和<code>👆</code>一样的效果</li>
+<li><code>useLayoutEffect</code>能实现和<code>👆</code>一样的效果</li>
 </ol>
 </li>
 <li><p><code>react-redux</code>如何将 store 的 state 注入组件</p>
@@ -382,12 +374,26 @@
 
 <p>  后就可以使用 function 作为 action</p>
 </li>
-<li><p><code>setState同步异步</code></p>
+<li><p><code>setState的同步和异步</code></p>
 <ol>
 <li>合成事件和生命周期中的<code>setState</code>是异步的</li>
 <li>原生事件和<code>setTimeout</code>中的<code>setState</code>是同步的</li>
 <li>使用<code>setState</code>的<code>callback</code>总能拿到最新的值</li>
 <li>setState自带批处理优化，多次调用只会执行最新的一次</li>
+</ol>
+</li>
+<li><p>合成事件</p>
+<p>React对原生DOM事件都做了代理，且事件都是绑定到app根节点上，<br>通过事件冒泡时的 <code>srcElement</code>查找到目标节点上的事件标识，再去合成事件库中寻找相应的回调。</p>
+</li>
+</ul>
+<ul>
+<li>React的性能优化<ol>
+<li><code>useCallback</code>管理函数的执行</li>
+<li><code>useMemo</code>管理值的计算</li>
+<li><code>PureComponent</code>浅层比较<code>state</code>和<code>prop</code>不重复渲染</li>
+<li><code>React.memo HOC</code>浅层比较<code>prop</code></li>
+<li>注意<code>Context provide</code>触发的渲染无法避免</li>
+<li><code>Redux connect</code>中给组件传的<code>state</code>都会触发渲染</li>
 </ol>
 </li>
 </ul>

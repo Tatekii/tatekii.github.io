@@ -18,22 +18,21 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 批量注册中间件.&#x2F;controllers中  controllerA.js controllerB.js controllerC.js  .&#x2F;controllers&#x2F;index.js  const _ &#x3D; require(&amp;#x27;lodash&amp;#x27;) const fs &#x3D; require(&amp;#x27;fs&amp;#x27;) const path &#x3D; require(&amp;#x27;path">
+    <meta name="description" content="作用域与作用域链作用域：变量可以起作用的范围 全局作用域 变量在函数外的当前global顶层声明  全局变量：在任何地方都可以访问到的变量，关闭网页或浏览器才会销毁。顶层  听过var声明的全局变量会直接挂载在Global对象上，let和const则不会，但他们效果是相同的。     函数作用域（局部作用域） 变量在函数内声明  局部变量：只在固定的代码片段内可访问到的变量,在函数开始执行时创建，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件夹内批量映射为模块">
-<meta property="og:url" content="http://yoursite.com/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:title" content="作用域链与闭包">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="1. 批量注册中间件.&#x2F;controllers中  controllerA.js controllerB.js controllerC.js  .&#x2F;controllers&#x2F;index.js  const _ &#x3D; require(&amp;#x27;lodash&amp;#x27;) const fs &#x3D; require(&amp;#x27;fs&amp;#x27;) const path &#x3D; require(&amp;#x27;path">
+<meta property="og:description" content="作用域与作用域链作用域：变量可以起作用的范围 全局作用域 变量在函数外的当前global顶层声明  全局变量：在任何地方都可以访问到的变量，关闭网页或浏览器才会销毁。顶层  听过var声明的全局变量会直接挂载在Global对象上，let和const则不会，但他们效果是相同的。     函数作用域（局部作用域） 变量在函数内声明  局部变量：只在固定的代码片段内可访问到的变量,在函数开始执行时创建，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-01-17T03:42:19.000Z">
+<meta property="article:modified_time" content="2022-03-04T02:56:41.469Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
-<meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>文件夹内批量映射为模块 - 不知名的笔记本</title>
+  <title>作用域链与闭包 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -167,7 +166,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="文件夹内批量映射为模块">
+            <span class="h2" id="subtitle" title="作用域链与闭包">
               
             </span>
 
@@ -188,7 +187,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      2.2k 字
     </span>
   
 
@@ -197,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18 分钟
+      19 分钟
     </span>
   
 
@@ -234,134 +233,150 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">文件夹内批量映射为模块</h1>
+            <h1 style="display: none">作用域链与闭包</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年1月17日 中午
+                  本文最后更新于：2022年3月4日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="1-批量注册中间件"><a href="#1-批量注册中间件" class="headerlink" title="1. 批量注册中间件"></a>1. 批量注册中间件</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">./controllers中
-
-controllerA.js
-controllerB.js
-controllerC.js</code></pre></div>
-
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">./controllers/index.js
-
-<span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lodash&#x27;</span>)
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)
-
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * 映射文件夹下的文件为模块</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">const</span> mapDir = <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> tree = &#123;&#125;
-
-    <span class="hljs-comment">// 获得当前文件夹下的所有的文件夹和文件</span>
-    <span class="hljs-keyword">const</span> [dirs, files] = _(fs.readdirSync(d))
-        .partition(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> fs.statSync(path.join(d, p)).isDirectory())
-    <span class="hljs-comment">// _(value)</span>
-    <span class="hljs-comment">// 创建一个经 lodash 包装后的对象会启用隐式链。返回的数组、集合、方法相互之间能够链式调用</span>
-
-    <span class="hljs-comment">// 递归映射文件夹</span>
-    dirs.forEach(<span class="hljs-function"><span class="hljs-params">dir</span> =&gt;</span> &#123;
-        tree[dir] = mapDir(path.join(d, dir))
-    &#125;)
-
-    <span class="hljs-comment">// 映射文件</span>
-    files.forEach(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (path.extname(file) === <span class="hljs-string">&#x27;.js&#x27;</span>) &#123;
-            tree[path.basename(file, <span class="hljs-string">&#x27;.js&#x27;</span>)] = <span class="hljs-built_in">require</span>(path.join(d, file))
-        &#125;
-    &#125;)
-
-    <span class="hljs-keyword">return</span> tree
+              <h1 id="作用域与作用域链"><a href="#作用域与作用域链" class="headerlink" title="作用域与作用域链"></a>作用域与作用域链</h1><h2 id="作用域：变量可以起作用的范围"><a href="#作用域：变量可以起作用的范围" class="headerlink" title="作用域：变量可以起作用的范围"></a>作用域：变量可以起作用的范围</h2><ul>
+<li><p>全局作用域</p>
+<p>变量在函数外的当前global顶层声明</p>
+<p> <code>全局变量</code>：在任何地方都可以访问到的变量，关闭网页或浏览器才会销毁。顶层</p>
+<blockquote>
+<p>听过var声明的全局变量会直接挂载在Global对象上，let和const则不会，但他们效果是相同的。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>函数作用域（局部作用域）</p>
+<p>变量在函数内声明</p>
+<p> <code>局部变量</code>：只在固定的代码片段内可访问到的变量,在函数开始执行时创建，函数执行完后<code>局部变量</code>会自动销毁。</p>
+</li>
+<li><p>块级作用域（es5）</p>
+<p>任何一对花括号<code>&#123;&#125;</code>也会生成一个独立的作用域。</p>
+</li>
+<li><p>词法作用域</p>
+<p>js的作用域范围在书写时就已经确定，不受代码执行的动态影响。（静态作用域）</p>
+</li>
+<li><p>自由变量</p>
+<p>当前作用域没有定义的变量，这成为<code>自由变量</code>（既不是局部变量也不是函数参数）</p>
+<ul>
+<li>自由变量会向父级作用域中寻找</li>
+<li><strong>自由变量从作用域链中去寻找，依据的是函数定义时的作用域链，而不是函数执行时的作用域</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><ul>
+<li><p>js中的函数在创建时会创建一个<code>变量对象</code>保存当前作用域中的所有函数与变量；</p>
+</li>
+<li><p>js中的代码在执行时会创建执行上下文，而执行上下文中的<code>[scope chain] </code>保存了所有父级作用域的中<code>变量对象</code>的引用，随着函数的执行，会将当前的活动对象链接到<code>[scope chain]</code>的最前端。</p>
+</li>
+<li><p>函数的活动对象初始只有<code>arguments</code>，变量的查找会从<code>arguments</code>开始循着<code>scope chain</code>的顺序依次往外部查找变量标识符号，直到全局作用域。</p>
+</li>
+</ul>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><ul>
+<li><p>函数与其词法环境共同构成 <em>闭包（closure）</em> 。</p>
+</li>
+<li><p>词法环境 = 代码内变量标识符与值之间的关联关系（环境记录）+ 对外部词法环境的引用</p>
+</li>
+<li><p>所有函数会自动通过隐藏的 [[Environment]] 属性记住创建它们的位置,保存对其创建位置的此法环境的引用.</p>
+</li>
+</ul>
+<h2 id="闭包的用途"><a href="#闭包的用途" class="headerlink" title="闭包的用途"></a>闭包的用途</h2><ul>
+<li><p>实现数据(变量和方法)私有化</p>
+</li>
+<li><p>函数柯里化</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">func,...args1</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> fnLen = func.length
+  <span class="hljs-keyword">const</span> argsArr = [...args1]
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_curry</span>(<span class="hljs-params">...args2</span>)</span>&#123;
+    argsArr = [argsArr,...args2]
+    <span class="hljs-keyword">return</span> argsArr.length &gt;= fnLen ? func.apply(<span class="hljs-built_in">this</span>,argsArr) : _curry
+  &#125;
+  <span class="hljs-keyword">return</span> _curry
 &#125;
 
-<span class="hljs-comment">// 默认导出当前文件夹下的映射</span>
-<span class="hljs-built_in">module</span>.exports = mapDir(path.join(__dirname))</code></pre></div>
-
-<ul>
-<li>  使用</li>
+<span class="hljs-comment">// 传世经典累加函数add</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...args1</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> res = [...args1].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerAdd</span>(<span class="hljs-params">...args2</span>)</span>&#123;
+    res = [...res,...args2].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
+    <span class="hljs-keyword">return</span> innerAdd
+  &#125;
+  innerAdd.toString = <span class="hljs-function">() =&gt;</span> res
+  <span class="hljs-comment">// 打印方法会调用toString</span>
+  <span class="hljs-keyword">return</span> innerAdd
+&#125;</code></pre></div></li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> controllers = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../controllers&quot;</span>);
-
-router.get(<span class="hljs-string">&quot;/A&quot;</span>, controllers.controllerA);
-router.post(<span class="hljs-string">&quot;/B&quot;</span>, controllers.controllerB);
-router.post(<span class="hljs-string">&quot;/C&quot;</span>, controllers.controllerC);</code></pre></div>
-
-<h2 id="2-批量注册路由"><a href="#2-批量注册路由" class="headerlink" title="2. 批量注册路由"></a>2. 批量注册路由</h2><ul>
-<li>  <code>/routes/...</code></li>
-</ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">/a.js
-&#123;
-    <span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;koa-router&#x27;</span>)()
-
-    router.get(<span class="hljs-string">&#x27;/xxx&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
-        ctx.....
-    &#125;)
-
-    <span class="hljs-keyword">return</span> router
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addCounter</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>; <span class="hljs-comment">// 执行结束后不会被清除</span>
+  <span class="hljs-keyword">const</span> myFunction = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    counter = counter + <span class="hljs-number">1</span>; <span class="hljs-comment">// myFunction函数可以读取add函数内部的变量</span>
+    <span class="hljs-keyword">return</span> counter;
+  &#125;;
+  <span class="hljs-keyword">return</span> myFunction;
 &#125;
-...
-b.js
-c.js
-d.js</code></pre></div>
 
-<ul>
-<li>  <code>/router/index.js</code></li>
+<span class="hljs-keyword">const</span> increment = addCounter();
+<span class="hljs-keyword">const</span> c1 = increment();
+<span class="hljs-keyword">const</span> c2 = increment();
+<span class="hljs-keyword">const</span> c3 = increment();
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;increment:&quot;</span>, c1, c2, c3);
+<span class="hljs-comment">// increment: 1 2 3</span></code></pre></div>
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><ul>
+<li>老生常谈的for循环setTimeout打印问题<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(i)
+  &#125;, <span class="hljs-number">1000</span> * i)
+&#125;
+<span class="hljs-comment">// 6 6 6 6 6 6</span>
+<span class="hljs-comment">// 创建的6个setTimeout闭包共享一个词法作用域</span>
+
+**闭包只能取得包含函数中任何变量赋值最后一个值** <span class="hljs-comment">// 6</span>
+
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;
+  (<span class="hljs-function">(<span class="hljs-params">j</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+      <span class="hljs-built_in">console</span>.log(j)
+    &#125;, <span class="hljs-number">1000</span> * j)
+  &#125;)(i)
+&#125;
+<span class="hljs-comment">// 1 2 3 4 5 6</span>
+<span class="hljs-comment">// 6个setTimeout闭包有自己独立的词法环境</span>
+<span class="hljs-comment">// 闭包读取到不同的i值</span>
+
+
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span> ;i&lt;<span class="hljs-number">7</span>;i++)&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(j);
+  &#125;,<span class="hljs-number">1000</span>*i,i)
+&#125;
+<span class="hljs-comment">// setTimeout 可以接受一个参数当函数调用时传入</span>
+
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ;i&lt;<span class="hljs-number">7</span>;i++)&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(i);
+  &#125;,<span class="hljs-number">1000</span>*i)
+&#125;</code></pre></div></li>
+<li><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">num2</span>) </span>&#123;
+  <span class="hljs-keyword">var</span> num = <span class="hljs-number">15</span>;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abc</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 函数作为返回值</span>
+    num++;
+    <span class="hljs-keyword">return</span>(num + num2);
+  &#125;
+  <span class="hljs-keyword">return</span> abc;
+&#125;
+<span class="hljs-keyword">var</span> aa = fn(<span class="hljs-number">20</span>); <span class="hljs-comment">//  没有引用？？</span>
+aa(); <span class="hljs-comment">//16+20</span>
+aa(); <span class="hljs-comment">//17+20</span>
+fn(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span>
+fn(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span></code></pre></div></li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;koa-router&quot;</span>)();
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
-
-<span class="hljs-keyword">const</span> mapRoutes = <span class="hljs-function">(<span class="hljs-params">filePath</span>) =&gt;</span> &#123;
-	<span class="hljs-keyword">const</span> files = fs.readdirSync(filePath); <span class="hljs-comment">//将当前目录下 都读出来</span>
-
-	files
-		.filter(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
-			<span class="hljs-comment">// 过滤</span>
-
-			<span class="hljs-keyword">if</span> (filePath !== __dirname &amp;&amp; file === <span class="hljs-string">&quot;index.js&quot;</span>) &#123;
-				<span class="hljs-comment">//读取的时候会将当前目录的 index.js 也读取出来，这个不需要，如果拿到别的地方可以不加这个判断</span>
-
-				<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;routes module must not be &#x27;index.js&#x27; &quot;</span>);
-			&#125;
-
-			<span class="hljs-keyword">return</span> file !== <span class="hljs-string">&quot;index.js&quot;</span>;
-		&#125;) <span class="hljs-comment">// 将 index.js 过滤掉，路由名字一律不能用 index.js 命名，否则不生效，我这里边的 index.js 如果拿到外面就不用添加这个判断了 ...</span>
-		.forEach(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">let</span> newFilePath = path.join(filePath, file);
-
-			<span class="hljs-keyword">if</span> (fs.statSync(newFilePath).isDirectory()) &#123;
-				<span class="hljs-comment">// 是目录</span>
-
-				loadRoutes(newFilePath); <span class="hljs-comment">// 递归</span>
-			&#125; <span class="hljs-keyword">else</span> &#123;
-				<span class="hljs-comment">// 是文件</span>
-
-				<span class="hljs-keyword">let</span> route = <span class="hljs-built_in">require</span>(newFilePath);
-
-				<span class="hljs-comment">//注册路由</span>
-				router.use(route.routes());
-				router.use(route.allowedMethods());
-			&#125;
-		&#125;);
-&#125;;
-
-mapRoutes(path.join(__dirname));
-
-<span class="hljs-built_in">module</span>.exports = router;</code></pre></div>
-
-<ul>
-<li>  <code>app.js</code></li>
-</ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./routes/index&quot;</span>);
-app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
 
             </div>
             <hr>
@@ -373,8 +388,6 @@ app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/node/">node</a>
                     
                   </div>
                 
@@ -391,9 +404,9 @@ app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E9%A2%98/">
+                      <a href="/2022/02/24/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">操作字符串算法题</span>
+                        <span class="hidden-mobile">vue组件之间通信方式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -401,8 +414,8 @@ app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%A0%86/">
-                        <span class="hidden-mobile">堆及相关算法</span>
+                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
+                        <span class="hidden-mobile">前端涉及到的数据存储</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

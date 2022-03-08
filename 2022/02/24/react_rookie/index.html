@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/24/images/react_new.png">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-02-24T12:42:32.000Z">
+<meta property="article:modified_time" content="2022-03-02T08:14:54.621Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="react">
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      109 分钟
+      108 分钟
     </span>
   
 
@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年2月24日 晚上
+                  本文最后更新于：2022年3月2日 下午
                 
               </p>
             
@@ -425,7 +425,7 @@ Com1.defaultProps = &#123;
 &#125;
 <span class="hljs-comment">// this.input1.current</span></code></pre></div>
 
-<h1 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h1><h2 id="🚮旧生命周期-lt-16"><a href="#🚮旧生命周期-lt-16" class="headerlink" title="🚮旧生命周期(&lt;=16)"></a>🚮旧生命周期(&lt;=16)</h2><h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><ul>
+<h1 id="React-生命周期"><a href="#React-生命周期" class="headerlink" title="React 生命周期"></a>React 生命周期</h1><h2 id="🚮-旧生命周期-lt-16"><a href="#🚮-旧生命周期-lt-16" class="headerlink" title="🚮 旧生命周期(&lt;=16)"></a>🚮 旧生命周期(&lt;=16)</h2><h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><ul>
 <li>  <code>constructor</code></li>
 <li>  <code>componentWillMount</code></li>
 <li>  <code>render</code></li>
@@ -441,7 +441,7 @@ Com1.defaultProps = &#123;
 <h3 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h3><ul>
 <li>  <code>componentWillUnmount</code></li>
 </ul>
-<h2 id="💡新生命周期-gt-16"><a href="#💡新生命周期-gt-16" class="headerlink" title="💡新生命周期(&gt;16)"></a>💡新生命周期(&gt;16)</h2><p><img src="../images/react_new.png" srcset="/img/loading.gif" lazyload alt="生命周期"><br>示意图:<a target="_blank" rel="noopener" href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/</a></p>
+<h2 id="💡-新生命周期-gt-16"><a href="#💡-新生命周期-gt-16" class="headerlink" title="💡 新生命周期(&gt;16)"></a>💡 新生命周期(&gt;16)</h2><p><img src="../images/react_new.png" srcset="/img/loading.gif" lazyload alt="生命周期"><br>示意图:<a target="_blank" rel="noopener" href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/</a></p>
 <h3 id="过时钩子"><a href="#过时钩子" class="headerlink" title="过时钩子"></a>过时钩子</h3><ul>
 <li><p><code>UNSAFE_componentWillMount</code></p>
 <blockquote>
@@ -450,12 +450,11 @@ Com1.defaultProps = &#123;
 </li>
 <li><p><code>UNSAFE_componentWillReceiveProps</code></p>
 <blockquote>
-<p>在组件接受新的props之前调用</p>
+<p>在组件接受新的 props 之前调用</p>
 </blockquote>
 </li>
-</ul>
-<ul>
-<li><code>UNSAFE_componentWillUpdate</code></li>
+<li><p>  <code>UNSAFE_componentWillUpdate</code></p>
+</li>
 </ul>
 <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 1.</span>
 <span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)
@@ -469,12 +468,11 @@ Com1.defaultProps = &#123;
 // 4.组件挂载到<span class="hljs-title">DOM</span>后
 <span class="hljs-title">componentDidMount</span></code></pre></div>
 
-
 <h3 id="更新-1"><a href="#更新-1" class="headerlink" title="更新"></a>更新</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//1. 不常用</span>
 <span class="hljs-keyword">static</span> getDerivedStateFromProps(prop,state)
 
 <span class="hljs-comment">//2.判断是否更新组件，</span>
-<span class="hljs-comment">//  默认行为是true </span>
+<span class="hljs-comment">//  默认行为是true</span>
 <span class="hljs-comment">//  当 props 或 state 发生变化时，shouldComponentUpdate() 会在渲染执行之前被调用</span>
 <span class="hljs-comment">// 使用forceUpdate可以跳过该方法</span>
 shouldComponentUpdate = ():boolean
@@ -552,7 +550,7 @@ PubSub.publishSync(<span class="hljs-string">&quot;MY TOPIC&quot;</span>, <span 
  <div class="hljs code-wrapper"><pre><code class="hljs jsx"><span class="hljs-comment">// 子组件中</span>
 
 <span class="hljs-comment">// class</span>
-<span class="hljs-keyword">static</span> contextType = MyContext1 
+<span class="hljs-keyword">static</span> contextType = MyContext1
 <span class="hljs-comment">//只适用于消费一个context的情况</span>
 <span class="hljs-built_in">this</span>.context<span class="hljs-comment">//取值</span>
 
@@ -584,9 +582,7 @@ ReactDOM.render(
 
 <h2 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/xxx&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX1&#125;&quot;</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX2&#125;&quot;</span>&gt;</span>
-		<span class="hljs-comment">&lt;!-- ComXXX1 ComXXX2都渲染 --&gt;</span>&lt;/Route
-	&gt;&lt;/Route
+	<span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span> <span class="hljs-attr">component</span>=<span class="hljs-string">&quot;&#123;ComXXX2&#125;&quot;</span>&gt;</span> <span class="hljs-comment">&lt;!-- ComXXX1 ComXXX2都渲染 --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span>&lt;/Route
 &gt;</code></pre></div>
 
 <h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
@@ -621,8 +617,7 @@ ReactDOM.render(
 <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=`/<span class="hljs-attr">xxx</span>?<span class="hljs-attr">param1</span>=<span class="hljs-string">$&#123;xxx.param1&#125;&amp;param2</span>=<span class="hljs-string">$&#123;xxx.param2&#125;</span>`&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/xxx&quot;</span>&gt;</span>
-	// props.location.search // &quot;?param1=xxx&amp;param1=xxx&quot; //
-	qs.parse(props.location.search.slice(1)) =&gt; &#123;...&#125;&lt;/Route
+	// props.location.search // &quot;?param1=xxx&amp;param1=xxx&quot; // qs.parse(props.location.search.slice(1)) =&gt; &#123;...&#125;&lt;/Route
 &gt;</code></pre></div>
 
 <h3 id="传-state"><a href="#传-state" class="headerlink" title="传 state"></a>传 state</h3><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;&#123;pathname:</span>&#x27;/<span class="hljs-attr">xxx</span>&#x27;,<span class="hljs-attr">state:</span>&#123;<span class="hljs-attr">param1:xxx.param1</span>&#125;&#125;&#125;&gt;</span>
@@ -658,10 +653,8 @@ ReactDOM.render(
 <h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><ul>
 <li><code>action</code><ul>
 <li>  同步<code>action&lt;object&gt;</code></li>
-<li>  异步<code>action&lt;function&gt;</code></li>
+<li>异步<code>action&lt;function&gt;</code><br>原生只能处理同步 action,action 中的 switch 机制</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs">原生只能处理同步action,action中的switch机制
-</code></pre></div>
 </li>
 <li>  <code>reducer</code></li>
 <li><code>store</code><ul>
@@ -671,13 +664,16 @@ ReactDOM.render(
 </li>
 </ul>
 <h2 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h2><ul>
-<li><p><code>reducer</code><br>  reducer 就是一个纯函数:</p>
+<li><p><code>reducer</code><br>  reducer 是一个纯函数:接收 <code>Action</code> 和 <code>State</code> 并作为参数，通过计算得到新的<code>Store</code></p>
 <blockquote>
 <p>纯函数:</p>
 <ol>
 <li>不修改参数</li>
 <li>不产生副作用</li>
-<li>不调用不纯的方法<code>Math.random()``new Date()</code><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> initState = <span class="hljs-number">0</span>;
+<li>不调用不纯的方法<code>Math.random()``new Date()</code></li>
+</ol>
+</blockquote>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> initState = <span class="hljs-number">0</span>;
 interface Action &#123;
 	type: string;
 	data: number;
@@ -693,32 +689,36 @@ interface Action &#123;
 			<span class="hljs-keyword">return</span> preState;
 	&#125;
 &#125;</code></pre></div></li>
-</ol>
-</blockquote>
-</li>
-<li><p><code>container</code></p>
+<li><p><code>connect API</code></p>
 <p>  使用哟 container 包裹 ui 组件,container 负责与 store 的交互,操作和数据通过 props 传给 ui 组件.</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// container.ts</span>
 
 <span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-redux&quot;</span>;
 
-<span class="hljs-keyword">import</span> XXXUI <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../XXX&quot;</span>;
+<span class="hljs-keyword">import</span> xx组件 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../XXX&quot;</span>;
 
 <span class="hljs-keyword">import</span> &#123;
-XXXaction,XXXaction
+action1,action2
 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../../redux/ACTIONS&quot;</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">state</span>) </span>&#123;
-  ...
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>)</span>&#123;
-  <span class="hljs-keyword">return</span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapStateToProps</span>(<span class="hljs-params">state,ownProps</span>) </span>&#123;
+  <span class="hljs-comment">// 将store中的state映射为props</span>
+  <span class="hljs-comment">// ⭐️该函数必须是同步的</span>
+  <span class="hljs-keyword">return</span> &#123;
     ...
+    prop1:state.someState
   &#125;
 &#125;
 
-<span class="hljs-keyword">const</span> CountContainer = connect(mapStateToProps,mapDispatchToProps)(XXXUI);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapDispatchToProps</span>(<span class="hljs-params">dispatch</span>)</span>&#123;
+  <span class="hljs-comment">// 映射dispatch为props</span>
+  <span class="hljs-keyword">return</span>&#123;
+    ...
+    func1: <span class="hljs-function">() =&gt;</span> dispatch(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;someType&#x27;</span>&#125;)
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> CountContainer = connect(mapStateToProps,mapDispatchToProps)(xx组件);
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> CountContainer;</code></pre></div></li>
 <li><p><code>多个reducer</code></p>
@@ -726,13 +726,18 @@ XXXaction,XXXaction
 <span class="hljs-keyword">import</span> &#123; createStore, applyMiddleware, combineReducers &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;redux&quot;</span>;
 <span class="hljs-keyword">import</span> countReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./reducers/count&quot;</span>;
 <span class="hljs-keyword">import</span> peopleReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./reducers/peolple&quot;</span>;
-<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;redux-thunk&quot;</span>;
 
 <span class="hljs-keyword">const</span> allReducer = combineReducers(&#123;
 	count: countReducer,
 	people: peopleReducer,
 &#125;);
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(allReducer, applyMiddleware(thunk));</code></pre></div></li>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(allReducer);</code></pre></div></li>
+</ul>
+<h2 id="异步-Action"><a href="#异步-Action" class="headerlink" title="异步 Action"></a>异步 Action</h2><p>通过 Redux 的中间件(middleware)实现异步<code>Action</code>;</p>
+<ul>
+<li>  <code>redux-thunk</code>等中间件可以让你提供一个拦截器在 <code>Reducer</code> 处理 <code>Action</code> 之前被调用;</li>
+<li>  在这个拦截器中，你可以自由处理获得的 Action;</li>
+<li>  如果Action是个函数，<code>redux-thunk</code>将会尝试先执行函数而不是传给<code>Reducer</code>，并<code>dispatch</code>传给这个函数。<div class="hljs code-wrapper"><pre><code class="hljs javascript"></code></pre></div></li>
 </ul>
 <h2 id="redux-devtools"><a href="#redux-devtools" class="headerlink" title="redux-devtools"></a>redux-devtools</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn add redux-devtools-extension
 
@@ -758,23 +763,6 @@ XXXaction,XXXaction
 <li><p>  cli(yeoman)</p>
 </li>
 </ul>
-<h1 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h1><p>函数式组件获得类组件能力</p>
-<h2 id="StateHook"><a href="#StateHook" class="headerlink" title="StateHook"></a>StateHook</h2><p><code>const [currentValue,setNewValue] = React.useState(initValue)</code><br><code>setNewValue(newValue) or setNewValue(value=&gt;&#123;...newValue&#125;)</code></p>
-<h2 id="EffectHook"><a href="#EffectHook" class="headerlink" title="EffectHook"></a>EffectHook</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">React.useEffect(<span class="hljs-function">() =&gt;</span> &#123;
-	<span class="hljs-comment">// 副作用操作</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
-		<span class="hljs-comment">// willUnMount</span>
-	&#125;;
-&#125;, [stateValue]); <span class="hljs-comment">// 为[]则相当于didMount</span></code></pre></div>
-
-<p>三种情况</p>
-<ol>
-<li>useEffect(fn) -&gt; Mount+Update</li>
-<li>useEffect(fn,[]) -&gt; Mount</li>
-<li>useEffect(fn,[dep]) -&gt; Mount 和 dep 变化时</li>
-</ol>
-<h2 id="RefHook"><a href="#RefHook" class="headerlink" title="RefHook"></a>RefHook</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xxxRef = React.useRef();</code></pre></div>
-
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h2><ul>
 <li><p>对象式</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript">setState(<span class="hljs-string">`stateChange(状态改变对象)`</span>, [callBack]);</code></pre></div></li>
@@ -833,20 +821,14 @@ XXXaction,XXXaction
 <li><code>.children</code>获得组件标签内内容</li>
 </ol>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBorder</span>(<span class="hljs-params">props</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> (
-		&lt;div className=&#123;<span class="hljs-string">&quot;FancyBorder FancyBorder-&quot;</span> + props.color&#125;&gt;
-			&#123;props.children&#125;
-		&lt;/div&gt;
-	);
+	<span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;</span>&quot;<span class="hljs-attr">FancyBorder</span> <span class="hljs-attr">FancyBorder-</span>&quot; + <span class="hljs-attr">props.color</span>&#125;&gt;</span>&#123;props.children&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
 &#125;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">WelcomeDialog</span>(<span class="hljs-params"></span>) </span>&#123;
 	<span class="hljs-keyword">return</span> (
 		&lt;FancyBorder color=<span class="hljs-string">&quot;blue&quot;</span>&gt;
 			&lt;h1 className=<span class="hljs-string">&quot;Dialog-title&quot;</span>&gt;Welcome&lt;/h1&gt;
-			&lt;p className=<span class="hljs-string">&quot;Dialog-message&quot;</span>&gt;
-				Thank you <span class="hljs-keyword">for</span> visiting our spacecraft!
-			&lt;/p&gt;
+			&lt;p className=<span class="hljs-string">&quot;Dialog-message&quot;</span>&gt;Thank you <span class="hljs-keyword">for</span> visiting our spacecraft!&lt;/p&gt;
 		&lt;/FancyBorder&gt;
 	);
 &#125;</code></pre></div>
