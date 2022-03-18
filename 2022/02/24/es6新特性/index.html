@@ -26,7 +26,7 @@
 <meta property="og:description" content="【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]）的数据结构才能解构赋值 用途 交换变量 提取对象中的数据 解构默认值 剩余运算  【字符串】 识别  includ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-04T01:47:23.575Z">
+<meta property="article:modified_time" content="2022-03-18T07:46:49.135Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6k 字
+      5.5k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      51 分钟
+      47 分钟
     </span>
   
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月4日 上午
+                  本文最后更新于：2022年3月18日 下午
                 
               </p>
             
@@ -351,7 +351,7 @@ flat()</code></pre></div></li>
 <span class="hljs-comment">// &#123;Symbol(var1):&#x27;abcde&#x27;&#125;</span>
 <span class="hljs-comment">// 不能直接访问</span></code></pre></div>
 <h2 id="【Set-WeakSet】"><a href="#【Set-WeakSet】" class="headerlink" title="【Set/WeakSet】"></a>【Set/WeakSet】</h2></li>
-<li><p>Set类似于数组，但是成员的值都是唯一的</p>
+<li><p>Set类似于数组，但是成员的值都是唯一的，拥有迭代器</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">size
 add()
 <span class="hljs-keyword">delete</span>()
@@ -363,7 +363,7 @@ clear()</code></pre></div></li>
 has()</code></pre></div></li>
 </ul>
 <h2 id="【Map-WeakMap】"><a href="#【Map-WeakMap】" class="headerlink" title="【Map/WeakMap】"></a>【Map/WeakMap】</h2><ul>
-<li>Object的键传统上只能使用字符串，Map无此限制<div class="hljs code-wrapper"><pre><code class="hljs javascript">size
+<li>Object的键传统上只能使用字符串，Map无此限制，拥有迭代器<div class="hljs code-wrapper"><pre><code class="hljs javascript">size
 set(key,value) <span class="hljs-comment">// 返回整个 Map 结构</span>
 get() <span class="hljs-comment">// 找不到该 key 返回 undefined</span>
 has()
@@ -383,32 +383,32 @@ has()
 </ul>
 <h2 id="【Proxy】"><a href="#【Proxy】" class="headerlink" title="【Proxy】"></a>【Proxy】</h2><p>拦截器/代理 <code>const _proxy1 = new Proxy(target,handler)</code></p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 常用handlers</span>
-handler.getPrototypeOf()
+getPrototypeOf()
 <span class="hljs-comment">// Object.getPrototypeOf 方法的捕捉器。</span>
-handler.setPrototypeOf()
+setPrototypeOf()
 <span class="hljs-comment">// Object.setPrototypeOf 方法的捕捉器。</span>
-handler.getOwnPropertyDescriptor()
+getOwnPropertyDescriptor()
 <span class="hljs-comment">// Object.getOwnPropertyDescriptor 方法的捕捉器。</span>
-handler.defineProperty()
+defineProperty()
 <span class="hljs-comment">// Object.defineProperty 方法的捕捉器。</span>
-handler.has()
+has()
 <span class="hljs-comment">// in 操作符的捕捉器。</span>
-handler.get()
+get()
 <span class="hljs-comment">// 属性读取操作的捕捉器。</span>
-handler.set()
+set()
 <span class="hljs-comment">// 属性设置操作的捕捉器。</span>
-handler.deleteProperty()
+deleteProperty()
 <span class="hljs-comment">// delete 操作符的捕捉器。</span>
-handler.ownKeys()
+ownKeys()
 <span class="hljs-comment">// Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。</span>
-handler.apply()
+apply()
 <span class="hljs-comment">// 函数调用操作的捕捉器。</span>
-handler.construct()
+construct()
 <span class="hljs-comment">// new 操作符的捕捉器。</span></code></pre></div>
 
 <h2 id="【Reflect】"><a href="#【Reflect】" class="headerlink" title="【Reflect】"></a>【Reflect】</h2><p>操作对象的API</p>
 <ul>
-<li>将对象操作的返回更合理化（报错-&gt;false</li>
+<li>对象操作能返回布尔值</li>
 <li>将对象操作函数化<blockquote>
 <p>某些Object操作是命令式，比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj, name)让它们变成了函数行为。</p>
 </blockquote>
@@ -469,30 +469,7 @@ handler.construct()
 <span class="hljs-built_in">console</span>.log(gen_obj.next(<span class="hljs-number">100</span>));<span class="hljs-comment">// 将 100 赋给上一条 yield &#x27;foo&#x27; 的左值，即执行 x=100，返回 100</span>
 <span class="hljs-built_in">console</span>.log(gen_obj.next());<span class="hljs-comment">// 执行完毕，value 为 undefined，done 为 true</span></code></pre></div></li>
 </ul>
-<ul>
-<li>自执行generator<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// co函数简单实现</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">co</span>(<span class="hljs-params">fn</span>)</span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123;
-    <span class="hljs-keyword">const</span> gen = fn()
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step</span>(<span class="hljs-params">nextF</span>)</span>&#123;
-      <span class="hljs-keyword">let</span> ret
-      <span class="hljs-keyword">try</span>&#123;
-        ret = nextF()
-      &#125;<span class="hljs-keyword">catch</span>(e)&#123;
-        <span class="hljs-keyword">return</span> reject(e)
-      &#125;
-      <span class="hljs-keyword">if</span>(ret.done) <span class="hljs-keyword">return</span> resolve(ret.value)
-      <span class="hljs-built_in">Promise</span>.resolve(ret.value).then(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>&#123;
-        step(<span class="hljs-function">()=&gt;</span>gen.next(v))
-      &#125;,<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;
-        step(<span class="hljs-function">()=&gt;</span>gen.throe(e))
-      &#125;)
-    &#125;
-    step(<span class="hljs-function">()=&gt;</span>gen.next(<span class="hljs-literal">undefined</span>))
-  &#125;)
-&#125;</code></pre></div>
-<h2 id="【async-await】"><a href="#【async-await】" class="headerlink" title="【async/await】"></a>【async/await】</h2>自执行的Generator函数语法糖。</li>
-</ul>
+<h2 id="【async-await】"><a href="#【async-await】" class="headerlink" title="【async/await】"></a>【async/await】</h2><p>自执行的Generator函数语法糖。</p>
 <h2 id="【Class】"><a href="#【Class】" class="headerlink" title="【Class】"></a>【Class】</h2><ol>
 <li><p>类表达式和类声明</p>
  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> A = <span class="hljs-class"><span class="hljs-keyword">class</span> </span>&#123;

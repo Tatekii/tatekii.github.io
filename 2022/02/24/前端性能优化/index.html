@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/24/images/script.png">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-03T06:51:29.665Z">
+<meta property="article:modified_time" content="2022-03-14T03:06:53.872Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.2k 字
+      5.3k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43 分钟
+      45 分钟
     </span>
   
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月3日 下午
+                  本文最后更新于：2022年3月14日 上午
                 
               </p>
             
@@ -254,11 +254,10 @@
   &#125;
 &#125;;</code></pre></div></li>
 </ul>
-<h1 id="【打包优化】"><a href="#【打包优化】" class="headerlink" title="【打包优化】"></a>【打包优化】</h1><ul>
-<li><p>资源压缩</p>
-<p>  css/js/图片压缩</p>
+<h1 id="【打包大小】"><a href="#【打包大小】" class="headerlink" title="【打包大小】"></a>【打包大小】</h1><ul>
+<li><p>资源压缩<br>  css/js/图片压缩</p>
 </li>
-<li><p>代码分割<br>分离第三方库去设置长缓存</p>
+<li><p>代码分割<br>  分离第三方库去设置长缓存或者CDN</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
   chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
       config.optimizationsplitChunks(&#123;
@@ -279,17 +278,18 @@
       &#125;)
     &#125;
 &#125;</code></pre></div></li>
-<li><p>babel优化<br>babel会在在每个需要编译的地方都加上helper函数，造成冗余</p>
+<li><p>babel转译优化<br>babel会在在每个需要编译的地方都加上helper函数，造成冗余</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// .babelrc</span>
 
 <span class="hljs-string">&quot;plugins&quot;</span>: [
         <span class="hljs-string">&quot;@babel/plugin-transform-runtime&quot;</span>
 ]
 <span class="hljs-comment">// 自动移除语法转换后内联的辅助函数（inline Babel helpers），使用@babel/runtime/helpers里的辅助函数来替代；</span></code></pre></div></li>
-<li><p>按需打包组件（如element-ui</p>
+<li><p>按需打包组件（如element-ui）和<code>tree shaking</code></p>
 </li>
-</ul>
-<h1 id="【加载阶段】"><a href="#【加载阶段】" class="headerlink" title="【加载阶段】"></a>【加载阶段】</h1><h2 id="白屏loading提示或者骨架屏"><a href="#白屏loading提示或者骨架屏" class="headerlink" title="白屏loading提示或者骨架屏"></a>白屏loading提示或者骨架屏</h2><h2 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h2>  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
+<li><p><code>gzip</code>压缩</p>
+<h1 id="【加载阶段】"><a href="#【加载阶段】" class="headerlink" title="【加载阶段】"></a>【加载阶段】</h1><h2 id="白屏loading提示或者骨架屏"><a href="#白屏loading提示或者骨架屏" class="headerlink" title="白屏loading提示或者骨架屏"></a>白屏loading提示或者骨架屏</h2><h2 id="路由懒加载-异步组件"><a href="#路由懒加载-异步组件" class="headerlink" title="路由懒加载/异步组件"></a>路由懒加载/异步组件</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// router</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router(&#123;
   routes: [
     &#123;
       path: <span class="hljs-string">&#x27;/home&#x27;</span>,
@@ -300,7 +300,11 @@
       component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/home&#x27;</span>),
     &#125;,
   ],
-&#125;)</code></pre></div>
+&#125;)
+
+<span class="hljs-comment">// async component</span>
+<span class="hljs-keyword">import</span> &#123;defineAsyncComponent&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></code></pre></div></li>
+</ul>
 <h2 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h2>  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 主要逻辑</span>
 <span class="hljs-keyword">const</span> imgList = [...document.querySelectAll(<span class="hljs-string">&#x27;img&#x27;</span>)]
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyLoad</span>(<span class="hljs-params">imgList</span>)</span>&#123;
@@ -328,9 +332,12 @@
 <h2 id="虚拟列表"><a href="#虚拟列表" class="headerlink" title="虚拟列表"></a>虚拟列表</h2><p>  动态渲染长列表</p>
 <h2 id="图片占位符"><a href="#图片占位符" class="headerlink" title="图片占位符"></a>图片占位符</h2><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/sqip">sqip</a></p>
 <h2 id="优化文档结构"><a href="#优化文档结构" class="headerlink" title="优化文档结构"></a>优化文档结构</h2><ul>
-<li><p>css资源请求放在文档最前，避免阻塞渲染</p>
+<li><p>css资源请求放在文档最前</p>
 </li>
 <li><p>脚本放在最后且非核心代码异步加载</p>
+<blockquote>
+<p>js脚本组织DOM解析，而css资源又回阻塞js执行</p>
+</blockquote>
 <p>异步加载的方式</p>
 <ol>
 <li>动态创建script标签</li>
@@ -421,9 +428,6 @@
   &#125;,
 &#125;;</code></pre></div></li>
 </ol>
-<h2 id="代码混淆压缩"><a href="#代码混淆压缩" class="headerlink" title="代码混淆压缩"></a>代码混淆压缩</h2><ul>
-<li>uglyjs<h2 id="gzip压缩"><a href="#gzip压缩" class="headerlink" title="gzip压缩"></a>gzip压缩</h2></li>
-</ul>
 <h2 id="预解析DNS"><a href="#预解析DNS" class="headerlink" title="预解析DNS"></a>预解析DNS</h2><p><code>DNS Prefetch</code> 是一种DNS 预解析技术，当浏览网页时，浏览器会在加载网页时对网页中的域名进行解析缓存，这样在单击当前网页中的连接时就无需进行DNS的解析，减少用户等待时间，提高用户体验。</p>
 <ol>
 <li><p><code>HTTP</code>中浏览器会对<code>&lt;a&gt;标签</code>自动开启dns预解析</p>
@@ -439,20 +443,21 @@
 <p><code> &lt;link rel=&quot;dns-prefetch&quot; href=&quot;http://bdimg.share.baidu.com&quot; /&gt;</code></p>
 <h2 id="预渲染和服务端渲染"><a href="#预渲染和服务端渲染" class="headerlink" title="预渲染和服务端渲染"></a>预渲染和服务端渲染</h2><ul>
 <li><code>SSR:server side render</code></li>
-<li><code>prerender-spa-plugin</code>不适用于个性化的，内容变化大，多路由的页面<br>可以用来优化单页应用</li>
+<li><code>prerender-spa-plugin</code>不适用于个性化的，内容变化大，多路由的页面，可以用来优化单页应用。</li>
 </ul>
-<h1 id="【运行时】"><a href="#【运行时】" class="headerlink" title="【运行时】"></a>【运行时】</h1><h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ul>
+<h1 id="【运行阶段】"><a href="#【运行阶段】" class="headerlink" title="【运行阶段】"></a>【运行阶段】</h1><h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ul>
 <li>合理使用浏览器缓存策略</li>
-<li>不频繁操作DOM，使用虚拟DOM或<code>fragment</code></li>
-<li>读取元素的位置大小属性（如<code>scrollTop</code>,<code>offsetHeight</code>…）浏览器会即时计算一次，也触发了重排，更不能将这些属性放入循环中</li>
+<li>不频繁操作DOM，使用虚拟DOM或<code>fragment</code>批量操作</li>
+<li>读取元素的位置大小属性（如<code>scrollTop</code>,<code>offsetHeight</code>…）浏览器会立即重排，更不能将这些属性放入循环中</li>
 <li>使用事件委托</li>
-<li>使用<code>Web Worker</code><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2></li>
+<li>使用<code>Web Worker</code></li>
+<li>使用<code>requestAnimationFrame</code>代替有高性能需求的计时器<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2></li>
 <li>避免<code>css</code>选择器嵌套过深</li>
 <li>避免大量使用<code>id</code>选择器，每个<code>id</code>都会变为一个单独的全局变量</li>
 <li>避免使用<code>table</code>，<code>table</code>会频繁触发重排</li>
 <li>更换<code>class</code>代替直接修改<code>style</code></li>
 <li>合理使用GPU加速<ul>
-<li> <code>css3</code>动画代替修改几何信息<code>left,top...</code></li>
+<li> <code>css3</code>动画<code>transform</code>代替修改几何信息<code>left,top...</code></li>
 <li> <code>opacity</code>代替<code>visibility</code></li>
 <li> 复杂动画元素脱离文档流<code>position:absolute/fixed</code></li>
 <li> 加上<code>will-change</code>属性的元素会交给合成层渲染（GPU</li>
@@ -502,9 +507,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">二叉树</span>
+                        <span class="hidden-mobile">前端涉及到的数据存储</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

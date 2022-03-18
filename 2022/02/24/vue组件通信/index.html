@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ref和$refs ref挂载在普通HTML组件上访问它得到DOM  ref挂载在VUE组件上访问它得到组件实例   &lt;base-input ref&#x3D;&quot;usernameInput&quot;&gt;&lt;base-input&gt; this.$refs.usernameInput  $emit和prop 子组件props接收父组件传递的数据 动态数据加冒号: 子组件可对收到的p">
+    <meta name="description" content="ref和$refs   ref挂载在普通 HTML 组件上访问它得到 DOM    ref挂载在 VUE 组件上访问它得到组件实例   &lt;base-input ref&#x3D;&quot;usernameInput&quot;&gt;&lt;base-input&gt;&lt;&#x2F;base-input&gt;&lt;&#x2F;base-input&gt;  this.$refs.usernameInput">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue组件之间通信方式">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="ref和$refs ref挂载在普通HTML组件上访问它得到DOM  ref挂载在VUE组件上访问它得到组件实例   &lt;base-input ref&#x3D;&quot;usernameInput&quot;&gt;&lt;base-input&gt; this.$refs.usernameInput  $emit和prop 子组件props接收父组件传递的数据 动态数据加冒号: 子组件可对收到的p">
+<meta property="og:description" content="ref和$refs   ref挂载在普通 HTML 组件上访问它得到 DOM    ref挂载在 VUE 组件上访问它得到组件实例   &lt;base-input ref&#x3D;&quot;usernameInput&quot;&gt;&lt;base-input&gt;&lt;&#x2F;base-input&gt;&lt;&#x2F;base-input&gt;  this.$refs.usernameInput">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-06-01T14:31:23.000Z">
+<meta property="article:modified_time" content="2022-03-10T02:28:34.293Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="vue">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      3.1k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23 分钟
+      27 分钟
     </span>
   
 
@@ -238,127 +238,162 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月1日 晚上
+                  本文最后更新于：2022年3月10日 上午
                 
               </p>
             
             <div class="markdown-body">
               <h3 id="ref和-refs"><a href="#ref和-refs" class="headerlink" title="ref和$refs"></a><code>ref和$refs</code></h3><ul>
-<li><p><code>ref</code>挂载在普通HTML组件上访问它得到DOM</p>
+<li><p>  <code>ref</code>挂载在普通 HTML 组件上访问它得到 DOM</p>
 </li>
-<li><p><code>ref</code>挂载在VUE组件上访问它得到组件实例</p>
+<li><p>  <code>ref</code>挂载在 VUE 组件上访问它得到组件实例</p>
 </li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">base-input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;usernameInput&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">base-input</span>&gt;</span></code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">this</span>.$refs.usernameInput</code></pre></div>
+<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">base-input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;usernameInput&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">base-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">base-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">base-input</span>&gt;</span></code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">this</span>.$refs.usernameInput
+
+<span class="hljs-comment">// composition API</span>
+<span class="hljs-keyword">const</span> usernameInput = ref(<span class="hljs-literal">null</span>)
+<span class="hljs-function"><span class="hljs-title">onMounted</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-comment">// ref</span>
+    usernameInput.value
+&#125;
+
+<span class="hljs-comment">// setup中没有this</span>
+defineExpose(&#123;
+    a,
+    b
+&#125;)
+<span class="hljs-comment">// 定义暴露到组件实例上的属性</span></code></pre></div>
 
 <h3 id="emit和prop"><a href="#emit和prop" class="headerlink" title="$emit和prop"></a><code>$emit</code>和<code>prop</code></h3><ul>
-<li>子组件<code>props</code>接收父组件传递的数据</li>
-<li>动态数据加冒号<code>:</code></li>
-<li>子组件可对收到的<code>props</code>设置校验</li>
-<li>子组件定义<code>$emit</code>自定义方法<br><code>this.$emit(&#39;childToParentMsg&#39;,this.childInfo,this.type)</code></li>
-<li>父组件就可以<code>v-on</code>监听该方法</li>
-<li>该方法绑定父组件的<code>methods</code></li>
-<li>获得方法中传递的参数</li>
+<li>  子组件<code>props</code>接收父组件传递的数据</li>
+<li>  动态数据加冒号<code>:</code></li>
+<li>  子组件可对收到的<code>props</code>设置校验</li>
+<li>子组件定义<code>$emit</code>自定义方法<br>  <code>this.$emit(&#39;childToParentMsg&#39;,this.childInfo,this.type)</code></li>
+<li>  父组件就可以<code>v-on</code>监听该方法</li>
+<li>  该方法绑定父组件的<code>methods</code></li>
+<li>  获得方法中传递的参数</li>
 </ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">defineEmits([<span class="hljs-string">&quot;emit1&quot;</span>, <span class="hljs-string">&quot;emit2&quot;</span>]);
+defineProps(&#123;
+	foo: <span class="hljs-string">&quot;bar&quot;</span>,
+&#125;);</code></pre></div>
+
 <h3 id="parent和-children"><a href="#parent和-children" class="headerlink" title="$parent和$children"></a><code>$parent</code>和<code>$children</code></h3><ul>
-<li>$parent得到  <strong>对象</strong></li>
-<li>$children得到子组件实例对象 <strong>数组</strong></li>
+<li>  $parent 得到 <strong>对象</strong></li>
+<li>  $children 得到子组件实例对象 <strong>数组</strong></li>
 </ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Composition API</span>
+getCurrentInstance();</code></pre></div>
+
 <h3 id="provide和inject"><a href="#provide和inject" class="headerlink" title="provide和inject"></a><code>provide</code>和<code>inject</code></h3><ul>
-<li><p>父组件向<code>任意深度</code>子组件传值</p>
+<li><p>  父组件向<code>任意深度</code>子组件传值</p>
 </li>
-<li><p>父组件中通过<code>provide</code>来提供变量</p>
+<li><p>  父组件中通过<code>provide</code>来提供变量</p>
 </li>
-<li><p>子组件中通过<code>inject</code>来注入变量</p>
+<li><p>  子组件中通过<code>inject</code>来注入变量</p>
 </li>
 <li><p>不论子组件有多深，只要调用了<code>inject</code>那么就可以注入<code>provider</code>中的数据。只要在父组件的生命周期内，子组件都可以调用。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">Vue.component(<span class="hljs-string">&#x27;child&#x27;</span>,&#123;
-    <span class="hljs-comment">// </span>
-    inject:[<span class="hljs-string">&#x27;for&#x27;</span>],      <span class="xml">&lt;------------------将for变量插入本实例</span>
-<span class="xml">    data()&#123;</span>
-<span class="xml">        return &#123;</span>
-<span class="xml">            mymessage:this.for</span>
-<span class="xml">        &#125;</span>
-<span class="xml">    &#125;</span>
-<span class="xml">&#125;)</span>
-
-<span class="xml">Vue.component(&#x27;parent&#x27;,&#123;</span>
-    provide:&#123;    &lt;---------------------------提供了for变量
-        for:&#x27;test&#x27;
-    &#125;
-&#125;)</code></pre></div></li>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">Vue.component(<span class="hljs-string">&quot;parent&quot;</span>, &#123;
+	provide: &#123;
+		<span class="hljs-comment">// 提供了for变量</span>
+		<span class="hljs-keyword">for</span>: <span class="hljs-string">&quot;test&quot;</span>,
+	&#125;,
+&#125;);
+Vue.component(<span class="hljs-string">&quot;child&quot;</span>, &#123;
+	<span class="hljs-comment">//</span>
+	inject: [<span class="hljs-string">&quot;foo&quot;</span>],
+	<span class="hljs-comment">// 将for变量插入本实例</span>
+	<span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-keyword">return</span> &#123;
+			mymessage: <span class="hljs-built_in">this</span>.foo,
+		&#125;;
+	&#125;,
+&#125;);
+<span class="hljs-comment">// Composition API</span>
+<span class="hljs-keyword">import</span> &#123;inject,provide&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+inject(_name)
+provide(_name,_reactive_value)</code></pre></div></li>
 </ul>
 <h3 id="attrs-amp-amp-listeners"><a href="#attrs-amp-amp-listeners" class="headerlink" title="$attrs &amp;&amp; $listeners"></a><code>$attrs</code> &amp;&amp; <code>$listeners</code></h3><ul>
-<li><p><code>$attrs</code>包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外),通过<code>v-bind=&quot;$attrs&quot;</code> 传入内部组件</p>
+<li><p>  <code>$attrs</code>包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外),通过<code>v-bind=&quot;$attrs&quot;</code> 传入内部组件</p>
 </li>
 <li><p><code>$listeners</code>包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// A-&gt;B-&gt;C</span>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// A-&gt;B-&gt;C</span>
 
-  <span class="hljs-comment">// 二级子组件C</span>
-  Vue.component(<span class="hljs-string">&#x27;C&#x27;</span>,&#123;
-          template:<span class="hljs-string">`</span>
+<span class="hljs-comment">// 二级子组件C</span>
+Vue.component(<span class="hljs-string">&quot;C&quot;</span>, &#123;
+	template: <span class="hljs-string">`</span>
 <span class="hljs-string">              &lt;div&gt;</span>
 <span class="hljs-string">                  &lt;input type=&quot;text&quot; v-model=&quot;$attrs.messagec&quot; @input=&quot;passCData($attrs.messagec)&quot;&gt; &lt;/div&gt;</span>
 <span class="hljs-string">          `</span>,
 
-          methods:&#123;
-              <span class="hljs-function"><span class="hljs-title">passCData</span>(<span class="hljs-params">val</span>)</span>&#123;
-                  <span class="hljs-comment">//触发父组件A中的事件</span>
-                  <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;getCData&#x27;</span>,val)
-              &#125;
-          &#125;
-      &#125;)
+	methods: &#123;
+		<span class="hljs-function"><span class="hljs-title">passCData</span>(<span class="hljs-params">val</span>)</span> &#123;
+			<span class="hljs-comment">//触发父组件A中的事件</span>
+			<span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&quot;getCData&quot;</span>, val);
+		&#125;,
+	&#125;,
+&#125;);
 
-  <span class="hljs-comment">// 一级子组件B</span>
-  Vue.component(<span class="hljs-string">&#x27;B&#x27;</span>,&#123;
-      <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;
-          <span class="hljs-keyword">return</span> &#123;
-              mymessage:<span class="hljs-built_in">this</span>.message
-          &#125;
-      &#125;,
-      template:<span class="hljs-string">`</span>
+<span class="hljs-comment">// 一级子组件B</span>
+Vue.component(<span class="hljs-string">&quot;B&quot;</span>, &#123;
+	<span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-keyword">return</span> &#123;
+			mymessage: <span class="hljs-built_in">this</span>.message,
+		&#125;;
+	&#125;,
+	template: <span class="hljs-string">`</span>
 <span class="hljs-string">          &lt;div&gt;</span>
 <span class="hljs-string">              &lt;input type=&quot;text&quot; v-model=&quot;mymessage&quot; @input=&quot;passData(mymessage)&quot;&gt; </span>
 <span class="hljs-string">              &lt;C v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot;&gt;&lt;/C&gt;</span>
 <span class="hljs-string">          &lt;/div&gt;</span>
 <span class="hljs-string">      `</span>,
-      props:[<span class="hljs-string">&#x27;message&#x27;</span>],<span class="hljs-comment">//props中取走了A传下来的一个attr</span>
-      <span class="hljs-comment">// 另外一个使用:bind=&quot;$attrs&quot;继续向下传递给C</span>
-      methods:&#123;
-          <span class="hljs-function"><span class="hljs-title">passData</span>(<span class="hljs-params">val</span>)</span>&#123;
-              <span class="hljs-comment">//触发父组件中的事件</span>
-              <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;getChildData&#x27;</span>,val)
-          &#125;
-      &#125;
-  &#125;)
+	props: [<span class="hljs-string">&quot;message&quot;</span>], <span class="hljs-comment">//props中取走了A传下来的一个attr</span>
+	<span class="hljs-comment">// 另外一个使用:bind=&quot;$attrs&quot;继续向下传递给C</span>
+	methods: &#123;
+		<span class="hljs-function"><span class="hljs-title">passData</span>(<span class="hljs-params">val</span>)</span> &#123;
+			<span class="hljs-comment">//触发父组件中的事件</span>
+			<span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&quot;getChildData&quot;</span>, val);
+		&#125;,
+	&#125;,
+&#125;);
 
-  <span class="hljs-comment">// 父组件A</span>
-  Vue.component(<span class="hljs-string">&#x27;A&#x27;</span>,&#123;
-      template:<span class="hljs-string">`</span>
+<span class="hljs-comment">// 父组件A</span>
+Vue.component(<span class="hljs-string">&quot;A&quot;</span>, &#123;
+	template: <span class="hljs-string">`</span>
 <span class="hljs-string">          &lt;div&gt;</span>
 <span class="hljs-string">              &lt;p&gt;this is parent compoent!&lt;/p&gt;</span>
 <span class="hljs-string">              &lt;B :messagec=&quot;messagec&quot; :message=&quot;message&quot; v-on:getCData=&quot;getCData&quot; v-on:getChildData=&quot;getChildData(message)&quot;&gt;&lt;/B&gt;</span>
 <span class="hljs-string">          &lt;/div&gt;</span>
 <span class="hljs-string">      `</span>,
-      <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;
-          <span class="hljs-keyword">return</span> &#123;
-              message:<span class="hljs-string">&#x27;hello&#x27;</span>,
-              messagec:<span class="hljs-string">&#x27;hello c&#x27;</span> <span class="hljs-comment">//传递给c组件的数据</span>
-          &#125;
-      &#125;,
-      methods:&#123;
-          <span class="hljs-function"><span class="hljs-title">getChildData</span>(<span class="hljs-params">val</span>)</span>&#123;
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;这是来自B组件的数据&#x27;</span>)
-          &#125;,
-          <span class="hljs-comment">//执行C子组件触发的事件</span>
-          <span class="hljs-function"><span class="hljs-title">getCData</span>(<span class="hljs-params">val</span>)</span>&#123;
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;这是来自C组件的数据：&quot;</span>+val)
-          &#125;
-      &#125;
-  &#125;)</code></pre></div></li>
+	<span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-keyword">return</span> &#123;
+			message: <span class="hljs-string">&quot;hello&quot;</span>,
+			messagec: <span class="hljs-string">&quot;hello c&quot;</span>, <span class="hljs-comment">//传递给c组件的数据</span>
+		&#125;;
+	&#125;,
+	methods: &#123;
+		<span class="hljs-function"><span class="hljs-title">getChildData</span>(<span class="hljs-params">val</span>)</span> &#123;
+			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;这是来自B组件的数据&quot;</span>);
+		&#125;,
+		<span class="hljs-comment">//执行C子组件触发的事件</span>
+		<span class="hljs-function"><span class="hljs-title">getCData</span>(<span class="hljs-params">val</span>)</span> &#123;
+			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;这是来自C组件的数据：&quot;</span> + val);
+		&#125;,
+	&#125;,
+&#125;);</code></pre></div></li>
+<li><p>Vue3中</p>
+<ul>
+<li><code>listener</code>合并到 <code>attrs</code>中</li>
+<li><code>attrs</code>中还包含<code>class</code>和<code>style</code></li>
 </ul>
-<h3 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// eventBus.js</span>
+</li>
+</ul>
+<h3 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h3><p>一个空Vue实例</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// eventBus.js</span>
 <span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> EventBus  = <span class="hljs-keyword">new</span> Vue()
 <span class="hljs-comment">// componentA</span>
@@ -377,7 +412,10 @@ methods:&#123;
     &#125;)
 &#125;</code></pre></div>
 
-<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3>
+<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/vuejs/pinia">pinia</a></li>
+</ul>
+
             </div>
             <hr>
             <div>
@@ -406,9 +444,9 @@ methods:&#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/vue%E6%8B%BE%E9%81%97/">
+                      <a href="/2022/02/24/topK/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vue拾遗</span>
+                        <span class="hidden-mobile">topK问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -416,8 +454,8 @@ methods:&#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85/">
-                        <span class="hidden-mobile">作用域链与闭包</span>
+                      <a href="/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="hidden-mobile">二叉树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

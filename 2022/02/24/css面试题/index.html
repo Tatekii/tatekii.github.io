@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CSS3 新特性   边框属性border-radius，box-shadow，border-image   背景控制background-size,background-origin   文字效果和自动换行text-shadow,word-wrap   自定义字体@font-face   2d&#x2F;3d 变换，过渡和动画transition&#96;&#96;animation   CSS 多列布局CSS Mult">
+    <meta name="description" content="CSS选择器 *  类选择器class  id选择器  标签选择器tag  组合   a,b&amp;#123;a or b&amp;#125;  a b&amp;#123;b是a的后代节点&amp;#125; a+b&amp;#123;b是a的兄弟下一个节点&amp;#125; a&gt;b&amp;#123;b是a的直接子节点&amp;#125; a~b&amp;#123;b是a之后的任意兄弟节点&amp;#125;  属性选择器，子串值选择器   div[key] &#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS面试题">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="CSS3 新特性   边框属性border-radius，box-shadow，border-image   背景控制background-size,background-origin   文字效果和自动换行text-shadow,word-wrap   自定义字体@font-face   2d&#x2F;3d 变换，过渡和动画transition&#96;&#96;animation   CSS 多列布局CSS Mult">
+<meta property="og:description" content="CSS选择器 *  类选择器class  id选择器  标签选择器tag  组合   a,b&amp;#123;a or b&amp;#125;  a b&amp;#123;b是a的后代节点&amp;#125; a+b&amp;#123;b是a的兄弟下一个节点&amp;#125; a&gt;b&amp;#123;b是a的直接子节点&amp;#125; a~b&amp;#123;b是a之后的任意兄弟节点&amp;#125;  属性选择器，子串值选择器   div[key] &#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-06-24T04:00:20.000Z">
+<meta property="article:modified_time" content="2022-03-14T03:06:55.468Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="CSS">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.2k 字
+      7.2k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52 分钟
+      60 分钟
     </span>
   
 
@@ -238,12 +238,43 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月24日 中午
+                  本文最后更新于：2022年3月14日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="CSS3-新特性"><a href="#CSS3-新特性" class="headerlink" title="CSS3 新特性"></a>CSS3 新特性</h2><ul>
+              <h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><ul>
+<li><p><code>*</code></p>
+</li>
+<li><p>类选择器<code>class</code></p>
+</li>
+<li><p><code>id</code>选择器</p>
+</li>
+<li><p>标签选择器<code>tag</code></p>
+</li>
+<li><p>组合</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span>,<span class="hljs-selector-tag">b</span>&#123;<span class="hljs-selector-tag">a</span> or <span class="hljs-selector-tag">b</span>&#125; 
+<span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">b</span>&#123;<span class="hljs-selector-tag">b</span>是<span class="hljs-selector-tag">a</span>的后代节点&#125;
+<span class="hljs-selector-tag">a</span>+<span class="hljs-selector-tag">b</span>&#123;<span class="hljs-selector-tag">b</span>是<span class="hljs-selector-tag">a</span>的兄弟下一个节点&#125;
+<span class="hljs-selector-tag">a</span>&gt;<span class="hljs-selector-tag">b</span>&#123;<span class="hljs-selector-tag">b</span>是<span class="hljs-selector-tag">a</span>的直接子节点&#125;
+<span class="hljs-selector-tag">a</span>~<span class="hljs-selector-tag">b</span>&#123;<span class="hljs-selector-tag">b</span>是<span class="hljs-selector-tag">a</span>之后的任意兄弟节点&#125;
+</code></pre></div></li>
+<li><p>属性选择器，子串值选择器</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key]</span> // 有属性key
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key=val]</span> // 属性key值为val
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key~=val]</span> // key的值包含val
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key|=val]</span>  // key的值
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key^=val]</span> // key的值以val开头
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key$=val]</span>	// key的值以val结尾
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[key*=val]</span>	// key的值包含val</code></pre></div></li>
+<li><p>伪类</p>
+<p>  期望元素在特定情况下呈现不同样式，如鼠标滑过<code>hover</code>，选中<code>checked</code>，激活状态<code>active</code>等。伪类开头为单冒号<code>:</code>。</p>
+</li>
+<li><p>伪元素</p>
+<p>  伪元素以类似方式表现，不过表现得是像你往标记文本中加入全新的HTML元素一样，而不是向现有的元素上应用类，常见的像<code>after``before</code>。伪元素开头为双冒号<code>::</code>。</p>
+</li>
+</ul>
+<h2 id="CSS3-新特性"><a href="#CSS3-新特性" class="headerlink" title="CSS3 新特性"></a>CSS3 新特性</h2><ul>
 <li>  边框属性<code>border-radius</code>，<code>box-shadow</code>，<code>border-image</code></li>
 <li>  背景控制<code>background-size,background-origin</code></li>
 <li>  文字效果和自动换行<code>text-shadow,word-wrap</code></li>
@@ -254,6 +285,35 @@
 <li>  弹性盒子<code>flex</code></li>
 <li>  更强大的多媒体查询</li>
 </ul>
+<h2 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h2><p>我们假定用户正面向（浏览器）视窗或网页，而 HTML 元素沿着其相对于用户的一条虚构的 z 轴排开，层叠上下文就是对这些 HTML 元素的一个三维构想。</p>
+<p>文档中的层叠上下文由满足以下任意一个条件的元素形成：</p>
+<ul>
+<li>根元素<code>&lt;html&gt;</code>；</li>
+<li><code>position</code> 值为 <code>absolute</code>（绝对定位）或  <code>relative</code>（相对定位）且 <code>z-index</code> 值不为 <code>auto</code> 的元素；</li>
+<li><code>position</code> 值为 <code>fixed</code>（固定定位）或 <code>sticky</code>（粘滞定位）的元素</li>
+<li><code>flex</code> 容器的子元素，且 <code>z-index</code> 值不为 <code>auto</code>；</li>
+<li><code>grid</code> 容器的子元素，且 <code>z-index</code> 值不为 <code>auto</code>；</li>
+<li><code>opacity</code> 属性值小于1；</li>
+<li>以下任意属性值不为 none 的元素：<ul>
+<li><code>transform</code></li>
+<li><code>filter</code></li>
+<li><code>perspective</code></li>
+<li><code>clip-path</code><ul>
+<li><code>mask / mask-image / mask-border</code></li>
+<li><code>isolation</code> 属性值为 <code>isolate</code> 的元素；</li>
+<li><code>-webkit-overflow-scrolling</code> 属性值为 <code>touch</code> 的元素；</li>
+<li><code>will-change</code> 值设定了任一属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>层叠水平不能跨级别比较，只能在同一上下文中才有意义</p>
+</blockquote>
+<blockquote>
+<p>没有创建层叠上下文的元素其层叠水平又父级层叠上下文决定</p>
+</blockquote>
 <h2 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h2><ul>
 <li><p>IE</p>
 <ul>
@@ -429,11 +489,11 @@ text-overflow: ellipsis；
 </li>
 </ul>
 <h2 id="垂直居中-div"><a href="#垂直居中-div" class="headerlink" title="垂直居中 div"></a>垂直居中 div</h2><ul>
-<li>  绝对定位+上下左右 0+margin 0</li>
-<li>  绝对定位+负 margin</li>
-<li>  绝对定位+负 translate</li>
-<li>  flex+justify-content+align-items</li>
-<li>  table-cell+vertical-align</li>
+<li>  绝对定位+上下左右 0+ margin:auto</li>
+<li>  绝对定位+上50%左50%+负<code>margin</code>自身宽高一半</li>
+<li>  绝对定位+上50%左50%+负<code>translate</code>自己宽高一半</li>
+<li>  <code>flex</code>+<code>justify-content</code>+<code>align-items</code></li>
+<li>  <code>table-cell</code>+<code>vertical-align:middle</code></li>
 </ul>
 <h2 id="三栏布局-左右固定中间自适应"><a href="#三栏布局-左右固定中间自适应" class="headerlink" title="三栏布局(左右固定中间自适应)"></a>三栏布局(左右固定中间自适应)</h2><ol>
 <li><p>绝对定位</p>

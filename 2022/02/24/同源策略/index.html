@@ -26,7 +26,7 @@
 <meta property="og:description" content="同源策略定义 两个URl !同协议 !同域名 !同端口 同源策略限制了同一个源加载的脚本和文档如何与其他源的资源进行交互，包括js脚本，缓存的读取，cookie，ajax等 三种标签不受同源限制script link img  跨域的方法 代理服务器nginx,各种devServer  document.domain 前提是两个页面主要域相同 &amp;#x27;someWebSite.com&#x2F;dir1&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-09-27T02:24:54.000Z">
+<meta property="article:modified_time" content="2022-03-09T04:34:26.498Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -187,7 +187,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.4k 字
+      4.5k 字
     </span>
   
 
@@ -196,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37 分钟
+      38 分钟
     </span>
   
 
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月27日 上午
+                  本文最后更新于：2022年3月9日 下午
                 
               </p>
             
@@ -380,6 +380,11 @@ xhr.withCredentials = <span class="hljs-literal">true</span>;  <span class="xml"
 <li><code>Access-Control-Max-Age</code>预检请求有效期</li>
 <li><code>Access-Control-Allow-Credentials</code>与简单请求相同</li>
 </ul>
+<h2 id="跨页面通信"><a href="#跨页面通信" class="headerlink" title="跨页面通信"></a>跨页面通信</h2><ul>
+<li>透明<code>iframe</code>+<code>postMessage</code></li>
+<li><code>service worker</code>+<code>postMessage</code></li>
+<li>使用<code>localStorage</code>的回调监听变化<code>window.addEventListener(&#39;storage&#39;, e=&gt;e.key)</code></li>
+</ul>
 <h2 id="XSS跨域脚本攻击"><a href="#XSS跨域脚本攻击" class="headerlink" title="XSS跨域脚本攻击"></a>XSS跨域脚本攻击</h2><p><code>Cross-site scripting</code></p>
 <blockquote>
 <p>浏览器渲染过程中执行了预期外的恶意代码</p>
@@ -491,8 +496,8 @@ xhr.withCredentials = <span class="hljs-literal">true</span>;  <span class="xml"
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E9%A2%98/">
-                        <span class="hidden-mobile">操作字符串算法题</span>
+                      <a href="/2022/02/24/%E5%8E%9F%E7%94%9Fjs/">
+                        <span class="hidden-mobile">原生js</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

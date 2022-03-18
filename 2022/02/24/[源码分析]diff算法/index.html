@@ -20,13 +20,13 @@
   
     <meta name="description" content="概念 diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除 采用同级比较  基础的diff 新节点没有子节点-&gt;删除全部旧的子节点 新节点只有一个子节点-&gt;删除旧的并添加新的  核心diff 新旧节点都有多个子节点时，新旧子节点间的diffoldChildrenNode :[a,x,c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue的diff算法">
-<meta property="og:url" content="http://yoursite.com/2022/02/24/vue_diff%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:title" content="diff算法">
+<meta property="og:url" content="http://yoursite.com/2022/02/24/[%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90]diff%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
 <meta property="og:description" content="概念 diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除 采用同级比较  基础的diff 新节点没有子节点-&gt;删除全部旧的子节点 新节点只有一个子节点-&gt;删除旧的并添加新的  核心diff 新旧节点都有多个子节点时，新旧子节点间的diffoldChildrenNode :[a,x,c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-06-14T15:14:43.000Z">
+<meta property="article:modified_time" content="2022-03-14T03:06:10.531Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="vue">
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>vue的diff算法 - 不知名的笔记本</title>
+  <title>diff算法 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -168,7 +168,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="vue的diff算法">
+            <span class="h2" id="subtitle" title="diff算法">
               
             </span>
 
@@ -235,11 +235,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue的diff算法</h1>
+            <h1 style="display: none">diff算法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月14日 晚上
+                  本文最后更新于：2022年3月14日 上午
                 
               </p>
             
@@ -550,9 +550,9 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/vue3/">
+                      <a href="/2022/02/24/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue@2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vue3proxy</span>
+                        <span class="hidden-mobile">vue@2.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -560,8 +560,8 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/vue%E6%8B%BE%E9%81%97/">
-                        <span class="hidden-mobile">vue拾遗</span>
+                      <a href="/2022/02/24/axios%E5%92%8Cfetch/">
+                        <span class="hidden-mobile">axios和fetch</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

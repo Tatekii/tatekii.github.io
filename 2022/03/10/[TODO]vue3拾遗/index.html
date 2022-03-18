@@ -18,22 +18,24 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="VUE冲冲冲代替defineProperty的Proxyvue2.X存在的缺陷 无法检测对象中 property 的添加或移除  通过下标操作数组，例如：vm.items[indexOfItem] &#x3D; newValue （性能考虑放弃）  修改数组的长度时，例如：vm.items.length &#x3D; newLength  变通 &#x2F;&#x2F; Object新增元素 Vue.set(object, proper">
+    <meta name="description" content="实现reactive&#x2F;&#x2F; reactivity.js 猴版响应式框架 const targetMap &#x3D; new WeakMap(); const effectStack &#x3D; []; const isObject &#x3D; obj &#x3D;&gt; obj !&#x3D;&#x3D; null &amp;&amp; typeof obj &#x3D;&#x3D;&#x3D; &quot;object&quot;;  const baseHandler &#x3D; &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue3proxy">
-<meta property="og:url" content="http://yoursite.com/2022/02/24/vue3/index.html">
+<meta property="og:title" content="vue3实现原理">
+<meta property="og:url" content="http://yoursite.com/2022/03/10/[TODO]vue3%E6%8B%BE%E9%81%97/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="VUE冲冲冲代替defineProperty的Proxyvue2.X存在的缺陷 无法检测对象中 property 的添加或移除  通过下标操作数组，例如：vm.items[indexOfItem] &#x3D; newValue （性能考虑放弃）  修改数组的长度时，例如：vm.items.length &#x3D; newLength  变通 &#x2F;&#x2F; Object新增元素 Vue.set(object, proper">
+<meta property="og:description" content="实现reactive&#x2F;&#x2F; reactivity.js 猴版响应式框架 const targetMap &#x3D; new WeakMap(); const effectStack &#x3D; []; const isObject &#x3D; obj &#x3D;&gt; obj !&#x3D;&#x3D; null &amp;&amp; typeof obj &#x3D;&#x3D;&#x3D; &quot;object&quot;;  const baseHandler &#x3D; &amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2021-06-14T15:10:01.000Z">
+<meta property="article:published_time" content="2022-03-10T07:57:34.989Z">
+<meta property="article:modified_time" content="2022-03-14T03:06:37.984Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue3">
+<meta property="article:tag" content="源码">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>vue3proxy - 不知名的笔记本</title>
+  <title>vue3实现原理 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -167,7 +169,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="vue3proxy">
+            <span class="h2" id="subtitle" title="vue3实现原理">
               
             </span>
 
@@ -177,8 +179,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
+      <time datetime="2022-03-10 15:57" pubdate>
+        2022年3月10日 下午
       </time>
     </span>
   
@@ -188,7 +190,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      1.7k 字
     </span>
   
 
@@ -197,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30 分钟
+      15 分钟
     </span>
   
 
@@ -234,112 +236,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue3proxy</h1>
+            <h1 style="display: none">vue3实现原理</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月14日 晚上
+                  本文最后更新于：2022年3月14日 上午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="VUE冲冲冲"><a href="#VUE冲冲冲" class="headerlink" title="VUE冲冲冲"></a>VUE冲冲冲</h1><h2 id="代替defineProperty的Proxy"><a href="#代替defineProperty的Proxy" class="headerlink" title="代替defineProperty的Proxy"></a>代替defineProperty的Proxy</h2><h3 id="vue2-X存在的缺陷"><a href="#vue2-X存在的缺陷" class="headerlink" title="vue2.X存在的缺陷"></a>vue2.X存在的缺陷</h3><ul>
-<li><p>无法检测对象中 <code>property</code> 的添加或移除</p>
-</li>
-<li><p>通过下标操作数组，例如：<code>vm.items[indexOfItem] = newValue （性能考虑放弃）</code></p>
-</li>
-<li><p>修改数组的长度时，例如：<code>vm.items.length = newLength</code></p>
-</li>
-<li><p>变通</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Object新增元素</span>
-Vue.set(object, propertyName, value)
-<span class="hljs-comment">// or</span>
-<span class="hljs-built_in">this</span>.$set(<span class="hljs-built_in">this</span>.someObject,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-number">2</span>)
-
-
-<span class="hljs-comment">// 下标修改数组</span>
-Vue.set(vm.array1, indexOfItem, newValue)
-<span class="hljs-comment">// or</span>
-<span class="hljs-built_in">this</span>.$set(<span class="hljs-built_in">this</span>.array1, indexOfItem, newValue)
-<span class="hljs-comment">// or</span>
-<span class="hljs-built_in">this</span>.array1.splice(indexOfItem, <span class="hljs-number">1</span>, newValue)
-
-
-<span class="hljs-comment">// 修改数组长度</span>
-<span class="hljs-built_in">this</span>.array1.splice(newLength)</code></pre></div></li>
-<li><p>包裹数组部分方法以支持响应式</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">pop()
-push()
-shift()
-unshift()
-splice()
-sort()
-reverse()</code></pre></div>
-<h3 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty"></a><code>defineProperty</code></h3></li>
-</ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">Object</span>.defineProperty(obj<span class="hljs-comment">/* 对象*/</span>, prop<span class="hljs-comment">/* 属性*/</span>, descriptor<span class="hljs-comment">/*描述符*/</span>)&#123;
-  <span class="hljs-comment">//对象里目前存在的属性描述符有两种主要形式：数据描述符和存取描述符。</span>
-  <span class="hljs-comment">//数据描述符是一个具有值的属性，该值可以是可写的，也可以是不可写的。</span>
-  <span class="hljs-comment">//存取描述符是由 getter 函数和 setter 函数所描述的属性。</span>
-  <span class="hljs-comment">//一个描述符只能是这两者其中之一；不能同时是两者。</span>
-
-  configurable: <span class="hljs-literal">true</span>,
-  <span class="hljs-comment">//configurable 特性表示对象的属性是否可以被删除，以及除 value 和 writable 特性外的其他特性是否可以被修改。</span>
-  enumerable: <span class="hljs-literal">true</span>,
-  <span class="hljs-comment">//enumerable 定义了对象的属性是否可以在 for...in 循环和 Object.keys() 中被枚举。</span>
-  value: <span class="hljs-literal">true</span>,
-  writable: <span class="hljs-literal">true</span>,
-  <span class="hljs-comment">//当 writable 属性设置为 false 时，该属性被称为“不可写的”。它不能被重新赋值。</span>
-  <span class="hljs-comment">//</span>
-  <span class="hljs-comment">// 或者</span>
-  <span class="hljs-comment">//</span>
-  <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123; ... &#125;,
-  <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">newValue</span>)</span> &#123; ... &#125;,
-  enumerable : <span class="hljs-literal">true</span>,
-  configurable : <span class="hljs-literal">true</span>
-&#125;</code></pre></div>
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
-<li>兼容<code>IE9</code></li>
-<li>劫持了对象上的<code>属性</code></li>
-<li>数据结构越复杂初始性能会越差,需要递归遍历绑定<code>defineProperty</code></li>
-<li>为保持响应式还需要为新增数据再次绑定<code>defineProperty</code></li>
-<li>原数据的修改触发拦截器</li>
-</ol>
-<h3 id="proxy"><a href="#proxy" class="headerlink" title="proxy"></a><code>proxy</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handler)
-handler.getPrototypeOf()
-<span class="hljs-comment">//Object.getPrototypeOf 方法的捕捉器。</span>
-handler.setPrototypeOf()
-<span class="hljs-comment">//Object.setPrototypeOf 方法的捕捉器。</span>
-handler.isExtensible()
-<span class="hljs-comment">//Object.isExtensible 方法的捕捉器。</span>
-handler.preventExtensions()
-<span class="hljs-comment">//Object.preventExtensions 方法的捕捉器。</span>
-handler.getOwnPropertyDescriptor()
-<span class="hljs-comment">//Object.getOwnPropertyDescriptor 方法的捕捉器。</span>
-handler.defineProperty()
-<span class="hljs-comment">//Object.defineProperty 方法的捕捉器。</span>
-handler.has()
-<span class="hljs-comment">//in 操作符的捕捉器。</span>
-handler.get()
-<span class="hljs-comment">//属性读取操作的捕捉器。</span>
-handler.set()
-<span class="hljs-comment">//属性设置操作的捕捉器。</span>
-handler.deleteProperty()
-<span class="hljs-comment">//delete 操作符的捕捉器。</span>
-handler.ownKeys()
-<span class="hljs-comment">//Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。</span>
-handler.apply()
-<span class="hljs-comment">//函数调用操作的捕捉器。</span>
-handler.construct()
-<span class="hljs-comment">//new 操作符的捕捉器。</span>
-</code></pre></div>
-<ol>
-<li>不兼容<code>IE</code></li>
-<li>劫持<code>整个对象</code>，无需对对象本体作出修改</li>
-<li>拦截器响应的是<code>proxy</code>生成的代理对象，原数据的修改将不会触发拦截器</li>
-<li>拦截器种类繁多</li>
-</ol>
-<h2 id="简单实现reactive"><a href="#简单实现reactive" class="headerlink" title="简单实现reactive"></a>简单实现reactive</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// monkeyVersionReactivity.js猴版响应式框架</span>
+              <h2 id="实现reactive"><a href="#实现reactive" class="headerlink" title="实现reactive"></a>实现reactive</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// reactivity.js 猴版响应式框架</span>
 <span class="hljs-keyword">const</span> targetMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
 <span class="hljs-keyword">const</span> effectStack = [];
 <span class="hljs-keyword">const</span> isObject = <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">&quot;object&quot;</span>;
@@ -441,9 +347,13 @@ handler.construct()
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vue3/">vue3</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
                     
                   </div>
                 
@@ -460,9 +370,9 @@ handler.construct()
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/svg%E5%9B%BE%E6%A0%87%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6/">
+                      <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5DvueRouter@3/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">svg图标封装组件</span>
+                        <span class="hidden-mobile">vue-router@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -470,8 +380,8 @@ handler.construct()
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/vue_diff%E7%AE%97%E6%B3%95/">
-                        <span class="hidden-mobile">vue的diff算法</span>
+                      <a href="/2022/03/02/react_hooks/">
+                        <span class="hidden-mobile">react_hooks</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

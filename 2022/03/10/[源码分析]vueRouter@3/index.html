@@ -1,0 +1,899 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-router@3.x实现分析">
+<meta property="og:url" content="http://yoursite.com/2022/03/10/[%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90]vueRouter@3/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-10T15:07:29.596Z">
+<meta property="article:modified_time" content="2022-03-14T09:23:35.077Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="源码">
+<meta property="article:tag" content="vue-router">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>vue-router@3.x实现分析 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue-router@3.x实现分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-10 23:07" pubdate>
+        2022年3月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      74 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue-router@3.x实现分析</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><h3 id="hash模式"><a href="#hash模式" class="headerlink" title="hash模式"></a><code>hash</code>模式</h3><p>原理：监听<code>onHashChange</code>和修改<code>URL</code>的<code>hash</code>值<code>#xxx</code></p>
+<ul>
+<li>  不刷新页面</li>
+<li>  <code>hash</code>不会发送到服务器</li>
+<li>  <code>hash</code>的改变会保存历史记录</li>
+<li>  通过<code>&lt;a&gt;</code>标签的<code>href</code>或者<code>location.hash</code>修改</li>
+</ul>
+<h3 id="history模式"><a href="#history模式" class="headerlink" title="history模式"></a><code>history</code>模式</h3><p>原理：监听<code>history.popState</code>，通过<code>pushState``replaceState</code>修改历史栈</p>
+<ul>
+<li>  不刷新页面</li>
+<li>  H5 <code>history API</code></li>
+<li>  服务器需要配合设置地址不匹配回退</li>
+<li>  <code>SEO</code>比 hash 好</li>
+</ul>
+<h2 id="abstract模式"><a href="#abstract模式" class="headerlink" title="abstract模式"></a><code>abstract</code>模式</h2><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li>  params</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [
+	<span class="hljs-comment">// 动态字段以冒号开始</span>
+	&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/users/:id&quot;</span>, <span class="hljs-attr">component</span>: User &#125;,
+];</code></pre></div>
+
+<ul>
+<li>  query</li>
+</ul>
+<p>URL 地址的 query 部分</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">/users?id=<span class="hljs-number">123</span></code></pre></div>
+
+<h2 id="路由钩子"><a href="#路由钩子" class="headerlink" title="路由钩子"></a>路由钩子</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span>
+router.beforeEach((to,form,next)) <span class="hljs-comment">// 导航触发时</span>
+router.beforeResolve((to,form,next)) <span class="hljs-comment">// 所有组件内守卫和异步路由组件被解析之后</span>
+router.afterEach((to, <span class="hljs-keyword">from</span>, failure))
+<span class="hljs-comment">// 全局钩子可以定义多个，顺序执行完后才会resolve路由</span>
+
+<span class="hljs-comment">// 路由</span>
+beforeEnter() <span class="hljs-comment">// 不会在 params、query 或 hash 改变触发，只会在导航路径改变触发</span>
+&#123;
+  path:<span class="hljs-string">&#x27;/a&#x27;</span>,
+  component:<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/component/A&#x27;</span>),
+  beforeEnter:<span class="hljs-function">(<span class="hljs-params">(to,<span class="hljs-keyword">from</span>,next)</span>)=&gt;</span>&#123;&#125; <span class="hljs-comment">//</span>
+&#125;
+
+<span class="hljs-comment">// 组件内</span>
+beforeRouteEnter((to,<span class="hljs-keyword">from</span>,<span class="hljs-attr">next</span>:<span class="hljs-function">(<span class="hljs-params">vm</span>)=&gt;</span>&#123;<span class="hljs-comment">/*访问this*/</span>&#125;)) <span class="hljs-comment">// 组件实例创建之前</span>
+beforeRouteUpdate((to,<span class="hljs-keyword">from</span>))
+<span class="hljs-comment">/* CompositionAPI onBeforeRouteUpdate */</span>
+beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
+<span class="hljs-comment">/* CompositionAPI onBeforeRouteLeave */</span></code></pre></div>
+
+<h3 id="触发流程：pageA-gt-pageB"><a href="#触发流程：pageA-gt-pageB" class="headerlink" title="触发流程：pageA=&gt;pageB"></a>触发流程：pageA=&gt;pageB</h3><ol>
+<li><p>pageA.<code>beforeRouteLeave</code></p>
+</li>
+<li><p>router.<code>beforeEach</code></p>
+</li>
+<li><p>routes[pageB].<code>beforeEnter</code></p>
+</li>
+<li><p>pageB.<code>beforeRouteEnter</code></p>
+<blockquote>
+<p>如果 pageB 渲染过，忽略【3，4】执行 pageB.beforeRouteUpdate</p>
+</blockquote>
+</li>
+<li><p>router.<code>beforeResolve</code></p>
+</li>
+<li><p>router.<code>afterEach</code></p>
+</li>
+<li><p>DOM 更新/挂载</p>
+</li>
+<li><p>执行第【4】步中<code>next</code>回调</p>
+</li>
+</ol>
+<h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="Vue-use-安装路由"><a href="#Vue-use-安装路由" class="headerlink" title="Vue.use 安装路由"></a>Vue.use 安装路由</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">Vue</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (install.installed &amp;&amp; _Vue === Vue) <span class="hljs-keyword">return</span>;
+	install.installed = <span class="hljs-literal">true</span>;
+
+	_Vue = Vue;
+
+	<span class="hljs-keyword">const</span> isDef = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> v !== <span class="hljs-literal">undefined</span>;
+
+	<span class="hljs-keyword">const</span> registerInstance = <span class="hljs-function">(<span class="hljs-params">vm, callVal</span>) =&gt;</span> &#123;
+		<span class="hljs-keyword">let</span> i = vm.$options._parentVnode;
+    <span class="hljs-comment">// 伪代码</span>
+		registerRouteInstance(vm, callVal);
+		<span class="hljs-comment">// router-view render函数的registerRouteInstance方法</span>
+	&#125;;
+
+	Vue.mixin(&#123;
+		<span class="hljs-function"><span class="hljs-title">beforeCreate</span>(<span class="hljs-params"></span>)</span> &#123;
+			<span class="hljs-keyword">if</span> (isDef(<span class="hljs-built_in">this</span>.$options.router)) &#123;
+				<span class="hljs-built_in">this</span>._routerRoot = <span class="hljs-built_in">this</span>; <span class="hljs-comment">//  路由的root组件</span>
+				<span class="hljs-built_in">this</span>._router = <span class="hljs-built_in">this</span>.$options.router; <span class="hljs-comment">// 路由实例</span>
+				<span class="hljs-built_in">this</span>._router.init(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// init见下文</span>
+				Vue.util.defineReactive(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;_route&quot;</span>, <span class="hljs-built_in">this</span>._router.history.current);
+				<span class="hljs-comment">// 🔥对router-view的响应式绑定</span>
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				<span class="hljs-built_in">this</span>._routerRoot = (<span class="hljs-built_in">this</span>.$parent &amp;&amp; <span class="hljs-built_in">this</span>.$parent._routerRoot) || <span class="hljs-built_in">this</span>;
+				<span class="hljs-comment">// 如果是子组件，将追溯到拥有router的父组件作为root，执行上面几行逻辑</span>
+			&#125;
+			registerInstance(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">this</span>);
+		&#125;,
+		<span class="hljs-function"><span class="hljs-title">destroyed</span>(<span class="hljs-params"></span>)</span> &#123;
+			registerInstance(<span class="hljs-built_in">this</span>);
+		&#125;,
+	&#125;);
+
+	<span class="hljs-comment">// 为Vue的原型绑定`$router``$route`的getter和全局注册两个组件</span>
+	<span class="hljs-built_in">Object</span>.defineProperty(Vue.prototype, <span class="hljs-string">&quot;$router&quot;</span>, &#123;
+		<span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._routerRoot._router;
+		&#125;,
+	&#125;);
+
+	<span class="hljs-built_in">Object</span>.defineProperty(Vue.prototype, <span class="hljs-string">&quot;$route&quot;</span>, &#123;
+		<span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._routerRoot._route;
+		&#125;,
+	&#125;);
+	Vue.component(<span class="hljs-string">&quot;RouterView&quot;</span>, View);
+	Vue.component(<span class="hljs-string">&quot;RouterLink&quot;</span>, Link);
+
+	<span class="hljs-keyword">const</span> strats = Vue.config.optionMergeStrategies;
+	strats.beforeRouteEnter = strats.beforeRouteLeave = strats.beforeRouteUpdate = strats.created;
+&#125;</code></pre></div>
+
+<h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VueRouter</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">options: RouterOptions = &#123;&#125;</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>.app = <span class="hljs-literal">null</span>;
+		<span class="hljs-built_in">this</span>.apps = [];
+		<span class="hljs-built_in">this</span>.options = options;
+		<span class="hljs-built_in">this</span>.beforeHooks = [];
+		<span class="hljs-built_in">this</span>.resolveHooks = [];
+		<span class="hljs-built_in">this</span>.afterHooks = [];
+		<span class="hljs-built_in">this</span>.matcher = createMatcher(options.routes || [], <span class="hljs-built_in">this</span>);
+
+		<span class="hljs-keyword">let</span> mode = options.mode || <span class="hljs-string">&quot;hash&quot;</span>;
+		<span class="hljs-built_in">this</span>.fallback = mode === <span class="hljs-string">&quot;history&quot;</span> &amp;&amp; !supportsPushState &amp;&amp; options.fallback !== <span class="hljs-literal">false</span>;
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.fallback) &#123;
+			<span class="hljs-comment">// 回退到hash模式</span>
+			mode = <span class="hljs-string">&quot;hash&quot;</span>;
+		&#125;
+		<span class="hljs-keyword">if</span> (!inBrowser) &#123;
+			mode = <span class="hljs-string">&quot;abstract&quot;</span>;
+		&#125;
+		<span class="hljs-built_in">this</span>.mode = mode;
+
+		<span class="hljs-keyword">switch</span> (mode) &#123;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;history&quot;</span>:
+				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> HTML5History(<span class="hljs-built_in">this</span>, options.base);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;hash&quot;</span>:
+				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> HashHistory(<span class="hljs-built_in">this</span>, options.base, <span class="hljs-built_in">this</span>.fallback);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;abstract&quot;</span>:
+				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> AbstractHistory(<span class="hljs-built_in">this</span>, options.base);
+				<span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">init</span>(<span class="hljs-params">app: any</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>.apps.push(app);
+
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.app) &#123;
+			<span class="hljs-keyword">return</span>;
+		&#125;
+
+		<span class="hljs-built_in">this</span>.app = app;
+
+		<span class="hljs-keyword">const</span> history = <span class="hljs-built_in">this</span>.history;
+
+		<span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> HTML5History) &#123;
+			history.transitionTo(history.getCurrentLocation());
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> HashHistory) &#123;
+			<span class="hljs-keyword">const</span> setupHashListener = <span class="hljs-function">() =&gt;</span> &#123;
+				history.setupListeners();
+			&#125;;
+			history.transitionTo(history.getCurrentLocation(), setupHashListener, setupHashListener);
+		&#125;
+
+		history.listen(<span class="hljs-function">(<span class="hljs-params">route</span>) =&gt;</span> &#123;
+			<span class="hljs-built_in">this</span>.apps.forEach(<span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;
+				app._route = route;
+			&#125;);
+		&#125;);
+	&#125;
+&#125;</code></pre></div>
+
+<h2 id="路径匹配"><a href="#路径匹配" class="headerlink" title="路径匹配"></a>路径匹配</h2><h3 id="createMatcher"><a href="#createMatcher" class="headerlink" title="createMatcher"></a>createMatcher</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createMatcher</span>(<span class="hljs-params">routes: <span class="hljs-built_in">Array</span>&lt;RouteConfig&gt;, router: VueRouter</span>): <span class="hljs-title">Matcher</span> </span>&#123;
+	<span class="hljs-comment">// 根据routes构建出path的集合pathList,</span>
+	<span class="hljs-comment">// path 到 RouteRecord的映射表pathMap</span>
+	<span class="hljs-comment">// name 到 RouteRecord的映射表nameMap</span>
+	<span class="hljs-comment">//   RouteRecord = &#123;</span>
+	<span class="hljs-comment">//    path:  // 规范化处理后的path</span>
+	<span class="hljs-comment">//    regex: // path-to-regexp</span>
+	<span class="hljs-comment">//    components: // 定义的component</span>
+	<span class="hljs-comment">//    instances: &#123;&#125;,</span>
+	<span class="hljs-comment">//    name,</span>
+	<span class="hljs-comment">//    parent,</span>
+	<span class="hljs-comment">//    matchAs,</span>
+	<span class="hljs-comment">//    redirect: route.redirect,</span>
+	<span class="hljs-comment">//    beforeEnter: route.beforeEnter,</span>
+	<span class="hljs-comment">//    meta: route.meta || &#123;&#125;,</span>
+	<span class="hljs-comment">//    props:</span>
+	<span class="hljs-comment">//   &#125;</span>
+	<span class="hljs-keyword">const</span> &#123; pathList, pathMap, nameMap &#125; = createRouteMap(routes);
+
+	<span class="hljs-comment">// 动态添加路由的方法</span>
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addRoutes</span>(<span class="hljs-params">routes</span>) </span>&#123;
+		createRouteMap(routes, pathList, pathMap, nameMap);
+	&#125;
+
+	<span class="hljs-comment">//</span>
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">match</span>(<span class="hljs-params">raw: RawLocation, currentRoute?: Route, redirectedFrom?: Location</span>): <span class="hljs-title">Route</span> </span>&#123;
+		<span class="hljs-keyword">const</span> location = normalizeLocation(raw, currentRoute, <span class="hljs-literal">false</span>, router);
+		<span class="hljs-keyword">const</span> &#123; name &#125; = location;
+
+		<span class="hljs-keyword">if</span> (name) &#123;
+			<span class="hljs-keyword">const</span> record = nameMap[name];
+			<span class="hljs-keyword">if</span> (!record) <span class="hljs-keyword">return</span> _createRoute(<span class="hljs-literal">null</span>, location);
+			<span class="hljs-keyword">const</span> paramNames = record.regex.keys.filter(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> !key.optional).map(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> key.name);
+
+			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> location.params !== <span class="hljs-string">&quot;object&quot;</span>) &#123;
+				location.params = &#123;&#125;;
+			&#125;
+
+			<span class="hljs-keyword">if</span> (currentRoute &amp;&amp; <span class="hljs-keyword">typeof</span> currentRoute.params === <span class="hljs-string">&quot;object&quot;</span>) &#123;
+				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> currentRoute.params) &#123;
+					<span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> location.params) &amp;&amp; paramNames.indexOf(key) &gt; -<span class="hljs-number">1</span>) &#123;
+						location.params[key] = currentRoute.params[key];
+					&#125;
+				&#125;
+			&#125;
+
+			<span class="hljs-keyword">if</span> (record) &#123;
+				location.path = fillParams(record.path, location.params, <span class="hljs-string">`named route &quot;<span class="hljs-subst">$&#123;name&#125;</span>&quot;`</span>);
+				<span class="hljs-keyword">return</span> _createRoute(record, location, redirectedFrom);
+			&#125;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (location.path) &#123;
+			location.params = &#123;&#125;;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; pathList.length; i++) &#123;
+				<span class="hljs-keyword">const</span> path = pathList[i];
+				<span class="hljs-keyword">const</span> record = pathMap[path];
+				<span class="hljs-keyword">if</span> (matchRoute(record.regex, location.path, location.params)) &#123;
+					<span class="hljs-keyword">return</span> _createRoute(record, location, redirectedFrom);
+				&#125;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> _createRoute(<span class="hljs-literal">null</span>, location);
+	&#125;
+
+	<span class="hljs-comment">// ...</span>
+
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_createRoute</span>(<span class="hljs-params">record: ?RouteRecord, location: Location, redirectedFrom?: Location</span>): <span class="hljs-title">Route</span> </span>&#123;
+		<span class="hljs-comment">// 重定向</span>
+		<span class="hljs-keyword">if</span> (record &amp;&amp; record.redirect) &#123;
+			<span class="hljs-keyword">return</span> redirect(record, redirectedFrom || location);
+		&#125;
+		<span class="hljs-comment">// alias</span>
+		<span class="hljs-keyword">if</span> (record &amp;&amp; record.matchAs) &#123;
+			<span class="hljs-keyword">return</span> alias(record, location, record.matchAs);
+		&#125;
+		<span class="hljs-keyword">return</span> createRoute(record, location, redirectedFrom, router);
+	&#125;
+
+	<span class="hljs-keyword">return</span> &#123;
+		match,
+		addRoutes,
+	&#125;;
+&#125;</code></pre></div>
+
+<h2 id="路径切换"><a href="#路径切换" class="headerlink" title="路径切换"></a>路径切换</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">transitionTo (location: RawLocation, onComplete?: <span class="hljs-built_in">Function</span>, onAbort?: <span class="hljs-built_in">Function</span>) &#123;
+  <span class="hljs-keyword">const</span> route = <span class="hljs-built_in">this</span>.router.match(location, <span class="hljs-built_in">this</span>.current)
+  <span class="hljs-comment">// 根据目标 location 和当前路径 this.current 执行 this.router.match 方法去匹配到目标的路径</span>
+
+  <span class="hljs-built_in">this</span>.confirmTransition(route, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-built_in">this</span>.updateRoute(route)
+    onComplete &amp;&amp; onComplete(route)
+
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.ready) &#123;
+      <span class="hljs-built_in">this</span>.ready = <span class="hljs-literal">true</span>
+      <span class="hljs-built_in">this</span>.readyCbs.forEach(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; cb(route) &#125;)
+    &#125;
+  &#125;
+  <span class="hljs-comment">//...</span>
+  )
+&#125;
+
+updateRoute (route: Route) &#123;
+  <span class="hljs-keyword">const</span> prev = <span class="hljs-built_in">this</span>.current
+  <span class="hljs-built_in">this</span>.current = route
+  <span class="hljs-built_in">this</span>.cb &amp;&amp; <span class="hljs-built_in">this</span>.cb(route)
+  <span class="hljs-built_in">this</span>.router.afterHooks.forEach(<span class="hljs-function"><span class="hljs-params">hook</span> =&gt;</span> &#123; <span class="hljs-comment">/* router.afterEach */</span>
+    hook &amp;&amp; hook(route, prev)
+  &#125;)
+&#125;</code></pre></div>
+
+<h3 id="confirmTransition"><a href="#confirmTransition" class="headerlink" title="confirmTransition"></a>confirmTransition</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">confirmTransition (route: Route, <span class="hljs-attr">onComplete</span>: <span class="hljs-built_in">Function</span>, onAbort?: <span class="hljs-built_in">Function</span>) &#123;
+  <span class="hljs-keyword">const</span> current = <span class="hljs-built_in">this</span>.current
+
+  <span class="hljs-keyword">const</span> &#123;
+    updated,
+    deactivated,
+    activated
+  &#125; = resolveQueue(<span class="hljs-built_in">this</span>.current.matched, route.matched)
+  <span class="hljs-comment">// matched数组属性保存了从匹配到的record循环向上一直到最外层的所有的record</span>
+  <span class="hljs-comment">// resolve解析出三个队列</span>
+  <span class="hljs-comment">// a/b/c =&gt; a/b/d</span>
+  <span class="hljs-comment">// deactivated : [c]</span>
+  <span class="hljs-comment">// activate : [d]</span>
+  <span class="hljs-comment">// updated : [a,b]</span>
+
+  <span class="hljs-comment">// 生成一个按照路由钩子顺序的队列</span>
+  <span class="hljs-keyword">const</span> queue = [].concat(
+    extractLeaveGuards(deactivated), <span class="hljs-comment">/* 执行离开的钩子 */</span>
+    <span class="hljs-built_in">this</span>.router.beforeHooks, <span class="hljs-comment">/* router.beforeEach */</span>
+    extractUpdateHooks(updated), <span class="hljs-comment">/*  beforeRouteUpdate */</span>
+    activated.map(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.beforeEnter), <span class="hljs-comment">/* beforeRouteEnter */</span>
+    resolveAsyncComponents(activated) <span class="hljs-comment">/*解析异步路由组件*/</span>
+  )
+
+
+  runQueue(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> postEnterCbs = []
+    <span class="hljs-keyword">const</span> isValid = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">this</span>.current === route
+    <span class="hljs-comment">// beforeRouteEnter</span>
+    <span class="hljs-keyword">const</span> enterGuards = extractEnterGuards(activated, postEnterCbs, isValid)
+    <span class="hljs-comment">// ⭐️beforeRouteEnter的回调会添加到postEnterCbs数组中，等路由更新后在最后执行</span>
+
+    <span class="hljs-comment">// router.beforeResolve</span>
+    <span class="hljs-keyword">const</span> queue = enterGuards.concat(<span class="hljs-built_in">this</span>.router.resolveHooks)
+
+    runQueue(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
+      onComplete(route)
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.router.app) &#123;
+        <span class="hljs-built_in">this</span>.router.app.$nextTick(<span class="hljs-function">() =&gt;</span> &#123;
+          postEnterCbs.forEach(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; cb() &#125;)
+          <span class="hljs-comment">// ⭐️执行postEnterCbs中的回调</span>
+        &#125;)
+      &#125;
+    &#125;)
+  &#125;)
+&#125;</code></pre></div>
+
+<h2 id="lt-router-view-gt"><a href="#lt-router-view-gt" class="headerlink" title="&lt;router-view&gt;"></a><code>&lt;router-view&gt;</code></h2><p>把根 <code>Vue</code> 实例的 <code>_route</code> 属性是响应式的，在每个 <code>&lt;router-view&gt;</code>的<code>render</code> 函数的时候，都会访问 <code>parent.$route</code>，该<code>&lt;router-view&gt;</code> 就订阅了<code>router</code>的变化</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+	name: <span class="hljs-string">&quot;RouterView&quot;</span>,
+	functional: <span class="hljs-literal">true</span>,
+	props: &#123;
+		name: &#123;
+			type: <span class="hljs-built_in">String</span>,
+			<span class="hljs-keyword">default</span>: <span class="hljs-string">&quot;default&quot;</span>,
+		&#125;,
+	&#125;,
+	<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params">_, &#123; props, children, parent, data &#125;</span>)</span> &#123;
+		data.routerView = <span class="hljs-literal">true</span>;
+
+		<span class="hljs-keyword">const</span> h = parent.$createElement;
+		<span class="hljs-keyword">const</span> name = props.name;
+
+		<span class="hljs-keyword">const</span> route = parent.$route; <span class="hljs-comment">// 🔥执行时会触发响应式收集为router的依赖，当router更新时重新执行</span>
+
+		<span class="hljs-keyword">const</span> cache = parent._routerViewCache || (parent._routerViewCache = &#123;&#125;);
+
+		<span class="hljs-keyword">while</span> (parent &amp;&amp; parent._routerRoot !== parent) &#123;
+			parent = parent.$parent;
+		&#125;
+
+		<span class="hljs-keyword">const</span> component = (cache[name] = matched.components[name]);
+
+    <span class="hljs-comment">// 给 matched.instances[name] 赋值当前组件的 vm 实例</span>
+		data.registerRouteInstance = <span class="hljs-function">(<span class="hljs-params">vm, val</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">const</span> current = matched.instances[name];
+			<span class="hljs-keyword">if</span> ((val &amp;&amp; current !== vm) || (!val &amp;&amp; current === vm)) &#123;
+				matched.instances[name] = val;
+			&#125;
+		&#125;;
+		(data.hook || (data.hook = &#123;&#125;)).prepatch = <span class="hljs-function">(<span class="hljs-params">_, vnode</span>) =&gt;</span> &#123;
+			matched.instances[name] = vnode.componentInstance;
+		&#125;;
+
+		<span class="hljs-keyword">return</span> h(component, data, children);
+	&#125;,
+&#125;;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvuex@3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vuex@3.x实现分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/10/%5BTODO%5Dvue3%E6%8B%BE%E9%81%97/">
+                        <span class="hidden-mobile">vue3实现原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
