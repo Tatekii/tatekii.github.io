@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]）的数据结构才能解构赋值 用途 交换变量 提取对象中的数据 解构默认值 剩余运算  【字符串】 识别  includ">
+    <meta name="description" content="Javascript &#x3D; Web Api + ECMAScript   ES2015 后都使用年份做版本  【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域 []  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es6新特性">
+<meta property="og:title" content="es6~now新特性">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]）的数据结构才能解构赋值 用途 交换变量 提取对象中的数据 解构默认值 剩余运算  【字符串】 识别  includ">
+<meta property="og:description" content="Javascript &#x3D; Web Api + ECMAScript   ES2015 后都使用年份做版本  【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域 []  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-18T07:46:49.135Z">
+<meta property="article:modified_time" content="2022-03-30T06:48:39.017Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="面试">
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>es6新特性 - 不知名的笔记本</title>
+  <title>es6~now新特性 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -168,7 +168,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="es6新特性">
+            <span class="h2" id="subtitle" title="es6~now新特性">
               
             </span>
 
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.5k 字
+      5.7k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      47 分钟
+      48 分钟
     </span>
   
 
@@ -235,20 +235,26 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">es6新特性</h1>
+            <h1 style="display: none">es6~now新特性</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月18日 下午
+                  本文最后更新于：2022年3月30日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="【let-const】"><a href="#【let-const】" class="headerlink" title="【let / const】"></a>【let / const】</h2><ul>
+              <blockquote>
+<p>Javascript = Web Api + ECMAScript</p>
+</blockquote>
+<blockquote>
+<p>ES2015 后都使用年份做版本</p>
+</blockquote>
+<h2 id="【let-const】"><a href="#【let-const】" class="headerlink" title="【let / const】"></a>【let / const】</h2><ul>
 <li>都用于声明变量</li>
 <li>不存在变量提升，暂时性死区</li>
 <li>不能重复声明</li>
-<li>块级作用域</li>
+<li>块级作用域 <code>[]</code></li>
 </ul>
 <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><ul>
 <li>可以重新赋值<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3></li>
@@ -257,29 +263,37 @@
 </ul>
 <h2 id="【解构赋值】"><a href="#【解构赋值】" class="headerlink" title="【解构赋值】"></a>【解构赋值】</h2><p>只有可遍历（具备遍历器<code>[Symbol.Iterator]</code>）的数据结构才能解构赋值</p>
 <h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><ul>
-<li>交换变量</li>
-<li>提取对象中的数据</li>
-<li>解构默认值</li>
-<li>剩余运算</li>
+<li><p>交换变量</p>
+</li>
+<li><p>提取对象中的数据</p>
+</li>
+<li><p>解构默认值</p>
+</li>
+<li><p>剩余运算符<code>...</code></p>
+</li>
+<li><p>数组结构 <code>const [a,b,c] = [1,2,3]</code></p>
+</li>
+<li><p>对象结构 </p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xxx&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">14</span>&#125;
+<span class="hljs-keyword">const</span> &#123;name,age&#125; = obj
+<span class="hljs-comment">// 别名</span>
+<span class="hljs-keyword">const</span> &#123;<span class="hljs-attr">name</span>:trueName&#125; = obj
+<span class="hljs-built_in">console</span>.log(trueName)</code></pre></div></li>
 </ul>
 <h2 id="【字符串】"><a href="#【字符串】" class="headerlink" title="【字符串】"></a>【字符串】</h2><ul>
-<li><p>识别</p>
-<ul>
+<li>方法<ul>
 <li><code>includes()</code></li>
 <li><code>startsWith()</code></li>
 <li><code>endsWith()</code> </li>
-</ul>
-</li>
-<li><p>补全</p>
-<ul>
 <li><code>padStart(len,x)</code>// 补全后的最小长度，不足则用x在开头填充</li>
 <li><code>padEnd()</code>// 在末尾填充</li>
+<li><code>repeat()</code>// 重复</li>
 </ul>
 </li>
-<li><p>重复</p>
-<p><code>String.prototype.repeat()</code></p>
-</li>
-<li><p>模版字符串<code>多行，插值$&#123;x&#125;</code></p>
+<li>模版字符串<ul>
+<li>多行</li>
+<li>插值<code>$&#123;x&#125;</code></li>
+</ul>
 </li>
 </ul>
 <h2 id="【数值】"><a href="#【数值】" class="headerlink" title="【数值】"></a>【数值】</h2><blockquote>
@@ -448,16 +462,11 @@ construct()
 <li>Dom Node</li>
 </ul>
 <h2 id="【Generator】"><a href="#【Generator】" class="headerlink" title="【Generator】"></a>【Generator】</h2><ul>
-<li><p>调用一个生成器函数并不会马上执行它里面的语句，而是返回一个这个生成器的 <code>迭代器</code> （ iterator ）对象。当这个迭代器的 <code>next()</code> 方法被调用时，其内的语句会执行到下一个<code>yield</code>的位置，<code>yield</code> 后紧跟迭代器要返回的值。</p>
-</li>
-<li><p>或者如果用的是 <code>yield*</code>，则表示将执行权移交给另一个生成器函数（当前生成器暂停执行）。</p>
-</li>
-<li><p><code>next()</code>方法返回一个对象，<code>&#123;value:当前的返回,done:是否迭代完&#125;</code></p>
-</li>
-<li><p>当在生成器函数中显式 <code>return</code> 时，会导致生成器立即变为完成状态，如果 <code>return</code> 后面跟了一个值，那么这个值会作为当前调用 <code>next()</code> 方法返回值。</p>
-</li>
-<li><p>调用 <code>next()</code>方法时，如果传入了参数，那么这个参数会传给上一条执行的 <code>yield</code>语句左边的变量，例如下面例子中的 x ：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>)</span>&#123;
+<li>调用一个生成器函数并不会马上执行它里面的语句，而是返回一个这个生成器的 <code>迭代器</code> （ iterator ）对象。</li>
+<li>当这个迭代器的 <code>next()</code> 方法被调用时返回一个对象，<code>&#123;value:当前的返回,done:是否迭代完&#125;</code>，其内的语句会执行到下一个<code>yield</code>的位置，<code>yield</code> 后紧跟迭代器要返回的值。  </li>
+<li>或者如果用的是 <code>yield*</code>，则表示将执行权移交给另一个生成器函数（当前生成器暂停执行）。</li>
+<li>当在生成器函数中显式 <code>return</code> 时，会导致生成器立即变为完成状态，如果 <code>return</code> 后面跟了一个值，那么这个值会作为当前调用 <code>next()</code> 方法返回值。</li>
+<li>调用 <code>next()</code>方法时，如果传入了参数，那么这个参数会传给上一条执行的 <code>yield</code>语句左边的变量，例如下面例子中的 x ：<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>)</span>&#123;
     <span class="hljs-keyword">yield</span> <span class="hljs-number">10</span>;
     x=<span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;foo&#x27;</span>;
     <span class="hljs-keyword">yield</span> x;

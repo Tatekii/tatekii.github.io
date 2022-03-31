@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="函数式编程   对数据之间的运算过程进行抽象   “函数”是数学中的“函数”a &#x3D; sin(30)，是一种映射关系   相同的输入一定会得到相同的输出（副作用）  函数是一等公民   函数可以存储在变量中   函数可以作为参数 （高阶函数）   函数可以作为返回值 （高阶函数）   高阶函数 &#x3D;&gt; 抽象通用问题，屏蔽实现的细节  闭包closureJUMP To:闭包 纯函数pf   不修改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数式编程">
+<meta property="og:url" content="http://yoursite.com/2022/03/29/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="函数式编程   对数据之间的运算过程进行抽象   “函数”是数学中的“函数”a &#x3D; sin(30)，是一种映射关系   相同的输入一定会得到相同的输出（副作用）  函数是一等公民   函数可以存储在变量中   函数可以作为参数 （高阶函数）   函数可以作为返回值 （高阶函数）   高阶函数 &#x3D;&gt; 抽象通用问题，屏蔽实现的细节  闭包closureJUMP To:闭包 纯函数pf   不修改">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-29T06:22:52.864Z">
+<meta property="article:modified_time" content="2022-03-30T02:02:36.968Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>函数式编程 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="函数式编程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-29 14:22" pubdate>
+        2022年3月29日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">函数式编程</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年3月30日 上午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><ul>
+<li>  对数据之间的运算过程进行抽象</li>
+<li>  “函数”是数学中的“函数”<code>a = sin(30)</code>，是一种映射关系</li>
+<li>  相同的输入一定会得到相同的输出（副作用）</li>
+</ul>
+<h3 id="函数是一等公民"><a href="#函数是一等公民" class="headerlink" title="函数是一等公民"></a>函数是一等公民</h3><ul>
+<li>  函数可以存储在变量中</li>
+<li>  函数可以作为参数 <em>（高阶函数）</em></li>
+<li>  函数可以作为返回值 <em>（高阶函数）</em></li>
+</ul>
+<blockquote>
+<p>高阶函数 =&gt; 抽象通用问题，屏蔽实现的细节</p>
+</blockquote>
+<h2 id="闭包closure"><a href="#闭包closure" class="headerlink" title="闭包closure"></a>闭包<code>closure</code></h2><p>JUMP To:<a target="_blank" rel="noopener" href="https://tatekii33.cool/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85">闭包</a></p>
+<h2 id="纯函数pf"><a href="#纯函数pf" class="headerlink" title="纯函数pf"></a>纯函数<code>pf</code></h2><ul>
+<li>  不修改参数</li>
+<li>  不产生副作用</li>
+<li>  不调用不纯的方法</li>
+</ul>
+<h3 id="纯函数的好处"><a href="#纯函数的好处" class="headerlink" title="纯函数的好处"></a>纯函数的好处</h3><ul>
+<li>  可缓存</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.memoize()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memoize</span>(<span class="hljs-params">fn</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> cache = &#123;&#125;;
+	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">const</span> key = <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-built_in">arguments</span>);
+		cache[key] = cache[key] || fn.apply(fn, <span class="hljs-built_in">arguments</span>);
+		<span class="hljs-keyword">return</span> cache[key];
+	&#125;;
+&#125;</code></pre></div>
+
+<ul>
+<li>  可测试</li>
+<li>  并行处理(<code>webWorker</code>)</li>
+</ul>
+<h3 id="副作用effect"><a href="#副作用effect" class="headerlink" title="副作用effect"></a>副作用<code>effect</code></h3><ul>
+<li>  函数的状态依赖外部的状态就会带来副作用</li>
+<li>  副作用会使函数不纯</li>
+</ul>
+<h2 id="柯里化curry"><a href="#柯里化curry" class="headerlink" title="柯里化curry"></a>柯里化<code>curry</code></h2><p>JUMP To:<a target="_blank" rel="noopener" href="https://tatekii33.cool/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85">柯里化</a></p>
+<ul>
+<li>  缓存函数的参数</li>
+<li>  将多元函数转化为多个一元函数</li>
+<li>  降低函数的粒度，方便组合</li>
+<li></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.curry()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">func</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curried</span>(<span class="hljs-params">...args</span>) </span>&#123;
+		<span class="hljs-keyword">if</span> (args.length &lt; func.length) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+				<span class="hljs-keyword">return</span> curried(...args.concat([...arguments]));
+			&#125;;
+		&#125;
+		<span class="hljs-keyword">return</span> func(...args);
+	&#125;;
+&#125;</code></pre></div>
+
+<h2 id="函数组合compose"><a href="#函数组合compose" class="headerlink" title="函数组合compose"></a>函数组合<code>compose</code></h2><ul>
+<li>  封装洋葱代码<code>_.toUpper(._first(._reverse(array)))</code></li>
+<li>  忽略中间状态 <em>(数据管道)</em></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">fn: A -&gt; B -&gt; C -&gt; D
+fn: A -----------&gt; D</code></pre></div>
+
+<ul>
+<li>  默认从右向左执行</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.flowRight()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flowRight</span>(<span class="hljs-params">...fns</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;
+		<span class="hljs-keyword">return</span> fns.reduceRight(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">return</span> fn(acc);
+		&#125;, ...args);
+	&#125;;
+&#125;
+
+<span class="hljs-comment">// es6</span>
+<span class="hljs-keyword">const</span> compose =
+	(...fns) =&gt;
+	(...args) =&gt;
+		fns.reduceRight(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> fn(acc), ...args);</code></pre></div>
+
+<h3 id="lodash-fp-模块"><a href="#lodash-fp-模块" class="headerlink" title="lodash/fp 模块"></a>lodash/fp 模块</h3><ul>
+<li>  柯里化的 lodash 方法</li>
+<li>  函数参数在前，数据在后</li>
+</ul>
+<p>(FP Guide)[<a target="_blank" rel="noopener" href="https://github.com/lodash/lodash/wiki/FP-Guide]">https://github.com/lodash/lodash/wiki/FP-Guide]</a></p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">_.map([<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>], <span class="hljs-built_in">parseInt</span>);
+<span class="hljs-comment">// [1,NaN,NaN]</span>
+<span class="hljs-comment">// mapFn(item,index|key,array)</span>
+<span class="hljs-comment">// parseInt(string,radix)// 将radix进制的string转为十进制</span>
+fp.map(<span class="hljs-built_in">parseInt</span>, [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>]);
+<span class="hljs-comment">// [1,2,3]</span></code></pre></div>
+
+<h3 id="PointFree"><a href="#PointFree" class="headerlink" title="PointFree"></a><code>PointFree</code></h3><ul>
+<li>  不需要指明处理的数据</li>
+<li>  只需要合成运算的过程</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Hello World =&gt; hello_world</span>
+
+<span class="hljs-keyword">const</span> f = fp.flowRight(fp.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot;_&quot;</span>), fp.toLower);
+f(<span class="hljs-string">&quot;Hello World&quot;</span>);</code></pre></div>
+
+<h2 id="函子Functor"><a href="#函子Functor" class="headerlink" title="函子Functor"></a>函子<code>Functor</code></h2><ul>
+<li>  一个包裹值的盒子</li>
+<li>  不直接对外暴露值</li>
+<li>  实现 map 契约</li>
+</ul>
+<h3 id="Either函子"><a href="#Either函子" class="headerlink" title="Either函子"></a><code>Either</code>函子</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Either函子</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Left</span> </span>&#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Left(value);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>._value = value;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+	&#125;
+&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Right</span> </span>&#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Right(value);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>._value = value;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> Right.of(fn(<span class="hljs-built_in">this</span>._value));
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseJSON</span>(<span class="hljs-params">str</span>) </span>&#123;
+	<span class="hljs-keyword">try</span> &#123;
+		<span class="hljs-keyword">return</span> Right.of(<span class="hljs-built_in">JSON</span>.parse(str));
+	&#125; <span class="hljs-keyword">catch</span> (e) &#123;
+		<span class="hljs-keyword">return</span> Left.of(&#123; <span class="hljs-attr">error</span>: e.message &#125;);
+	&#125;
+&#125;</code></pre></div>
+
+<h3 id="IO函子"><a href="#IO函子" class="headerlink" title="IO函子"></a><code>IO</code>函子</h3><ul>
+<li>  将不纯的函数用函子保存</li>
+<li>  延迟执行副作用，并且不纯的操作交由调用者处理</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IO</span> </span>&#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+			<span class="hljs-keyword">return</span> value;
+		&#125;);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>._value = fn;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(fp.flowRight(fn, <span class="hljs-built_in">this</span>._value));
+	&#125;
+&#125;
+
+<span class="hljs-keyword">const</span> path = IO.of(process).map(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.execPath);
+<span class="hljs-comment">// 输出的path是一个包裹了副作用的纯函数</span>
+path._value();
+<span class="hljs-comment">// 直到执行._value()时才会处理副作用</span></code></pre></div>
+
+<h2 id="folktale"><a href="#folktale" class="headerlink" title="folktale"></a><code>folktale</code></h2><p>JUMP TO:<a target="_blank" rel="noopener" href="https://folktale.origamitower.com/">https://folktale.origamitower.com/</a></p>
+<h3 id="Task函子"><a href="#Task函子" class="headerlink" title="Task函子"></a><code>Task</code>函子</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; task &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;folktale/concurrency/task&quot;</span>);
+<span class="hljs-keyword">const</span> &#123; split, find &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;lodash/fp&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readFile</span>(<span class="hljs-params">filename</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> task(<span class="hljs-function">(<span class="hljs-params">resolver</span>) =&gt;</span> &#123;
+		fs.readFile(filename, <span class="hljs-string">&quot;utf-8&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">if</span> (err) resolver.reject(err);
+			resolver.resolve(data);
+		&#125;);
+	&#125;);
+&#125;
+
+<span class="hljs-keyword">const</span> readVersion = readFile(<span class="hljs-string">&quot;package.json&quot;</span>)
+	.map(split(<span class="hljs-string">&quot;\n&quot;</span>))
+	.map(find(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x.includes(<span class="hljs-string">&quot;version&quot;</span>)))
+	.run()
+	.listen(&#123;
+		onRejected: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err),
+		onResolved: <span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;res=&gt;&quot;</span>, val),
+	&#125;);
+
+<span class="hljs-built_in">console</span>.log(readVersion);
+<span class="hljs-comment">// TaskExecution &#123;</span>
+<span class="hljs-comment">//   _task: Task &#123; _computation: [Function (anonymous)] &#125;,</span>
+<span class="hljs-comment">//   _deferred: Object [folktale:Deferred] &#123;&#125;,</span>
+<span class="hljs-comment">//   _links: []</span>
+<span class="hljs-comment">// &#125;</span>
+<span class="hljs-comment">// res=&gt;   &quot;version&quot;: &quot;1.0.0&quot;,</span></code></pre></div>
+
+<h3 id="Point函子"><a href="#Point函子" class="headerlink" title="Point函子"></a><code>Point</code>函子</h3><ul>
+<li>  实现了<code>of</code>静态方法的函子</li>
+<li>  避免使用<code>new</code>来创建对象</li>
+<li>  上面的都属于 point 函子,将值包裹到上下文中</li>
+</ul>
+<h3 id="Monad函子"><a href="#Monad函子" class="headerlink" title="Monad函子"></a><code>Monad</code>函子</h3><ul>
+<li>  返回一个函子</li>
+<li>  可以扁平化的<code>Point</code>函子</li>
+<li>  实现了静态<code>join``of</code>方法</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IO</span> </span>&#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+			<span class="hljs-keyword">return</span> value;
+		&#125;);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-built_in">this</span>._value = fn;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(fp.flowRight(fn, <span class="hljs-built_in">this</span>._value));
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">join</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._value();
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-title">flatMap</span>(<span class="hljs-params">fn</span>)</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.map(fn).join();
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> readFile = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filename</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> fs.readFileSync(filename, <span class="hljs-string">&quot;utf-8&quot;</span>);
+	&#125;);
+&#125;;
+<span class="hljs-keyword">const</span> print = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> x;
+	&#125;);
+&#125;;
+<span class="hljs-keyword">const</span> res = readFile(<span class="hljs-string">&quot;package.json&quot;</span>).flatMap(print).join();</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/30/typescript/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">typescript</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/22/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue3-router/">
+                        <span class="hidden-mobile">vue-router@4.x实现分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

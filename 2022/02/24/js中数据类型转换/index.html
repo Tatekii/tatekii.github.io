@@ -26,7 +26,7 @@
 <meta property="og:description" content="ECAMScript 中不能自定义数据类型，只能为下列 7 种简单数据类型（原始类型） String  Number  NaNtypeof NaN &#x3D;&#x3D;&#x3D; &amp;#x27;number&amp;#x27; 唯一一个自相反的值 NaN !&#x3D;&#x3D; NaN   Boolean  在条件判断时，除了 undefined， null， false， NaN， &#39;&#39;， 0， -0，其他所有值都转为 true">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-17T02:47:38.172Z">
+<meta property="article:modified_time" content="2022-03-22T11:56:37.597Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
@@ -187,7 +187,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.7k 字
+      5.8k 字
     </span>
   
 
@@ -196,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48 分钟
+      49 分钟
     </span>
   
 
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月17日 上午
+                  本文最后更新于：2022年3月22日 晚上
                 
               </p>
             
@@ -471,6 +471,18 @@ a.valueOf().toString(); <span class="hljs-comment">//[object Object]</span>
     &#125;
   &#125;
 &#125;</code></pre></div>
+
+<h1 id="hack技巧"><a href="#hack技巧" class="headerlink" title="hack技巧"></a>hack技巧</h1><ul>
+<li>转string<br><code>123+&#39;&#39;</code>  // ‘123’</li>
+<li>转number<br><code>+123</code> // 123</li>
+<li>位运算<ul>
+<li>向下取整<div class="hljs code-wrapper"><pre><code class="hljs javascript">~~<span class="hljs-number">1.9</span> = <span class="hljs-number">1</span>
+<span class="hljs-number">1.9</span> &gt;&gt; <span class="hljs-number">0</span> = <span class="hljs-number">1</span></code></pre></div></li>
+<li>Math.floor(N/2)<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-number">124.9</span> &gt;&gt; <span class="hljs-number">1</span> = <span class="hljs-number">62</span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+
             </div>
             <hr>
             <div>
@@ -507,8 +519,8 @@ a.valueOf().toString(); <span class="hljs-comment">//[object Object]</span>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
-                        <span class="hidden-mobile">js运行机制</span>
+                      <a href="/2022/02/24/HTTP/">
+                        <span class="hidden-mobile">HTTP协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

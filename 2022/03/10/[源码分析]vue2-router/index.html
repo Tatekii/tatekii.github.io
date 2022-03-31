@@ -21,17 +21,17 @@
     <meta name="description" content="vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-router@3.x实现分析">
-<meta property="og:url" content="http://yoursite.com/2022/03/10/[%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90]vueRouter@3/index.html">
+<meta property="og:url" content="http://yoursite.com/2022/03/10/[%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90]vue2-router/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
 <meta property="og:description" content="vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-10T15:07:29.596Z">
-<meta property="article:modified_time" content="2022-03-14T09:23:35.077Z">
+<meta property="article:modified_time" content="2022-03-25T15:27:21.026Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue-router">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="源码">
-<meta property="article:tag" content="vue-router">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -190,7 +190,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.8k 字
+      10k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      74 分钟
+      85 分钟
     </span>
   
 
@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月14日 下午
+                  本文最后更新于：2022年3月25日 晚上
                 
               </p>
             
@@ -325,7 +325,7 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 
 	<span class="hljs-keyword">const</span> registerInstance = <span class="hljs-function">(<span class="hljs-params">vm, callVal</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">let</span> i = vm.$options._parentVnode;
-    <span class="hljs-comment">// 伪代码</span>
+		<span class="hljs-comment">// 伪代码</span>
 		registerRouteInstance(vm, callVal);
 		<span class="hljs-comment">// router-view render函数的registerRouteInstance方法</span>
 	&#125;;
@@ -370,11 +370,11 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 
 <h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VueRouter</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">options: RouterOptions = &#123;&#125;</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>.app = <span class="hljs-literal">null</span>;
-		<span class="hljs-built_in">this</span>.apps = [];
-		<span class="hljs-built_in">this</span>.options = options;
+		<span class="hljs-built_in">this</span>.app = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 根组件</span>
+		<span class="hljs-built_in">this</span>.apps = []; <span class="hljs-comment">// options中有router项的实例</span>
+		<span class="hljs-built_in">this</span>.options = options; <span class="hljs-comment">//  路由配置</span>
 		<span class="hljs-built_in">this</span>.beforeHooks = [];
-		<span class="hljs-built_in">this</span>.resolveHooks = [];
+		<span class="hljs-built_in">this</span>.resolveHooks = []; <span class="hljs-comment">// 钩子</span>
 		<span class="hljs-built_in">this</span>.afterHooks = [];
 		<span class="hljs-built_in">this</span>.matcher = createMatcher(options.routes || [], <span class="hljs-built_in">this</span>);
 
@@ -434,19 +434,24 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 	<span class="hljs-comment">// 根据routes构建出path的集合pathList,</span>
 	<span class="hljs-comment">// path 到 RouteRecord的映射表pathMap</span>
 	<span class="hljs-comment">// name 到 RouteRecord的映射表nameMap</span>
-	<span class="hljs-comment">//   RouteRecord = &#123;</span>
-	<span class="hljs-comment">//    path:  // 规范化处理后的path</span>
-	<span class="hljs-comment">//    regex: // path-to-regexp</span>
-	<span class="hljs-comment">//    components: // 定义的component</span>
-	<span class="hljs-comment">//    instances: &#123;&#125;,</span>
-	<span class="hljs-comment">//    name,</span>
-	<span class="hljs-comment">//    parent,</span>
-	<span class="hljs-comment">//    matchAs,</span>
-	<span class="hljs-comment">//    redirect: route.redirect,</span>
-	<span class="hljs-comment">//    beforeEnter: route.beforeEnter,</span>
-	<span class="hljs-comment">//    meta: route.meta || &#123;&#125;,</span>
-	<span class="hljs-comment">//    props:</span>
-	<span class="hljs-comment">//   &#125;</span>
+	<span class="hljs-comment">//  const record: RouteRecord = &#123;</span>
+	<span class="hljs-comment">//   path: normalizedPath,</span>
+	<span class="hljs-comment">//   regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),</span>
+	<span class="hljs-comment">//   components: route.components || &#123; default: route.component &#125;,</span>
+	<span class="hljs-comment">//   instances: &#123;&#125;,</span>
+	<span class="hljs-comment">//   name,</span>
+	<span class="hljs-comment">//   parent,</span>
+	<span class="hljs-comment">//   matchAs,</span>
+	<span class="hljs-comment">//   redirect: route.redirect,</span>
+	<span class="hljs-comment">//   beforeEnter: route.beforeEnter,</span>
+	<span class="hljs-comment">//   meta: route.meta || &#123;&#125;,</span>
+	<span class="hljs-comment">//   props: route.props == null</span>
+	<span class="hljs-comment">//     ? &#123;&#125;</span>
+	<span class="hljs-comment">//     : route.components</span>
+	<span class="hljs-comment">//       ? route.props</span>
+	<span class="hljs-comment">//       : &#123; default: route.props &#125;</span>
+	<span class="hljs-comment">// &#125;</span>
+
 	<span class="hljs-keyword">const</span> &#123; pathList, pathMap, nameMap &#125; = createRouteMap(routes);
 
 	<span class="hljs-comment">// 动态添加路由的方法</span>
@@ -505,6 +510,36 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 			<span class="hljs-keyword">return</span> alias(record, location, record.matchAs);
 		&#125;
 		<span class="hljs-keyword">return</span> createRoute(record, location, redirectedFrom, router);
+	&#125;
+
+	<span class="hljs-comment">//</span>
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRoute</span>(<span class="hljs-params"></span></span>
+<span class="hljs-function"><span class="hljs-params">		record: ?RouteRecord,</span></span>
+<span class="hljs-function"><span class="hljs-params">		location: Location,</span></span>
+<span class="hljs-function"><span class="hljs-params">		redirectedFrom?: ?Location,</span></span>
+<span class="hljs-function"><span class="hljs-params">		router?: VueRouter</span></span>
+<span class="hljs-function"><span class="hljs-params">	</span>): <span class="hljs-title">Route</span> </span>&#123;
+		<span class="hljs-keyword">const</span> stringifyQuery = router &amp;&amp; router.options.stringifyQuery;
+
+		<span class="hljs-keyword">let</span> query: any = location.query || &#123;&#125;;
+		<span class="hljs-keyword">try</span> &#123;
+			query = clone(query);
+		&#125; <span class="hljs-keyword">catch</span> (e) &#123;&#125;
+
+		<span class="hljs-keyword">const</span> route: Route = &#123;
+			name: location.name || (record &amp;&amp; record.name),
+			meta: (record &amp;&amp; record.meta) || &#123;&#125;,
+			path: location.path || <span class="hljs-string">&quot;/&quot;</span>,
+			hash: location.hash || <span class="hljs-string">&quot;&quot;</span>,
+			query,
+			params: location.params || &#123;&#125;,
+			fullPath: getFullPath(location, stringifyQuery),
+			matched: record ? formatMatch(record) : [],
+		&#125;;
+		<span class="hljs-keyword">if</span> (redirectedFrom) &#123;
+			route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery);
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.freeze(route);
 	&#125;
 
 	<span class="hljs-keyword">return</span> &#123;
@@ -612,7 +647,7 @@ updateRoute (route: Route) &#123;
 
 		<span class="hljs-keyword">const</span> component = (cache[name] = matched.components[name]);
 
-    <span class="hljs-comment">// 给 matched.instances[name] 赋值当前组件的 vm 实例</span>
+		<span class="hljs-comment">// 给 matched.instances[name] 赋值当前组件的 vm 实例</span>
 		data.registerRouteInstance = <span class="hljs-function">(<span class="hljs-params">vm, val</span>) =&gt;</span> &#123;
 			<span class="hljs-keyword">const</span> current = matched.instances[name];
 			<span class="hljs-keyword">if</span> ((val &amp;&amp; current !== vm) || (!val &amp;&amp; current === vm)) &#123;
@@ -627,6 +662,20 @@ updateRoute (route: Route) &#123;
 	&#125;,
 &#125;;</code></pre></div>
 
+<h1 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h1><ol>
+<li>在每个组件的<code>beforeCreate</code>和<code>destroyed</code>钩子中混入路由方法</li>
+<li>依据<code>routes</code>中子路，递归生成<code>path/name</code>映射组件位置的映射表<code>RouteRecords</code></li>
+<li>对实例的<code>_route</code>属性绑定响应式</li>
+<li>根据选择的<code>mode</code>不同，生成不同的<code>history</code>模式，与地址栏绑定修改</li>
+<li><code>&lt;router-view&gt;</code>组件的渲染函数会访问<code>_route</code>属性，订阅了路由状态的改变</li>
+<li>地址栏或者<code>router-link</code>改变后修改了<code>_route</code></li>
+<li><code>matcher</code>计算出从当前url到目标url的改变路径（<code>matched</code>record数组）</li>
+<li>对比新旧的<code>[matched]</code>从第一个不同的位置解析出<code>activated``updated``deactivated</code>三个队列</li>
+<li>按照路由钩子构造队列，分别对队列中的组件执行离开钩子，更新钩子和进入钩子，并且混入全局的钩子</li>
+<li>通知订阅了的<code>router-view</code>组件重新渲染，<code>router-view</code>会计算自己组件在vue组件树中位置，去<code>matched</code>中找到该渲染的组件</li>
+<li>最后更新路由的新状态</li>
+</ol>
+
             </div>
             <hr>
             <div>
@@ -638,11 +687,11 @@ updateRoute (route: Route) &#123;
                     
                       <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
+                      <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
+                    
                       <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-                    
-                      <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
                     
                   </div>
                 
@@ -659,7 +708,7 @@ updateRoute (route: Route) &#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvuex@3/">
+                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue2-vuex/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vuex@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
@@ -669,8 +718,8 @@ updateRoute (route: Route) &#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/10/%5BTODO%5Dvue3%E6%8B%BE%E9%81%97/">
-                        <span class="hidden-mobile">vue3实现原理</span>
+                      <a href="/2022/03/02/react_hooks/">
+                        <span class="hidden-mobile">react_hooks</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -26,7 +26,7 @@
 <meta property="og:description" content="树型结构   节点不能闭环    只有一个根节点    除了根节点，每个节点有且只有一个父节点    深度：节点到根节点的最长路径经过节点个数    高度：节点到叶节点最长路径经过节点个数    树的高度：根节点到叶节点的最长路径经过节点个数   二叉树最多只有两个子节点的树结构 二叉树是 n 个有限元素的集合，该集合或者为空、或者由一个称为根（root）的元素及两个不相交的、被分别称为左子树和右">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-01T10:36:38.488Z">
+<meta property="article:modified_time" content="2022-03-28T09:02:34.887Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="算法">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.8k 字
+      7k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      49 分钟
+      59 分钟
     </span>
   
 
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月1日 晚上
+                  本文最后更新于：2022年3月28日 下午
                 
               </p>
             
@@ -265,7 +265,7 @@
 <li>  第 i 层上的结点数为：2^(i-1)</li>
 <li>  一个层数为 k 的满二叉树的叶子结点个数（也就是最后一层）：2^(k-1)</li>
 </ul>
-<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>如果对满二叉树的结点进行编号, 约定编号从根结点起, 自上而下, 自左而右。则深度为 k 的, 有 n 个结点的二叉树, 当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应时, 称之为完全二叉树。</p>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>一棵深度为k的有n个结点的二叉树，对树中的结点按从上至下、从左到右的顺序进行编号，如果编号为i（1≤i≤n）的结点与满二叉树中编号为i的结点在二叉树中的位置相同，则这棵二叉树称为完全二叉树。</p>
 <h4 id="二叉搜索树【BST】：右子大于父大于左子"><a href="#二叉搜索树【BST】：右子大于父大于左子" class="headerlink" title="二叉搜索树【BST】：右子大于父大于左子"></a>二叉搜索树【BST】：右子大于父大于左子</h4><blockquote>
 <p>二叉搜索树的中序遍历得到升序排列</p>
 </blockquote>
@@ -286,27 +286,90 @@
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preOrderTraverse</span>(<span class="hljs-params">node</span>) </span>&#123;
 	<span class="hljs-keyword">let</span> res = [];
-	<span class="hljs-keyword">let</span> stack = [node];
-
+	<span class="hljs-keyword">let</span> stack = [];
+	<span class="hljs-keyword">if</span>(node) stack.push(node)
 	<span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
 		<span class="hljs-keyword">let</span> curNode = stack.pop();
 		res.push(curNode.val);
-		curNode.left &amp;&amp; stack.push(curNode.left);
-		curNode.right &amp;&amp; stack.push(curNode.right);
+		curNode.right &amp;&amp; stack.push(curNode.right); <span class="hljs-comment">//  先右再左入栈</span>
+		curNode.left &amp;&amp; stack.push(curNode.left); <span class="hljs-comment">//  则左边先出栈</span>
 	&#125;
 	<span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preOrderTraverse</span>(<span class="hljs-params">root</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = []
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traverse</span>(<span class="hljs-params">node</span>)</span>&#123;
+		<span class="hljs-keyword">if</span>(!node) <span class="hljs-keyword">return</span> 
+		res.push(node.val)
+		node.left &amp;&amp; traverse(node.left)
+		node.right &amp;&amp; traverse(node.right)
+	&#125;
+	traverse(root)
+	<span class="hljs-keyword">return</span> res
 &#125;</code></pre></div>
 
 <ul>
 <li>中序遍历<blockquote>
 <p>left -&gt; root -&gt; right</p>
 </blockquote>
-</li>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inOrderTraverse</span>(<span class="hljs-params">root</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = []
+	<span class="hljs-keyword">const</span> stack = []
+	<span class="hljs-keyword">let</span> node = root
+	<span class="hljs-keyword">while</span>(node || stack.length)&#123;
+		<span class="hljs-keyword">while</span>(node)&#123;
+			stack.push(node)
+			node = node.left
+		&#125;
+		node = stack.pop()
+		res.push(node.val)
+		node = node.right
+	&#125;
+	<span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inOrderTraverse</span>(<span class="hljs-params">root</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = []
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traverse</span>(<span class="hljs-params">node</span>)</span>&#123;
+		<span class="hljs-keyword">if</span>(!node) <span class="hljs-keyword">return</span> 
+		node.left &amp;&amp; traverse(node.left)
+		res.push(node.val)
+		node.right &amp;&amp; traverse(node.right)
+	&#125;
+	traverse(root)
+	<span class="hljs-keyword">return</span> res
+&#125;</code></pre></div></li>
 <li>后序遍历<blockquote>
 <p>left -&gt; right -&gt; root</p>
 </blockquote>
 </li>
 </ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postOrderTraverse</span>(<span class="hljs-params">root</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = []
+	<span class="hljs-keyword">const</span> stack = []
+	<span class="hljs-keyword">if</span>(root) stack.push(root)
+	<span class="hljs-keyword">while</span>(stack.length)&#123;
+		<span class="hljs-keyword">const</span> node = stack.pop()
+		res.unshift(node.val)
+		node.left &amp;&amp; stack.push(node.left)
+		node.right &amp;&amp; stack.push(node.right)
+	&#125;
+	<span class="hljs-keyword">return</span> res
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postOrderTraverse</span>(<span class="hljs-params">root</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = []
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traverse</span>(<span class="hljs-params">node</span>)</span>&#123;
+		<span class="hljs-keyword">if</span>(!node) <span class="hljs-keyword">return</span> 
+		node.left &amp;&amp; traverse(node.left)
+		node.right &amp;&amp; traverse(node.right)
+		res.push(node.val)
+
+	&#125;
+&#125;</code></pre></div>
+
 <h2 id="二叉树算法题"><a href="#二叉树算法题" class="headerlink" title="二叉树算法题"></a>二叉树算法题</h2><ul>
 <li>  计算路径</li>
 </ul>
@@ -343,7 +406,7 @@
     mirror(node.left)
     mirror(node.right)
   &#125;
-  mirror(root）
+  mirror(root)
   <span class="hljs-keyword">return</span> root
 &#125;
 
@@ -610,9 +673,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/topK/">
+                      <a href="/2022/02/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">topK问题</span>
+                        <span class="hidden-mobile">面向对象</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -620,8 +683,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/node%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                        <span class="hidden-mobile">node相关知识点</span>
+                      <a href="/2022/02/24/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+                        <span class="hidden-mobile">vue组件之间通信方式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
