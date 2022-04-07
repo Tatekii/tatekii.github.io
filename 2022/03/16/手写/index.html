@@ -26,10 +26,10 @@
 <meta property="og:description" content="事件中心 EventCenterclass EventCenter &amp;#123; 	constructor() &amp;#123; 		this.events &#x3D; new Map(); 	&amp;#125; 	register(event, isOnce, fn, ...args1) &amp;#123; 		const curEvent &#x3D; this.events.has(event) ? this.events.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-16T06:45:33.172Z">
-<meta property="article:modified_time" content="2022-03-31T10:59:17.970Z">
+<meta property="article:modified_time" content="2022-04-07T07:06:11.898Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="面试">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.9k 字
+      9.7k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      83 分钟
+      82 分钟
     </span>
   
 
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月31日 晚上
+                  本文最后更新于：2022年4月7日 下午
                 
               </p>
             
@@ -636,50 +636,37 @@ LRU.prototype.add = <span class="hljs-function"><span class="hljs-keyword">funct
 	&#125;
 &#125;;</code></pre></div>
 
-<h2 id="co-函数-自执行-generator-函数"><a href="#co-函数-自执行-generator-函数" class="headerlink" title="co 函数 自执行 generator 函数"></a>co 函数 自执行 generator 函数</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">co</span>(<span class="hljs-params">generatorFunc</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
-		<span class="hljs-comment">// 生成器</span>
-		<span class="hljs-keyword">const</span> gen = generatorFunc();
+<h2 id="co-自执行generator函数"><a href="#co-自执行generator函数" class="headerlink" title="co 自执行generator函数"></a>co 自执行generator函数</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">co</span>(<span class="hljs-params">generator</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> gen = generator()
+	<span class="hljs-keyword">let</span> ret
+	<span class="hljs-keyword">try</span>&#123;
+		ret = gen.next()
+	&#125;<span class="hljs-keyword">catch</span>(e)&#123;
+		ret = gen.throw(e)
+	&#125;
+	<span class="hljs-keyword">return</span> step(ret)
 
-		<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step</span>(<span class="hljs-params">fn</span>) </span>&#123;
-			<span class="hljs-keyword">let</span> res = <span class="hljs-literal">null</span>;
-			<span class="hljs-keyword">try</span> &#123;
-				res = fn.next();
-			&#125; <span class="hljs-keyword">catch</span> (e) &#123;
-				reject(e);
-			&#125;
-			<span class="hljs-keyword">if</span> (res.done) &#123;
-				<span class="hljs-keyword">return</span> resolve(res.value);
-			&#125;
-			<span class="hljs-built_in">Promise</span>.resolve(res.value).then(
-				(v) =&gt; &#123;
-					step(<span class="hljs-function">() =&gt;</span> gen.next(v));
-				&#125;,
-				(r) =&gt; &#123;
-					step(<span class="hljs-function">() =&gt;</span> gen.throw(r));
-				&#125;
-			);
+	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">step</span>(<span class="hljs-params">res</span>)</span>&#123;
+		<span class="hljs-keyword">if</span>(res.done)&#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(res.value)
+		&#125;
+		<span class="hljs-comment">// promise化</span>
+		<span class="hljs-keyword">if</span>(!(res.value <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>))&#123;
+			res.value = <span class="hljs-built_in">Promise</span>.resolve(res.value)
 		&#125;
 
-		step(<span class="hljs-function">() =&gt;</span> gen.next());
-	&#125;);
+		<span class="hljs-keyword">return</span> res.value.then(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>step(gen.next(v)),<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>step(gen.throw(e)))
+	&#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">co</span>(<span class="hljs-params">generator</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> g = generator();
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleResult</span>(<span class="hljs-params">result</span>) </span>&#123;
-		<span class="hljs-keyword">if</span> (result.done) &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve(result.value);
-		&#125;
+<span class="hljs-comment">// test</span>
+<span class="hljs-keyword">const</span> gen1 = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"></span>)</span>&#123;
+	<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">yield</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>)
+	<span class="hljs-keyword">const</span> ret = <span class="hljs-keyword">yield</span> <span class="hljs-built_in">Promise</span>.resolve(res)
+	<span class="hljs-keyword">return</span> ret
+&#125;
 
-		<span class="hljs-keyword">if</span> (!(result.value <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>)) &#123;
-			result.value = <span class="hljs-built_in">Promise</span>.resolve(result.value);
-		&#125;
-
-		<span class="hljs-keyword">return</span> result.value.then(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> handleResult(data));
-	&#125;
-	<span class="hljs-keyword">return</span> handleResult(g.next());
-&#125;</code></pre></div>
+co(g1).then(<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(v)); <span class="hljs-comment">// 1</span></code></pre></div>
 
             </div>
             <hr>
@@ -690,9 +677,9 @@ LRU.prototype.add = <span class="hljs-function"><span class="hljs-keyword">funct
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                     
                   </div>
                 

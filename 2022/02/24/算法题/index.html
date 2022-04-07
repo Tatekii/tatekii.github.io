@@ -26,10 +26,10 @@
 <meta property="og:description" content="两数之合   function twoSum(arr, target) &amp;#123; 	let res &#x3D; []; 	let map &#x3D; new Map(); 	&#x2F;&#x2F; 使用数值-&gt;索引建立map 	&#x2F;&#x2F; 每次循环计算得出当前差值 	&#x2F;&#x2F; 在map中查找这个差值既能得出索引 	for (let i &#x3D; 0; i &lt; arr.length; i++) &amp;#123; 		let k &#x3D; t">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-18T07:56:17.309Z">
+<meta property="article:modified_time" content="2022-04-01T07:25:32.799Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="面试">
+<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      18k 字
+      17k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      148 分钟
+      142 分钟
     </span>
   
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月18日 下午
+                  本文最后更新于：2022年4月1日 下午
                 
               </p>
             
@@ -756,39 +756,6 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 &#125;</code></pre></div>
 
 <ul>
-<li>  实现前缀树 prefixTree</li>
-</ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrefixTree</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-built_in">this</span>.tree = &#123;&#125;;
-&#125;
-PrefixTree.prototype.insert = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
-	<span class="hljs-comment">// 依次将单词的每个字母向tree对象中递归添加属性</span>
-	<span class="hljs-comment">// msy= &gt;</span>
-	<span class="hljs-comment">// &#123;m:&#123;s:&#123;y:&#123;isEnd:true&#125;&#125;&#125;&#125;</span>
-	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
-		<span class="hljs-keyword">if</span> (!node[n]) node[n] = &#123;&#125;;
-		node = node[n];
-	&#125;
-	node.isEnd = <span class="hljs-literal">true</span>;
-&#125;;
-PrefixTree.prototype.loop = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
-	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
-		<span class="hljs-keyword">if</span> (!node[n]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-		node = node[n];
-	&#125;
-	<span class="hljs-keyword">return</span> node;
-&#125;;
-PrefixTree.prototype.search = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> ret = <span class="hljs-built_in">this</span>.loop(word);
-	<span class="hljs-keyword">return</span> ret !== <span class="hljs-literal">undefined</span> &amp;&amp; ret.isEnd === <span class="hljs-literal">true</span>;
-&#125;;
-PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prefix</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.loop(prefix);
-&#125;;</code></pre></div>
-
-<ul>
 <li>青蛙跳台阶/斐波那契数列<blockquote>
 <p>注意别搞混了，fibonacci 数列排列是固定的<br>fib 数列 [0,1,1,2,3]<br>青蛙跳法 [1,1,2,3,5]</p>
 </blockquote>
@@ -1226,9 +1193,9 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
@@ -1247,9 +1214,9 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                      <a href="/2022/02/24/%E6%95%B0%E7%BB%84/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">浏览器缓存策略</span>
+                        <span class="hidden-mobile">数组</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1257,8 +1224,8 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/">
-                        <span class="hidden-mobile">网络分层模型</span>
+                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                        <span class="hidden-mobile">浏览器缓存策略</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

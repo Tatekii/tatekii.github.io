@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端工程化">
+<meta property="og:url" content="http://yoursite.com/2022/04/06/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; pa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-06T02:55:18.377Z">
+<meta property="article:modified_time" content="2022-04-07T09:52:18.992Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="工程化">
+<meta property="article:tag" content="cli">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>前端工程化 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端工程化">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-06 10:55" pubdate>
+        2022年4月6日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      73 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端工程化</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年4月7日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="工程化流程"><a href="#工程化流程" class="headerlink" title="工程化流程"></a>工程化流程</h1><pre><code class=" mermaid">graph LR
+A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)
+
+
+脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD</code></pre>
+
+<h1 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h1><h2 id="脚手架结构"><a href="#脚手架结构" class="headerlink" title="脚手架结构"></a>脚手架结构</h2><ul>
+<li>制定 cli 入口文件  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// package.json</span>
+&#123;
+  <span class="hljs-string">&#x27;bin&#x27;</span>:<span class="hljs-string">&#x27;cli.js&#x27;</span>
+&#125;</code></pre></div></li>
+<li>cli 入口文件头部  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./cli.js</span>
+<span class="hljs-meta">#!/usr/bin/env node</span></code></pre></div></li>
+<li>命令结构  <div class="hljs code-wrapper"><pre><code class="hljs javascript">cli &lt;command&gt;  [options]  --options params
+&lt;!-- <span class="hljs-comment">// eg: --&gt;</span>
+vue create my_app -p env=...</code></pre></div></li>
+</ul>
+<h2 id="npm-包本地开发"><a href="#npm-包本地开发" class="headerlink" title="npm 包本地开发"></a>npm 包本地开发</h2><ul>
+<li><p>链接本地 npm 包的依赖库</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// xxx-lib dir</span>
+npm link
+<span class="hljs-comment">// current module package.json</span>
+dependencies:&#123;
++    <span class="hljs-string">&quot;xxx-lib&quot;</span>:<span class="hljs-string">&quot;^1.0.0&quot;</span>
+&#125;
+<span class="hljs-comment">// current module dir</span>
+npm link xx-lib</code></pre></div></li>
+<li><p>解除本地 xxx-lib 和当前包的链接</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// xxx-lib dir</span>
+npm unlink
+<span class="hljs-comment">// current module dir</span>
+rm -rf node_modules
+npm unlink xxx-lib</code></pre></div></li>
+<li><p>链接当前项目到全局<code>node_modules</code></p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm link/unlink</code></pre></div></li>
+<li><p>相对于当前<code>node_modules</code>操作</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm link B <span class="hljs-comment">// 添加依赖B</span>
+npm unlink B <span class="hljs-comment">//  移除依赖B</span></code></pre></div></li>
+</ul>
+<h2 id="Lerna"><a href="#Lerna" class="headerlink" title="Lerna"></a>Lerna</h2><p>基于 Git+Npm 的多 package 项目管理工具</p>
+<ol>
+<li><p>解决原生脚手架开发中的重复操作</p>
+<ul>
+<li>多 package 本地 link</li>
+<li>多 package 依赖安装</li>
+<li>多 package 单元测试</li>
+<li>多 package 代码提交</li>
+<li>多 package 代码发布</li>
+</ul>
+</li>
+<li><p>解决版本一致性</p>
+<ul>
+<li>package 版本一致</li>
+<li>相互依赖版本升级</li>
+</ul>
+</li>
+</ol>
+<h3 id="lerna-开发-module-流程"><a href="#lerna-开发-module-流程" class="headerlink" title="lerna 开发 module 流程"></a>lerna 开发 module 流程</h3><ol>
+<li><p>项目创建</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm init
+npm i lerna
+lerna init</code></pre></div></li>
+<li><p>创建 package</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript">lerna create <span class="hljs-comment">// 创建package</span>
+lerna add <span class="hljs-comment">//安装依赖</span>
+lerna <span class="hljs-comment">//链接依赖</span></code></pre></div></li>
+<li><p>开发测试</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript">lerna exec <span class="hljs-comment">// 执行shell脚本</span>
+lerna run
+lerna clean <span class="hljs-comment">// 清空依赖</span>
+lerna bootstrap <span class="hljs-comment">// 重装依赖</span></code></pre></div></li>
+<li><p>发布上线</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript">lerna version <span class="hljs-comment">// 提升版本号</span>
+lerna change <span class="hljs-comment">//  查看变更</span>
+lerna diff <span class="hljs-comment">// 查看diff</span>
+lerna public <span class="hljs-comment">// 发布</span></code></pre></div></li>
+</ol>
+<h2 id="Yeoman"><a href="#Yeoman" class="headerlink" title="Yeoman"></a>Yeoman</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>  命名规范<code>generator-&lt;name&gt;</code></li>
+<li>  目录规范</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs node">-generators -
+	app - &#x2F;&#x2F; 默认生成器
+	index.js - &#x2F;&#x2F; 默认实现
+	other - &#x2F;&#x2F; 其他生成器
+	index.js - &#x2F;&#x2F; 其他生成器实现
+	package.json; &#x2F;&#x2F; 模块包配置文件</code></pre></div>
+
+<ul>
+<li>  新建包文件夹</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./generator-xxx</span>
+
+yarn init
+yarn add yeoman-generator <span class="hljs-comment">// 必要依赖</span></code></pre></div>
+
+<ul>
+<li>  所有生成器都继承<code>yeoman-generator</code>类</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./app/index.js</span>
+<span class="hljs-keyword">const</span> Generator = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;yeoman-generator&quot;</span>);</code></pre></div>
+
+<h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./app/index.js</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Generator</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-title">writing</span>(<span class="hljs-params"></span>)</span> &#123;
+		<span class="hljs-comment">// 写入文件</span>
+		<span class="hljs-built_in">this</span>.fs.write(<span class="hljs-built_in">this</span>.destinationPath(<span class="hljs-string">&quot;random.txt&quot;</span>), <span class="hljs-built_in">Math</span>.random().toString());
+	&#125;
+&#125;;</code></pre></div>
+
+<ul>
+<li>  <code>link</code>出<code>npm</code>包并测试</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs bash">yarn link
+
+<span class="hljs-built_in">cd</span> desktop
+
+yo &lt;你的generator名&gt;
+
+<span class="hljs-comment"># desktop/random.txt</span>
+<span class="hljs-comment"># 随机数</span></code></pre></div>
+
+<h3 id="接收用户输入"><a href="#接收用户输入" class="headerlink" title="接收用户输入"></a>接收用户输入</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">prompting</span>(<span class="hljs-params"></span>)</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.prompt([
+		&#123;
+			type: <span class="hljs-string">&quot;input&quot;</span>,
+			name: <span class="hljs-string">&quot;name&quot;</span>,
+			message: <span class="hljs-string">&quot;your project name&quot;</span>,
+			<span class="hljs-keyword">default</span>: <span class="hljs-built_in">this</span>.appname,
+		&#125;,
+	]).then(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> &#123;
+		<span class="hljs-built_in">this</span>.answers = a
+    <span class="hljs-comment">// 挂在到全局对象answers</span>
+    <span class="hljs-comment">// &#123; name: &#x27;123&#x27; &#125;</span>
+	&#125;);
+&#125;</code></pre></div>
+
+<h3 id="使用模版"><a href="#使用模版" class="headerlink" title="使用模版"></a>使用模版</h3><p><a target="_blank" rel="noopener" href="https://ejs.co/#docs">EJS 语法</a></p>
+<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- app/templates/bar.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&lt;%=name %&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// app/index.js</span>
+<span class="hljs-comment">// 模版文件路径</span>
+<span class="hljs-keyword">const</span> tmpl = <span class="hljs-built_in">this</span>.templatePath(<span class="hljs-string">&quot;bar.html&quot;</span>);
+<span class="hljs-keyword">const</span> output = <span class="hljs-built_in">this</span>.destinationPath(<span class="hljs-string">&quot;bar.html&quot;</span>);
+<span class="hljs-keyword">const</span> context = <span class="hljs-built_in">this</span>.answers;
+<span class="hljs-built_in">this</span>.fs.copyTpl(tmpl, output, context);</code></pre></div>
+
+<p>生成</p>
+<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></div>
+
+<h2 id="Plop"><a href="#Plop" class="headerlink" title="Plop"></a>Plop</h2><p>小型的脚手架工具,<a target="_blank" rel="noopener" href="https://github.com/plopjs/plop">=&gt;</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li><p>项目中安装 plop</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs bash">yarn add plop</code></pre></div></li>
+<li><p><code>plopfile.js</code></p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">plop</span> =&gt;</span> &#123;
+  plop.setGenerator(<span class="hljs-string">&#x27;component&#x27;</span>,&#123;
+    description:<span class="hljs-string">&#x27;create a component&#x27;</span>,
+    prompts:[
+      &#123;
+        type:<span class="hljs-string">&#x27;input&#x27;</span>,
+        name:<span class="hljs-string">&#x27;name&#x27;</span>,
+        message:<span class="hljs-string">&#x27;your component name&#x27;</span>,
+        <span class="hljs-keyword">default</span>:<span class="hljs-string">&#x27;My Component&#x27;</span>
+      &#125;
+    ],
+    actions:[ <span class="hljs-comment">// 多个action</span>
+      &#123;
+        type:<span class="hljs-string">&#x27;add&#x27;</span><span class="hljs-comment">// 添加文件</span>
+        path:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.js&#x27;</span>,
+        templateFile:<span class="hljs-string">&#x27;plop-templates/component.hbs&#x27;</span>
+      &#125;,
+      &#123;
+        type:<span class="hljs-string">&#x27;add&#x27;</span>,
+        path:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.css&#x27;</span>,
+        templateFile:<span class="hljs-string">&#x27;plop-template/component.css.hbs&#x27;</span>
+      &#125;
+    ]
+  &#125;)
+&#125;</code></pre></div></li>
+<li><p>模版文件<br> <a target="_blank" rel="noopener" href="https://github.com/handlebars-lang/handlebars.js">handlebars</a></p>
+<div class="hljs code-wrapper"><pre><code class="hljs"> <pre><code class="hljs javascript"><span class="hljs-comment">// plop-templates/components.hbs</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; &#123;
+  &lt;div className=<span class="hljs-string">&quot;&#123;&#123;name&#125;&#125;&quot;</span>&gt;
+    &lt;h1&gt;&#123;&#123;name&#125;&#125; Component&lt;/h1&gt;
+  &lt;/div&gt;
+&#125;</code></pre></div>
+</code></pre>
+</li>
+<li><p>usage</p>
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn plop component</code></pre></div></li>
+</ol>
+<h1 id="自动化构建"><a href="#自动化构建" class="headerlink" title="自动化构建"></a>自动化构建</h1><h3 id="npm-script"><a href="#npm-script" class="headerlink" title="npm script"></a>npm script</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-string">&quot;script&quot;</span>:&#123;
+  <span class="hljs-string">&quot;build&quot;</span>:<span class="hljs-string">&quot;sass main.sass main.css -watch&quot;</span>,
+  <span class="hljs-string">&quot;preserve&quot;</span>:<span class="hljs-string">&quot;yarn build&quot;</span>,
+  <span class="hljs-string">&quot;serve&quot;</span>:<span class="hljs-string">&quot;browser-sync .&quot;</span>, <span class="hljs-comment">//  browser-sync</span>
+  <span class="hljs-string">&quot;start&quot;</span>:<span class="hljs-string">&quot;run-p build serve&quot;</span> <span class="hljs-comment">// npm-run-all</span>
+&#125;</code></pre></div>
+
+<h2 id="Grunt-过气回个春"><a href="#Grunt-过气回个春" class="headerlink" title="Grunt(过气回个春)"></a>Grunt(过气回个春)</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// __dir/gruntfile.js</span>
+modules.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+	grunt.registerTask(<span class="hljs-string">&quot;default&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">//  使用yarn grunt就能执行</span>
+	&#125;);
+	grunt.registerTask(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;foo 的描述&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">// 使用yarn grunt foo执行</span>
+	&#125;);
+	grunt.registerTask(<span class="hljs-string">&quot;default&quot;</span>, [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>]);
+&#125;;</code></pre></div>
+
+<h3 id="异步-task"><a href="#异步-task" class="headerlink" title="异步 task"></a>异步 task</h3><p>grunt task 默认是同步代码</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+	<span class="hljs-comment">// 异步任务要获取this,不能用=&gt;函数</span>
+	grunt.registerTask(<span class="hljs-string">&quot;async-task&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">const</span> done = <span class="hljs-built_in">this</span>.async();
+		<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+			<span class="hljs-comment">// ...</span>
+			done(); <span class="hljs-comment">// 调用这个done才结束task</span>
+		&#125;, <span class="hljs-number">3000</span>);
+	&#125;);
+&#125;;</code></pre></div>
+
+<h3 id="task-失败"><a href="#task-失败" class="headerlink" title="task 失败"></a>task 失败</h3><ul>
+<li>在 task 中<code>return false</code>标记 task 失败  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.registerTask(<span class="hljs-string">&quot;fail-task&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-comment">//...</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;);</code></pre></div></li>
+<li>在异步 task 中给 done 传 false 参数  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.registerTask(<span class="hljs-string">&quot;fail-async-task&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-keyword">const</span> done = <span class="hljs-built_in">this</span>.async();
+	<span class="hljs-comment">//...</span>
+	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">//...</span>
+		done(<span class="hljs-literal">false</span>);
+	&#125;, <span class="hljs-number">3000</span>);
+&#125;);</code></pre></div></li>
+<li>  如果是一个 task 数组，会在失败处中断</li>
+<li>  可以加上<code>--force</code>强行执行所有 task</li>
+</ul>
+<h3 id="task-配置"><a href="#task-配置" class="headerlink" title="task 配置"></a>task 配置</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+	grunt.initConfig(&#123;
+		foo: &#123;
+			bar: <span class="hljs-string">&quot;666&quot;</span>,
+		&#125;,
+	&#125;);
+
+	grunt.registerTask(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">// 获取配置</span>
+		<span class="hljs-built_in">console</span>.log(grunt.config()); <span class="hljs-comment">// &#123; foo: &#123; bar: &#x27;666&#x27; &#125; &#125;</span>
+		<span class="hljs-built_in">console</span>.log(grunt.config(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// &#123; bar: &#x27;666&#x27; &#125;</span>
+		<span class="hljs-built_in">console</span>.log(grunt.config(<span class="hljs-string">&quot;foo.bar&quot;</span>)); <span class="hljs-comment">// 666</span>
+	&#125;);
+&#125;;</code></pre></div>
+
+<h3 id="多目标任务"><a href="#多目标任务" class="headerlink" title="多目标任务"></a>多目标任务</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.initConfig(&#123;
+	<span class="hljs-string">&quot;multi-task1&quot;</span>: &#123;
+		options: &#123;
+			<span class="hljs-comment">// 任务配置选项</span>
+			foo: <span class="hljs-string">&quot;bar&quot;</span>,
+		&#125;,
+		<span class="hljs-comment">// 除了options外都会注册为目标</span>
+		t1: <span class="hljs-string">&quot;1&quot;</span>,
+		t2: &#123;
+			options: &#123;
+				foo: <span class="hljs-string">&quot;baz&quot;</span>,
+			&#125;,
+			name: <span class="hljs-string">&quot;target222&quot;</span>,
+		&#125;,
+	&#125;,
+&#125;);
+grunt.registerMultiTask(<span class="hljs-string">&quot;multi-task1&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.options(), <span class="hljs-built_in">this</span>.data.options ? <span class="hljs-string">&quot;options被覆盖&quot;</span> : <span class="hljs-string">&quot;无覆盖的options&quot;</span>);
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`target=&gt;<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.target&#125;</span>;data=&gt;<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.data.name&#125;</span>`</span>);
+	<span class="hljs-comment">// Running &quot;multi:t1&quot; (multi) task</span>
+	<span class="hljs-comment">// &#123; foo: &#x27;bar&#x27; &#125; 无覆盖的options</span>
+	<span class="hljs-comment">// target=&gt;t1;data=&gt;undefined</span>
+
+	<span class="hljs-comment">// Running &quot;multi:t2&quot; (multi) task</span>
+	<span class="hljs-comment">// &#123; foo: &#x27;baz&#x27; &#125; options被覆盖</span>
+	<span class="hljs-comment">// target=&gt;t2;data=&gt;target222</span>
+&#125;);</code></pre></div>
+
+<ul>
+<li>  只执行单个目标</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn gulp multi-task1:[目标名]</code></pre></div>
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p><a target="_blank" rel="noopener" href="https://www.gruntjs.net/plugins">https://www.gruntjs.net/plugins</a><br>命名规范:<code>grunt-contrib-[pluginName]</code></p>
+<ul>
+<li><p>grunt-contrib-clean</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 是一个多目标任务</span>
+grunt.initConfig(&#123;
+	<span class="hljs-comment">// 配置插件</span>
+	clean: &#123;
+		cleanTestDirText: <span class="hljs-string">&quot;test/*.txt&quot;</span>, <span class="hljs-comment">// 删除./test/*.txt</span>
+		cleanTestAllDir: <span class="hljs-string">&quot;testAll/*&quot;</span>, <span class="hljs-comment">//  删除./testAll/*</span>
+	&#125;,
+&#125;);
+<span class="hljs-comment">// 加载插件</span>
+grunt.loadNpmTasks(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
+<li><p>grunt-sass</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.initConfig(&#123;
+	<span class="hljs-comment">// 配置插件</span>
+	sass: &#123;
+		options: &#123;
+			sourceMap: <span class="hljs-literal">true</span>,
+			implementation: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sass&quot;</span>),
+		&#125;,
+		main: &#123;
+			<span class="hljs-comment">// &lt;!-- output input --&gt;</span>
+			<span class="hljs-string">&quot;dist/style/main.css&quot;</span>: <span class="hljs-string">&quot;src/style/main.scss&quot;</span>,
+		&#125;,
+	&#125;,
+&#125;);
+<span class="hljs-comment">// 加载插件</span>
+grunt.loadNpmTasks(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
+<li><p>grunt-babel</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 使用merge方法添加配置，直接重写会覆盖</span>
+grunt.config.merge(&#123;
+	<span class="hljs-comment">// 配置插件</span>
+	babel: &#123;
+		options: &#123;
+			presets: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>],
+			sourceMap: <span class="hljs-literal">true</span>,
+		&#125;,
+		main: &#123;
+			files: &#123;
+				<span class="hljs-string">&quot;dist/js/app.js&quot;</span>: <span class="hljs-string">&quot;src/js/app.js&quot;</span>,
+			&#125;,
+			<span class="hljs-comment">// &lt;!-- output input --&gt;</span>
+		&#125;,
+	&#125;,
+&#125;);
+<span class="hljs-comment">// grunt.loadNpmTasks(&#x27;grunt-contrib-clean&#x27;)</span>
+<span class="hljs-comment">// grunt.loadNpmTasks(&#x27;grunt-sass&#x27;)</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>)(grunt, &#123;
+	pattern: <span class="hljs-string">&quot;grunt-babel&quot;</span>, <span class="hljs-comment">// 只匹配了babel</span>
+&#125;);</code></pre></div></li>
+</ul>
+<h4 id="load-grunt-tasks"><a href="#load-grunt-tasks" class="headerlink" title="load-grunt-tasks"></a>load-grunt-tasks</h4><p>This module will read the dependencies/devDependencies/peerDependencies/optionalDependencies in your package.json and load grunt tasks that match the provided patterns.</p>
+<ul>
+<li>  使用</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 上面的grunt-sass可以改为</span>
+<span class="hljs-keyword">const</span> load = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>);
+load(grunt); <span class="hljs-comment">// 加载dependencies/devDependencies/peerDependencies/optionalDependencies中所有tasks</span>
+load();</code></pre></div>
+
+<ul>
+<li>  选项</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>)(grunt, &#123;
+	pattern: <span class="hljs-string">&quot;grunt-contrib-*&quot;</span>, <span class="hljs-comment">//  正则</span>
+	config: <span class="hljs-string">&quot;../package.json&quot;</span>,
+	scope: <span class="hljs-string">&quot;devDependencies&quot;</span>, <span class="hljs-comment">// load范围</span>
+	requireResolution: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 在全部文件中查找而不仅是 node_modules</span>
+&#125;);</code></pre></div>
+
+<h2 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h2><p>基于流的构建工具</p>
+<p>默认任务都是异步的，需要手动调用结束任务</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// gulpfile.js</span>
+<span class="hljs-built_in">exports</span>.foo = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+		done();
+	&#125;, <span class="hljs-number">2000</span>);
+&#125;;
+
+<span class="hljs-comment">// 默认任务，yarn gulp就行</span>
+<span class="hljs-built_in">exports</span>.default = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+	<span class="hljs-comment">//...</span>
+	done();
+&#125;;
+
+<span class="hljs-comment">// 标记失败</span>
+<span class="hljs-built_in">exports</span>.failTask = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+	done(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
+&#125;;</code></pre></div>
+
+<h3 id="串行任务"><a href="#串行任务" class="headerlink" title="串行任务"></a>串行任务</h3><p>按顺序执行，阻塞</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; series &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp&quot;</span>);
+<span class="hljs-built_in">exports</span>.s1 = series(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
+
+<h3 id="并行任务"><a href="#并行任务" class="headerlink" title="并行任务"></a>并行任务</h3><p>同时执行</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; parallel &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp&quot;</span>);
+<span class="hljs-built_in">exports</span>.p1 = series(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
+
+<h3 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h3><ul>
+<li><p>promise</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 支持promise</span>
+<span class="hljs-built_in">exports</span>.p1 = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve();
+&#125;;
+<span class="hljs-built_in">exports</span>.p1Fail = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
+&#125;;</code></pre></div></li>
+<li><p>async/await</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 支持async await</span>
+<span class="hljs-keyword">const</span> timeout = <span class="hljs-function">(<span class="hljs-params">wait</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, wait));
+<span class="hljs-built_in">exports</span>.a1 = <span class="hljs-keyword">async</span> () =&gt; &#123;
+	<span class="hljs-keyword">await</span> timeout(<span class="hljs-number">3000</span>);
+&#125;;</code></pre></div></li>
+<li><p>stream</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">exports</span>.s1 = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">const</span> readStream = fs.createReadStream(<span class="hljs-string">&quot;src/source.txt&quot;</span>);
+	<span class="hljs-keyword">const</span> writeStream = fs.createWriteStream(<span class="hljs-string">&quot;dist/dist.txt&quot;</span>);
+	readStream.pipe(writeStream);
+	<span class="hljs-keyword">return</span> readStream;
+&#125;;</code></pre></div>
+<h3 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h3></li>
+</ul>
+<pre><code class=" mermaid">graph LR
+A[读取流] --&gt; B[转换流] --&gt; c[写入流]</code></pre>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123;src,dest&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp&#x27;</span>)
+<span class="hljs-keyword">const</span> cleanCss = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-clean-css&#x27;</span>)
+<span class="hljs-keyword">const</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-rename&#x27;</span>)
+
+<span class="hljs-built_in">exports</span>.sample = <span class="hljs-function">() =&gt;</span> &#123;
+  src(<span class="hljs-string">&#x27;src/style/*.css&#x27;</span>) <span class="hljs-comment">// 读取</span>
+    .pipe(cleanCss())                    <span class="hljs-comment">//转换</span>
+    .pipe(rename(&#123;<span class="hljs-attr">extname</span>:<span class="hljs-string">&#x27;.min.css&#x27;</span>&#125;))  <span class="hljs-comment">//转换</span>
+    .pipe(dest(<span class="hljs-string">&#x27;dist/css&#x27;</span>)) <span class="hljs-comment">//  写入</span>
+&#125;</code></pre></div>
+
+<h3 id="自动化构建例子"><a href="#自动化构建例子" class="headerlink" title="自动化构建例子"></a>自动化构建例子</h3><ul>
+<li>插件命名规范<div class="hljs code-wrapper"><pre><code class="hljs javascript">gulp-[name]</code></pre></div></li>
+<li>自动加载插件<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> loadPlugins = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-load-plugins&#x27;</span>)
+<span class="hljs-comment">// 使用时使用驼峰名</span>
+<span class="hljs-keyword">const</span> plugins = loadPlugins()  <span class="hljs-comment">// &#123;...plugins&#125;</span></code></pre></div>
+<a target="_blank" rel="noopener" href="https://github.com/Tatekii/zce-gulp-demo">zce-gulp-demo</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">工程化</a>
+                    
+                      <a class="hover-with-bg" href="/tags/cli/">cli</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/31/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="hidden-mobile">javascript性能优化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

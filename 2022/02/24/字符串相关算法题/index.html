@@ -18,18 +18,18 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="寻找最长公公前缀  &#x2F;&#x2F; 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] &#x2F;&#x2F; 输出: &quot;fl&quot;  function commonPrefix(...str) &amp;#123; 	if (!str.length || str.length &#x3D;&#x3D;&#x3D; 0) return &quot;&quot;; 	let">
+    <meta name="description" content="最长公公前缀  &#x2F;&#x2F; 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] &#x2F;&#x2F; 输出: &quot;fl&quot;  var longestCommonPrefix &#x3D; function(strs) &amp;#123; 	if (!strs.length || strs.length &#x3D;&#x3D;&#x3D; 0) return &quot;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作字符串算法题">
 <meta property="og:url" content="http://yoursite.com/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="寻找最长公公前缀  &#x2F;&#x2F; 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] &#x2F;&#x2F; 输出: &quot;fl&quot;  function commonPrefix(...str) &amp;#123; 	if (!str.length || str.length &#x3D;&#x3D;&#x3D; 0) return &quot;&quot;; 	let">
+<meta property="og:description" content="最长公公前缀  &#x2F;&#x2F; 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] &#x2F;&#x2F; 输出: &quot;fl&quot;  var longestCommonPrefix &#x3D; function(strs) &amp;#123; 	if (!strs.length || strs.length &#x3D;&#x3D;&#x3D; 0) return &quot;&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-01T10:36:25.241Z">
+<meta property="article:modified_time" content="2022-04-01T08:34:43.494Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="面试">
+<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.4k 字
+      6.7k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      45 分钟
+      56 分钟
     </span>
   
 
@@ -239,29 +239,29 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月1日 晚上
+                  本文最后更新于：2022年4月1日 下午
                 
               </p>
             
             <div class="markdown-body">
               <ul>
-<li>  寻找最长公公前缀</li>
+<li>  <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-prefix/">最长公公前缀</a></li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span>
 <span class="hljs-comment">// 输出: &quot;fl&quot;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">commonPrefix</span>(<span class="hljs-params">...str</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (!str.length || str.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
-	<span class="hljs-keyword">let</span> ref = str[<span class="hljs-number">0</span>];
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; str.length; i++) &#123;
-		<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>;
-		<span class="hljs-keyword">for</span> (; j &lt; ref.length &amp;&amp; j &lt; str[i].length; j++) &#123;
-			<span class="hljs-keyword">if</span> (ref.chartAt(j) !== str[i].chartAt(j)) <span class="hljs-keyword">break</span>;
+<span class="hljs-keyword">var</span> longestCommonPrefix = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">strs</span>) </span>&#123;
+	<span class="hljs-keyword">if</span> (!strs.length || strs.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+	<span class="hljs-keyword">let</span> prefix = strs[<span class="hljs-number">0</span>]; <span class="hljs-comment">//  第一个字符串作为参考</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; strs.length; i++) &#123; <span class="hljs-comment">// 后续和他比较</span>
+		<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; <span class="hljs-comment">// 从0索引开始，判断公共部分则j++</span>
+		<span class="hljs-keyword">for</span> (; j &lt; prefix.length &amp;&amp; j &lt; strs[i].length; j++) &#123;
+            <span class="hljs-keyword">if</span>(prefix[j]!==strs[i][j]) <span class="hljs-keyword">break</span>
 		&#125;
-		ref = ref.subString(<span class="hljs-number">0</span>, j);
+		prefix = prefix.substr(<span class="hljs-number">0</span>, j); <span class="hljs-comment">// 和strs[i]比较完后重合的部分</span>
 	&#125;
-	<span class="hljs-keyword">return</span> ref;
-&#125;</code></pre></div>
+	<span class="hljs-keyword">return</span> prefix;
+&#125;;</code></pre></div>
 
 <ul>
 <li>  连字符转为驼峰</li>
@@ -566,6 +566,67 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div>
 
+<ul>
+<li>  实现前缀树 prefixTree</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrefixTree</span>(<span class="hljs-params"></span>) </span>&#123;
+	<span class="hljs-built_in">this</span>.tree = &#123;&#125;;
+&#125;
+PrefixTree.prototype.insert = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
+	<span class="hljs-comment">// 依次将单词的每个字母向tree对象中递归添加属性</span>
+	<span class="hljs-comment">// msy= &gt;</span>
+	<span class="hljs-comment">// &#123;m:&#123;s:&#123;y:&#123;isEnd:true&#125;&#125;&#125;&#125;</span>
+	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
+		<span class="hljs-keyword">if</span> (!node[n]) node[n] = &#123;&#125;;
+		node = node[n];
+	&#125;
+	node.isEnd = <span class="hljs-literal">true</span>;
+&#125;;
+PrefixTree.prototype.loop = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
+		<span class="hljs-keyword">if</span> (!node[n]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		node = node[n];
+	&#125;
+	<span class="hljs-keyword">return</span> node;
+&#125;;
+PrefixTree.prototype.search = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> ret = <span class="hljs-built_in">this</span>.loop(word);
+	<span class="hljs-keyword">return</span> ret !== <span class="hljs-literal">undefined</span> &amp;&amp; ret.isEnd === <span class="hljs-literal">true</span>;
+&#125;;
+PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prefix</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.loop(prefix);
+&#125;;</code></pre></div>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/custom-sort-string/submissions/">自定义字符串排序</a></li>
+</ul>
+<p>将s字符串中的字符按照order字符串中的前后顺序进行排序</p>
+<div class="hljs code-wrapper"><pre><code class="hljs livecodeserver">输入: order = <span class="hljs-string">&quot;cba&quot;</span>, s = <span class="hljs-string">&quot;abcd&quot;</span>
+输出: <span class="hljs-string">&quot;cbad&quot;</span>
+解释: 
+“<span class="hljs-keyword">a</span>”、“b”、“c”是按顺序出现的，所以“<span class="hljs-keyword">a</span>”、“b”、“c”的顺序应该是“c”、“b”、“<span class="hljs-keyword">a</span>”。
+因为“d”不是按顺序出现的，所以它可以在返回的字符串中的任何位置。“dcba”、“cdba”、“cbda”也是有效的输出。</code></pre></div>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> customSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">order,s</span>)</span>&#123;
+	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> str <span class="hljs-keyword">of</span> order)&#123;
+		<span class="hljs-comment">// 保证map遍历的顺序就是order的顺序</span>
+		map.set(str,<span class="hljs-number">0</span>) <span class="hljs-comment">// 首先假设这个位置的str出现了0次</span>
+	&#125;
+
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> str <span class="hljs-keyword">of</span> s)&#123;
+		map.set(map.get(str) ? map.get(str) + <span class="hljs-number">1</span> : <span class="hljs-number">0</span>) <span class="hljs-comment">// 遍历s，查找是否存在在map上</span>
+		<span class="hljs-comment">// 存在则把出现次数加1，否则会添加在末尾并设置为0</span>
+	&#125;
+  res = <span class="hljs-string">&#x27;&#x27;</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> [str,time] <span class="hljs-keyword">of</span> map)&#123;
+		<span class="hljs-comment">// 按照顺序遍历map给res添加字符</span>
+		res += str.repeat(time)
+	&#125;
+	<span class="hljs-keyword">return</span> res
+&#125;
+</code></pre></div>
+
             </div>
             <hr>
             <div>
@@ -575,9 +636,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
@@ -606,8 +667,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
-                        <span class="hidden-mobile">文件夹内批量映射为模块</span>
+                      <a href="/2022/02/24/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">
+                        <span class="hidden-mobile">web安全</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
