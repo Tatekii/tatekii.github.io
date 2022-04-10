@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; pa">
+    <meta name="description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; package.json &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端工程化">
 <meta property="og:url" content="http://yoursite.com/2022/04/06/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; pa">
+<meta property="og:description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; package.json &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-06T02:55:18.377Z">
-<meta property="article:modified_time" content="2022-04-07T09:52:18.992Z">
+<meta property="article:modified_time" content="2022-04-08T02:30:43.920Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="工程化">
@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -239,16 +239,16 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月7日 下午
+                  本文最后更新于：2022年4月8日 上午
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="工程化流程"><a href="#工程化流程" class="headerlink" title="工程化流程"></a>工程化流程</h1><pre><code class=" mermaid">graph LR
-A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)
+A(创建项目)  --&gt; B(编码) --&gt; C(开发/预览) --&gt; D(提交) --&gt; F(部署)
 
 
-脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD</code></pre>
+脚手架生成  --&gt; 代码格式化/风格校验 --&gt; 热更新/Mock数据 --&gt; GitHooks --&gt; CI/CD</code></pre>
 
 <h1 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h1><h2 id="脚手架结构"><a href="#脚手架结构" class="headerlink" title="脚手架结构"></a>脚手架结构</h2><ul>
 <li>制定 cli 入口文件  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// package.json</span>
@@ -256,7 +256,7 @@ A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) 
   <span class="hljs-string">&#x27;bin&#x27;</span>:<span class="hljs-string">&#x27;cli.js&#x27;</span>
 &#125;</code></pre></div></li>
 <li>cli 入口文件头部  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./cli.js</span>
-<span class="hljs-meta">#!/usr/bin/env node</span></code></pre></div></li>
+#!<span class="hljs-regexp">/usr/</span>bin/env node</code></pre></div></li>
 <li>命令结构  <div class="hljs code-wrapper"><pre><code class="hljs javascript">cli &lt;command&gt;  [options]  --options params
 &lt;!-- <span class="hljs-comment">// eg: --&gt;</span>
 vue create my_app -p env=...</code></pre></div></li>
@@ -266,7 +266,7 @@ vue create my_app -p env=...</code></pre></div></li>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// xxx-lib dir</span>
 npm link
 <span class="hljs-comment">// current module package.json</span>
-dependencies:&#123;
+<span class="hljs-attr">dependencies</span>:&#123;
 +    <span class="hljs-string">&quot;xxx-lib&quot;</span>:<span class="hljs-string">&quot;^1.0.0&quot;</span>
 &#125;
 <span class="hljs-comment">// current module dir</span>
@@ -326,11 +326,11 @@ lerna public <span class="hljs-comment">// 发布</span></code></pre></div></li>
 <li>  目录规范</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs node">-generators -
-	app - &#x2F;&#x2F; 默认生成器
-	index.js - &#x2F;&#x2F; 默认实现
-	other - &#x2F;&#x2F; 其他生成器
-	index.js - &#x2F;&#x2F; 其他生成器实现
-	package.json; &#x2F;&#x2F; 模块包配置文件</code></pre></div>
+	app - // 默认生成器
+	index.js - // 默认实现
+	other - // 其他生成器
+	index.js - // 其他生成器实现
+	package.json; // 模块包配置文件</code></pre></div>
 
 <ul>
 <li>  新建包文件夹</li>
@@ -344,20 +344,20 @@ yarn add yeoman-generator <span class="hljs-comment">// 必要依赖</span></cod
 <li>  所有生成器都继承<code>yeoman-generator</code>类</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./app/index.js</span>
-<span class="hljs-keyword">const</span> Generator = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;yeoman-generator&quot;</span>);</code></pre></div>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Generator</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;yeoman-generator&quot;</span>);</code></pre></div>
 
 <h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// ./app/index.js</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Generator</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-title">writing</span>(<span class="hljs-params"></span>)</span> &#123;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">class</span> <span class="hljs-title class_">extends</span> <span class="hljs-title class_">Generator</span> &#123;
+	<span class="hljs-title function_">writing</span>(<span class="hljs-params"></span>) &#123;
 		<span class="hljs-comment">// 写入文件</span>
-		<span class="hljs-built_in">this</span>.fs.write(<span class="hljs-built_in">this</span>.destinationPath(<span class="hljs-string">&quot;random.txt&quot;</span>), <span class="hljs-built_in">Math</span>.random().toString());
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">fs</span>.<span class="hljs-title function_">write</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">destinationPath</span>(<span class="hljs-string">&quot;random.txt&quot;</span>), <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>().<span class="hljs-title function_">toString</span>());
 	&#125;
 &#125;;</code></pre></div>
 
 <ul>
 <li>  <code>link</code>出<code>npm</code>包并测试</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs bash">yarn link
+<div class="hljs code-wrapper"><pre><code class="hljs bash">yarn <span class="hljs-built_in">link</span>
 
 <span class="hljs-built_in">cd</span> desktop
 
@@ -366,16 +366,16 @@ yo &lt;你的generator名&gt;
 <span class="hljs-comment"># desktop/random.txt</span>
 <span class="hljs-comment"># 随机数</span></code></pre></div>
 
-<h3 id="接收用户输入"><a href="#接收用户输入" class="headerlink" title="接收用户输入"></a>接收用户输入</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">prompting</span>(<span class="hljs-params"></span>)</span> &#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.prompt([
+<h3 id="接收用户输入"><a href="#接收用户输入" class="headerlink" title="接收用户输入"></a>接收用户输入</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">prompting</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">prompt</span>([
 		&#123;
-			type: <span class="hljs-string">&quot;input&quot;</span>,
-			name: <span class="hljs-string">&quot;name&quot;</span>,
-			message: <span class="hljs-string">&quot;your project name&quot;</span>,
-			<span class="hljs-keyword">default</span>: <span class="hljs-built_in">this</span>.appname,
+			<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;input&quot;</span>,
+			<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;name&quot;</span>,
+			<span class="hljs-attr">message</span>: <span class="hljs-string">&quot;your project name&quot;</span>,
+			<span class="hljs-attr">default</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">appname</span>,
 		&#125;,
-	]).then(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> &#123;
-		<span class="hljs-built_in">this</span>.answers = a
+	]).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">answers</span> = a
     <span class="hljs-comment">// 挂在到全局对象answers</span>
     <span class="hljs-comment">// &#123; name: &#x27;123&#x27; &#125;</span>
 	&#125;);
@@ -389,10 +389,10 @@ yo &lt;你的generator名&gt;
 
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// app/index.js</span>
 <span class="hljs-comment">// 模版文件路径</span>
-<span class="hljs-keyword">const</span> tmpl = <span class="hljs-built_in">this</span>.templatePath(<span class="hljs-string">&quot;bar.html&quot;</span>);
-<span class="hljs-keyword">const</span> output = <span class="hljs-built_in">this</span>.destinationPath(<span class="hljs-string">&quot;bar.html&quot;</span>);
-<span class="hljs-keyword">const</span> context = <span class="hljs-built_in">this</span>.answers;
-<span class="hljs-built_in">this</span>.fs.copyTpl(tmpl, output, context);</code></pre></div>
+<span class="hljs-keyword">const</span> tmpl = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">templatePath</span>(<span class="hljs-string">&quot;bar.html&quot;</span>);
+<span class="hljs-keyword">const</span> output = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">destinationPath</span>(<span class="hljs-string">&quot;bar.html&quot;</span>);
+<span class="hljs-keyword">const</span> context = <span class="hljs-variable language_">this</span>.<span class="hljs-property">answers</span>;
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">fs</span>.<span class="hljs-title function_">copyTpl</span>(tmpl, output, context);</code></pre></div>
 
 <p>生成</p>
 <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
@@ -404,38 +404,38 @@ yo &lt;你的generator名&gt;
 <li><p>项目中安装 plop</p>
  <div class="hljs code-wrapper"><pre><code class="hljs bash">yarn add plop</code></pre></div></li>
 <li><p><code>plopfile.js</code></p>
- <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">plop</span> =&gt;</span> &#123;
-  plop.setGenerator(<span class="hljs-string">&#x27;component&#x27;</span>,&#123;
-    description:<span class="hljs-string">&#x27;create a component&#x27;</span>,
-    prompts:[
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function"><span class="hljs-params">plop</span> =&gt;</span> &#123;
+  plop.<span class="hljs-title function_">setGenerator</span>(<span class="hljs-string">&#x27;component&#x27;</span>,&#123;
+    <span class="hljs-attr">description</span>:<span class="hljs-string">&#x27;create a component&#x27;</span>,
+    <span class="hljs-attr">prompts</span>:[
       &#123;
-        type:<span class="hljs-string">&#x27;input&#x27;</span>,
-        name:<span class="hljs-string">&#x27;name&#x27;</span>,
-        message:<span class="hljs-string">&#x27;your component name&#x27;</span>,
-        <span class="hljs-keyword">default</span>:<span class="hljs-string">&#x27;My Component&#x27;</span>
+        <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;input&#x27;</span>,
+        <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;name&#x27;</span>,
+        <span class="hljs-attr">message</span>:<span class="hljs-string">&#x27;your component name&#x27;</span>,
+        <span class="hljs-attr">default</span>:<span class="hljs-string">&#x27;My Component&#x27;</span>
       &#125;
     ],
-    actions:[ <span class="hljs-comment">// 多个action</span>
+    <span class="hljs-attr">actions</span>:[ <span class="hljs-comment">// 多个action</span>
       &#123;
-        type:<span class="hljs-string">&#x27;add&#x27;</span><span class="hljs-comment">// 添加文件</span>
-        path:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.js&#x27;</span>,
-        templateFile:<span class="hljs-string">&#x27;plop-templates/component.hbs&#x27;</span>
+        <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;add&#x27;</span><span class="hljs-comment">// 添加文件</span>
+        <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.js&#x27;</span>,
+        <span class="hljs-attr">templateFile</span>:<span class="hljs-string">&#x27;plop-templates/component.hbs&#x27;</span>
       &#125;,
       &#123;
-        type:<span class="hljs-string">&#x27;add&#x27;</span>,
-        path:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.css&#x27;</span>,
-        templateFile:<span class="hljs-string">&#x27;plop-template/component.css.hbs&#x27;</span>
+        <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;add&#x27;</span>,
+        <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;src/components/&#123;&#123;name&#125;&#125;/&#123;&#123;name&#125;&#125;.css&#x27;</span>,
+        <span class="hljs-attr">templateFile</span>:<span class="hljs-string">&#x27;plop-template/component.css.hbs&#x27;</span>
       &#125;
     ]
   &#125;)
 &#125;</code></pre></div></li>
 <li><p>模版文件<br> <a target="_blank" rel="noopener" href="https://github.com/handlebars-lang/handlebars.js">handlebars</a></p>
 <div class="hljs code-wrapper"><pre><code class="hljs"> <pre><code class="hljs javascript"><span class="hljs-comment">// plop-templates/components.hbs</span>
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; &#123;
-  &lt;div className=<span class="hljs-string">&quot;&#123;&#123;name&#125;&#125;&quot;</span>&gt;
-    &lt;h1&gt;&#123;&#123;name&#125;&#125; Component&lt;/h1&gt;
-  &lt;/div&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;&#123;&#123;name&#125;&#125;&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123;name&#125;&#125; Component<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &#125;</code></pre></div>
 </code></pre>
 </li>
@@ -450,78 +450,78 @@ yo &lt;你的generator名&gt;
 &#125;</code></pre></div>
 
 <h2 id="Grunt-过气回个春"><a href="#Grunt-过气回个春" class="headerlink" title="Grunt(过气回个春)"></a>Grunt(过气回个春)</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// __dir/gruntfile.js</span>
-modules.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
-	grunt.registerTask(<span class="hljs-string">&quot;default&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+modules.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+	grunt.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;default&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">//  使用yarn grunt就能执行</span>
 	&#125;);
-	grunt.registerTask(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;foo 的描述&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	grunt.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;foo 的描述&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">// 使用yarn grunt foo执行</span>
 	&#125;);
-	grunt.registerTask(<span class="hljs-string">&quot;default&quot;</span>, [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>]);
+	grunt.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;default&quot;</span>, [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>]);
 &#125;;</code></pre></div>
 
 <h3 id="异步-task"><a href="#异步-task" class="headerlink" title="异步 task"></a>异步 task</h3><p>grunt task 默认是同步代码</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
 	<span class="hljs-comment">// 异步任务要获取this,不能用=&gt;函数</span>
-	grunt.registerTask(<span class="hljs-string">&quot;async-task&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-		<span class="hljs-keyword">const</span> done = <span class="hljs-built_in">this</span>.async();
+	grunt.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;async-task&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+		<span class="hljs-keyword">const</span> done = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">async</span>();
 		<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
 			<span class="hljs-comment">// ...</span>
-			done(); <span class="hljs-comment">// 调用这个done才结束task</span>
+			<span class="hljs-title function_">done</span>(); <span class="hljs-comment">// 调用这个done才结束task</span>
 		&#125;, <span class="hljs-number">3000</span>);
 	&#125;);
 &#125;;</code></pre></div>
 
 <h3 id="task-失败"><a href="#task-失败" class="headerlink" title="task 失败"></a>task 失败</h3><ul>
-<li>在 task 中<code>return false</code>标记 task 失败  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.registerTask(<span class="hljs-string">&quot;fail-task&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+<li>在 task 中<code>return false</code>标记 task 失败  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;fail-task&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-comment">//...</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 &#125;);</code></pre></div></li>
-<li>在异步 task 中给 done 传 false 参数  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.registerTask(<span class="hljs-string">&quot;fail-async-task&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-keyword">const</span> done = <span class="hljs-built_in">this</span>.async();
+<li>在异步 task 中给 done 传 false 参数  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grup.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;fail-async-task&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">const</span> done = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">async</span>();
 	<span class="hljs-comment">//...</span>
 	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">//...</span>
-		done(<span class="hljs-literal">false</span>);
+		<span class="hljs-title function_">done</span>(<span class="hljs-literal">false</span>);
 	&#125;, <span class="hljs-number">3000</span>);
 &#125;);</code></pre></div></li>
 <li>  如果是一个 task 数组，会在失败处中断</li>
 <li>  可以加上<code>--force</code>强行执行所有 task</li>
 </ul>
-<h3 id="task-配置"><a href="#task-配置" class="headerlink" title="task 配置"></a>task 配置</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
-	grunt.initConfig(&#123;
-		foo: &#123;
-			bar: <span class="hljs-string">&quot;666&quot;</span>,
+<h3 id="task-配置"><a href="#task-配置" class="headerlink" title="task 配置"></a>task 配置</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">grunt</span>) =&gt;</span> &#123;
+	grunt.<span class="hljs-title function_">initConfig</span>(&#123;
+		<span class="hljs-attr">foo</span>: &#123;
+			<span class="hljs-attr">bar</span>: <span class="hljs-string">&quot;666&quot;</span>,
 		&#125;,
 	&#125;);
 
-	grunt.registerTask(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	grunt.<span class="hljs-title function_">registerTask</span>(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">// 获取配置</span>
-		<span class="hljs-built_in">console</span>.log(grunt.config()); <span class="hljs-comment">// &#123; foo: &#123; bar: &#x27;666&#x27; &#125; &#125;</span>
-		<span class="hljs-built_in">console</span>.log(grunt.config(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// &#123; bar: &#x27;666&#x27; &#125;</span>
-		<span class="hljs-built_in">console</span>.log(grunt.config(<span class="hljs-string">&quot;foo.bar&quot;</span>)); <span class="hljs-comment">// 666</span>
+		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(grunt.<span class="hljs-title function_">config</span>()); <span class="hljs-comment">// &#123; foo: &#123; bar: &#x27;666&#x27; &#125; &#125;</span>
+		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(grunt.<span class="hljs-title function_">config</span>(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// &#123; bar: &#x27;666&#x27; &#125;</span>
+		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(grunt.<span class="hljs-title function_">config</span>(<span class="hljs-string">&quot;foo.bar&quot;</span>)); <span class="hljs-comment">// 666</span>
 	&#125;);
 &#125;;</code></pre></div>
 
-<h3 id="多目标任务"><a href="#多目标任务" class="headerlink" title="多目标任务"></a>多目标任务</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.initConfig(&#123;
+<h3 id="多目标任务"><a href="#多目标任务" class="headerlink" title="多目标任务"></a>多目标任务</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.<span class="hljs-title function_">initConfig</span>(&#123;
 	<span class="hljs-string">&quot;multi-task1&quot;</span>: &#123;
-		options: &#123;
+		<span class="hljs-attr">options</span>: &#123;
 			<span class="hljs-comment">// 任务配置选项</span>
-			foo: <span class="hljs-string">&quot;bar&quot;</span>,
+			<span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;bar&quot;</span>,
 		&#125;,
 		<span class="hljs-comment">// 除了options外都会注册为目标</span>
-		t1: <span class="hljs-string">&quot;1&quot;</span>,
-		t2: &#123;
-			options: &#123;
-				foo: <span class="hljs-string">&quot;baz&quot;</span>,
+		<span class="hljs-attr">t1</span>: <span class="hljs-string">&quot;1&quot;</span>,
+		<span class="hljs-attr">t2</span>: &#123;
+			<span class="hljs-attr">options</span>: &#123;
+				<span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;baz&quot;</span>,
 			&#125;,
-			name: <span class="hljs-string">&quot;target222&quot;</span>,
+			<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;target222&quot;</span>,
 		&#125;,
 	&#125;,
 &#125;);
-grunt.registerMultiTask(<span class="hljs-string">&quot;multi-task1&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.options(), <span class="hljs-built_in">this</span>.data.options ? <span class="hljs-string">&quot;options被覆盖&quot;</span> : <span class="hljs-string">&quot;无覆盖的options&quot;</span>);
-	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`target=&gt;<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.target&#125;</span>;data=&gt;<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.data.name&#125;</span>`</span>);
+grunt.<span class="hljs-title function_">registerMultiTask</span>(<span class="hljs-string">&quot;multi-task1&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">options</span>(), <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">options</span> ? <span class="hljs-string">&quot;options被覆盖&quot;</span> : <span class="hljs-string">&quot;无覆盖的options&quot;</span>);
+	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`target=&gt;<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.target&#125;</span>;data=&gt;<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.data.name&#125;</span>`</span>);
 	<span class="hljs-comment">// Running &quot;multi:t1&quot; (multi) task</span>
 	<span class="hljs-comment">// &#123; foo: &#x27;bar&#x27; &#125; 无覆盖的options</span>
 	<span class="hljs-comment">// target=&gt;t1;data=&gt;undefined</span>
@@ -534,48 +534,48 @@ grunt.registerMultiTask(<span class="hljs-string">&quot;multi-task1&quot;</span>
 <ul>
 <li>  只执行单个目标</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn gulp multi-task1:[目标名]</code></pre></div>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn gulp multi-<span class="hljs-attr">task1</span>:[目标名]</code></pre></div>
 
 <h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p><a target="_blank" rel="noopener" href="https://www.gruntjs.net/plugins">https://www.gruntjs.net/plugins</a><br>命名规范:<code>grunt-contrib-[pluginName]</code></p>
 <ul>
 <li><p>grunt-contrib-clean</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 是一个多目标任务</span>
-grunt.initConfig(&#123;
+grunt.<span class="hljs-title function_">initConfig</span>(&#123;
 	<span class="hljs-comment">// 配置插件</span>
-	clean: &#123;
-		cleanTestDirText: <span class="hljs-string">&quot;test/*.txt&quot;</span>, <span class="hljs-comment">// 删除./test/*.txt</span>
-		cleanTestAllDir: <span class="hljs-string">&quot;testAll/*&quot;</span>, <span class="hljs-comment">//  删除./testAll/*</span>
+	<span class="hljs-attr">clean</span>: &#123;
+		<span class="hljs-attr">cleanTestDirText</span>: <span class="hljs-string">&quot;test/*.txt&quot;</span>, <span class="hljs-comment">// 删除./test/*.txt</span>
+		<span class="hljs-attr">cleanTestAllDir</span>: <span class="hljs-string">&quot;testAll/*&quot;</span>, <span class="hljs-comment">//  删除./testAll/*</span>
 	&#125;,
 &#125;);
 <span class="hljs-comment">// 加载插件</span>
-grunt.loadNpmTasks(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
+grunt.<span class="hljs-title function_">loadNpmTasks</span>(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
 <li><p>grunt-sass</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.initConfig(&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">grunt.<span class="hljs-title function_">initConfig</span>(&#123;
 	<span class="hljs-comment">// 配置插件</span>
-	sass: &#123;
-		options: &#123;
-			sourceMap: <span class="hljs-literal">true</span>,
-			implementation: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sass&quot;</span>),
+	<span class="hljs-attr">sass</span>: &#123;
+		<span class="hljs-attr">options</span>: &#123;
+			<span class="hljs-attr">sourceMap</span>: <span class="hljs-literal">true</span>,
+			<span class="hljs-attr">implementation</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;sass&quot;</span>),
 		&#125;,
-		main: &#123;
+		<span class="hljs-attr">main</span>: &#123;
 			<span class="hljs-comment">// &lt;!-- output input --&gt;</span>
 			<span class="hljs-string">&quot;dist/style/main.css&quot;</span>: <span class="hljs-string">&quot;src/style/main.scss&quot;</span>,
 		&#125;,
 	&#125;,
 &#125;);
 <span class="hljs-comment">// 加载插件</span>
-grunt.loadNpmTasks(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
+grunt.<span class="hljs-title function_">loadNpmTasks</span>(<span class="hljs-string">&quot;grunt-contrib-clean&quot;</span>);</code></pre></div></li>
 <li><p>grunt-babel</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 使用merge方法添加配置，直接重写会覆盖</span>
-grunt.config.merge(&#123;
+grunt.<span class="hljs-property">config</span>.<span class="hljs-title function_">merge</span>(&#123;
 	<span class="hljs-comment">// 配置插件</span>
-	babel: &#123;
-		options: &#123;
-			presets: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>],
-			sourceMap: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">babel</span>: &#123;
+		<span class="hljs-attr">options</span>: &#123;
+			<span class="hljs-attr">presets</span>: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>],
+			<span class="hljs-attr">sourceMap</span>: <span class="hljs-literal">true</span>,
 		&#125;,
-		main: &#123;
-			files: &#123;
+		<span class="hljs-attr">main</span>: &#123;
+			<span class="hljs-attr">files</span>: &#123;
 				<span class="hljs-string">&quot;dist/js/app.js&quot;</span>: <span class="hljs-string">&quot;src/js/app.js&quot;</span>,
 			&#125;,
 			<span class="hljs-comment">// &lt;!-- output input --&gt;</span>
@@ -585,7 +585,7 @@ grunt.config.merge(&#123;
 <span class="hljs-comment">// grunt.loadNpmTasks(&#x27;grunt-contrib-clean&#x27;)</span>
 <span class="hljs-comment">// grunt.loadNpmTasks(&#x27;grunt-sass&#x27;)</span>
 <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>)(grunt, &#123;
-	pattern: <span class="hljs-string">&quot;grunt-babel&quot;</span>, <span class="hljs-comment">// 只匹配了babel</span>
+	<span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;grunt-babel&quot;</span>, <span class="hljs-comment">// 只匹配了babel</span>
 &#125;);</code></pre></div></li>
 </ul>
 <h4 id="load-grunt-tasks"><a href="#load-grunt-tasks" class="headerlink" title="load-grunt-tasks"></a>load-grunt-tasks</h4><p>This module will read the dependencies/devDependencies/peerDependencies/optionalDependencies in your package.json and load grunt tasks that match the provided patterns.</p>
@@ -594,67 +594,67 @@ grunt.config.merge(&#123;
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 上面的grunt-sass可以改为</span>
 <span class="hljs-keyword">const</span> load = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>);
-load(grunt); <span class="hljs-comment">// 加载dependencies/devDependencies/peerDependencies/optionalDependencies中所有tasks</span>
-load();</code></pre></div>
+<span class="hljs-title function_">load</span>(grunt); <span class="hljs-comment">// 加载dependencies/devDependencies/peerDependencies/optionalDependencies中所有tasks</span>
+<span class="hljs-title function_">load</span>();</code></pre></div>
 
 <ul>
 <li>  选项</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;load-grunt-tasks&quot;</span>)(grunt, &#123;
-	pattern: <span class="hljs-string">&quot;grunt-contrib-*&quot;</span>, <span class="hljs-comment">//  正则</span>
-	config: <span class="hljs-string">&quot;../package.json&quot;</span>,
-	scope: <span class="hljs-string">&quot;devDependencies&quot;</span>, <span class="hljs-comment">// load范围</span>
-	requireResolution: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 在全部文件中查找而不仅是 node_modules</span>
+	<span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;grunt-contrib-*&quot;</span>, <span class="hljs-comment">//  正则</span>
+	<span class="hljs-attr">config</span>: <span class="hljs-string">&quot;../package.json&quot;</span>,
+	<span class="hljs-attr">scope</span>: <span class="hljs-string">&quot;devDependencies&quot;</span>, <span class="hljs-comment">// load范围</span>
+	<span class="hljs-attr">requireResolution</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 在全部文件中查找而不仅是 node_modules</span>
 &#125;);</code></pre></div>
 
 <h2 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h2><p>基于流的构建工具</p>
 <p>默认任务都是异步的，需要手动调用结束任务</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// gulpfile.js</span>
-<span class="hljs-built_in">exports</span>.foo = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">foo</span> = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
 	<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
-		done();
+		<span class="hljs-title function_">done</span>();
 	&#125;, <span class="hljs-number">2000</span>);
 &#125;;
 
 <span class="hljs-comment">// 默认任务，yarn gulp就行</span>
-<span class="hljs-built_in">exports</span>.default = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">default</span> = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
 	<span class="hljs-comment">//...</span>
-	done();
+	<span class="hljs-title function_">done</span>();
 &#125;;
 
 <span class="hljs-comment">// 标记失败</span>
-<span class="hljs-built_in">exports</span>.failTask = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
-	done(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">failTask</span> = <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> &#123;
+	<span class="hljs-title function_">done</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
 &#125;;</code></pre></div>
 
 <h3 id="串行任务"><a href="#串行任务" class="headerlink" title="串行任务"></a>串行任务</h3><p>按顺序执行，阻塞</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; series &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp&quot;</span>);
-<span class="hljs-built_in">exports</span>.s1 = series(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">s1</span> = <span class="hljs-title function_">series</span>(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
 
 <h3 id="并行任务"><a href="#并行任务" class="headerlink" title="并行任务"></a>并行任务</h3><p>同时执行</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; parallel &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp&quot;</span>);
-<span class="hljs-built_in">exports</span>.p1 = series(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">p1</span> = <span class="hljs-title function_">series</span>(<span class="hljs-string">&quot;t1&quot;</span>, <span class="hljs-string">&quot;t2&quot;</span>);</code></pre></div>
 
 <h3 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h3><ul>
 <li><p>promise</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 支持promise</span>
-<span class="hljs-built_in">exports</span>.p1 = <span class="hljs-function">() =&gt;</span> &#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.resolve();
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">p1</span> = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>();
 &#125;;
-<span class="hljs-built_in">exports</span>.p1Fail = <span class="hljs-function">() =&gt;</span> &#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">p1Fail</span> = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;task fail&quot;</span>));
 &#125;;</code></pre></div></li>
 <li><p>async/await</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 支持async await</span>
-<span class="hljs-keyword">const</span> timeout = <span class="hljs-function">(<span class="hljs-params">wait</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, wait));
-<span class="hljs-built_in">exports</span>.a1 = <span class="hljs-keyword">async</span> () =&gt; &#123;
-	<span class="hljs-keyword">await</span> timeout(<span class="hljs-number">3000</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">timeout</span> = (<span class="hljs-params">wait</span>) =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, wait));
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">a1</span> = <span class="hljs-keyword">async</span> () =&gt; &#123;
+	<span class="hljs-keyword">await</span> <span class="hljs-title function_">timeout</span>(<span class="hljs-number">3000</span>);
 &#125;;</code></pre></div></li>
 <li><p>stream</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">exports</span>.s1 = <span class="hljs-function">() =&gt;</span> &#123;
-	<span class="hljs-keyword">const</span> readStream = fs.createReadStream(<span class="hljs-string">&quot;src/source.txt&quot;</span>);
-	<span class="hljs-keyword">const</span> writeStream = fs.createWriteStream(<span class="hljs-string">&quot;dist/dist.txt&quot;</span>);
-	readStream.pipe(writeStream);
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">exports</span>.<span class="hljs-property">s1</span> = <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">const</span> readStream = fs.<span class="hljs-title function_">createReadStream</span>(<span class="hljs-string">&quot;src/source.txt&quot;</span>);
+	<span class="hljs-keyword">const</span> writeStream = fs.<span class="hljs-title function_">createWriteStream</span>(<span class="hljs-string">&quot;dist/dist.txt&quot;</span>);
+	readStream.<span class="hljs-title function_">pipe</span>(writeStream);
 	<span class="hljs-keyword">return</span> readStream;
 &#125;;</code></pre></div>
 <h3 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h3></li>
@@ -666,20 +666,21 @@ A[读取流] --&gt; B[转换流] --&gt; c[写入流]</code></pre>
 <span class="hljs-keyword">const</span> cleanCss = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-clean-css&#x27;</span>)
 <span class="hljs-keyword">const</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-rename&#x27;</span>)
 
-<span class="hljs-built_in">exports</span>.sample = <span class="hljs-function">() =&gt;</span> &#123;
-  src(<span class="hljs-string">&#x27;src/style/*.css&#x27;</span>) <span class="hljs-comment">// 读取</span>
-    .pipe(cleanCss())                    <span class="hljs-comment">//转换</span>
-    .pipe(rename(&#123;<span class="hljs-attr">extname</span>:<span class="hljs-string">&#x27;.min.css&#x27;</span>&#125;))  <span class="hljs-comment">//转换</span>
-    .pipe(dest(<span class="hljs-string">&#x27;dist/css&#x27;</span>)) <span class="hljs-comment">//  写入</span>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">sample</span> = <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">src</span>(<span class="hljs-string">&#x27;src/style/*.css&#x27;</span>) <span class="hljs-comment">// 读取</span>
+    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">cleanCss</span>())                    <span class="hljs-comment">//转换</span>
+    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">rename</span>(&#123;<span class="hljs-attr">extname</span>:<span class="hljs-string">&#x27;.min.css&#x27;</span>&#125;))  <span class="hljs-comment">//转换</span>
+    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">dest</span>(<span class="hljs-string">&#x27;dist/css&#x27;</span>)) <span class="hljs-comment">//  写入</span>
 &#125;</code></pre></div>
 
 <h3 id="自动化构建例子"><a href="#自动化构建例子" class="headerlink" title="自动化构建例子"></a>自动化构建例子</h3><ul>
 <li>插件命名规范<div class="hljs code-wrapper"><pre><code class="hljs javascript">gulp-[name]</code></pre></div></li>
 <li>自动加载插件<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> loadPlugins = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-load-plugins&#x27;</span>)
 <span class="hljs-comment">// 使用时使用驼峰名</span>
-<span class="hljs-keyword">const</span> plugins = loadPlugins()  <span class="hljs-comment">// &#123;...plugins&#125;</span></code></pre></div>
+<span class="hljs-keyword">const</span> plugins = <span class="hljs-title function_">loadPlugins</span>()  <span class="hljs-comment">// &#123;...plugins&#125;</span></code></pre></div>
 <a target="_blank" rel="noopener" href="https://github.com/Tatekii/zce-gulp-demo">zce-gulp-demo</a></li>
 </ul>
+<h2 id="FIS"><a href="#FIS" class="headerlink" title="FIS"></a>FIS</h2><p>看看就好<a target="_blank" rel="noopener" href="https://github.com/fex-team/fis3">JUMP TO fis3</a></p>
 
             </div>
             <hr>

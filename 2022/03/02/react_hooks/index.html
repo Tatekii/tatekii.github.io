@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -254,53 +254,53 @@
 <li>Hooks 只能在函数和其他 Hook 中使用</li>
 </ol>
 <h2 id="常用-Hooks"><a href="#常用-Hooks" class="headerlink" title="常用 Hooks"></a>常用 Hooks</h2><h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p>定义状态和改变状态的函数</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [currentValue,setNewValue] = React.useState(initState)
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [currentValue,setNewValue] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(initState)
 
 <span class="hljs-comment">// 改变状态</span>
-setNewValue(newValue)
-setNewValue(<span class="hljs-function"><span class="hljs-params">value</span>=&gt;</span>&#123;...newValue&#125;)
+<span class="hljs-title function_">setNewValue</span>(newValue)
+<span class="hljs-title function_">setNewValue</span>(<span class="hljs-function"><span class="hljs-params">value</span>=&gt;</span>&#123;...newValue&#125;)
 
 <span class="hljs-comment">//  如果initState只需要在组件mount时执行一次，可以设置惰性返回值</span>
-<span class="hljs-keyword">const</span> [state1, setState1] = useState(<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-keyword">const</span> initialState = someExpensiveComputation(props);
+<span class="hljs-keyword">const</span> [state1, setState1] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> initialState = <span class="hljs-title function_">someExpensiveComputation</span>(props);
   <span class="hljs-keyword">return</span> initialState;
 &#125;);
 </code></pre></div>
 
 <h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><p>定义副作用</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">React.useEffect(<span class="hljs-function">() =&gt;</span> &#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-comment">// 副作用操作</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">// 在组件销毁和effect重新执行之前执行</span>
 	&#125;;
 &#125;, [stateValue]); <span class="hljs-comment">// 为[]则相当于didMount</span>
 
-useEffect(fn); <span class="hljs-comment">//  组建每次渲染都执行</span>
-useEffect(fn, []); <span class="hljs-comment">//  Mount时执行</span>
-useEffect(fn, [dep]); <span class="hljs-comment">//  Mount 和 dep 变化时</span>
-useEffect(<span class="hljs-function">() =&gt;</span> &#123;
+<span class="hljs-title function_">useEffect</span>(fn); <span class="hljs-comment">//  组建每次渲染都执行</span>
+<span class="hljs-title function_">useEffect</span>(fn, []); <span class="hljs-comment">//  Mount时执行</span>
+<span class="hljs-title function_">useEffect</span>(fn, [dep]); <span class="hljs-comment">//  Mount 和 dep 变化时</span>
+<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;&#125;;
 &#125;, []); <span class="hljs-comment">//  unMount执行</span></code></pre></div>
 
 <h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>缓存回调函数</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Counter</span>(<span class="hljs-params"></span>) </span>&#123;
-<span class="hljs-keyword">const</span> [count, setCount] = useState(<span class="hljs-number">0</span>);
-<span class="hljs-keyword">const</span> handleIncrement = <span class="hljs-function">() =&gt;</span> setCount(count + <span class="hljs-number">1</span>)
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;
+<span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">handleIncrement</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>)
 <span class="hljs-comment">// 默认每次重新渲染组件，都会创建新的handleElement函数</span>
-<span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleIncrement&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleIncrement&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
 <span class="hljs-comment">// 同时由于新函数，会导致接收函数的组件也重新渲染</span>
 
 
 
-<span class="hljs-keyword">const</span> handleIncrement = useCallback(<span class="hljs-function">() =&gt;</span> setCount(count + <span class="hljs-number">1</span>),[count])
+<span class="hljs-keyword">const</span> handleIncrement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>),[count])
 <span class="hljs-comment">// 将count加入这个callback的依赖数组，只有当count改变时才创建新的函数，创建新的闭包并更新组件</span></code></pre></div>
 
 <h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>缓存计算结果</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果某个数据是通过其它数据计算得到的，那么只有当用到的数据，也就是依赖的数据发生变化的时候，才应该需要重新计算,进而也可以避免不必要的渲染</span>
-<span class="hljs-keyword">const</span> usersToShow = useMemo(<span class="hljs-function">() =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> usersToShow = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;
   <span class="hljs-keyword">if</span>(!users) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-  <span class="hljs-keyword">return</span> users.data.filter(<span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">return</span> user.first_name.includes(searchKey)
+  <span class="hljs-keyword">return</span> users.<span class="hljs-property">data</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> user.<span class="hljs-property">first_name</span>.<span class="hljs-title function_">includes</span>(searchKey)
   &#125;)
 &#125;,[users，searchKey])
 <span class="hljs-comment">// 脑补Vue的computed就懂了</span></code></pre></div>
@@ -311,21 +311,21 @@ useEffect(<span class="hljs-function">() =&gt;</span> &#123;
 <blockquote>
 <p>useCallback 和 useMemo 的 dep 数组传空则只返回首次执行结果</p>
 </blockquote>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = ref(<span class="hljs-literal">null</span>);
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
 <span class="hljs-comment">// 存储跨渲染的数据</span>
-<span class="hljs-keyword">const</span> startTimer = useCallback(<span class="hljs-function">() =&gt;</span> &#123;
-	timer.current = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> startTimer = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
+	timer.<span class="hljs-property">current</span> = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">/*do some*/</span>
 	&#125;);
 &#125;, []);
-<span class="hljs-keyword">const</span> stopTimer = useCallback(<span class="hljs-function">() =&gt;</span> &#123;
-	cleatInterval(timer.current);
-	timer.current = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">const</span> stopTimer = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-title function_">cleatInterval</span>(timer.<span class="hljs-property">current</span>);
+	timer.<span class="hljs-property">current</span> = <span class="hljs-literal">null</span>;
 &#125;, []);
 
 <span class="hljs-comment">// DOM引用</span>
-<span class="hljs-keyword">const</span> xxxRef = useRef(<span class="hljs-literal">null</span>);
-&lt;input ref=&#123;xxxRef&#125;&gt;&lt;/input&gt;;</code></pre></div>
+<span class="hljs-keyword">const</span> xxxRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;xxxRef&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span></span>;</code></pre></div>
 
 <h2 id="校验-Hooks"><a href="#校验-Hooks" class="headerlink" title="校验 Hooks"></a>校验 Hooks</h2><p>通过 eslint 插件<code>eslint-plugin-react-hooks</code></p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;<span class="hljs-comment">//eslint config</span>
@@ -340,16 +340,16 @@ useEffect(<span class="hljs-function">() =&gt;</span> &#123;
 
 <h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>使用 provide 的 context</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> text1 = &#123;
-  p1:<span class="hljs-string">&#x27;请输入&#x27;</span>
+  <span class="hljs-attr">p1</span>:<span class="hljs-string">&#x27;请输入&#x27;</span>
 &#125;
-<span class="hljs-keyword">const</span> SomeContext = React.createContext(text1)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">SomeContext</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>(text1)
 
-&lt;SomeContext.Provider value=&#123;text1&#125;&gt;
+&lt;<span class="hljs-title class_">SomeContext</span>.<span class="hljs-property">Provider</span> value=&#123;text1&#125;&gt;
       <span class="hljs-comment">// 内部的组件就可以通过</span>
-      <span class="hljs-keyword">const</span> xxx = useContext(SomeContext)
+      <span class="hljs-keyword">const</span> xxx = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">SomeContext</span>)
       <span class="hljs-comment">// 来使用xxx数据</span>
-      &lt;input placeholder=&#123;xxx.p1&#125;&gt;
-&lt;/SomeContext&gt;
+      &lt;input placeholder=&#123;xxx.<span class="hljs-property">p1</span>&#125;&gt;
+&lt;/<span class="hljs-title class_">SomeContext</span>&gt;
 </code></pre></div>
 
 <h2 id="自定义-Hooks"><a href="#自定义-Hooks" class="headerlink" title="自定义 Hooks"></a>自定义 Hooks</h2><ul>
@@ -359,26 +359,26 @@ useEffect(<span class="hljs-function">() =&gt;</span> &#123;
 <h3 id="典型-Hooks"><a href="#典型-Hooks" class="headerlink" title="典型 Hooks"></a>典型 Hooks</h3><ul>
 <li>  获取异步请求结果</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> useAsyncReq = <span class="hljs-function">(<span class="hljs-params">reqFunc</span>) =&gt;</span> &#123;
-	<span class="hljs-keyword">const</span> [data, setData] = useState(<span class="hljs-literal">null</span>);
-	<span class="hljs-keyword">const</span> [isLoading, setLoading] = useState(<span class="hljs-literal">false</span>);
-	<span class="hljs-keyword">const</span> [error, setError] = useState(<span class="hljs-literal">null</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useAsyncReq</span> = (<span class="hljs-params">reqFunc</span>) =&gt; &#123;
+	<span class="hljs-keyword">const</span> [data, setData] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);
+	<span class="hljs-keyword">const</span> [isLoading, setLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
+	<span class="hljs-keyword">const</span> [error, setError] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);
 
-	<span class="hljs-keyword">const</span> execute = useCallback(<span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-keyword">const</span> execute = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">// 在mount和reqFunc变化都会开始一次新请求</span>
-		setLoading(<span class="hljs-literal">true</span>);
-		setData(<span class="hljs-literal">null</span>);
-		setError(<span class="hljs-literal">null</span>);
+		<span class="hljs-title function_">setLoading</span>(<span class="hljs-literal">true</span>);
+		<span class="hljs-title function_">setData</span>(<span class="hljs-literal">null</span>);
+		<span class="hljs-title function_">setError</span>(<span class="hljs-literal">null</span>);
 
-		<span class="hljs-keyword">return</span> reqFunc()
-			.then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
-				setData(res);
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">reqFunc</span>()
+			.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+				<span class="hljs-title function_">setData</span>(res);
 			&#125;)
-			.catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
-				setError(err);
+			.<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;
+				<span class="hljs-title function_">setError</span>(err);
 			&#125;)
-			.finally(<span class="hljs-function">() =&gt;</span> &#123;
-				setLoading(<span class="hljs-literal">false</span>);
+			.<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> &#123;
+				<span class="hljs-title function_">setLoading</span>(<span class="hljs-literal">false</span>);
 			&#125;);
       
 	&#125;, [reqFunc]);

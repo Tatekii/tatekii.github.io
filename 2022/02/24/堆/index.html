@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -260,18 +260,18 @@
 <li>将节点与父节点比较</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//小顶堆</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items,heapSize</span>)</span>&#123;
-  <span class="hljs-keyword">while</span>(heapSize&lt;items.length - <span class="hljs-number">1</span>)&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buildHeap</span>(<span class="hljs-params">items,heapSize</span>)&#123;
+  <span class="hljs-keyword">while</span>(heapSize&lt;items.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>)&#123;
   <span class="hljs-comment">// items 第一个是&lt;empty item&gt;</span>
     heapSize++
-    heapify(items,heapSize)
+    <span class="hljs-title function_">heapify</span>(items,heapSize)
   &#125;
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items,i</span>)</span>&#123;
-  <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>) &gt; <span class="hljs-number">0</span> &amp;&amp; items[i] &lt; items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
-    [items[i],items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] =  [items[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],items[i]]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">heapify</span>(<span class="hljs-params">items,i</span>)&#123;
+  <span class="hljs-keyword">while</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>) &gt; <span class="hljs-number">0</span> &amp;&amp; items[i] &lt; items[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)])&#123;
+    [items[i],items[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)]] =  [items[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)],items[i]]
     <span class="hljs-comment">// 交换位置</span>
-    i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+    i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)
   &#125; 
 &#125;</code></pre></div>
 
@@ -279,15 +279,15 @@
 <li>将节点与子节点比较</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//大顶堆</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items</span>)</span>&#123;
-  <span class="hljs-keyword">const</span> heapSize = items.length - <span class="hljs-number">1</span>  <span class="hljs-comment">// &lt;-- items.length - 1 !</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buildHeap</span>(<span class="hljs-params">items</span>)&#123;
+  <span class="hljs-keyword">const</span> heapSize = items.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>  <span class="hljs-comment">// &lt;-- items.length - 1 !</span>
   <span class="hljs-comment">// 最后叶子节点的索引值</span>
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">Math</span>.floor(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123; <span class="hljs-comment">// &lt;-i&gt;=1 !</span>
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123; <span class="hljs-comment">// &lt;-i&gt;=1 !</span>
     <span class="hljs-comment">// i 为最后一个非 叶子 节点的索引，i还有子节点</span>
-    heapify(items,heapSize,i)
+    <span class="hljs-title function_">heapify</span>(items,heapSize,i)
   &#125;
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items, heapSize, i</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">heapify</span>(<span class="hljs-params">items, heapSize, i</span>) &#123;
   <span class="hljs-comment">// 自上而下式堆化</span>
   <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;
       <span class="hljs-keyword">var</span> maxIndex = i;
@@ -312,7 +312,7 @@
 <li>一直堆化</li>
 <li>大顶堆得到升序 / 小顶堆得到降序排列</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapSort</span>(<span class="hljs-params">arr</span>)</span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">heapSort</span>(<span class="hljs-params">arr</span>)&#123;
   <span class="hljs-comment">// 输入需要为[,]</span>
   <span class="hljs-comment">// const heap = [,]</span>
   <span class="hljs-comment">// let i = 0</span>
@@ -320,13 +320,13 @@
   <span class="hljs-comment">//   heap.push(arr[i++])</span>
   <span class="hljs-comment">// &#125;</span>
 
-  <span class="hljs-keyword">const</span> heapSize  =  arr.length - <span class="hljs-number">1</span>
-  buildHeap(arr,heapSize)
+  <span class="hljs-keyword">const</span> heapSize  =  arr.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
+  <span class="hljs-title function_">buildHeap</span>(arr,heapSize)
   
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = heapSize ; i&gt;<span class="hljs-number">1</span> ;i--)&#123;
     [arr[i],arr[<span class="hljs-number">1</span>]]=[arr[<span class="hljs-number">1</span>],arr[i]]
     heapSize --
-    heapify(arr,heapSize,<span class="hljs-number">1</span>)
+    <span class="hljs-title function_">heapify</span>(arr,heapSize,<span class="hljs-number">1</span>)
   &#125;
   <span class="hljs-keyword">return</span> arr
 &#125;</code></pre></div>
@@ -341,31 +341,31 @@
 <span class="hljs-comment">// 为什么求前k大建立小顶堆？？？</span>
 <span class="hljs-comment">// 如果建立大顶堆，交换堆顶后，堆顶依然是最大的，依次比较之后的数据只会改变堆顶而已，收集不了别的值</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">topK</span>(<span class="hljs-params">data,k</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">topK</span>(<span class="hljs-params">data,k</span>)&#123;
   <span class="hljs-keyword">let</span> heap = [,...data]
   <span class="hljs-keyword">const</span> heapSize = k
-  buildHeap(heap,heapSize)
+  <span class="hljs-title function_">buildHeap</span>(heap,heapSize)
 
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j = k ; j &lt;data.length ;j++)&#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j = k ; j &lt;data.<span class="hljs-property">length</span> ;j++)&#123;
     <span class="hljs-comment">// 将余下的数据依次与堆顶比较</span>
     <span class="hljs-comment">// 比小顶堆的堆顶大则交换</span>
     <span class="hljs-keyword">if</span>(heap[<span class="hljs-number">1</span>] &lt; data[j])&#123;
       heap[<span class="hljs-number">1</span>] = data[j]
-      heapify(heap,k,<span class="hljs-number">1</span>)
+      <span class="hljs-title function_">heapify</span>(heap,k,<span class="hljs-number">1</span>)
     &#125;
   &#125;
 
-  heap.shift()
+  heap.<span class="hljs-title function_">shift</span>()
   <span class="hljs-keyword">return</span> heap
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildHeap</span>(<span class="hljs-params">items ,heapSize</span>)</span>&#123;
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">Math</span>.floor(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123;
-    heapify(items,heapSize,i)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buildHeap</span>(<span class="hljs-params">items ,heapSize</span>)&#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(heapSize/<span class="hljs-number">2</span>) ; i &gt;= <span class="hljs-number">1</span> ; i--)&#123;
+    <span class="hljs-title function_">heapify</span>(items,heapSize,i)
   &#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">heapify</span>(<span class="hljs-params">items,heapSize,i</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">heapify</span>(<span class="hljs-params">items,heapSize,i</span>)&#123;
   <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
     <span class="hljs-keyword">let</span> minIndex = i
     <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*i &lt;= heapSize &amp;&amp; items[minIndex] &gt; items[i*<span class="hljs-number">2</span>] ) &#123;
@@ -404,64 +404,64 @@
 </ul>
 </li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Median</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.maxHeap = <span class="hljs-keyword">new</span> MaxHeap()
-  <span class="hljs-built_in">this</span>.minHeap = <span class="hljs-keyword">new</span> MinHeap()
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Median</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MaxHeap</span>()
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MinHeap</span>()
 &#125;
-Median.prototype.addNum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">num</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(num &lt; <span class="hljs-built_in">this</span>.maxHeap.getTop() || !<span class="hljs-built_in">this</span>.maxHeap.getSize())&#123;
-    <span class="hljs-built_in">this</span>.maxHeap.insert(num)
+<span class="hljs-title class_">Median</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">addNum</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">num</span>)&#123;
+  <span class="hljs-keyword">if</span>(num &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getTop</span>() || !<span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getSize</span>())&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">insert</span>(num)
   &#125;<span class="hljs-keyword">else</span>&#123;
-    <span class="hljs-built_in">this</span>.minHeap.insert(num)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">insert</span>(num)
   &#125;
 
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.maxHeap.getSize() - <span class="hljs-built_in">this</span>.minHeap.getSize() &gt; <span class="hljs-number">1</span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getSize</span>() - <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">getSize</span>() &gt; <span class="hljs-number">1</span>)&#123;
     <span class="hljs-comment">//奇数分布</span>
     <span class="hljs-comment">//大顶堆size比小顶堆大1</span>
-    <span class="hljs-built_in">this</span>.minHeap.insert(<span class="hljs-built_in">this</span>.maxHeap.rmTop())
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">insert</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">rmTop</span>())
     <span class="hljs-comment">//不符合则大顶堆顶插入小顶堆</span>
   &#125;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.minHeap.getSize() &gt; <span class="hljs-built_in">this</span>.maxHeap.getSize())&#123;
-    <span class="hljs-built_in">this</span>.maxHeap.insert(<span class="hljs-built_in">this</span>.minHeap.rmTop())
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">getSize</span>() &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getSize</span>())&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">insert</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">rmTop</span>())
     <span class="hljs-comment">// </span>
   &#125;
 &#125;
-Median.prototype.getMedianNum = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-title class_">Median</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getMedianNum</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-comment">// return console.log(this.maxHeap.getSize());</span>
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.maxHeap.getSize() &amp;&amp; <span class="hljs-built_in">this</span>.maxHeap.getSize() === <span class="hljs-built_in">this</span>.minHeap.getSize())&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">this</span>.maxHeap.getTop() + <span class="hljs-built_in">this</span>.minHeap.getTop())/<span class="hljs-number">2</span>
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getSize</span>() &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getSize</span>() === <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">getSize</span>())&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getTop</span>() + <span class="hljs-variable language_">this</span>.<span class="hljs-property">minHeap</span>.<span class="hljs-title function_">getTop</span>())/<span class="hljs-number">2</span>
   &#125;
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.maxHeap.getTop()
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxHeap</span>.<span class="hljs-title function_">getTop</span>()
 &#125;
 
 <span class="hljs-comment">// 大顶堆</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MaxHeap</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MaxHeap</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">const</span> heap = [,]
-  <span class="hljs-built_in">this</span>.getSize = <span class="hljs-function">() =&gt;</span> heap.length - <span class="hljs-number">1</span>
-  <span class="hljs-built_in">this</span>.getTop = <span class="hljs-function">() =&gt;</span> heap.length &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
-  <span class="hljs-built_in">this</span>.insert = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">getSize</span> = <span class="hljs-function">() =&gt;</span> heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">getTop</span> = <span class="hljs-function">() =&gt;</span> heap.<span class="hljs-property">length</span> &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">insert</span> = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
     <span class="hljs-comment">//插入式建堆</span>
-    heap.push(num)
-    <span class="hljs-keyword">let</span> i = heap.length - <span class="hljs-number">1</span>
+    heap.<span class="hljs-title function_">push</span>(num)
+    <span class="hljs-keyword">let</span> i = heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
     <span class="hljs-comment">// push 进去的索引</span>
-    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &gt; heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &gt; heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)])&#123;
       <span class="hljs-comment">// 大顶堆，与父节点比较，大于则交换</span>
-      [heap[i],heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],heap[i]]
-      i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+      [heap[i],heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)],heap[i]]
+      i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)
     &#125;
   &#125;
-  <span class="hljs-built_in">this</span>.rmTop = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">if</span>(!heap.length &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-    <span class="hljs-keyword">if</span>(heap.length === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.pop()
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">rmTop</span> = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(!heap.<span class="hljs-property">length</span> &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span>(heap.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.<span class="hljs-title function_">pop</span>()
     <span class="hljs-keyword">const</span> num = heap[<span class="hljs-number">1</span>]
-    heap[<span class="hljs-number">1</span>] = heap.pop()<span class="hljs-comment">// 拿走了top值，并用末尾节点填充</span>
-    heapify(<span class="hljs-number">1</span>)
+    heap[<span class="hljs-number">1</span>] = heap.<span class="hljs-title function_">pop</span>()<span class="hljs-comment">// 拿走了top值，并用末尾节点填充</span>
+    <span class="hljs-title function_">heapify</span>(<span class="hljs-number">1</span>)
     <span class="hljs-keyword">return</span> num
   &#125;
-  <span class="hljs-keyword">const</span> heapify = <span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">heapify</span> = i =&gt; &#123;
     <span class="hljs-comment">// 堆化</span>
-    <span class="hljs-keyword">const</span> heapSize = heap.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">const</span> heapSize = heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
     <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
       <span class="hljs-keyword">let</span> maxIndex = i
       <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i] &gt; heap[i]) maxIndex = <span class="hljs-number">2</span>*i
@@ -476,29 +476,29 @@ Median.prototype.getMedianNum = <span class="hljs-function"><span class="hljs-ke
 
 
 <span class="hljs-comment">// 小顶堆</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MinHeap</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MinHeap</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">const</span> heap = [,]
-  <span class="hljs-built_in">this</span>.getSize = <span class="hljs-function">() =&gt;</span> heap.length - <span class="hljs-number">1</span>
-  <span class="hljs-built_in">this</span>.getTop = <span class="hljs-function">() =&gt;</span> heap.length &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
-  <span class="hljs-built_in">this</span>.insert = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
-    heap.push(num)
-    <span class="hljs-keyword">let</span> i = heap.length - <span class="hljs-number">1</span>
-    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &lt; heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)])&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">getSize</span> = <span class="hljs-function">() =&gt;</span> heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">getTop</span> = <span class="hljs-function">() =&gt;</span> heap.<span class="hljs-property">length</span> &gt; <span class="hljs-number">1</span> ? heap[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">insert</span> = <span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> &#123;
+    heap.<span class="hljs-title function_">push</span>(num)
+    <span class="hljs-keyword">let</span> i = heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)&gt;<span class="hljs-number">0</span> &amp;&amp; heap[i] &lt; heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)])&#123;
       <span class="hljs-comment">// 小顶堆，与父节点比较，小于则交换</span>
-      [heap[i],heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)],heap[i]]
-      i = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-number">2</span>)
+      [heap[i],heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)]] = [heap[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)],heap[i]]
+      i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(i/<span class="hljs-number">2</span>)
     &#125;
   &#125;
-  <span class="hljs-built_in">this</span>.rmTop = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">if</span>(!heap.length&gt;<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-    <span class="hljs-keyword">if</span>(heap.length === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.pop()
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">rmTop</span> = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(!heap.<span class="hljs-property">length</span>&gt;<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span>(heap.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> heap.<span class="hljs-title function_">pop</span>()
     <span class="hljs-keyword">const</span> num = heap[<span class="hljs-number">1</span>]
-    heap[<span class="hljs-number">1</span>] = heap.pop()
-    heapify(<span class="hljs-number">1</span>)
+    heap[<span class="hljs-number">1</span>] = heap.<span class="hljs-title function_">pop</span>()
+    <span class="hljs-title function_">heapify</span>(<span class="hljs-number">1</span>)
     <span class="hljs-keyword">return</span> num
   &#125;
-  <span class="hljs-keyword">const</span> heapify = <span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> heapSize = heap.length - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">heapify</span> = i =&gt; &#123;
+    <span class="hljs-keyword">const</span> heapSize = heap.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
     <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
       <span class="hljs-keyword">let</span> minIndex = i
       <span class="hljs-keyword">if</span>(<span class="hljs-number">2</span>*<span class="hljs-number">1</span> &lt;= heapSize &amp;&amp; heap[<span class="hljs-number">2</span>*i] &lt; heap[i]) minIndex = <span class="hljs-number">2</span>*i
@@ -513,21 +513,21 @@ Median.prototype.getMedianNum = <span class="hljs-function"><span class="hljs-ke
 
 
 <span class="hljs-comment">// 二分查找法</span>
-<span class="hljs-keyword">const</span> MedianFinder = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.data = []
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">MedianFinder</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span> = []
 &#125;
-MedianFinder.prototype.addMun = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>)</span>&#123;
-  <span class="hljs-keyword">const</span> data = <span class="hljs-built_in">this</span>.data
-  <span class="hljs-keyword">if</span>(data.length&lt;<span class="hljs-number">1</span>)&#123;
-    data.push(num)
+<span class="hljs-title class_">MedianFinder</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">addMun</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>)&#123;
+  <span class="hljs-keyword">const</span> data = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>
+  <span class="hljs-keyword">if</span>(data.<span class="hljs-property">length</span>&lt;<span class="hljs-number">1</span>)&#123;
+    data.<span class="hljs-title function_">push</span>(num)
     <span class="hljs-keyword">return</span> 
   &#125;
   <span class="hljs-keyword">let</span> L = <span class="hljs-number">0</span>
-  <span class="hljs-keyword">let</span> R = data.length - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">let</span> R = data.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
   <span class="hljs-keyword">while</span>(L&lt;=R)&#123;
-    <span class="hljs-keyword">let</span> M = <span class="hljs-built_in">Math</span>.floor((L+R)/<span class="hljs-number">2</span>)
+    <span class="hljs-keyword">let</span> M = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((L+R)/<span class="hljs-number">2</span>)
     <span class="hljs-keyword">if</span>(data[M]===num)&#123;
-      data.splice(M,<span class="hljs-number">0</span>,num)
+      data.<span class="hljs-title function_">splice</span>(M,<span class="hljs-number">0</span>,num)
       <span class="hljs-keyword">return</span> 
     &#125;
     <span class="hljs-keyword">if</span>(data[M]&lt;num)&#123;
@@ -536,16 +536,16 @@ MedianFinder.prototype.addMun = <span class="hljs-function"><span class="hljs-ke
       R --
     &#125;
   &#125;
-  data.splice(R+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,num)
+  data.<span class="hljs-title function_">splice</span>(R+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,num)
 &#125;
-MedianFinder.prototype.findMedian = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> len = <span class="hljs-built_in">this</span>.data.length
+<span class="hljs-title class_">MedianFinder</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">findMedian</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> len = <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>
   <span class="hljs-keyword">if</span>(!len) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-  <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((len-<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>)
+  <span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((len-<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>)
   <span class="hljs-keyword">if</span>(len%<span class="hljs-number">2</span>===<span class="hljs-number">0</span>)&#123;
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">this</span>.data[mid]+ <span class="hljs-built_in">this</span>.data[mid+<span class="hljs-number">1</span>])/<span class="hljs-number">2</span>
+    <span class="hljs-keyword">return</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>[mid]+ <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>[mid+<span class="hljs-number">1</span>])/<span class="hljs-number">2</span>
   &#125;<span class="hljs-keyword">else</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.data[mid]
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>[mid]
   &#125;
 &#125;</code></pre></div>
             </div>

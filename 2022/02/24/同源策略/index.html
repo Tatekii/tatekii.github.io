@@ -73,7 +73,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -255,7 +255,7 @@
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-string">&#x27;someWebSite.com/dir1/pageA.html&#x27;</span>
 <span class="hljs-string">&#x27;someWebSite.com/dir2/pageB.html&#x27;</span>
 
-都设置<span class="hljs-built_in">document</span>.domain = <span class="hljs-string">&#x27;someWebSite.com&#x27;</span>
+都设置<span class="hljs-variable language_">document</span>.<span class="hljs-property">domain</span> = <span class="hljs-string">&#x27;someWebSite.com&#x27;</span>
 则他们之间通信将通过同源检测，并都访问父源的cookie</code></pre></div></li>
 <li><p><code>window.name</code>  </p>
 </li>
@@ -263,13 +263,13 @@
 <p>对新打开的窗口或者iframe的contentWindow属性、执行window.open返回的窗口对象</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// pageA通过iframe嵌入了pageB</span>
 <span class="hljs-comment">// pageA中代码</span>
-<span class="hljs-built_in">window</span>.iframe[i].postMessage(<span class="hljs-string">&#x27;data&#x27;</span>,<span class="hljs-string">&#x27;pageB的URL&#x27;</span>)
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">iframe</span>[i].<span class="hljs-title function_">postMessage</span>(<span class="hljs-string">&#x27;data&#x27;</span>,<span class="hljs-string">&#x27;pageB的URL&#x27;</span>)
 
 <span class="hljs-comment">// pageB中的代码</span>
-<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;message&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(e.data)     <span class="hljs-comment">// data</span>
-    <span class="hljs-built_in">console</span>.log(e.source)   <span class="hljs-comment">// a中window的引用</span>
-    <span class="hljs-built_in">console</span>.log(e.origin)  <span class="hljs-comment">// pageA的URL</span>
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;message&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">data</span>)     <span class="hljs-comment">// data</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">source</span>)   <span class="hljs-comment">// a中window的引用</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">origin</span>)  <span class="hljs-comment">// pageA的URL</span>
 &#125;,<span class="hljs-literal">false</span>)
 
 <span class="hljs-comment">// 反过来pageB向pageA发送数据</span>
@@ -278,64 +278,64 @@
 </code></pre></div></li>
 <li><p><code>iframe</code>+<code>hash</code></p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// pageA通过iframe嵌入了pageB</span>
-<span class="hljs-keyword">var</span> B = <span class="hljs-built_in">document</span>.getElementByTagName(<span class="hljs-string">&quot;iframe&quot;</span>);
-B.src = B.src + <span class="hljs-string">&quot;#&quot;</span> + <span class="hljs-string">&quot;data&quot;</span>;
+<span class="hljs-keyword">var</span> B = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementByTagName</span>(<span class="hljs-string">&quot;iframe&quot;</span>);
+B.<span class="hljs-property">src</span> = B.<span class="hljs-property">src</span> + <span class="hljs-string">&quot;#&quot;</span> + <span class="hljs-string">&quot;data&quot;</span>;
 
 <span class="hljs-comment">// pageB中的代码</span>
-<span class="hljs-built_in">window</span>.onhashchange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;
-data = <span class="hljs-built_in">window</span>.location.hash; <span class="hljs-comment">//  &lt;-  pageB就获取到了hash值</span>
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">onhashchange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) &#123;
+data = <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">hash</span>; <span class="hljs-comment">//  &lt;-  pageB就获取到了hash值</span>
 &#125;;</code></pre></div></li>
 <li><p><code>jsonp</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jsonp</span>(<span class="hljs-params">&#123; url, params, callback &#125;</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">jsonp</span>(<span class="hljs-params">&#123; url, params, callback &#125;</span>) &#123;
   <span class="hljs-keyword">const</span> attrs = []
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> [key,value] <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.entries(params))&#123;
-    attrs.push(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=<span class="hljs-subst">$&#123;value&#125;</span>`</span>)
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> [key,value] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(params))&#123;
+    attrs.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=<span class="hljs-subst">$&#123;value&#125;</span>`</span>)
   &#125;
-  attrs.push(<span class="hljs-string">`callback=<span class="hljs-subst">$&#123;callback&#125;</span>`</span>)
-  url+= attrs.join(<span class="hljs-string">&#x27;&amp;&#x27;</span>)
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123;
-    <span class="hljs-keyword">const</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;script&#x27;</span>)
-    script.src = url
-    <span class="hljs-built_in">document</span>.body.appendChild(script);
+  attrs.<span class="hljs-title function_">push</span>(<span class="hljs-string">`callback=<span class="hljs-subst">$&#123;callback&#125;</span>`</span>)
+  url+= attrs.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&amp;&#x27;</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">const</span> script = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>)
+    script.<span class="hljs-property">src</span> = url
+    <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(script);
     <span class="hljs-keyword">try</span>&#123;
-      <span class="hljs-built_in">window</span>[callback] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
-        resolve(data)
-        <span class="hljs-built_in">document</span>.removeChild(script)
+      <span class="hljs-variable language_">window</span>[callback] = <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;
+        <span class="hljs-title function_">resolve</span>(data)
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">removeChild</span>(script)
       &#125;
     &#125;<span class="hljs-keyword">catch</span>(err)&#123;
-      reject(err)
+      <span class="hljs-title function_">reject</span>(err)
     &#125;
   &#125;)
 &#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">// 发送</span>
-jsonp(&#123;
-url: <span class="hljs-string">&quot;http://localhost:3000/jsptest&quot;</span>,
-params: &#123; <span class="hljs-attr">msg</span>: <span class="hljs-string">&quot;jsptestmessage&quot;</span> &#125;,
-callback: <span class="hljs-string">&quot;jsonpCallback&quot;</span>
-&#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
+<span class="hljs-title function_">jsonp</span>(&#123;
+<span class="hljs-attr">url</span>: <span class="hljs-string">&quot;http://localhost:3000/jsptest&quot;</span>,
+<span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">msg</span>: <span class="hljs-string">&quot;jsptestmessage&quot;</span> &#125;,
+<span class="hljs-attr">callback</span>: <span class="hljs-string">&quot;jsonpCallback&quot;</span>
+&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
 <span class="hljs-comment">//处理data</span>
     &#125;);</code></pre></div></li>
 <li><p><code>imgPing</code><strong>添加img标签src中放入get请求</strong></p>
 <p>只能发送GET请求，无法接受返回</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> img = <span class="hljs-keyword">new</span> Image();
-img.onload = img.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;已发送&quot;</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> img = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>();
+img.<span class="hljs-property">onload</span> = img.<span class="hljs-property">onerror</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;已发送&quot;</span>);
 &#125;;
-img.src = <span class="hljs-string">&quot;http://xxx.xxx.com/query?key=value&quot;</span>;
+img.<span class="hljs-property">src</span> = <span class="hljs-string">&quot;http://xxx.xxx.com/query?key=value&quot;</span>;
 <span class="hljs-comment">// 设置完src属性那一刻开始请求就发送了</span></code></pre></div></li>
 <li><p><code>CORS</code>跨域资源共享（详见下文）</p>
 </li>
 <li><p><code>websocket</code>协议</p>
 </li>
 <li><p><code>Fetch</code>API</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postData</span>(<span class="hljs-params">url, data</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">postData</span>(<span class="hljs-params">url, data</span>) &#123;
 <span class="hljs-comment">// Default options are marked with *</span>
-  <span class="hljs-keyword">return</span> fetch(url, &#123;
-      body: <span class="hljs-built_in">JSON</span>.stringify(data), <span class="hljs-comment">// must match &#x27;Content-Type&#x27; header</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetch</span>(url, &#123;
+      <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data), <span class="hljs-comment">// must match &#x27;Content-Type&#x27; header</span>
       <span class="hljs-comment">// ...</span>
-      mode: <span class="hljs-string">&quot;cors&quot;</span>, <span class="hljs-comment">// no-cors, cors, *same-origin</span>
+      <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;cors&quot;</span>, <span class="hljs-comment">// no-cors, cors, *same-origin</span>
       <span class="hljs-comment">// ... </span>
-      &#125;).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json()); <span class="hljs-comment">// parses response to JSON</span>
+      &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>()); <span class="hljs-comment">// parses response to JSON</span>
   &#125;</code></pre></div></li>
 </ul>
 <h3 id="CORS跨域"><a href="#CORS跨域" class="headerlink" title="CORS跨域"></a><code>CORS</code>跨域</h3><h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><ul>
@@ -351,8 +351,8 @@ img.src = <span class="hljs-string">&quot;http://xxx.xxx.com/query?key=value&quo
 <li><p><code>Access-Control-Allow-Credentials</code>:是否允许请求带有 cookie</p>
 <p>如果要发送<code>Cookie</code>，<code>Access-Control-Allow-Origin</code>就不能设为星号，必须指定明确的、与请求网页一致的域名</p>
 <p>并且 ajax 中要打开</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
-xhr.withCredentials = <span class="hljs-literal">true</span>;  <span class="xml">&lt;-------</span></code></pre></div></li>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
+xhr.<span class="hljs-property">withCredentials</span> = <span class="hljs-literal">true</span>;  <span class="language-xml">&lt;-------</span></code></pre></div></li>
 <li><p><code>Access-Control-Expose-Headers</code>: 自定义字段</p>
 </li>
 </ul>
@@ -479,9 +479,9 @@ xhr.withCredentials = <span class="hljs-literal">true</span>;  <span class="xml"
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%E9%A2%98/">
+                      <a href="/2022/02/24/%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99sockjs-node/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">操作字符串算法题</span>
+                        <span class="hidden-mobile">控制台一直打印http://xxx/sockjs-node/info?t=xxx</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -489,8 +489,8 @@ xhr.withCredentials = <span class="hljs-literal">true</span>;  <span class="xml"
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99sockjs-node/">
-                        <span class="hidden-mobile">控制台一直打印http://xxx/sockjs-node/info?t=xxx</span>
+                      <a href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/">
+                        <span class="hidden-mobile">栈算法题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

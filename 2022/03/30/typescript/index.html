@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -307,62 +307,62 @@ num1 = <span class="hljs-string">&quot;mmm&quot;</span>; <span class="hljs-comme
 <h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> num1 = n1 <span class="hljs-keyword">as</span> <span class="hljs-built_in">number</span>;
 <span class="hljs-keyword">const</span> num2 = &lt;<span class="hljs-built_in">number</span>&gt;n2;</code></pre></div>
 
-<h2 id="interface-接口"><a href="#interface-接口" class="headerlink" title="interface 接口"></a>interface 接口</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> Post &#123;
-	[prop: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 动态成员</span>
+<h2 id="interface-接口"><a href="#interface-接口" class="headerlink" title="interface 接口"></a>interface 接口</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Post</span> &#123;
+	[<span class="hljs-attr">prop</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 动态成员</span>
 	content?: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 可选</span>
-	<span class="hljs-keyword">readonly</span> author: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 只读</span>
+	<span class="hljs-keyword">readonly</span> <span class="hljs-attr">author</span>: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 只读</span>
 &#125;</code></pre></div>
 
-<h2 id="class-类"><a href="#class-类" class="headerlink" title="class 类"></a>class 类</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
+<h2 id="class-类"><a href="#class-类" class="headerlink" title="class 类"></a>class 类</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;
 	<span class="hljs-comment">// 必须要类型声明</span>
-	<span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 默认 共有属性</span>
-	<span class="hljs-keyword">private</span> age: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 私有属性，子类不能访问</span>
-	<span class="hljs-keyword">protected</span> gender: <span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// 只能在子类中访问</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// 默认 共有属性</span>
+	<span class="hljs-keyword">private</span> <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// 私有属性，子类不能访问</span>
+	<span class="hljs-keyword">protected</span> <span class="hljs-attr">gender</span>: <span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// 只能在子类中访问</span>
 
-	<span class="hljs-keyword">private</span> <span class="hljs-comment">/*默认public*/</span> <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>)</span> &#123;
-		<span class="hljs-built_in">this</span>.name = name;
-		<span class="hljs-built_in">this</span>.age = age;
+	<span class="hljs-keyword">private</span> <span class="hljs-comment">/*默认public*/</span> <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;
 	&#125; <span class="hljs-comment">// 设置private后不能在外部new</span>
 
-	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">create</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person(name, age); <span class="hljs-comment">// 可以在这里创建实例</span>
+	<span class="hljs-keyword">static</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span>, age: <span class="hljs-built_in">number</span></span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(name, age); <span class="hljs-comment">// 可以在这里创建实例</span>
 	&#125;
 &#125;</code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> Eat &#123;
-	eat(food: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Eat</span> &#123;
+	<span class="hljs-title function_">eat</span>(<span class="hljs-attr">food</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;
 &#125;
-<span class="hljs-keyword">interface</span> Run &#123;
-	run(distance: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Run</span> &#123;
+	<span class="hljs-title function_">run</span>(<span class="hljs-attr">distance</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
 &#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-title">implements</span> <span class="hljs-title">Eat</span>, <span class="hljs-title">Run</span> </span>&#123;
-	eat(food: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> &#123;
-		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;吃了&quot;</span> + food);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Eat</span>, <span class="hljs-title class_">Run</span> &#123;
+	<span class="hljs-title function_">eat</span>(<span class="hljs-attr">food</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> &#123;
+		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;吃了&quot;</span> + food);
 	&#125;
-	run(distance: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;
-		<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;跑了&quot;</span> + distance);
+	<span class="hljs-title function_">run</span>(<span class="hljs-attr">distance</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;
+		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;跑了&quot;</span> + distance);
 	&#125;
 &#125;</code></pre></div>
 
 <h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>只能被继承不能被<code>new</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span></span>&#123;
-  eat(food:<span class="hljs-built_in">string</span>):<span class="hljs-built_in">void</span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>&#123;
+  <span class="hljs-title function_">eat</span>(<span class="hljs-attr">food</span>:<span class="hljs-built_in">string</span>):<span class="hljs-built_in">void</span>&#123;
     ...
   &#125;
-  <span class="hljs-keyword">abstract</span> run (distance:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span>
+  <span class="hljs-keyword">abstract</span> run (<span class="hljs-attr">distance</span>:<span class="hljs-built_in">number</span>):<span class="hljs-built_in">void</span>
 &#125;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span></span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span>&#123;
   <span class="hljs-comment">// 提示 Non-abstract class &#x27;Cat&#x27; does not implement inherited abstract member &#x27;run&#x27; from class &#x27;Animal&#x27;.</span>
   <span class="hljs-comment">// 需要自己写出符合run形状的run方法</span>
-  run(distance: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
+  <span class="hljs-title function_">run</span>(<span class="hljs-attr">distance</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span> &#123;
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Method not implemented.&quot;</span>);
   &#125;
 &#125;</code></pre></div>
 
 
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createArray</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">length:<span class="hljs-built_in">number</span>,value:T</span>):<span class="hljs-title">T</span>[]</span>&#123;
-  <span class="hljs-keyword">const</span> arr = <span class="hljs-built_in">Array</span>&lt;T&gt;(length).fill(value)
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> createArray&lt;T&gt;(<span class="hljs-attr">length</span>:<span class="hljs-built_in">number</span>,<span class="hljs-attr">value</span>:T):T[]&#123;
+  <span class="hljs-keyword">const</span> arr = <span class="hljs-title class_">Array</span>&lt;T&gt;(length).<span class="hljs-title function_">fill</span>(value)
   <span class="hljs-keyword">return</span> arr
 &#125;</code></pre></div>
 

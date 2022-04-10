@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -247,52 +247,52 @@
 <p>VUE项目中将svg图标封装为组件,后续拷贝进svg文件直接使用</p>
 </blockquote>
 <h3 id="icon组件"><a href="#icon组件" class="headerlink" title="icon组件"></a>icon组件</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;template&gt;
-  &lt;svg :<span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;svgClass&quot;</span> aria-hidden=<span class="hljs-string">&quot;true&quot;</span> 
-
-  <span class="hljs-comment">// /* aria-hidden=&quot;true&quot;将元素从可访问树上移除 */</span>
-
-  v-on=<span class="hljs-string">&quot;$listeners&quot;</span>&gt;
-    &lt;use :xlink:href=<span class="hljs-string">&quot;iconName&quot;</span> /&gt;
-  &lt;/svg&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">&quot;svgClass&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span> </span></span>
+<span class="hljs-tag"><span class="language-xml"></span></span>
+<span class="hljs-tag"><span class="language-xml">  // /* <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>将元素从可访问树上移除 */</span></span>
+<span class="hljs-tag"><span class="language-xml"></span></span>
+<span class="hljs-tag"><span class="language-xml">  <span class="hljs-attr">v-on</span>=<span class="hljs-string">&quot;$listeners&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">:xlink:href</span>=<span class="hljs-string">&quot;iconName&quot;</span> /&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span></span>
 &lt;/template&gt;
 
-&lt;script&gt;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  name: <span class="hljs-string">&#x27;SvgIcon&#x27;</span>,
-  props: &#123;
-    iconClass: &#123;
-      type: <span class="hljs-built_in">String</span>,
-      required: <span class="hljs-literal">true</span>
-    &#125;,
-    className: &#123;
-      type: <span class="hljs-built_in">String</span>,
-      <span class="hljs-keyword">default</span>: <span class="hljs-string">&#x27;&#x27;</span>
-    &#125;
-  &#125;,
-  computed: &#123;
-    <span class="hljs-function"><span class="hljs-title">iconName</span>(<span class="hljs-params"></span>)</span> &#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-string">`#icon-<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.iconClass&#125;</span>`</span>
-    &#125;,
-    <span class="hljs-function"><span class="hljs-title">svgClass</span>(<span class="hljs-params"></span>)</span> &#123;
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.className) &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon &#x27;</span> + <span class="hljs-built_in">this</span>.className
-      &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon&#x27;</span>
-      &#125;
-    &#125;
-  &#125;
-&#125;
-&lt;/script&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SvgIcon&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">props</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">iconClass</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">className</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">computed</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">iconName</span>(<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">return</span> <span class="hljs-string">`#icon-<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.iconClass&#125;</span>`</span></span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">svgClass</span>(<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">className</span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon &#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">className</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125; <span class="hljs-keyword">else</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">&#125;</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 
-&lt;style scoped&gt;
-.svg-icon &#123;
-  width: 1em;
-  height: 1em;
-  vertical-align: -<span class="hljs-number">0.</span>15em;
-  fill: currentColor;
-  overflow: hidden;
-&#125;
-&lt;/style&gt;</code></pre></div>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span></span>
+<span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.svg-icon</span> &#123;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">width</span>: <span class="hljs-number">1em</span>;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">height</span>: <span class="hljs-number">1em</span>;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">vertical-align</span>: -<span class="hljs-number">0.15em</span>;</span></span>
+<span class="language-css"><span class="language-xml">  fill: currentColor;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">overflow</span>: hidden;</span></span>
+<span class="language-css"><span class="language-xml">&#125;</span></span>
+<span class="language-css"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre></div>
 
 
 <h3 id="配置自动引入svg文件"><a href="#配置自动引入svg文件" class="headerlink" title="配置自动引入svg文件"></a>配置自动引入svg文件</h3><p>使用<code>webpack</code>的<code>require.context</code>API，两种方法</p>
@@ -302,16 +302,16 @@
 <ol>
 <li>在<code>assets/icon</code>新建<code>index.js</code></li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
-<span class="hljs-keyword">import</span> SvgIcon <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/SvgIcon&#x27;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">SvgIcon</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/SvgIcon&#x27;</span>
 
-Vue.component(<span class="hljs-string">&#x27;svg-icon&#x27;</span>, SvgIcon)
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;svg-icon&#x27;</span>, <span class="hljs-title class_">SvgIcon</span>)
 
-<span class="hljs-keyword">const</span> importAll = <span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.keys().forEach(r)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">importAll</span> = r =&gt; r.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">forEach</span>(r)
 
-<span class="hljs-keyword">const</span> svgContext = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">&#x27;@/assets/icon&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>);<span class="hljs-comment">// 获取该目录下所有.svg的context</span>
+<span class="hljs-keyword">const</span> svgContext = <span class="hljs-built_in">require</span>.<span class="hljs-title function_">context</span>(<span class="hljs-string">&#x27;@/assets/icon&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>);<span class="hljs-comment">// 获取该目录下所有.svg的context</span>
 
-importAll(svgContext)
+<span class="hljs-title function_">importAll</span>(svgContext)
 
 <span class="hljs-comment">//在main.js中导入</span>
 
@@ -319,37 +319,37 @@ importAll(svgContext)
 <ol start="2">
 <li>或者直接在<code>main.js</code>中</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> SvgIcon <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/SvgIcon&#x27;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">SvgIcon</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/SvgIcon&#x27;</span>
 
-<span class="hljs-keyword">const</span> importAll = <span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.keys().forEach(r)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">importAll</span> = r =&gt; r.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">forEach</span>(r)
 
-<span class="hljs-keyword">const</span> svgContext = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">&#x27;@/assets/icon&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>);<span class="hljs-comment">// 获取该目录下所有.svg的context</span>
+<span class="hljs-keyword">const</span> svgContext = <span class="hljs-built_in">require</span>.<span class="hljs-title function_">context</span>(<span class="hljs-string">&#x27;@/assets/icon&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>);<span class="hljs-comment">// 获取该目录下所有.svg的context</span>
 
-importAll(svgContext)
-Vue.component(<span class="hljs-string">&#x27;svg-icon&#x27;</span>,SvgIcon) <span class="hljs-comment">// 全局注册</span></code></pre></div>
+<span class="hljs-title function_">importAll</span>(svgContext)
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;svg-icon&#x27;</span>,<span class="hljs-title class_">SvgIcon</span>) <span class="hljs-comment">// 全局注册</span></code></pre></div>
 
 <h3 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a>devDependencies</h3><ul>
 <li><code>svg-baker-runtime</code></li>
 <li><code>svg-sprite-loader</code></li>
 <li>配置<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// vue.config.js</span>
-chainWebpack: <span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> &#123;
-  <span class="hljs-keyword">const</span> svgRule = config.module.rule(<span class="hljs-string">&quot;svg&quot;</span>);
-  svgRule.uses.clear();
+<span class="hljs-attr">chainWebpack</span>: <span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> svgRule = config.<span class="hljs-property">module</span>.<span class="hljs-title function_">rule</span>(<span class="hljs-string">&quot;svg&quot;</span>);
+  svgRule.<span class="hljs-property">uses</span>.<span class="hljs-title function_">clear</span>();
   svgRule
-    .rule(<span class="hljs-string">&quot;icons&quot;</span>)
-    .test(<span class="hljs-regexp">/\.svg$/</span>)
-    .include.add(resolve(<span class="hljs-string">&quot;src/assets/icon&quot;</span>))
-    .end()
-    .use(<span class="hljs-string">&quot;svg-sprite-loader&quot;</span>)
-    .loader(<span class="hljs-string">&quot;svg-sprite-loader&quot;</span>)
-    .options(&#123;
-      symbolId: <span class="hljs-string">&quot;[name]&quot;</span>,
+    .<span class="hljs-title function_">rule</span>(<span class="hljs-string">&quot;icons&quot;</span>)
+    .<span class="hljs-title function_">test</span>(<span class="hljs-regexp">/\.svg$/</span>)
+    .<span class="hljs-property">include</span>.<span class="hljs-title function_">add</span>(<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;src/assets/icon&quot;</span>))
+    .<span class="hljs-title function_">end</span>()
+    .<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;svg-sprite-loader&quot;</span>)
+    .<span class="hljs-title function_">loader</span>(<span class="hljs-string">&quot;svg-sprite-loader&quot;</span>)
+    .<span class="hljs-title function_">options</span>(&#123;
+      <span class="hljs-attr">symbolId</span>: <span class="hljs-string">&quot;[name]&quot;</span>,
     &#125;);
 &#125;,</code></pre></div></li>
 </ul>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>尺寸可以自己覆盖样式</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;svg-icon
-  :icon-<span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;cardData.platform&quot;</span>
+  :icon-<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;cardData.platform&quot;</span>
   style=<span class="hljs-string">&quot;width: 2em; height: 2em;vertical-align:middle&quot;</span>
 &gt;&lt;/svg-icon&gt;</code></pre></div>
             </div>
@@ -380,9 +380,9 @@ chainWebpack: <span class="hljs-function">(<span class="hljs-params">config</spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/topK/">
+                      <a href="/2022/02/24/react%E6%8B%BE%E9%81%97/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">topK问题</span>
+                        <span class="hidden-mobile">react拾遗</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

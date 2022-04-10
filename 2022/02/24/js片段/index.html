@@ -28,8 +28,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-01-05T01:27:55.000Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,28 +246,28 @@
               <ul>
 <li>字母的所有组合</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> anagrams = <span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span> &#123;
-  <span class="hljs-keyword">if</span>(str.length===<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> [str , str[<span class="hljs-number">1</span>] + str[<span class="hljs-number">0</span>]]
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">anagrams</span> = str =&gt; &#123;
+  <span class="hljs-keyword">if</span>(str.<span class="hljs-property">length</span>===<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> [str , str[<span class="hljs-number">1</span>] + str[<span class="hljs-number">0</span>]]
   <span class="hljs-comment">// 手写长度为2时候的排列</span>
 
   <span class="hljs-comment">// 这里使用reduce的第三个参数index，正在处理的元素</span>
   <span class="hljs-comment">// 如果提供了initialValue，则起始索引号为0，否则从索引1起始。</span>
-  <span class="hljs-keyword">return</span> str.split(<span class="hljs-string">&#x27;&#x27;</span>).reduce(<span class="hljs-function">(<span class="hljs-params">acc,cur,index</span>)=&gt;</span>&#123;
-    <span class="hljs-keyword">let</span> other = str.slice(<span class="hljs-number">0</span>,index)+str.slice(index+<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;&#x27;</span>).<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc,cur,index</span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">let</span> other = str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,index)+str.<span class="hljs-title function_">slice</span>(index+<span class="hljs-number">1</span>)
     <span class="hljs-comment">// other为除了当前处理元素外的字母</span>
     <span class="hljs-comment">// a bcd =&gt;</span>
     <span class="hljs-comment">// b cd =&gt; bcd bdc</span>
     <span class="hljs-comment">// c bd =&gt; cbd cdb</span>
     <span class="hljs-comment">// d bc =&gt; dbc dcb</span>
     <span class="hljs-comment">// b...</span>
-    <span class="hljs-keyword">return</span> acc.push(anagrams(other).map(<span class="hljs-function"><span class="hljs-params">char</span>=&gt;</span>cur+char))
+    <span class="hljs-keyword">return</span> acc.<span class="hljs-title function_">push</span>(<span class="hljs-title function_">anagrams</span>(other).<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">char</span>=&gt;</span>cur+char))
     <span class="hljs-comment">// 递归至两位数数组颠倒排序,并将所有可能与当前处理元素组合</span>
   &#125;,[])
   <span class="hljs-comment">// 指定initialValue</span>
 &#125;
 
 
-anagrams(<span class="hljs-string">&#x27;abcd&#x27;</span>) =&gt; [
+<span class="hljs-title function_">anagrams</span>(<span class="hljs-string">&#x27;abcd&#x27;</span>) =&gt; [
   <span class="hljs-string">&#x27;abcd&#x27;</span>, <span class="hljs-string">&#x27;abdc&#x27;</span>, <span class="hljs-string">&#x27;acbd&#x27;</span>,
   <span class="hljs-string">&#x27;acdb&#x27;</span>, <span class="hljs-string">&#x27;adbc&#x27;</span>, <span class="hljs-string">&#x27;adcb&#x27;</span>,
   <span class="hljs-string">&#x27;bacd&#x27;</span>, <span class="hljs-string">&#x27;badc&#x27;</span>, <span class="hljs-string">&#x27;bcad&#x27;</span>,
@@ -282,40 +282,40 @@ anagrams(<span class="hljs-string">&#x27;abcd&#x27;</span>) =&gt; [
 <ul>
 <li>Deep flatten array</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> deepFlatten = <span class="hljs-function">(<span class="hljs-params">arr</span>) =&gt;</span>
-  arr.reduce(<span class="hljs-function">(<span class="hljs-params">a, v</span>) =&gt;</span> a.concat(<span class="hljs-built_in">Array</span>.isArray(v) ? deepFlatten(v) : v), []);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">deepFlatten</span> = (<span class="hljs-params">arr</span>) =&gt;
+  arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a, v</span>) =&gt;</span> a.<span class="hljs-title function_">concat</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(v) ? <span class="hljs-title function_">deepFlatten</span>(v) : v), []);
 <span class="hljs-comment">// deepFlatten([1,[2],[[3],4],5]) -&gt; [1,2,3,4,5]</span></code></pre></div>
 
 <ul>
 <li>bifurcate</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> bifurcate = <span class="hljs-function">(<span class="hljs-params">arr, filter</span>) =&gt;</span>
-  arr.reduce(<span class="hljs-function">(<span class="hljs-params">acc, val, i</span>) =&gt;</span> (acc[filter[i] ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>].push(val), acc), [
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">bifurcate</span> = (<span class="hljs-params">arr, filter</span>) =&gt;
+  arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, val, i</span>) =&gt;</span> (acc[filter[i] ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>].<span class="hljs-title function_">push</span>(val), acc), [
     [],
     [],
   ]);
-bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-string">&quot;boop&quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>], [<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>]);
+<span class="hljs-title function_">bifurcate</span>([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-string">&quot;boop&quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>], [<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>]);
 <span class="hljs-comment">// [ [&#x27;beep&#x27;, &#x27;boop&#x27;, &#x27;bar&#x27;], [&#x27;foo&#x27;] ]</span></code></pre></div>
 
 <ul>
 <li>阶乘</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> factorial = <span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> (n &lt;= <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : n * factorial(n - <span class="hljs-number">1</span>));
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">factorial</span> = (<span class="hljs-params">n</span>) =&gt; (n &lt;= <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : n * <span class="hljs-title function_">factorial</span>(n - <span class="hljs-number">1</span>));
 <span class="hljs-comment">// factorial(6) -&gt; 720</span></code></pre></div>
 
 <ul>
 <li>斐波那契数组生成器</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fibonacci = <span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span>
-  <span class="hljs-built_in">Array</span>(n)
-    .fill(<span class="hljs-number">0</span>)
-    .reduce(
-      (acc, val, i) =&gt; acc.concat(i &gt; <span class="hljs-number">1</span> ? acc[i - <span class="hljs-number">1</span>] + acc[i - <span class="hljs-number">2</span>] : i),
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fibonacci</span> = (<span class="hljs-params">n</span>) =&gt;
+  <span class="hljs-title class_">Array</span>(n)
+    .<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>)
+    .<span class="hljs-title function_">reduce</span>(
+      <span class="hljs-function">(<span class="hljs-params">acc, val, i</span>) =&gt;</span> acc.<span class="hljs-title function_">concat</span>(i &gt; <span class="hljs-number">1</span> ? acc[i - <span class="hljs-number">1</span>] + acc[i - <span class="hljs-number">2</span>] : i),
       []
     );
 <span class="hljs-comment">// fibonacci(5) -&gt; [0,1,1,2,3]</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fib</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">fib</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">let</span> [pre, cur] = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
   <span class="hljs-keyword">for</span> (;;) &#123;
     <span class="hljs-comment">// 死循环的另一种写法</span>
@@ -324,39 +324,39 @@ bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-
     <span class="hljs-keyword">yield</span> cur;
   &#125;
 &#125;
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> fib()) &#123;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x <span class="hljs-keyword">of</span> <span class="hljs-title function_">fib</span>()) &#123;
   <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">100</span>) <span class="hljs-keyword">return</span>;
-  <span class="hljs-built_in">console</span>.log(x);
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x);
 &#125;</code></pre></div>
 
 <ul>
 <li>数组中唯一值</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filterNonUnique = <span class="hljs-function">(<span class="hljs-params">arr</span>) =&gt;</span>
-  arr.filter(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> arr.indexOf(i) === arr.lastIndexOf(i));
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">filterNonUnique</span> = (<span class="hljs-params">arr</span>) =&gt;
+  arr.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> arr.<span class="hljs-title function_">indexOf</span>(i) === arr.<span class="hljs-title function_">lastIndexOf</span>(i));
 <span class="hljs-comment">// filterNonUnique([1,2,2,3,4,4,5]) -&gt; [1,3,5]</span></code></pre></div>
 
 <ul>
 <li>最大公约数（GCD）</li>
 </ul>
 <p>使用递归。基本情况是当 y 等于 0 时。在这种情况下，返回 x。否则，返回 y 的 GCD 和 x / y 的其余部分。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> gcd = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> (!y ? x : gcd(y, x % y));
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">gcd</span> = (<span class="hljs-params">x, y</span>) =&gt; (!y ? x : <span class="hljs-title function_">gcd</span>(y, x % y));
 <span class="hljs-comment">// gcd (8, 36) -&gt; 4</span></code></pre></div>
 
 <ul>
 <li>范围内生成数组</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> initializeArrayRange = <span class="hljs-function">(<span class="hljs-params">end, start = <span class="hljs-number">0</span></span>) =&gt;</span>
-  <span class="hljs-built_in">Array</span>.apply(<span class="hljs-literal">null</span>, <span class="hljs-built_in">Array</span>(end - start)).map(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i + start);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">initializeArrayRange</span> = (<span class="hljs-params">end, start = <span class="hljs-number">0</span></span>) =&gt;
+  <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, <span class="hljs-title class_">Array</span>(end - start)).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i + start);
 <span class="hljs-comment">// initializeArrayRange(5) -&gt; [0,1,2,3,4]</span></code></pre></div>
 
 <ul>
 <li>function 计时</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timeTaken = <span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> &#123;
-  <span class="hljs-built_in">console</span>.time(<span class="hljs-string">&quot;timeTaken&quot;</span>);
-  <span class="hljs-keyword">const</span> r = callback();
-  <span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">&quot;timeTaken&quot;</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">timeTaken</span> = (<span class="hljs-params">callback</span>) =&gt; &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">time</span>(<span class="hljs-string">&quot;timeTaken&quot;</span>);
+  <span class="hljs-keyword">const</span> r = <span class="hljs-title function_">callback</span>();
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">timeEnd</span>(<span class="hljs-string">&quot;timeTaken&quot;</span>);
   <span class="hljs-keyword">return</span> r;
 &#125;;
 <span class="hljs-comment">// timeTaken(() =&gt; Math.pow(2, 10)) -&gt; 1024</span>
@@ -366,18 +366,18 @@ bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-
 <ul>
 <li>RGB 转十六进制</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> rgbToHex = <span class="hljs-function">(<span class="hljs-params">r, g, b</span>) =&gt;</span>
-  ((r &lt;&lt; <span class="hljs-number">16</span>) + (g &lt;&lt; <span class="hljs-number">8</span>) + b).toString(<span class="hljs-number">16</span>).padStart(<span class="hljs-number">6</span>, <span class="hljs-string">&quot;0&quot;</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">rgbToHex</span> = (<span class="hljs-params">r, g, b</span>) =&gt;
+  ((r &lt;&lt; <span class="hljs-number">16</span>) + (g &lt;&lt; <span class="hljs-number">8</span>) + b).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>).<span class="hljs-title function_">padStart</span>(<span class="hljs-number">6</span>, <span class="hljs-string">&quot;0&quot;</span>);
 <span class="hljs-comment">// rgbToHex(255, 165, 1) -&gt; &#x27;ffa501&#x27;</span></code></pre></div>
 
 <ul>
 <li>字符串按字母排序</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> sortCharactersInString = <span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">sortCharactersInString</span> = (<span class="hljs-params">str</span>) =&gt;
   str
-    .split(<span class="hljs-string">&quot;&quot;</span>)
-    .sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.localeCompare(b))
-    .join(<span class="hljs-string">&quot;&quot;</span>);
+    .<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>)
+    .<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.<span class="hljs-title function_">localeCompare</span>(b))
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
 <span class="hljs-comment">// sortCharactersInString(&#x27;cabbage&#x27;) -&gt; &#x27;aabbceg&#x27;</span></code></pre></div>
             </div>
             <hr>
@@ -388,9 +388,9 @@ bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -407,9 +407,9 @@ bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                      <a href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">js模块化</span>
+                        <span class="hidden-mobile">js运行机制</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -417,8 +417,8 @@ bifurcate([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
-                        <span class="hidden-mobile">面向对象</span>
+                      <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                        <span class="hidden-mobile">js模块化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

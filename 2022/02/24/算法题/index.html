@@ -28,8 +28,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-04-01T07:25:32.799Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,25 +246,25 @@
             <div class="markdown-body">
               <ul>
 <li><p>两数之合</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">twoSum</span>(<span class="hljs-params">arr, target</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">arr, target</span>) &#123;
 	<span class="hljs-keyword">let</span> res = [];
-	<span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+	<span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 	<span class="hljs-comment">// 使用数值-&gt;索引建立map</span>
 	<span class="hljs-comment">// 每次循环计算得出当前差值</span>
 	<span class="hljs-comment">// 在map中查找这个差值既能得出索引</span>
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) &#123;
 		<span class="hljs-keyword">let</span> k = target - arr[i];
-		<span class="hljs-keyword">if</span> (map.has(k)) &#123;
-			res.push([map.get(k), i]);
+		<span class="hljs-keyword">if</span> (map.<span class="hljs-title function_">has</span>(k)) &#123;
+			res.<span class="hljs-title function_">push</span>([map.<span class="hljs-title function_">get</span>(k), i]);
 		&#125;
-		map.set(arr[i], i);
+		map.<span class="hljs-title function_">set</span>(arr[i], i);
 	&#125;
-	<span class="hljs-keyword">return</span> res.length === <span class="hljs-number">1</span> ? res[<span class="hljs-number">0</span>] : res;
+	<span class="hljs-keyword">return</span> res.<span class="hljs-property">length</span> === <span class="hljs-number">1</span> ? res[<span class="hljs-number">0</span>] : res;
 &#125;</code></pre></div></li>
 <li><p>排序数组的两数之和</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">twoSum</span>(<span class="hljs-params">nums, target</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">nums, target</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">let</span> r = nums.length - <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">let</span> r = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span> (l &lt; r) &#123;
 		<span class="hljs-keyword">const</span> curSum = nums[l] + nums[r];
 		<span class="hljs-keyword">if</span> (curNum === target) <span class="hljs-keyword">return</span> [nums[l], nums[r]];
@@ -277,11 +277,11 @@
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 &#125;</code></pre></div></li>
 <li><p>三数之合</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threeSum</span>(<span class="hljs-params">arr, target</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params">arr, target</span>) &#123;
 	<span class="hljs-keyword">let</span> res = [];
-	<span class="hljs-keyword">let</span> len = arr.length;
+	<span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> res;
-	arr = arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);
+	arr = arr.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);
 	<span class="hljs-comment">// 按大小排序</span>
 	<span class="hljs-comment">// 开始循环</span>
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;
@@ -298,7 +298,7 @@
 		<span class="hljs-keyword">while</span> (second &lt; third) &#123;
 			<span class="hljs-keyword">const</span> sum = arr[first] + arr[second] + arr[third];
 			<span class="hljs-keyword">if</span> (sum === target) &#123;
-				res.push([arr[first], arr[second], arr[third]]);
+				res.<span class="hljs-title function_">push</span>([arr[first], arr[second], arr[third]]);
 				second++;
 				third--;
 				<span class="hljs-comment">// 移动一次指针再跳过重复项</span>
@@ -321,12 +321,12 @@
 <blockquote>
 <p>面积 = 两直线中较短的高度 * 两线间距离</p>
 </blockquote>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxArea</span>(<span class="hljs-params">height</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxArea</span>(<span class="hljs-params">height</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">let</span> r = height.length - <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">let</span> r = height.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">while</span> (l &lt; r) &#123;
-		res = <span class="hljs-built_in">Math</span>.max(res, (r - l) * <span class="hljs-built_in">Math</span>.min(height[l], height[r]));
+		res = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(res, (r - l) * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(height[l], height[r]));
 		<span class="hljs-keyword">if</span> (height[l] &lt; height[r]) &#123;
 			l++;
 		&#125; <span class="hljs-keyword">else</span> &#123;
@@ -336,9 +336,9 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div></li>
 <li><p>删除排序数组中的重复项，不能使用额外空间，返回不重复的长度</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeDuplicates</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">removeDuplicates</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">let</span> len = arr.length;
+	<span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>; j &lt; len; j++) &#123;
 		<span class="hljs-keyword">if</span> (arr[j] !== arr[j - <span class="hljs-number">1</span>]) &#123;
 			arr[++i] = arr[j];
@@ -347,103 +347,103 @@
 	<span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;
 &#125;</code></pre></div></li>
 <li><p>设计一个支持在平均时间复杂度 O(1) 下，执行以下操作的数据结构。</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">insert(val) ：当元素 val 不存在时，向集合中插入该项。
-remove(val) ：元素 val 存在时，从集合中移除该项。
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">insert</span>(val) ：当元素 val 不存在时，向集合中插入该项。
+<span class="hljs-title function_">remove</span>(val) ：元素 val 存在时，从集合中移除该项。
 getRandom ：随机返回现有集合中的一项。每个元素应该有 相同的概率 被返回。
 示例 :
 
 
 <span class="hljs-comment">// 初始化一个空的集合。</span>
-RandomizedSet randomSet = <span class="hljs-keyword">new</span> RandomizedSet();
+<span class="hljs-title class_">RandomizedSet</span> randomSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RandomizedSet</span>();
 
 <span class="hljs-comment">// 向集合中插入 1 。返回 true 表示 1 被成功地插入。</span>
-randomSet.insert(<span class="hljs-number">1</span>);
+randomSet.<span class="hljs-title function_">insert</span>(<span class="hljs-number">1</span>);
 
 <span class="hljs-comment">// 返回 false ，表示集合中不存在 2 。</span>
-randomSet.remove(<span class="hljs-number">2</span>);
+randomSet.<span class="hljs-title function_">remove</span>(<span class="hljs-number">2</span>);
 
 <span class="hljs-comment">// 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。</span>
-randomSet.insert(<span class="hljs-number">2</span>);
+randomSet.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
 
 <span class="hljs-comment">// getRandom 应随机返回 1 或 2 。</span>
-randomSet.getRandom();
+randomSet.<span class="hljs-title function_">getRandom</span>();
 
 <span class="hljs-comment">// 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。</span>
-randomSet.remove(<span class="hljs-number">1</span>);
+randomSet.<span class="hljs-title function_">remove</span>(<span class="hljs-number">1</span>);
 
 <span class="hljs-comment">// 2 已在集合中，所以返回 false 。</span>
-randomSet.insert(<span class="hljs-number">2</span>);
+randomSet.<span class="hljs-title function_">insert</span>(<span class="hljs-number">2</span>);
 
 <span class="hljs-comment">// 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。</span>
-randomSet.getRandom();
+randomSet.<span class="hljs-title function_">getRandom</span>();
 
 
 
 <span class="hljs-comment">// map方法</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RandomSet</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
-  <span class="hljs-built_in">this</span>.values = []
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">RandomSet</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span> = []
 &#125;
-RandomSet.prototype.insert = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.map.has(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-  <span class="hljs-built_in">this</span>.map.set(val,values.length)
+<span class="hljs-title class_">RandomSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">insert</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">has</span>(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">set</span>(val,values.<span class="hljs-property">length</span>)
   <span class="hljs-comment">// 插入后的索引（插入前的数组长度）</span>
-  <span class="hljs-built_in">this</span>.values.push(val)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-title function_">push</span>(val)
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 &#125;
-RandomSet.prototype.remove = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">this</span>.map.has(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-  <span class="hljs-keyword">let</span> index = <span class="hljs-built_in">this</span>.map.get(val)
+<span class="hljs-title class_">RandomSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">remove</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)&#123;
+  <span class="hljs-keyword">if</span>(!<span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">has</span>(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">let</span> index = <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">get</span>(val)
   <span class="hljs-comment">// 判断在尾部</span>
   <span class="hljs-comment">// 似乎也可以用头部</span>
-  <span class="hljs-keyword">if</span>(index === <span class="hljs-built_in">this</span>.values.length - <span class="hljs-number">1</span>)&#123;
-    <span class="hljs-built_in">this</span>.map.delete(value)
-    <span class="hljs-built_in">this</span>.values.pop()
+  <span class="hljs-keyword">if</span>(index === <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">delete</span>(value)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-title function_">pop</span>()
   &#125;<span class="hljs-keyword">else</span>&#123;
     <span class="hljs-comment">// 不在尾部</span>
     <span class="hljs-comment">// values用尾部元素填充该位置</span>
     <span class="hljs-comment">// map中修改索引</span>
-    <span class="hljs-keyword">let</span> last = <span class="hljs-built_in">this</span>.values.pop()
+    <span class="hljs-keyword">let</span> last = <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-title function_">pop</span>()
     <span class="hljs-comment">// 赋值</span>
-    <span class="hljs-built_in">this</span>.values[index] = last
-    <span class="hljs-built_in">this</span>.map.set(last,index)
-    <span class="hljs-built_in">this</span>.map.delete(val)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>[index] = last
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">set</span>(last,index)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">map</span>.<span class="hljs-title function_">delete</span>(val)
   &#125;
   <span class="hljs-keyword">return</span> val
 &#125;
-RandomSet.prototype.getRandom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-keyword">let</span> len = <span class="hljs-built_in">this</span>.values.length
-  <span class="hljs-keyword">let</span> index = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random()*len)
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.values[index]
+<span class="hljs-title class_">RandomSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getRandom</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">let</span> len = <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-property">length</span>
+  <span class="hljs-keyword">let</span> index = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()*len)
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>[index]
 &#125;
 
 
 <span class="hljs-comment">// set方法</span>
 <span class="hljs-comment">// set是不重复的值的集合</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RandomSet</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">RandomSet</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()
 &#125;
-RandomizedSet.prototype.insert = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.data.has(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-  <span class="hljs-built_in">this</span>.set.add(val)
+<span class="hljs-title class_">RandomizedSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">insert</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-title function_">has</span>(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">set</span>.<span class="hljs-title function_">add</span>(val)
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 &#125;
-RandomizedSet.prototype.remove = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">this</span>.data.has(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-  <span class="hljs-built_in">this</span>.set.delete(val)
+<span class="hljs-title class_">RandomizedSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">remove</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)&#123;
+  <span class="hljs-keyword">if</span>(!<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>.<span class="hljs-title function_">has</span>(val)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">set</span>.<span class="hljs-title function_">delete</span>(val)
   <span class="hljs-keyword">return</span> val
 &#125;
-RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-keyword">let</span> len = <span class="hljs-built_in">this</span>.values.length
-  <span class="hljs-keyword">let</span> index = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random()*len)
-  <span class="hljs-keyword">return</span> [...this.data][index]
+<span class="hljs-title class_">RandomizedSet</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getRandom</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">let</span> len = <span class="hljs-variable language_">this</span>.<span class="hljs-property">values</span>.<span class="hljs-property">length</span>
+  <span class="hljs-keyword">let</span> index = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()*len)
+  <span class="hljs-keyword">return</span> [...<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>][index]
 &#125;</code></pre></div></li>
 <li><p>合并两个有序数组</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// arr1 = [1,2,5]  m=3</span>
 <span class="hljs-comment">// arr2 = [2,3,4]  n=3</span>
 <span class="hljs-comment">// 假设arr1能装下arr2</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeArr</span>(<span class="hljs-params">arr1, m, arr2, n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeArr</span>(<span class="hljs-params">arr1, m, arr2, n</span>) &#123;
 	<span class="hljs-keyword">let</span> index1 = m - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> index2 = n - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> index = m + n - <span class="hljs-number">1</span>;
@@ -459,31 +459,31 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	&#125;
 &#125;</code></pre></div></li>
 <li><p>计算两个数组的交集</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intersection</span>(<span class="hljs-params">arr1, arr2</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr1.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> arr2.includes(item)))];
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">arr1, arr2</span>) &#123;
+	<span class="hljs-keyword">return</span> [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr1.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> arr2.<span class="hljs-title function_">includes</span>(item)))];
 &#125;</code></pre></div></li>
 <li><p>计算多个数组的交集</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intersection</span>(<span class="hljs-params">...arrs</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (arrs.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> [];
-	<span class="hljs-keyword">if</span> (arrs.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arrs[<span class="hljs-number">0</span>];
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">...arrs</span>) &#123;
+	<span class="hljs-keyword">if</span> (arrs.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> [];
+	<span class="hljs-keyword">if</span> (arrs.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arrs[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">return</span> [
-		...new <span class="hljs-built_in">Set</span>(
-			arrs.reduce(<span class="hljs-function">(<span class="hljs-params">pre, next</span>) =&gt;</span> &#123;
+		...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(
+			arrs.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">pre, next</span>) =&gt;</span> &#123;
 				<span class="hljs-comment">// reduce累加器，每一次的return作为下一次累加的pre，你咋这也能忘</span>
 				<span class="hljs-comment">// 后还能添加参数手动制定第一次累加的pre值</span>
-				<span class="hljs-keyword">return</span> pre.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> next.includes(item));
+				<span class="hljs-keyword">return</span> pre.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> next.<span class="hljs-title function_">includes</span>(item));
 			&#125;)
 		),
 	];
 &#125;</code></pre></div></li>
 <li><p>大数相乘(可以输出字符串)</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bigMulti</span>(<span class="hljs-params">x, y</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">bigMulti</span>(<span class="hljs-params">x, y</span>) &#123;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;0&quot;</span> || y === <span class="hljs-string">&quot;0&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> y;
 	<span class="hljs-keyword">if</span> (y === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> x;
-	<span class="hljs-keyword">const</span> len1 = x.length;
-	<span class="hljs-keyword">const</span> len2 = y.length;
-	<span class="hljs-keyword">const</span> pos = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len1 + len2).fill(<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">const</span> len1 = x.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> len2 = y.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> pos = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(len1 + len2).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);
 	<span class="hljs-keyword">let</span> num1, num2, mulit, cur;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = len1 - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
 		num1 = x[i];
@@ -495,24 +495,24 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 			pos[i + j] += (cur / <span class="hljs-number">10</span>) | <span class="hljs-number">0</span>; <span class="hljs-comment">// 取10位以上部分</span>
 		&#125;
 	&#125;
-	<span class="hljs-keyword">let</span> res = pos.join(<span class="hljs-string">&quot;&quot;</span>);
-	<span class="hljs-built_in">console</span>.log(res);
+	<span class="hljs-keyword">let</span> res = pos.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res);
 	<span class="hljs-keyword">while</span> (res[<span class="hljs-number">0</span>] === <span class="hljs-string">&quot;0&quot;</span>) &#123;
-		res = res.substring(<span class="hljs-number">1</span>);
+		res = res.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>);
 	&#125;
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div></li>
 <li><p>保留精度加法</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fixAdd = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;
-	<span class="hljs-keyword">const</span> len1 = x.split(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].length;
-	<span class="hljs-keyword">const</span> len2 = y.split(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].length;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fixAdd</span> = (<span class="hljs-params">x, y</span>) =&gt; &#123;
+	<span class="hljs-keyword">const</span> len1 = x.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> len2 = y.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">const</span> maxLen = len1 &gt;= len2 ? len1 : len2;
 	<span class="hljs-keyword">const</span> times = maxLen * <span class="hljs-number">10</span>;
 	<span class="hljs-keyword">return</span> (x * times + y * times) / times;
 &#125;;</code></pre></div></li>
 <li><p>满 9 加 1</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add1</span>(<span class="hljs-params">num</span>) </span>&#123;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> dig = num.length - <span class="hljs-number">1</span>; dig &gt;= <span class="hljs-number">0</span>; dig--) &#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add1</span>(<span class="hljs-params">num</span>) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> dig = num.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; dig &gt;= <span class="hljs-number">0</span>; dig--) &#123;
 		<span class="hljs-keyword">if</span> (num[dig] === <span class="hljs-number">9</span>) &#123;
 			num[dig] = <span class="hljs-number">0</span>;
 		&#125; <span class="hljs-keyword">else</span> &#123;
@@ -520,14 +520,14 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 			<span class="hljs-keyword">return</span> num;
 		&#125;
 	&#125;
-	num.unshift(<span class="hljs-number">1</span>);
+	num.<span class="hljs-title function_">unshift</span>(<span class="hljs-number">1</span>);
 	<span class="hljs-keyword">return</span> num;
 &#125;</code></pre></div></li>
 <li><p>将数组中的 0 全部移动到最后且非 0 部分保持原顺序</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">move0</span>(<span class="hljs-params">num</span>) </span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">move0</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span> (i &lt; num.length) &#123;
+	<span class="hljs-keyword">while</span> (i &lt; num.<span class="hljs-property">length</span>) &#123;
 		<span class="hljs-keyword">if</span> (num[i] !== <span class="hljs-number">0</span>) &#123;
 			[mim[i], num[j]] = [num[j], num[i]];
 			i++;
@@ -543,15 +543,15 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果指数n是偶数，x^n = x^(n/2) * x^(n/2)</span>
 <span class="hljs-comment">// 如果指数n是奇数，x^n = x * x^(n/2) * x^(n/2)</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myPow</span>(<span class="hljs-params">x, n</span>) </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_pow</span>(<span class="hljs-params">base, ex</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">myPow</span>(<span class="hljs-params">x, n</span>) &#123;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">_pow</span>(<span class="hljs-params">base, ex</span>) &#123;
 		<span class="hljs-keyword">if</span> (ex === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 		<span class="hljs-keyword">if</span> (ex === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> base;
 
-		<span class="hljs-keyword">const</span> splitPow = _pow(base, <span class="hljs-built_in">Math</span>.floor(ex / <span class="hljs-number">2</span>));
+		<span class="hljs-keyword">const</span> splitPow = <span class="hljs-title function_">_pow</span>(base, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(ex / <span class="hljs-number">2</span>));
 		<span class="hljs-keyword">return</span> ex % <span class="hljs-number">2</span> ? base * splitPow * splitPow : splitPow * splitPow;
 	&#125;
-	<span class="hljs-keyword">const</span> res = _pow(x, <span class="hljs-built_in">Math</span>.abs(n));
+	<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">_pow</span>(x, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(n));
 	<span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> / res : res;
 &#125;</code></pre></div>
 
@@ -559,13 +559,13 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <li>  数字的开方 （不使用内置库 pow 和 X ** X</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  返回值只保留整数部分 ，8 =&gt; 2</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mySqrt</span>(<span class="hljs-params">num</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">mySqrt</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> r = num;
 	<span class="hljs-comment">// 左右指针重合后跳出</span>
 	<span class="hljs-keyword">while</span> (l &lt;= r) &#123;
 		<span class="hljs-comment">// 计算一次当前的中间值</span>
-		<span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((r - l) / <span class="hljs-number">2</span>) + l;
+		<span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((r - l) / <span class="hljs-number">2</span>) + l;
 		<span class="hljs-comment">// const mid = (r-l) &gt;&gt; 1 + l</span>
 		<span class="hljs-keyword">const</span> curPow = mid * mid;
 		<span class="hljs-keyword">if</span> (mid &lt;= num) &#123;
@@ -581,29 +581,29 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <li>  输出 1 到最大的 n 位数</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">  / <span class="hljs-doctag">@params </span>n=1 一位数，最大9，输出123456789</span>
-<span class="hljs-comment">  / <span class="hljs-doctag">@params </span>n=2 两位数呀 最大99</span>
+<span class="hljs-comment">  / <span class="hljs-doctag">@params</span> n=1 一位数，最大9，输出123456789</span>
+<span class="hljs-comment">  / <span class="hljs-doctag">@params</span> n=2 两位数呀 最大99</span>
 <span class="hljs-comment">  */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printNumbers1</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">printNumbers1</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-comment">//组合字符串</span>
 	<span class="hljs-keyword">let</span> str = <span class="hljs-string">&quot;&quot;</span>;
 	<span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;
 		str += <span class="hljs-string">&quot;9&quot;</span>;
 		n--;
 	&#125;
-	str = <span class="hljs-built_in">Number</span>(str);
+	str = <span class="hljs-title class_">Number</span>(str);
 	<span class="hljs-keyword">const</span> res = [];
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= str; i++) &#123;
-		res.push(i);
+		res.<span class="hljs-title function_">push</span>(i);
 	&#125;
 	<span class="hljs-keyword">return</span> res;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printNumbers1</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">printNumbers1</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-comment">//最大值就是 10^n-1......</span>
 	<span class="hljs-keyword">const</span> max = <span class="hljs-number">10</span> ** n - <span class="hljs-number">1</span>;
-	<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(max).fill(<span class="hljs-number">1</span>);
-	<span class="hljs-keyword">return</span> res.map(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> v + i);
+	<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(max).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>);
+	<span class="hljs-keyword">return</span> res.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> v + i);
 &#125;</code></pre></div>
 
 <ul>
@@ -613,7 +613,7 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <span class="hljs-comment"> *  15</span>
 <span class="hljs-comment"> * [1,2,3,4,5] [4,5,6] [7,8]</span>
 <span class="hljs-comment"> */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findContinuousSequence</span>(<span class="hljs-params">target</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">findContinuousSequence</span>(<span class="hljs-params">target</span>) &#123;
 	<span class="hljs-comment">// 直接用滑动窗口套</span>
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> r = <span class="hljs-number">2</span>;
@@ -623,7 +623,7 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 		<span class="hljs-keyword">if</span> (sum === target) &#123;
 			<span class="hljs-keyword">const</span> ret = [];
 			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = j; i &lt;= r; i++) &#123;
-				ret.push(i);
+				ret.<span class="hljs-title function_">push</span>(i);
 			&#125;
 			sum -= l;
 			l++;
@@ -639,22 +639,22 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 &#125;
 
 <span class="hljs-comment">// 滑动窗口的另外一种实现</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findContinuousSequence</span>(<span class="hljs-params">target</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> max = target % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? target / <span class="hljs-number">2</span> : <span class="hljs-built_in">Math</span>.round(target / <span class="hljs-number">2</span>);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">findContinuousSequence</span>(<span class="hljs-params">target</span>) &#123;
+	<span class="hljs-keyword">const</span> max = target % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? target / <span class="hljs-number">2</span> : <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(target / <span class="hljs-number">2</span>);
 	<span class="hljs-comment">// max右边都不可能满足</span>
 	<span class="hljs-comment">// t = 9</span>
 	<span class="hljs-comment">// max = 1，2，3，4，5，6[x]，7[x]，8[x]</span>
-	<span class="hljs-keyword">const</span> <span class="hljs-built_in">window</span> = [];
+	<span class="hljs-keyword">const</span> <span class="hljs-variable language_">window</span> = [];
 	<span class="hljs-keyword">const</span> res = [];
 	<span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= max; i++) &#123;
-		<span class="hljs-built_in">window</span>.push(i);
+		<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">push</span>(i);
 		sum += i;
 		<span class="hljs-keyword">while</span> (sum &gt; target) &#123;
-			sum -= <span class="hljs-built_in">window</span>.shift();
+			sum -= <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">shift</span>();
 		&#125;
 		<span class="hljs-keyword">if</span> (sum === target) &#123;
-			<span class="hljs-built_in">window</span>.length &gt; <span class="hljs-number">1</span> &amp;&amp; res.push([...window]);
+			<span class="hljs-variable language_">window</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">1</span> &amp;&amp; res.<span class="hljs-title function_">push</span>([...<span class="hljs-variable language_">window</span>]);
 			<span class="hljs-comment">//<span class="hljs-doctag">FIXME:</span></span>
 			<span class="hljs-comment">// 注意！！</span>
 			<span class="hljs-comment">// push window的浅拷贝</span>
@@ -667,13 +667,13 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <li>  数组中出现次数超过数组长度一半的元素</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 一定会是排序后的数组中点</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">majorityElement</span>(<span class="hljs-params">nums</span>) </span>&#123;
-	nums = nums.sort();
-	<span class="hljs-keyword">return</span> nums[<span class="hljs-built_in">Math</span>.floor(nums.length / <span class="hljs-number">2</span>)];
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">majorityElement</span>(<span class="hljs-params">nums</span>) &#123;
+	nums = nums.<span class="hljs-title function_">sort</span>();
+	<span class="hljs-keyword">return</span> nums[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(nums.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>)];
 &#125;
 
 <span class="hljs-comment">// 投票记数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">majorityElement</span>(<span class="hljs-params">nums</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">majorityElement</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-keyword">let</span> vote = <span class="hljs-number">1</span>;
 	<span class="hljs-comment">// 前后元素相同投票加1，不同减1，票数抵消则计算后面的元素</span>
 	<span class="hljs-keyword">let</span> mid = nums[<span class="hljs-number">0</span>];
@@ -692,19 +692,19 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <p>0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。</p>
 <p>例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 朴朴素素超时方法</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastRemaining</span>(<span class="hljs-params">n, m</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> (v += i));
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
+	<span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> (v += i));
 	<span class="hljs-keyword">let</span> pos = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">while</span> (arr &gt; <span class="hljs-number">1</span>) &#123;
-		pos = (pos + m - <span class="hljs-number">1</span>) % arr.length;
-		arr.splice(pos, <span class="hljs-number">1</span>);
+		pos = (pos + m - <span class="hljs-number">1</span>) % arr.<span class="hljs-property">length</span>;
+		arr.<span class="hljs-title function_">splice</span>(pos, <span class="hljs-number">1</span>);
 	&#125;
 	<span class="hljs-keyword">return</span> arr[<span class="hljs-number">0</span>];
 &#125;
 
 <span class="hljs-comment">// 找规律</span>
 <span class="hljs-comment">// 约瑟夫环</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastRemaining</span>(<span class="hljs-params">n, m</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-comment">// 0，1，2，3，4，5...n-1,n</span>
 	<span class="hljs-comment">// n = 1 时输出 0</span>
 	<span class="hljs-comment">// 反推得到公式</span>
@@ -712,11 +712,11 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-comment">// 当前状态用f(n,m)表示，则上一轮为f(n-1,m)</span>
 	<span class="hljs-comment">// f(n,m) = (f(n-1,m)+m)%n</span>
 	<span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">return</span> (lastRemaining(n - <span class="hljs-number">1</span>, m) + m) % n;
+	<span class="hljs-keyword">return</span> (<span class="hljs-title function_">lastRemaining</span>(n - <span class="hljs-number">1</span>, m) + m) % n;
 &#125;
 
 <span class="hljs-comment">// 也可以使用迭代实现</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastRemaining</span>(<span class="hljs-params">n, m</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-keyword">let</span> pos = <span class="hljs-number">0</span>; <span class="hljs-comment">// n为1时的 剩下0</span>
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;
 		<span class="hljs-comment">// 每一轮都根据规律修改</span>
@@ -728,11 +728,11 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <ul>
 <li>  将数组中的奇数移动到前，偶数移动到后</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exchange</span>(<span class="hljs-params">nums</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">exchange</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-comment">// 对撞指针</span>
 	<span class="hljs-comment">// 分别寻找符合条件的数</span>
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>,
-		r = nums.length - <span class="hljs-number">1</span>;
+		r = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span> (l &lt; r) &#123;
 		<span class="hljs-keyword">while</span> (l &lt; r &amp;&amp; nums[l] % <span class="hljs-number">2</span> !== <span class="hljs-number">0</span>) l++;
 		<span class="hljs-keyword">while</span> (l &lt; r &amp;&amp; nums[r] % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) r--;
@@ -741,11 +741,11 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-keyword">return</span> nums;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exchange</span>(<span class="hljs-params">nums</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">exchange</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-comment">// 快慢指针</span>
 	<span class="hljs-keyword">let</span> slow = <span class="hljs-number">0</span>,
 		fast = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span> (fast &lt; nums.length) &#123;
+	<span class="hljs-keyword">while</span> (fast &lt; nums.<span class="hljs-property">length</span>) &#123;
 		<span class="hljs-keyword">if</span> (nums[fast] % <span class="hljs-number">2</span> !== <span class="hljs-number">0</span>) &#123;
 			[nums[slow], nums[fast]] = [num[fast], nums[slow]];
 			slow++;
@@ -761,7 +761,7 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 </blockquote>
 </li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">numWays</span>(<span class="hljs-params">n</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numWays</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> n;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>;
@@ -776,7 +776,7 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-keyword">return</span> res;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">numWays</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">numWays</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-comment">// 斐波那契数列</span>
 	<span class="hljs-keyword">const</span> arr = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;
@@ -785,19 +785,19 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-keyword">return</span> arr[i];
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Fibonacci</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Fibonacci</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">if</span> (n === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-	<span class="hljs-keyword">return</span> Fibonacci(n - <span class="hljs-number">1</span>) + Fibonacci(n - <span class="hljs-number">2</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Fibonacci</span>(n - <span class="hljs-number">1</span>) + <span class="hljs-title class_">Fibonacci</span>(n - <span class="hljs-number">2</span>);
 &#125;
 <span class="hljs-comment">// 尾递归版本</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Fibonacci</span>(<span class="hljs-params">n, b1 = <span class="hljs-number">1</span>, b2 = <span class="hljs-number">1</span>, c = <span class="hljs-number">3</span></span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Fibonacci</span>(<span class="hljs-params">n, b1 = <span class="hljs-number">1</span>, b2 = <span class="hljs-number">1</span>, c = <span class="hljs-number">3</span></span>) &#123;
 	<span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">3</span>) &#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 	&#125; <span class="hljs-keyword">else</span> &#123;
 		<span class="hljs-keyword">if</span> (n === <span class="hljs-number">3</span>) &#123;
 			<span class="hljs-keyword">return</span> c;
 		&#125; <span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-keyword">return</span> Fibonacci(n, b2, b1 + b2, c + <span class="hljs-number">1</span>);
+			<span class="hljs-keyword">return</span> <span class="hljs-title class_">Fibonacci</span>(n, b2, b1 + b2, c + <span class="hljs-number">1</span>);
 		&#125;
 	&#125;
 &#125;</code></pre></div>
@@ -805,19 +805,19 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <ul>
 <li>  连续子数组的和的最大值</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxSubArray</span>(<span class="hljs-params">nums</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-comment">// 用dp记录该位置作为子数组末尾的累加值</span>
 	<span class="hljs-comment">// [nums[0],nums[1]],dp[1] = num[0] + num[1]</span>
 	<span class="hljs-comment">// dp[2] = dp[1] + nums[2]</span>
 	<span class="hljs-comment">// 同时判断前一dp的值正负</span>
 	<span class="hljs-comment">// 前一个dp为正则 当前dp = 前dp + 当前nums</span>
 	<span class="hljs-comment">// 如果为负直接丢弃</span>
-	<span class="hljs-keyword">if</span> (nums.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];
+	<span class="hljs-keyword">if</span> (nums.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">let</span> max = nums[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">let</span> dpi = nums[<span class="hljs-number">0</span>];
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-property">length</span>; i++) &#123;
 		dpi = dpi &gt; <span class="hljs-number">0</span> ? dpi + nums[i] : nums[i];
-		max = <span class="hljs-built_in">Math</span>.max(max, dpi);
+		max = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(max, dpi);
 	&#125;
 	<span class="hljs-keyword">return</span> max;
 &#125;</code></pre></div>
@@ -827,8 +827,8 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 已知数组 a=[1,[2,[3,[4,null]]]], 实现数组 b=[4,[3,[2,[1,null]]]] ，考虑n级嵌套的情况</span>
 <span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, <span class="hljs-literal">null</span>]]]];
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseArray</span>(<span class="hljs-params">arr</span>) </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">arr, temp</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseArray</span>(<span class="hljs-params">arr</span>) &#123;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">arr, temp</span>) &#123;
 		<span class="hljs-comment">// arr = [1,[2,[3,[4,null]]]]</span>
 		<span class="hljs-comment">// arr = [1,[2,[3,[4,null]]]][1] = [2,[3,[4,null]]]</span>
 		<span class="hljs-comment">// arr = [1,[2,[3,[4,null]]]][1][1] = [3,[4,null]]</span>
@@ -841,11 +841,11 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 		<span class="hljs-comment">// temp = [1,null]</span>
 		<span class="hljs-comment">// temp = [2,[1,null]]</span>
 		<span class="hljs-comment">// temp = [3,[2,[1,null]]]</span>
-		<span class="hljs-keyword">return</span> reverse(arr[<span class="hljs-number">1</span>], temp); <span class="hljs-comment">// 递归进嵌套</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">reverse</span>(arr[<span class="hljs-number">1</span>], temp); <span class="hljs-comment">// 递归进嵌套</span>
 	&#125;
-	<span class="hljs-keyword">return</span> reverse(arr, <span class="hljs-literal">null</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-title function_">reverse</span>(arr, <span class="hljs-literal">null</span>);
 &#125;
-<span class="hljs-built_in">console</span>.log(reverseArray(a));</code></pre></div>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reverseArray</span>(a));</code></pre></div>
 
 <ul>
 <li><p>约瑟夫环</p>
@@ -854,12 +854,12 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归公式</span>
 <span class="hljs-comment">// f(n,m) = (f(n-1,m)+m)%n 本轮索引=上轮索引+m%n</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastRemaining</span>(<span class="hljs-params">n, m</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">return</span> (lastRemaining(n - <span class="hljs-number">1</span>, m) + m) % n;
+	<span class="hljs-keyword">return</span> (<span class="hljs-title function_">lastRemaining</span>(n - <span class="hljs-number">1</span>, m) + m) % n;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lastRemaining</span>(<span class="hljs-params">n, m</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">2</span>; j &lt;= m; j++) &#123;
 		i = (i + m) % j;
@@ -881,11 +881,11 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 状态转移</span>
 <span class="hljs-comment">// 由连续元素来求和</span>
 <span class="hljs-comment">// dp[i] 位置的累加值由dp[i-1]决定，dp[i-1]不为负则加上dp[i-1]</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxSubArray</span>(<span class="hljs-params">nums</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (nums.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
+	<span class="hljs-keyword">if</span> (nums.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums;
 	<span class="hljs-keyword">let</span> max = nums[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">const</span> dp = [nums[<span class="hljs-number">0</span>]];
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; nums.length; i++) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-property">length</span>; i++) &#123;
 		dp[i] = dp[i - <span class="hljs-number">1</span>] &gt; <span class="hljs-number">0</span> ? nums[i] + dp[i - <span class="hljs-number">1</span>] : nums[i];
 		<span class="hljs-keyword">if</span> (dp[i] &gt; max) max = dp[i];
 	&#125;
@@ -893,8 +893,8 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 &#125;
 
 <span class="hljs-comment">// 使用变量记忆dp[i-1]的值</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxSubArray</span>(<span class="hljs-params">nums</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (nums.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
+	<span class="hljs-keyword">if</span> (nums.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> nums;
 	<span class="hljs-keyword">let</span> max = nums[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">let</span> preDp = <span class="hljs-number">0</span>; <span class="hljs-comment">// init 0</span>
 	<span class="hljs-keyword">let</span> curDp;
@@ -913,17 +913,17 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 正确的数组应该value===index</span>
 <span class="hljs-comment">// [0,1,3] =&gt; 2</span>
 <span class="hljs-comment">// [1,2] =&gt; 0</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">missingNumber</span>(<span class="hljs-params">nums</span>) </span>&#123;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">missingNumber</span>(<span class="hljs-params">nums</span>) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-property">length</span>; i++) &#123;
 		<span class="hljs-keyword">if</span> (i !== nums[i]) <span class="hljs-keyword">return</span> i;
 	&#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">missingNumber</span>(<span class="hljs-params">nums</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">missingNumber</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">let</span> r = nums.length - <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">let</span> r = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span> (l &gt;= r) &#123;
-		<span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((r - l) / <span class="hljs-number">2</span>) + l;
+		<span class="hljs-keyword">let</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((r - l) / <span class="hljs-number">2</span>) + l;
 		<span class="hljs-keyword">if</span> (mid === nums[mid]) &#123;
 			<span class="hljs-comment">// 中间位置数值正确，说明缺省数值在右边</span>
 			l = mid + <span class="hljs-number">1</span>;
@@ -945,9 +945,9 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>],
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">spiralOrder</span>(<span class="hljs-params">matrix</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> rowLen = matrix.length;
-	<span class="hljs-keyword">const</span> columnLen = matrix[<span class="hljs-number">0</span>].length;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">spiralOrder</span>(<span class="hljs-params">matrix</span>) &#123;
+	<span class="hljs-keyword">const</span> rowLen = matrix.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> columnLen = matrix[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">let</span> top = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> bottom = rowLen - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
@@ -955,17 +955,17 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-keyword">const</span> res = [];
 	<span class="hljs-keyword">while</span> (left &lt;= right &amp;&amp; top &lt;= bottom) &#123;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> a = left; a &lt;= right; a++) &#123;
-			res.push(matrix[top][a]);
+			res.<span class="hljs-title function_">push</span>(matrix[top][a]);
 		&#125;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> b = top + <span class="hljs-number">1</span>; b &lt;= bottom; b++) &#123;
-			res.push(matrix[b][right]);
+			res.<span class="hljs-title function_">push</span>(matrix[b][right]);
 		&#125;
 		<span class="hljs-keyword">if</span> (top &gt;= bottom || left &gt;= right) <span class="hljs-keyword">break</span>;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> c = right - <span class="hljs-number">1</span>; c &gt;= left; c--) &#123;
-			res.push(matrix[bottom][c]);
+			res.<span class="hljs-title function_">push</span>(matrix[bottom][c]);
 		&#125;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> d = bottom; d &gt;= top; d--) &#123;
-			res.push(matrix[left][d]);
+			res.<span class="hljs-title function_">push</span>(matrix[left][d]);
 		&#125;
 		left++;
 		right--;
@@ -978,33 +978,33 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 <ul>
 <li><p>电商 SKU 全排列/笛卡尔积</p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> attrs = &#123;
-	names: [<span class="hljs-string">&quot;iPhone X&quot;</span>, <span class="hljs-string">&quot;iPhone XS&quot;</span>, <span class="hljs-string">&quot;iPhone 11&quot;</span>],
-	colors: [<span class="hljs-string">&quot;黑色&quot;</span>, <span class="hljs-string">&quot;白色&quot;</span>, <span class="hljs-string">&quot;红色&quot;</span>],
-	storage: [<span class="hljs-string">&quot;64g&quot;</span>, <span class="hljs-string">&quot;128G&quot;</span>, <span class="hljs-string">&quot;256g&quot;</span>],
+	<span class="hljs-attr">names</span>: [<span class="hljs-string">&quot;iPhone X&quot;</span>, <span class="hljs-string">&quot;iPhone XS&quot;</span>, <span class="hljs-string">&quot;iPhone 11&quot;</span>],
+	<span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;黑色&quot;</span>, <span class="hljs-string">&quot;白色&quot;</span>, <span class="hljs-string">&quot;红色&quot;</span>],
+	<span class="hljs-attr">storage</span>: [<span class="hljs-string">&quot;64g&quot;</span>, <span class="hljs-string">&quot;128G&quot;</span>, <span class="hljs-string">&quot;256g&quot;</span>],
 &#125;;
 
-<span class="hljs-keyword">const</span> descartes = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">chunks</span>) </span>&#123;
+<span class="hljs-keyword">const</span> descartes = <span class="hljs-keyword">function</span> (<span class="hljs-params">chunks</span>) &#123;
 	<span class="hljs-keyword">let</span> res = [];
-	<span class="hljs-keyword">const</span> keysName = <span class="hljs-built_in">Object</span>.keys(chunks);
+	<span class="hljs-keyword">const</span> keysName = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(chunks);
 	<span class="hljs-comment">// 由于是操作对象,多增加一个keys数组</span>
-	<span class="hljs-keyword">const</span> helper = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">chunkIndex, prev</span>) </span>&#123;
+	<span class="hljs-keyword">const</span> helper = <span class="hljs-keyword">function</span> (<span class="hljs-params">chunkIndex, prev</span>) &#123;
 		<span class="hljs-keyword">let</span> curKey = keysName[chunkIndex];
 		<span class="hljs-keyword">let</span> curChunk = chunks[curKey];
-		<span class="hljs-keyword">let</span> isLast = chunkIndex === keysName.length - <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">let</span> isLast = chunkIndex === keysName.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> val <span class="hljs-keyword">of</span> curChunk) &#123;
-			<span class="hljs-keyword">const</span> cur = prev.concat(<span class="hljs-string">`<span class="hljs-subst">$&#123;curKey&#125;</span>:<span class="hljs-subst">$&#123;val&#125;</span>`</span>);
+			<span class="hljs-keyword">const</span> cur = prev.<span class="hljs-title function_">concat</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;curKey&#125;</span>:<span class="hljs-subst">$&#123;val&#125;</span>`</span>);
 			<span class="hljs-keyword">if</span> (isLast) &#123;
 				<span class="hljs-comment">// 如果已经处理到数组的最后一项了 则把拼接的结果放入返回值中</span>
-				res.push(cur);
+				res.<span class="hljs-title function_">push</span>(cur);
 			&#125; <span class="hljs-keyword">else</span> &#123;
-				helper(chunkIndex + <span class="hljs-number">1</span>, cur);
+				<span class="hljs-title function_">helper</span>(chunkIndex + <span class="hljs-number">1</span>, cur);
 			&#125;
 		&#125;
 	&#125;;
 
 	<span class="hljs-comment">// 从属性数组下标为 0 开始处理</span>
 	<span class="hljs-comment">// 并且此时的 prev 是个空数组</span>
-	helper(<span class="hljs-number">0</span>, []);
+	<span class="hljs-title function_">helper</span>(<span class="hljs-number">0</span>, []);
 
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div></li>
@@ -1012,12 +1012,12 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: n = 4, k = 2;</span>
 <span class="hljs-comment">// 输出: [[2,4],[3,4],[2,3],[1,2],[1,3],[1,4],]</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">combine</span>(<span class="hljs-params">n, k</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">combine</span>(<span class="hljs-params">n, k</span>) &#123;
 	<span class="hljs-keyword">const</span> res = [];
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helper</span>(<span class="hljs-params">start, prev</span>) </span>&#123;
-		<span class="hljs-keyword">const</span> len = prev.length;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">helper</span>(<span class="hljs-params">start, prev</span>) &#123;
+		<span class="hljs-keyword">const</span> len = prev.<span class="hljs-property">length</span>;
 		<span class="hljs-keyword">if</span> (len === k) &#123;
-			res.push(prev);
+			res.<span class="hljs-title function_">push</span>(prev);
 			<span class="hljs-keyword">return</span>;
 		&#125;
 		<span class="hljs-comment">// 剪枝,还能剩下几个空位</span>
@@ -1028,10 +1028,10 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 				<span class="hljs-comment">// n是最大数字,减去当前数字+1</span>
 				<span class="hljs-keyword">return</span>; <span class="hljs-comment">// 往后的i都不会符合,直接return</span>
 			&#125;
-			helper(i + <span class="hljs-number">1</span>, prev.concat(i));
+			<span class="hljs-title function_">helper</span>(i + <span class="hljs-number">1</span>, prev.<span class="hljs-title function_">concat</span>(i));
 		&#125;
 	&#125;
-	helper(<span class="hljs-number">1</span>, []);
+	<span class="hljs-title function_">helper</span>(<span class="hljs-number">1</span>, []);
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div></li>
 <li><p>请你判断一个  9 x 9 的数独是否有效。根据以下规则 ，验证已经填入的数字是否有效</p>
@@ -1054,13 +1054,13 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 ];
 <span class="hljs-comment">//输出：true</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isValidSudoku</span>(<span class="hljs-params">arr</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isValidSudoku</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-comment">// 用最直白的哈希表，由于要处理顺序递增数组，可以默认全部是0</span>
 	<span class="hljs-comment">// 记录index+1位置的数有没有出现过</span>
-	<span class="hljs-keyword">const</span> rows = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">9</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">9</span>).fill(<span class="hljs-number">0</span>));
-	<span class="hljs-keyword">const</span> columns = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">9</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">9</span>).fill(<span class="hljs-number">0</span>));
+	<span class="hljs-keyword">const</span> rows = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">9</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">9</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>));
+	<span class="hljs-keyword">const</span> columns = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">9</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">9</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>));
 	<span class="hljs-comment">// 9*9的小方块</span>
-	<span class="hljs-keyword">const</span> blocks = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">9</span>).fill(<span class="hljs-number">0</span>)));
+	<span class="hljs-keyword">const</span> blocks = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">3</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">3</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">9</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>)));
 	<span class="hljs-comment">// 开始循环</span>
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; j++) &#123;
@@ -1078,32 +1078,32 @@ RandomizedSet.prototype.getRandom = <span class="hljs-function"><span class="hlj
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;</code></pre></div></li>
 <li><p>实现 LRU 缓存结构 （最近最少访问</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LRUCache</span>(<span class="hljs-params">capacity</span>)</span>&#123;
-			<span class="hljs-built_in">this</span>.capacity = capacity
-			<span class="hljs-built_in">this</span>.cache = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">LRUCache</span>(<span class="hljs-params">capacity</span>)&#123;
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span> = capacity
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()
 &#125;
 
-LRUCache.prototype.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>&#123;
-			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.cache.has(key))&#123;
-				<span class="hljs-keyword">const</span> val = <span class="hljs-built_in">this</span>.cache.get(key)
-				<span class="hljs-built_in">this</span>.cache.delete(key)
-				<span class="hljs-built_in">this</span>.cache.set(key,val)
+<span class="hljs-title class_">LRUCache</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">get</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)&#123;
+			<span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">has</span>(key))&#123;
+				<span class="hljs-keyword">const</span> val = <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">get</span>(key)
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(key)
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">set</span>(key,val)
 				<span class="hljs-keyword">return</span> val
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>
 			&#125;
 &#125;
 
-LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key,value</span>)</span>&#123;
-			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.cache.has(key))&#123;
-				<span class="hljs-built_in">this</span>.cache.delete(key)
+<span class="hljs-title class_">LRUCache</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">put</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">key,value</span>)&#123;
+			<span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">has</span>(key))&#123;
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(key)
 			&#125;
-			<span class="hljs-built_in">this</span>.cache.set(key,value)
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">set</span>(key,value)
 			<span class="hljs-comment">// 如果容量超标</span>
-			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.cache.size &gt; <span class="hljs-built_in">this</span>.capacity)&#123;
+			<span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-property">size</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span>)&#123;
 					<span class="hljs-comment">// 删除map中的第一个</span>
-					<span class="hljs-keyword">const</span> latestKey = <span class="hljs-built_in">this</span>.cache.keys().next().value
-					<span class="hljs-built_in">this</span>.cache.delete(latestKey)
+					<span class="hljs-keyword">const</span> latestKey = <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>
+					<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(latestKey)
 			&#125;
 &#125;
 </code></pre></div></li>
@@ -1116,7 +1116,7 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
 <blockquote>
 <p>sqrt 平方根</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPrime</span>(<span class="hljs-params">num</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isPrime</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt; num - <span class="hljs-number">1</span>; i++) &#123;
 		<span class="hljs-keyword">if</span> (num % i === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
@@ -1125,9 +1125,9 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
 &#125;
 
 <span class="hljs-comment">// 一个数若可以进行因数分解，那么分解时得到的两个数一定是一个小于等于sqrt(n)，一个大于等于sqrt(n)</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPrime</span>(<span class="hljs-params">num</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isPrime</span>(<span class="hljs-params">num</span>)&#123;
 	<span class="hljs-keyword">if</span>(num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-	<span class="hljs-keyword">const</span> sqrt = <span class="hljs-built_in">Math</span>.sqrt(num)
+	<span class="hljs-keyword">const</span> sqrt = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(num)
 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span> ; i &lt; sqrt ;i++)&#123;
 		<span class="hljs-keyword">if</span>(num % i === <span class="hljs-number">0</span> ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
 	&#125;
@@ -1137,10 +1137,10 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
 
 <ul>
 <li><p> 计算n以内的质数数量</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> countPrimes = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> countPrimes = <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-comment">// n之前的数组，先全部默认是质数</span>
   <span class="hljs-comment">// primeArray[i] = true</span>
-	<span class="hljs-keyword">const</span> primeArray = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n).fill(<span class="hljs-literal">true</span>);
+	<span class="hljs-keyword">const</span> primeArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-literal">true</span>);
 	<span class="hljs-keyword">let</span> primeCount = <span class="hljs-number">0</span>;
 
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt; n; i++) &#123;
@@ -1167,19 +1167,19 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
 <span class="hljs-comment">// 当arr1[i] === arr[j]时</span>
 <span class="hljs-comment">// 该位置的公共长度 dp[i][j] = dp[i-1][j-1] + 1</span>
 <span class="hljs-comment">// 建立二维数组dp</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">commonLongest</span> (<span class="hljs-params">A,B</span>)</span>&#123;
-	<span class="hljs-keyword">const</span> m = A.length
-	<span class="hljs-keyword">const</span> n = B.length
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">commonLongest</span> (A,B)&#123;
+	<span class="hljs-keyword">const</span> m = A.<span class="hljs-property">length</span>
+	<span class="hljs-keyword">const</span> n = B.<span class="hljs-property">length</span>
 	<span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
 	<span class="hljs-comment">// 考虑0的情况，并且dp[x][0]或者dp[0][x]都为0</span>
-	<span class="hljs-keyword">const</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(m+<span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>).map(<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n+<span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>))
+	<span class="hljs-keyword">const</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(m+<span class="hljs-number">1</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n+<span class="hljs-number">1</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>))
 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ; i &lt;= m ;i++)&#123;
 		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j  = <span class="hljs-number">1</span>; j &lt;= n ; j++)&#123;
 			<span class="hljs-comment">// 从长度为0开始，则有一位重合 + 1</span>
 			<span class="hljs-keyword">if</span>(A[i-<span class="hljs-number">1</span>] === B[j-<span class="hljs-number">1</span>])&#123;
 				dp[i][j] = dp[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>
 			&#125;
-			res = <span class="hljs-built_in">Math</span>.max(res,dp[i][j])
+			res = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(res,dp[i][j])
 		&#125;
 	&#125;
 	<span class="hljs-keyword">return</span> res
@@ -1193,9 +1193,9 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
@@ -1214,9 +1214,9 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%95%B0%E7%BB%84/">
+                      <a href="/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数组</span>
+                        <span class="hidden-mobile">网络分层模型</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1224,8 +1224,8 @@ LRUCache.prototype.put = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
-                        <span class="hidden-mobile">浏览器缓存策略</span>
+                      <a href="/2022/02/24/%E9%93%BE%E8%A1%A8/">
+                        <span class="hidden-mobile">链表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

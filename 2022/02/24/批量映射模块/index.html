@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -245,11 +245,11 @@
             <div class="markdown-body">
               <h2 id="1-批量注册中间件"><a href="#1-批量注册中间件" class="headerlink" title="1. 批量注册中间件"></a>1. 批量注册中间件</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">./controllers中
 
-controllerA.js
-controllerB.js
-controllerC.js</code></pre></div>
+controllerA.<span class="hljs-property">js</span>
+controllerB.<span class="hljs-property">js</span>
+controllerC.<span class="hljs-property">js</span></code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">./controllers/index.js
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">./controllers/index.<span class="hljs-property">js</span>
 
 <span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lodash&#x27;</span>)
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
@@ -258,24 +258,24 @@ controllerC.js</code></pre></div>
 <span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * 映射文件夹下的文件为模块</span>
 <span class="hljs-comment"> */</span>
-<span class="hljs-keyword">const</span> mapDir = <span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> &#123;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">mapDir</span> = d =&gt; &#123;
     <span class="hljs-keyword">const</span> tree = &#123;&#125;
 
     <span class="hljs-comment">// 获得当前文件夹下的所有的文件夹和文件</span>
-    <span class="hljs-keyword">const</span> [dirs, files] = _(fs.readdirSync(d))
-        .partition(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> fs.statSync(path.join(d, p)).isDirectory())
+    <span class="hljs-keyword">const</span> [dirs, files] = <span class="hljs-title function_">_</span>(fs.<span class="hljs-title function_">readdirSync</span>(d))
+        .<span class="hljs-title function_">partition</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> fs.<span class="hljs-title function_">statSync</span>(path.<span class="hljs-title function_">join</span>(d, p)).<span class="hljs-title function_">isDirectory</span>())
     <span class="hljs-comment">// _(value)</span>
     <span class="hljs-comment">// 创建一个经 lodash 包装后的对象会启用隐式链。返回的数组、集合、方法相互之间能够链式调用</span>
 
     <span class="hljs-comment">// 递归映射文件夹</span>
-    dirs.forEach(<span class="hljs-function"><span class="hljs-params">dir</span> =&gt;</span> &#123;
-        tree[dir] = mapDir(path.join(d, dir))
+    dirs.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">dir</span> =&gt;</span> &#123;
+        tree[dir] = <span class="hljs-title function_">mapDir</span>(path.<span class="hljs-title function_">join</span>(d, dir))
     &#125;)
 
     <span class="hljs-comment">// 映射文件</span>
-    files.forEach(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> &#123;
-        <span class="hljs-keyword">if</span> (path.extname(file) === <span class="hljs-string">&#x27;.js&#x27;</span>) &#123;
-            tree[path.basename(file, <span class="hljs-string">&#x27;.js&#x27;</span>)] = <span class="hljs-built_in">require</span>(path.join(d, file))
+    files.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">extname</span>(file) === <span class="hljs-string">&#x27;.js&#x27;</span>) &#123;
+            tree[path.<span class="hljs-title function_">basename</span>(file, <span class="hljs-string">&#x27;.js&#x27;</span>)] = <span class="hljs-built_in">require</span>(path.<span class="hljs-title function_">join</span>(d, file))
         &#125;
     &#125;)
 
@@ -283,34 +283,34 @@ controllerC.js</code></pre></div>
 &#125;
 
 <span class="hljs-comment">// 默认导出当前文件夹下的映射</span>
-<span class="hljs-built_in">module</span>.exports = mapDir(path.join(__dirname))</code></pre></div>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">mapDir</span>(path.<span class="hljs-title function_">join</span>(__dirname))</code></pre></div>
 
 <ul>
 <li>  使用</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> controllers = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../controllers&quot;</span>);
 
-router.get(<span class="hljs-string">&quot;/A&quot;</span>, controllers.controllerA);
-router.post(<span class="hljs-string">&quot;/B&quot;</span>, controllers.controllerB);
-router.post(<span class="hljs-string">&quot;/C&quot;</span>, controllers.controllerC);</code></pre></div>
+router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;/A&quot;</span>, controllers.<span class="hljs-property">controllerA</span>);
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;/B&quot;</span>, controllers.<span class="hljs-property">controllerB</span>);
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&quot;/C&quot;</span>, controllers.<span class="hljs-property">controllerC</span>);</code></pre></div>
 
 <h2 id="2-批量注册路由"><a href="#2-批量注册路由" class="headerlink" title="2. 批量注册路由"></a>2. 批量注册路由</h2><ul>
 <li>  <code>/routes/...</code></li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">/a.js
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">/a.<span class="hljs-property">js</span>
 &#123;
     <span class="hljs-keyword">const</span> router = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;koa-router&#x27;</span>)()
 
-    router.get(<span class="hljs-string">&#x27;/xxx&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
+    router.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/xxx&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
         ctx.....
     &#125;)
 
     <span class="hljs-keyword">return</span> router
 &#125;
 ...
-b.js
-c.js
-d.js</code></pre></div>
+b.<span class="hljs-property">js</span>
+c.<span class="hljs-property">js</span>
+d.<span class="hljs-property">js</span></code></pre></div>
 
 <ul>
 <li>  <code>/router/index.js</code></li>
@@ -319,49 +319,49 @@ d.js</code></pre></div>
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
 
-<span class="hljs-keyword">const</span> mapRoutes = <span class="hljs-function">(<span class="hljs-params">filePath</span>) =&gt;</span> &#123;
-	<span class="hljs-keyword">const</span> files = fs.readdirSync(filePath); <span class="hljs-comment">//将当前目录下 都读出来</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">mapRoutes</span> = (<span class="hljs-params">filePath</span>) =&gt; &#123;
+	<span class="hljs-keyword">const</span> files = fs.<span class="hljs-title function_">readdirSync</span>(filePath); <span class="hljs-comment">//将当前目录下 都读出来</span>
 
 	files
-		.filter(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
+		.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
 			<span class="hljs-comment">// 过滤</span>
 
 			<span class="hljs-keyword">if</span> (filePath !== __dirname &amp;&amp; file === <span class="hljs-string">&quot;index.js&quot;</span>) &#123;
 				<span class="hljs-comment">//读取的时候会将当前目录的 index.js 也读取出来，这个不需要，如果拿到别的地方可以不加这个判断</span>
 
-				<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;routes module must not be &#x27;index.js&#x27; &quot;</span>);
+				<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;routes module must not be &#x27;index.js&#x27; &quot;</span>);
 			&#125;
 
 			<span class="hljs-keyword">return</span> file !== <span class="hljs-string">&quot;index.js&quot;</span>;
 		&#125;) <span class="hljs-comment">// 将 index.js 过滤掉，路由名字一律不能用 index.js 命名，否则不生效，我这里边的 index.js 如果拿到外面就不用添加这个判断了 ...</span>
-		.forEach(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">let</span> newFilePath = path.join(filePath, file);
+		.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">let</span> newFilePath = path.<span class="hljs-title function_">join</span>(filePath, file);
 
-			<span class="hljs-keyword">if</span> (fs.statSync(newFilePath).isDirectory()) &#123;
+			<span class="hljs-keyword">if</span> (fs.<span class="hljs-title function_">statSync</span>(newFilePath).<span class="hljs-title function_">isDirectory</span>()) &#123;
 				<span class="hljs-comment">// 是目录</span>
 
-				loadRoutes(newFilePath); <span class="hljs-comment">// 递归</span>
+				<span class="hljs-title function_">loadRoutes</span>(newFilePath); <span class="hljs-comment">// 递归</span>
 			&#125; <span class="hljs-keyword">else</span> &#123;
 				<span class="hljs-comment">// 是文件</span>
 
 				<span class="hljs-keyword">let</span> route = <span class="hljs-built_in">require</span>(newFilePath);
 
 				<span class="hljs-comment">//注册路由</span>
-				router.use(route.routes());
-				router.use(route.allowedMethods());
+				router.<span class="hljs-title function_">use</span>(route.<span class="hljs-title function_">routes</span>());
+				router.<span class="hljs-title function_">use</span>(route.<span class="hljs-title function_">allowedMethods</span>());
 			&#125;
 		&#125;);
 &#125;;
 
-mapRoutes(path.join(__dirname));
+<span class="hljs-title function_">mapRoutes</span>(path.<span class="hljs-title function_">join</span>(__dirname));
 
-<span class="hljs-built_in">module</span>.exports = router;</code></pre></div>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = router;</code></pre></div>
 
 <ul>
 <li>  <code>app.js</code></li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./routes/index&quot;</span>);
-app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
+app.<span class="hljs-title function_">use</span>(routes.<span class="hljs-title function_">routes</span>(), routes.<span class="hljs-title function_">allowedMethods</span>());</code></pre></div>
 
             </div>
             <hr>
@@ -391,9 +391,9 @@ app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99sockjs-node/">
+                      <a href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">控制台一直打印http://xxx/sockjs-node/info?t=xxx</span>
+                        <span class="hidden-mobile">栈算法题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -401,8 +401,8 @@ app.use(routes.routes(), routes.allowedMethods());</code></pre></div>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/">
-                        <span class="hidden-mobile">栈算法题</span>
+                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                        <span class="hidden-mobile">浏览器缓存策略</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

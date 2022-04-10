@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,57 +246,57 @@
               <blockquote>
 <p>ref:[<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/8uttkBw-dwYXsybKePQ3nA]">https://mp.weixin.qq.com/s/8uttkBw-dwYXsybKePQ3nA]</a></p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>虚拟列表<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css">      <span class="hljs-selector-tag">html</span> &#123;</span>
-<span class="css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
-      &#125;
-<span class="css">      <span class="hljs-selector-tag">body</span> &#123;</span>
-<span class="css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
-<span class="css">        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
-      &#125;
-      #app &#123;
-<span class="css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
-      &#125;
-      .visible-area&#123;
-<span class="css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
-      &#125;
-      .infinite-list-container &#123;
-<span class="css">        <span class="hljs-attribute">overflow</span>: auto;</span>
-<span class="css">        <span class="hljs-attribute">position</span>: relative;</span>
-<span class="css">        -webkit-<span class="hljs-attribute">overflow</span>-scrolling: touch;</span>
-<span class="css">        <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid black;</span>
-      &#125;
-
-      .infinite-list-phantom &#123;
-<span class="css">        <span class="hljs-attribute">position</span>: absolute;</span>
-<span class="css">        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;</span>
-      &#125;
-
-      .infinite-list &#123;
-<span class="css">        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">        <span class="hljs-attribute">position</span>: absolute;</span>
-      &#125;
-
-      .infinite-list-item &#123;
-<span class="css">        <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span>;</span>
-<span class="css">        <span class="hljs-attribute">color</span>: <span class="hljs-number">#555</span>;</span>
-<span class="css">        <span class="hljs-comment">/* box-sizing: border-box; */</span></span>
-<span class="css">        <span class="hljs-attribute">border</span>:<span class="hljs-number">6px</span> solid gray;</span>
-<span class="css">        <span class="hljs-comment">/* height:200px; */</span></span>
-      &#125;
-    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">      <span class="hljs-selector-tag">html</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css">      <span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css">      <span class="hljs-selector-id">#app</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css">      <span class="hljs-selector-class">.visible-area</span>&#123;</span>
+<span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css">      <span class="hljs-selector-class">.infinite-list-container</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">overflow</span>: auto;</span>
+<span class="language-css">        <span class="hljs-attribute">position</span>: relative;</span>
+<span class="language-css">        -webkit-<span class="hljs-attribute">overflow</span>-scrolling: touch;</span>
+<span class="language-css">        <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid black;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css"></span>
+<span class="language-css">      <span class="hljs-selector-class">.infinite-list-phantom</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">position</span>: absolute;</span>
+<span class="language-css">        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css"></span>
+<span class="language-css">      <span class="hljs-selector-class">.infinite-list</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">position</span>: absolute;</span>
+<span class="language-css">      &#125;</span>
+<span class="language-css"></span>
+<span class="language-css">      <span class="hljs-selector-class">.infinite-list-item</span> &#123;</span>
+<span class="language-css">        <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span>;</span>
+<span class="language-css">        <span class="hljs-attribute">color</span>: <span class="hljs-number">#555</span>;</span>
+<span class="language-css">        <span class="hljs-comment">/* box-sizing: border-box; */</span></span>
+<span class="language-css">        <span class="hljs-attribute">border</span>:<span class="hljs-number">6px</span> solid gray;</span>
+<span class="language-css">        <span class="hljs-comment">/* height:200px; */</span></span>
+<span class="language-css">      &#125;</span>
+<span class="language-css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span>
@@ -308,198 +308,198 @@
       <span class="hljs-tag">&lt;/<span class="hljs-name">virtual-list</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.bootcdn.net/ajax/libs/Faker/3.1.0/faker.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span>
-<span class="javascript">      <span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js&quot;</span>;</span>
-<span class="javascript">      Vue.component(<span class="hljs-string">&quot;virtual-list&quot;</span>, &#123;</span>
-        template: `
-<span class="javascript">        &lt;div ref=<span class="hljs-string">&quot;list&quot;</span> :style=<span class="hljs-string">&quot;&#123;height&#125;&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;infinite-list-container&quot;</span> @scroll=<span class="hljs-string">&quot;scrollEvent($event)&quot;</span>&gt;</span>
-<span class="handlebars"><span class="xml">          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;phantom&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;infinite-list-phantom&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span>
-<span class="javascript">          &lt;div ref=<span class="hljs-string">&quot;content&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;infinite-list&quot;</span>&gt;</span>
-<span class="javascript">            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;infinite-list-item&quot;</span> ref=<span class="hljs-string">&quot;items&quot;</span> :id=<span class="hljs-string">&quot;item.id&quot;</span> :key=<span class="hljs-string">&quot;item.id&quot;</span> v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;item in visibleData&quot;</span>&gt;</span>
-<span class="handlebars"><span class="xml">              <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color:red&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">item.id</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">item.value</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span></span>
-<span class="handlebars"><span class="xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span>
-<span class="handlebars"><span class="xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span>
-<span class="handlebars"><span class="xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span>
-        `,
-        props: &#123;
-<span class="javascript">          <span class="hljs-comment">//列表数据</span></span>
-          listData: &#123;
-<span class="javascript">            type: <span class="hljs-built_in">Array</span>,</span>
-<span class="javascript">            <span class="hljs-keyword">default</span>: <span class="hljs-function">() =&gt;</span> [],</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//预估高度</span></span>
-          estimatedItemSize: &#123;
-<span class="javascript">            type: <span class="hljs-built_in">Number</span>,</span>
-<span class="javascript">            required: <span class="hljs-literal">true</span>,</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//缓冲区比例</span></span>
-          bufferScale: &#123;
-<span class="javascript">            type: <span class="hljs-built_in">Number</span>,</span>
-<span class="javascript">            <span class="hljs-keyword">default</span>: <span class="hljs-number">1</span>,</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//容器高度 100px or 50vh</span></span>
-          height: &#123;
-<span class="javascript">            type: <span class="hljs-built_in">String</span>,</span>
-<span class="javascript">            <span class="hljs-keyword">default</span>: <span class="hljs-string">&quot;100%&quot;</span>,</span>
-          &#125;,
-        &#125;,
-        computed: &#123;
-<span class="javascript">          <span class="hljs-comment">// 可视区域内能显示几条数据</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">visibleCount</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.ceil(<span class="hljs-built_in">this</span>.screenHeight / <span class="hljs-built_in">this</span>.estimatedItemSize);</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">// 可视区域上方数据条数</span></span>
-<span class="javascript">          <span class="hljs-comment">// Math.min取缓冲区值</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">aboveCount</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">this</span>.start, <span class="hljs-built_in">this</span>.bufferScale * <span class="hljs-built_in">this</span>.visibleCount);</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">// 可视区域下方数据条数</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">belowCount</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(</span>
-<span class="javascript">              <span class="hljs-built_in">this</span>.listData.length - <span class="hljs-built_in">this</span>.end,</span>
-<span class="javascript">              <span class="hljs-built_in">this</span>.bufferScale * <span class="hljs-built_in">this</span>.visibleCount</span>
-            );
-          &#125;,
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">visibleData</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-comment">// 需要渲染的数据 = 显示的数据加上上下缓冲区</span></span>
-<span class="javascript">            <span class="hljs-keyword">let</span> start = <span class="hljs-built_in">this</span>.start - <span class="hljs-built_in">this</span>.aboveCount;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> end = <span class="hljs-built_in">this</span>.end + <span class="hljs-built_in">this</span>.belowCount;</span>
-<span class="javascript">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.listData.slice(start, end);</span>
-          &#125;,
-        &#125;,
-<span class="javascript">        <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">          <span class="hljs-built_in">this</span>.initPositions();</span>
-        &#125;,
-<span class="javascript">        <span class="hljs-function"><span class="hljs-title">mounted</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">          <span class="hljs-built_in">this</span>.screenHeight = <span class="hljs-built_in">this</span>.$el.clientHeight;</span>
-<span class="javascript">          <span class="hljs-built_in">this</span>.start = <span class="hljs-number">0</span>;</span>
-<span class="javascript">          <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.start + <span class="hljs-built_in">this</span>.visibleCount;</span>
-        &#125;,
-<span class="javascript">        <span class="hljs-function"><span class="hljs-title">updated</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">          <span class="hljs-built_in">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span>
-<span class="javascript">            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.$refs.items || !<span class="hljs-built_in">this</span>.$refs.items.length) &#123;</span>
-<span class="javascript">              <span class="hljs-keyword">return</span>;</span>
-            &#125;
-<span class="javascript">            <span class="hljs-comment">//获取真实元素大小，修改对应的尺寸缓存</span></span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.updateItemsSize();</span>
-<span class="javascript">            <span class="hljs-comment">//更新列表总高度</span></span>
-<span class="javascript">            <span class="hljs-keyword">let</span> height = <span class="hljs-built_in">this</span>.positions[<span class="hljs-built_in">this</span>.positions.length - <span class="hljs-number">1</span>].bottom;</span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.$refs.phantom.style.height = height + <span class="hljs-string">&quot;px&quot;</span>;</span>
-<span class="javascript">            <span class="hljs-comment">//更新真实偏移量</span></span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.setStartOffset();</span>
-          &#125;);
-        &#125;,
-<span class="javascript">        <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">          <span class="hljs-keyword">return</span> &#123;</span>
-<span class="javascript">            <span class="hljs-comment">//可视区域高度</span></span>
-            screenHeight: 0,
-<span class="javascript">            <span class="hljs-comment">//起始索引</span></span>
-            start: 0,
-<span class="javascript">            <span class="hljs-comment">//结束索引</span></span>
-            end: 0,
-          &#125;;
-        &#125;,
-        methods: &#123;
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">initPositions</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.positions = <span class="hljs-built_in">this</span>.listData.map(<span class="hljs-function">(<span class="hljs-params">d, index</span>) =&gt;</span> (&#123;</span>
-              index,
-<span class="javascript">              height: <span class="hljs-built_in">this</span>.estimatedItemSize,</span>
-<span class="javascript">              top: index * <span class="hljs-built_in">this</span>.estimatedItemSize,</span>
-<span class="javascript">              bottom: (index + <span class="hljs-number">1</span>) * <span class="hljs-built_in">this</span>.estimatedItemSize,</span>
-            &#125;));
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//获取列表起始索引</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">getStartIndex</span>(<span class="hljs-params">scrollTop = <span class="hljs-number">0</span></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-comment">//二分法查找</span></span>
-<span class="javascript">            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.binarySearch(<span class="hljs-built_in">this</span>.positions, scrollTop);</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">binarySearch</span>(<span class="hljs-params">list, value</span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> end = list.length - <span class="hljs-number">1</span>;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> tempIndex = <span class="hljs-literal">null</span>;</span>
-
-<span class="javascript">            <span class="hljs-keyword">while</span> (start &lt;= end) &#123;</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> midIndex = <span class="hljs-built_in">parseInt</span>((start + end) / <span class="hljs-number">2</span>);</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> midValue = list[midIndex].bottom;</span>
-              if (midValue === value) &#123;
-<span class="javascript">                <span class="hljs-keyword">return</span> midIndex + <span class="hljs-number">1</span>;</span>
-<span class="javascript">              &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (midValue &lt; value) &#123;</span>
-                start = midIndex + 1;
-<span class="javascript">              &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (midValue &gt; value) &#123;</span>
-<span class="javascript">                <span class="hljs-keyword">if</span> (tempIndex === <span class="hljs-literal">null</span> || tempIndex &gt; midIndex) &#123;</span>
-                  tempIndex = midIndex;
-                &#125;
-                end = end - 1;
-              &#125;
-            &#125;
-<span class="javascript">            <span class="hljs-keyword">return</span> tempIndex;</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//更新列表项的当前尺寸</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">updateItemsSize</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> nodes = <span class="hljs-built_in">this</span>.$refs.items;</span>
-<span class="javascript">            nodes.forEach(<span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> &#123;</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> rect = node.getBoundingClientRect();</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> height = rect.height;</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> index = +node.id.slice(<span class="hljs-number">1</span>);</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> oldHeight = <span class="hljs-built_in">this</span>.positions[index].height;</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> dValue = oldHeight - height;</span>
-<span class="javascript">              <span class="hljs-comment">//存在差值</span></span>
-              if (dValue) &#123;
-<span class="javascript">                <span class="hljs-built_in">this</span>.positions[index].bottom =</span>
-<span class="javascript">                  <span class="hljs-built_in">this</span>.positions[index].bottom - dValue;</span>
-<span class="javascript">                <span class="hljs-built_in">this</span>.positions[index].height = height;</span>
-<span class="javascript">                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = index + <span class="hljs-number">1</span>; k &lt; <span class="hljs-built_in">this</span>.positions.length; k++) &#123;</span>
-<span class="javascript">                  <span class="hljs-built_in">this</span>.positions[k].top = <span class="hljs-built_in">this</span>.positions[k - <span class="hljs-number">1</span>].bottom;</span>
-<span class="javascript">                  <span class="hljs-built_in">this</span>.positions[k].bottom = <span class="hljs-built_in">this</span>.positions[k].bottom - dValue;</span>
-                &#125;
-              &#125;
-            &#125;);
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//计算偏移量并translate</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">setStartOffset</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">let</span> startOffset;</span>
-<span class="javascript">            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.start &gt;= <span class="hljs-number">1</span>) &#123;</span>
-<span class="javascript">              <span class="hljs-keyword">let</span> size =</span>
-<span class="javascript">                <span class="hljs-built_in">this</span>.positions[<span class="hljs-built_in">this</span>.start].top -</span>
-<span class="javascript">                (<span class="hljs-built_in">this</span>.positions[<span class="hljs-built_in">this</span>.start - <span class="hljs-built_in">this</span>.aboveCount]</span>
-<span class="javascript">                  ? <span class="hljs-built_in">this</span>.positions[<span class="hljs-built_in">this</span>.start - <span class="hljs-built_in">this</span>.aboveCount].top</span>
-                  : 0);
-<span class="javascript">              startOffset = <span class="hljs-built_in">this</span>.positions[<span class="hljs-built_in">this</span>.start - <span class="hljs-number">1</span>].bottom - size;</span>
-<span class="javascript">            &#125; <span class="hljs-keyword">else</span> &#123;</span>
-              startOffset = 0;
-            &#125;
-<span class="javascript">            <span class="hljs-built_in">this</span>.$refs.content.style.transform = <span class="hljs-string">`translate3d(0,<span class="hljs-subst">$&#123;startOffset&#125;</span>px,0)`</span>;</span>
-          &#125;,
-<span class="javascript">          <span class="hljs-comment">//滚动事件</span></span>
-<span class="javascript">          <span class="hljs-function"><span class="hljs-title">scrollEvent</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">            <span class="hljs-comment">//当前滚动位置</span></span>
-<span class="javascript">            <span class="hljs-keyword">let</span> scrollTop = <span class="hljs-built_in">this</span>.$refs.list.scrollTop;</span>
-<span class="javascript">            <span class="hljs-comment">// let startBottom = this.positions[this.start - ]</span></span>
-<span class="javascript">            <span class="hljs-comment">//此时的开始索引</span></span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.start = <span class="hljs-built_in">this</span>.getStartIndex(scrollTop);</span>
-<span class="javascript">            <span class="hljs-comment">//此时的结束索引</span></span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.end = <span class="hljs-built_in">this</span>.start + <span class="hljs-built_in">this</span>.visibleCount;</span>
-<span class="javascript">            <span class="hljs-comment">//此时的偏移量</span></span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.setStartOffset();</span>
-          &#125;,
-        &#125;,
-      &#125;);
-<span class="javascript">      <span class="hljs-keyword">new</span> Vue(&#123;</span>
-<span class="javascript">        el: <span class="hljs-string">&quot;#app&quot;</span>,</span>
-        data: &#123;
-          dataLength: 100000,
-          list: [],
-        &#125;,
-<span class="javascript">        <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span> &#123;</span>
-<span class="javascript">          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id = <span class="hljs-number">0</span>; id &lt; <span class="hljs-built_in">this</span>.dataLength; ++id) &#123;</span>
-<span class="javascript">            <span class="hljs-built_in">this</span>.list.push(&#123;</span>
-              id,
-              value: faker.lorem.sentences(),
-            &#125;);
-          &#125;
-        &#125;,
-      &#125;);
-    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">      <span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js&quot;</span>;</span>
+<span class="language-javascript">      <span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&quot;virtual-list&quot;</span>, &#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">template</span>: <span class="hljs-string">`</span></span>
+<span class="hljs-string"><span class="language-javascript">        &lt;div ref=&quot;list&quot; :style=&quot;&#123;height&#125;&quot; class=&quot;infinite-list-container&quot; @scroll=&quot;scrollEvent($event)&quot;&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">          &lt;div ref=&quot;phantom&quot; class=&quot;infinite-list-phantom&quot;&gt;&lt;/div&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">          &lt;div ref=&quot;content&quot; class=&quot;infinite-list&quot;&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">            &lt;div class=&quot;infinite-list-item&quot; ref=&quot;items&quot; :id=&quot;item.id&quot; :key=&quot;item.id&quot; v-for=&quot;item in visibleData&quot;&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">              &lt;p&gt;&lt;span style=&quot;color:red&quot;&gt;&#123;&#123;item.id&#125;&#125;&lt;/span&gt;&#123;&#123;item.value&#125;&#125;&lt;/p&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">            &lt;/div&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">          &lt;/div&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">        &lt;/div&gt;</span></span>
+<span class="hljs-string"><span class="language-javascript">        `</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">props</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-comment">//列表数据</span></span>
+<span class="language-javascript">          <span class="hljs-attr">listData</span>: &#123;</span>
+<span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">Array</span>,</span>
+<span class="language-javascript">            <span class="hljs-attr">default</span>: <span class="hljs-function">() =&gt;</span> [],</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//预估高度</span></span>
+<span class="language-javascript">          <span class="hljs-attr">estimatedItemSize</span>: &#123;</span>
+<span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,</span>
+<span class="language-javascript">            <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//缓冲区比例</span></span>
+<span class="language-javascript">          <span class="hljs-attr">bufferScale</span>: &#123;</span>
+<span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,</span>
+<span class="language-javascript">            <span class="hljs-attr">default</span>: <span class="hljs-number">1</span>,</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//容器高度 100px or 50vh</span></span>
+<span class="language-javascript">          <span class="hljs-attr">height</span>: &#123;</span>
+<span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,</span>
+<span class="language-javascript">            <span class="hljs-attr">default</span>: <span class="hljs-string">&quot;100%&quot;</span>,</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-attr">computed</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-comment">// 可视区域内能显示几条数据</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">visibleCount</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">screenHeight</span> / <span class="hljs-variable language_">this</span>.<span class="hljs-property">estimatedItemSize</span>);</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">// 可视区域上方数据条数</span></span>
+<span class="language-javascript">          <span class="hljs-comment">// Math.min取缓冲区值</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">aboveCount</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">bufferScale</span> * <span class="hljs-variable language_">this</span>.<span class="hljs-property">visibleCount</span>);</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">// 可视区域下方数据条数</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">belowCount</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(</span>
+<span class="language-javascript">              <span class="hljs-variable language_">this</span>.<span class="hljs-property">listData</span>.<span class="hljs-property">length</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">end</span>,</span>
+<span class="language-javascript">              <span class="hljs-variable language_">this</span>.<span class="hljs-property">bufferScale</span> * <span class="hljs-variable language_">this</span>.<span class="hljs-property">visibleCount</span></span>
+<span class="language-javascript">            );</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-title function_">visibleData</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-comment">// 需要渲染的数据 = 显示的数据加上上下缓冲区</span></span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> start = <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">aboveCount</span>;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> end = <span class="hljs-variable language_">this</span>.<span class="hljs-property">end</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">belowCount</span>;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">listData</span>.<span class="hljs-title function_">slice</span>(start, end);</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">initPositions</span>();</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">          <span class="hljs-variable language_">this</span>.<span class="hljs-property">screenHeight</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$el</span>.<span class="hljs-property">clientHeight</span>;</span>
+<span class="language-javascript">          <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> = <span class="hljs-number">0</span>;</span>
+<span class="language-javascript">          <span class="hljs-variable language_">this</span>.<span class="hljs-property">end</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">visibleCount</span>;</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-title function_">updated</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">          <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">items</span> || !<span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">items</span>.<span class="hljs-property">length</span>) &#123;</span>
+<span class="language-javascript">              <span class="hljs-keyword">return</span>;</span>
+<span class="language-javascript">            &#125;</span>
+<span class="language-javascript">            <span class="hljs-comment">//获取真实元素大小，修改对应的尺寸缓存</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">updateItemsSize</span>();</span>
+<span class="language-javascript">            <span class="hljs-comment">//更新列表总高度</span></span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>].<span class="hljs-property">bottom</span>;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">phantom</span>.<span class="hljs-property">style</span>.<span class="hljs-property">height</span> = height + <span class="hljs-string">&quot;px&quot;</span>;</span>
+<span class="language-javascript">            <span class="hljs-comment">//更新真实偏移量</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setStartOffset</span>();</span>
+<span class="language-javascript">          &#125;);</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">          <span class="hljs-keyword">return</span> &#123;</span>
+<span class="language-javascript">            <span class="hljs-comment">//可视区域高度</span></span>
+<span class="language-javascript">            <span class="hljs-attr">screenHeight</span>: <span class="hljs-number">0</span>,</span>
+<span class="language-javascript">            <span class="hljs-comment">//起始索引</span></span>
+<span class="language-javascript">            <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,</span>
+<span class="language-javascript">            <span class="hljs-comment">//结束索引</span></span>
+<span class="language-javascript">            <span class="hljs-attr">end</span>: <span class="hljs-number">0</span>,</span>
+<span class="language-javascript">          &#125;;</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-attr">methods</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-title function_">initPositions</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">listData</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">d, index</span>) =&gt;</span> (&#123;</span>
+<span class="language-javascript">              index,</span>
+<span class="language-javascript">              <span class="hljs-attr">height</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">estimatedItemSize</span>,</span>
+<span class="language-javascript">              <span class="hljs-attr">top</span>: index * <span class="hljs-variable language_">this</span>.<span class="hljs-property">estimatedItemSize</span>,</span>
+<span class="language-javascript">              <span class="hljs-attr">bottom</span>: (index + <span class="hljs-number">1</span>) * <span class="hljs-variable language_">this</span>.<span class="hljs-property">estimatedItemSize</span>,</span>
+<span class="language-javascript">            &#125;));</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//获取列表起始索引</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">getStartIndex</span>(<span class="hljs-params">scrollTop = <span class="hljs-number">0</span></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-comment">//二分法查找</span></span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">binarySearch</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>, scrollTop);</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-title function_">binarySearch</span>(<span class="hljs-params">list, value</span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> end = list.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> tempIndex = <span class="hljs-literal">null</span>;</span>
+<span class="language-javascript"></span>
+<span class="language-javascript">            <span class="hljs-keyword">while</span> (start &lt;= end) &#123;</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> midIndex = <span class="hljs-built_in">parseInt</span>((start + end) / <span class="hljs-number">2</span>);</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> midValue = list[midIndex].<span class="hljs-property">bottom</span>;</span>
+<span class="language-javascript">              <span class="hljs-keyword">if</span> (midValue === value) &#123;</span>
+<span class="language-javascript">                <span class="hljs-keyword">return</span> midIndex + <span class="hljs-number">1</span>;</span>
+<span class="language-javascript">              &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (midValue &lt; value) &#123;</span>
+<span class="language-javascript">                start = midIndex + <span class="hljs-number">1</span>;</span>
+<span class="language-javascript">              &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (midValue &gt; value) &#123;</span>
+<span class="language-javascript">                <span class="hljs-keyword">if</span> (tempIndex === <span class="hljs-literal">null</span> || tempIndex &gt; midIndex) &#123;</span>
+<span class="language-javascript">                  tempIndex = midIndex;</span>
+<span class="language-javascript">                &#125;</span>
+<span class="language-javascript">                end = end - <span class="hljs-number">1</span>;</span>
+<span class="language-javascript">              &#125;</span>
+<span class="language-javascript">            &#125;</span>
+<span class="language-javascript">            <span class="hljs-keyword">return</span> tempIndex;</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//更新列表项的当前尺寸</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">updateItemsSize</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> nodes = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">items</span>;</span>
+<span class="language-javascript">            nodes.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> &#123;</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> rect = node.<span class="hljs-title function_">getBoundingClientRect</span>();</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> height = rect.<span class="hljs-property">height</span>;</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> index = +node.<span class="hljs-property">id</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>);</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> oldHeight = <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[index].<span class="hljs-property">height</span>;</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> dValue = oldHeight - height;</span>
+<span class="language-javascript">              <span class="hljs-comment">//存在差值</span></span>
+<span class="language-javascript">              <span class="hljs-keyword">if</span> (dValue) &#123;</span>
+<span class="language-javascript">                <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[index].<span class="hljs-property">bottom</span> =</span>
+<span class="language-javascript">                  <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[index].<span class="hljs-property">bottom</span> - dValue;</span>
+<span class="language-javascript">                <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[index].<span class="hljs-property">height</span> = height;</span>
+<span class="language-javascript">                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = index + <span class="hljs-number">1</span>; k &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>.<span class="hljs-property">length</span>; k++) &#123;</span>
+<span class="language-javascript">                  <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[k].<span class="hljs-property">top</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[k - <span class="hljs-number">1</span>].<span class="hljs-property">bottom</span>;</span>
+<span class="language-javascript">                  <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[k].<span class="hljs-property">bottom</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[k].<span class="hljs-property">bottom</span> - dValue;</span>
+<span class="language-javascript">                &#125;</span>
+<span class="language-javascript">              &#125;</span>
+<span class="language-javascript">            &#125;);</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//计算偏移量并translate</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">setStartOffset</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> startOffset;</span>
+<span class="language-javascript">            <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> &gt;= <span class="hljs-number">1</span>) &#123;</span>
+<span class="language-javascript">              <span class="hljs-keyword">let</span> size =</span>
+<span class="language-javascript">                <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span>].<span class="hljs-property">top</span> -</span>
+<span class="language-javascript">                (<span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">aboveCount</span>]</span>
+<span class="language-javascript">                  ? <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> - <span class="hljs-variable language_">this</span>.<span class="hljs-property">aboveCount</span>].<span class="hljs-property">top</span></span>
+<span class="language-javascript">                  : <span class="hljs-number">0</span>);</span>
+<span class="language-javascript">              startOffset = <span class="hljs-variable language_">this</span>.<span class="hljs-property">positions</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> - <span class="hljs-number">1</span>].<span class="hljs-property">bottom</span> - size;</span>
+<span class="language-javascript">            &#125; <span class="hljs-keyword">else</span> &#123;</span>
+<span class="language-javascript">              startOffset = <span class="hljs-number">0</span>;</span>
+<span class="language-javascript">            &#125;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">content</span>.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">`translate3d(0,<span class="hljs-subst">$&#123;startOffset&#125;</span>px,0)`</span>;</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">          <span class="hljs-comment">//滚动事件</span></span>
+<span class="language-javascript">          <span class="hljs-title function_">scrollEvent</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">            <span class="hljs-comment">//当前滚动位置</span></span>
+<span class="language-javascript">            <span class="hljs-keyword">let</span> scrollTop = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$refs</span>.<span class="hljs-property">list</span>.<span class="hljs-property">scrollTop</span>;</span>
+<span class="language-javascript">            <span class="hljs-comment">// let startBottom = this.positions[this.start - ]</span></span>
+<span class="language-javascript">            <span class="hljs-comment">//此时的开始索引</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getStartIndex</span>(scrollTop);</span>
+<span class="language-javascript">            <span class="hljs-comment">//此时的结束索引</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">end</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">start</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">visibleCount</span>;</span>
+<span class="language-javascript">            <span class="hljs-comment">//此时的偏移量</span></span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setStartOffset</span>();</span>
+<span class="language-javascript">          &#125;,</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">      &#125;);</span>
+<span class="language-javascript">      <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">el</span>: <span class="hljs-string">&quot;#app&quot;</span>,</span>
+<span class="language-javascript">        <span class="hljs-attr">data</span>: &#123;</span>
+<span class="language-javascript">          <span class="hljs-attr">dataLength</span>: <span class="hljs-number">100000</span>,</span>
+<span class="language-javascript">          <span class="hljs-attr">list</span>: [],</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">        <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id = <span class="hljs-number">0</span>; id &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">dataLength</span>; ++id) &#123;</span>
+<span class="language-javascript">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>.<span class="hljs-title function_">push</span>(&#123;</span>
+<span class="language-javascript">              id,</span>
+<span class="language-javascript">              <span class="hljs-attr">value</span>: faker.<span class="hljs-property">lorem</span>.<span class="hljs-title function_">sentences</span>(),</span>
+<span class="language-javascript">            &#125;);</span>
+<span class="language-javascript">          &#125;</span>
+<span class="language-javascript">        &#125;,</span>
+<span class="language-javascript">      &#125;);</span>
+<span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre></div>
@@ -532,9 +532,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
+                      <a href="/2022/02/24/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">地址中输入URL回车后发生了什么</span>
+                        <span class="hidden-mobile">面向对象题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -542,8 +542,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/17/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E6%96%B0%E6%89%8B%E5%8C%85/">
-                        <span class="hidden-mobile">代码提交规范新手包</span>
+                      <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
+                        <span class="hidden-mobile">地址中输入URL回车后发生了什么</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

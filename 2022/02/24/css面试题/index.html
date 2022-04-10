@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -375,7 +375,7 @@
  <span class="hljs-attribute">border-style</span>: solid;
  <span class="hljs-attribute">border-color</span>: <span class="hljs-number">#f00</span>;
  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>/<span class="hljs-number">100%</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>；
- /* 水平方向上四个角的半径都为<span class="hljs-number">50%</span> /  垂直方向 左右上半径为<span class="hljs-number">100%</span>，左右下为<span class="hljs-number">0</span>*/
+ <span class="hljs-comment">/* 水平方向上四个角的半径都为50% /  垂直方向 左右上半径为100%，左右下为0*/</span>
 &#125;</code></pre></div>
 
 <h2 id="文本控制"><a href="#文本控制" class="headerlink" title="文本控制"></a>文本控制</h2><ul>
@@ -392,40 +392,40 @@
 <ul>
 <li>  多行文本省略号</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">p</span>:after&#123;
-  content:<span class="hljs-string">&#x27;...&#x27;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:after</span>&#123;
+  <span class="hljs-attribute">content</span>:<span class="hljs-string">&#x27;...&#x27;</span>
 &#125;</code></pre></div>
 
 <ul>
 <li>  单行文本溢出省略</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-attribute">overflow</span>: hidden；
-/* （文字长度超出限定宽度，则隐藏超出的内容） */
+<span class="hljs-comment">/* （文字长度超出限定宽度，则隐藏超出的内容） */</span>
 white-space: nowrap；
-/* （设置文字在一行显示，不能换行） */
+<span class="hljs-comment">/* （设置文字在一行显示，不能换行） */</span>
 text-overflow: ellipsis；
-/* （规定当文本溢出时，显示省略符号来代表被修剪的文本） */</code></pre></div>
+<span class="hljs-comment">/* （规定当文本溢出时，显示省略符号来代表被修剪的文本） */</span></code></pre></div>
 
 <ul>
 <li>  多行文本溢出</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs CSS">-webkit-line-clamp: <span class="hljs-number">2</span>；
-/* （用来限制在一个块元素显示的文本的行数，<span class="hljs-number">2</span> 表示最多显示 <span class="hljs-number">2</span> 行。为了实现该效果，它需要组合其他的 WebKit 属性） */
+<span class="hljs-comment">/* （用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性） */</span>
 display: -webkit-box；
-/* （和 <span class="hljs-number">1</span> 结合使用，将对象作为弹性伸缩盒子模型显示 ） */
+<span class="hljs-comment">/* （和 1 结合使用，将对象作为弹性伸缩盒子模型显示 ） */</span>
 -webkit-box-orient: vertical；
-/* （和 <span class="hljs-number">1</span> 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ） */
+<span class="hljs-comment">/* （和 1 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ） */</span>
 overflow: hidden；
-/* （文本溢出限定的宽度就隐藏内容） */
+<span class="hljs-comment">/* （文本溢出限定的宽度就隐藏内容） */</span>
 text-overflow: ellipsis；
-/* （多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本) */</code></pre></div>
+<span class="hljs-comment">/* （多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本) */</span></code></pre></div>
 
 <h2 id="dpr-1px-边框"><a href="#dpr-1px-边框" class="headerlink" title="dpr 1px 边框"></a>dpr 1px 边框</h2><ul>
 <li>  伪元素配合媒体查询<code>transform:scale()</code></li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-class">.onePx_border</span>:after&#123;
-    /* 整个div边框 */
-    content: <span class="hljs-string">&#x27;&#x27;</span>;
+<div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-class">.onePx_border</span><span class="hljs-selector-pseudo">:after</span>&#123;
+    <span class="hljs-comment">/* 整个div边框 */</span>
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;
     <span class="hljs-attribute">position</span>: absolute;
     <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
     <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
@@ -436,7 +436,7 @@ text-overflow: ellipsis；
     height: <span class="hljs-number">100%</span>/<span class="hljs-number">200%</span>/<span class="hljs-number">333%</span>
 
 
-    /* 单独一边的边框 */
+    <span class="hljs-comment">/* 单独一边的边框 */</span>
     content: <span class="hljs-string">&#x27;&#x27;</span>;
     <span class="hljs-attribute">position</span>: absolute;
     <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
@@ -446,16 +446,16 @@ text-overflow: ellipsis；
     <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;
 &#125;
 <span class="hljs-keyword">@media</span> <span class="hljs-keyword">only</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">2</span>) &#123;
-  <span class="hljs-selector-class">.onePx_border</span>:after &#123;
-    -webkit-transform: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
+  <span class="hljs-selector-class">.onePx_border</span><span class="hljs-selector-pseudo">:after</span> &#123;
+    -webkit-<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
     <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
     -webkit-<span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
     <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
   &#125;
 
 <span class="hljs-keyword">@media</span> <span class="hljs-keyword">only</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">3</span>) &#123;
-  <span class="hljs-selector-class">.onePx_border</span>:after &#123;
-    -webkit-transform: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.3</span>);
+  <span class="hljs-selector-class">.onePx_border</span><span class="hljs-selector-pseudo">:after</span> &#123;
+    -webkit-<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.3</span>);
     <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.3</span>);
     -webkit-<span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
     <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
@@ -468,18 +468,18 @@ text-overflow: ellipsis；
 <li>整体缩放 px 单位</li>
 </ol>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script&gt;
-  (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  (<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
     <span class="hljs-comment">// scale</span>
-    <span class="hljs-keyword">var</span> clientWidth = <span class="hljs-built_in">window</span>.screen.width;
-    <span class="hljs-keyword">var</span> dpr = <span class="hljs-built_in">window</span>.devicePixelRatio;
-    <span class="hljs-keyword">var</span> vp = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;meta&#x27;</span>);
-    vp.name = <span class="hljs-string">&#x27;viewport&#x27;</span>;
-    vp.content = <span class="hljs-string">`initial-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> <span class="hljs-regexp">/ dpr&#125;, maximum-scale=$&#123;1.0 * 1 /</span> dpr&#125;</span>, minimum-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> / dpr&#125;</span>, user-scalable=no, width=device-width`</span>;
-    <span class="hljs-keyword">var</span> m = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&#x27;meta&#x27;</span>)[<span class="hljs-number">0</span>];
-    m.parentNode.insertBefore(vp, m);
+    <span class="hljs-keyword">var</span> clientWidth = <span class="hljs-variable language_">window</span>.<span class="hljs-property">screen</span>.<span class="hljs-property">width</span>;
+    <span class="hljs-keyword">var</span> dpr = <span class="hljs-variable language_">window</span>.<span class="hljs-property">devicePixelRatio</span>;
+    <span class="hljs-keyword">var</span> vp = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;meta&#x27;</span>);
+    vp.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;viewport&#x27;</span>;
+    vp.<span class="hljs-property">content</span> = <span class="hljs-string">`initial-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> / dpr&#125;</span>, maximum-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> / dpr&#125;</span>, minimum-scale=<span class="hljs-subst">$&#123;<span class="hljs-number">1.0</span> * <span class="hljs-number">1</span> / dpr&#125;</span>, user-scalable=no, width=device-width`</span>;
+    <span class="hljs-keyword">var</span> m = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;meta&#x27;</span>)[<span class="hljs-number">0</span>];
+    m.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(vp, m);
 
     <span class="hljs-comment">// rem</span>
-    <span class="hljs-built_in">document</span>.documentElement.style.fontSize = ?
+    <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span> = ?
   &#125;)();
 &lt;/script&gt;</code></pre></div>
 
@@ -499,43 +499,43 @@ text-overflow: ellipsis；
 <li><p>绝对定位</p>
 </li>
 <li><p>左右浮动【自适应元素要放在最后】</p>
- <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-			* &#123;
-<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
-			&#125;
-<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
-<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
-			&#125;
-			.container &#123;
-<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
-			&#125;
-			.column &#123;
-<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
-			&#125;
-			.left &#123;
-<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
-			&#125;
-			.center &#123;
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
-			&#125;
-			.right &#123;
-<span class="css">				<span class="hljs-attribute">float</span>: right;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
-			&#125;
-			/*左右浮动至左右并处于同一行
-          *未浮动的center内容会被浮动元素环绕
-          */
-		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">			* &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.container</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.column</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.left</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.center</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.right</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">float</span>: right;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-comment">/*左右浮动至左右并处于同一行</span></span>
+<span class="hljs-comment"><span class="language-css">          *未浮动的center内容会被浮动元素环绕</span></span>
+<span class="hljs-comment"><span class="language-css">          */</span></span>
+<span class="language-css">		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
@@ -546,48 +546,48 @@ text-overflow: ellipsis；
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></li>
 <li><p>全部左浮，-margin 移到上一行【自适应元素放在最前】</p>
- <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-			* &#123;
-<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
-			&#125;
-<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
-<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
-			&#125;
-			.container &#123;
-<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
-			&#125;
-			.column &#123;
-<span class="css">				<span class="hljs-attribute">position</span>: relative;</span>
-				/**
-<span class="css">        *设置定位，元素需要手动移动至<span class="hljs-attribute">padding</span>空隙中</span>
-        */
-<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
-<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
-			&#125;
-			.left &#123;
-<span class="css">				<span class="hljs-attribute">right</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
-			&#125;
-			.center &#123;
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
-			&#125;
-			.right &#123;
-<span class="css">				<span class="hljs-attribute">left</span>: <span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
-			&#125;
-		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">			* &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.container</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.column</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">position</span>: relative;</span>
+<span class="language-css">				<span class="hljs-comment">/**</span></span>
+<span class="hljs-comment"><span class="language-css">        *设置定位，元素需要手动移动至padding空隙中</span></span>
+<span class="hljs-comment"><span class="language-css">        */</span></span>
+<span class="language-css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="language-css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.left</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">right</span>: <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.center</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.right</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">left</span>: <span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
@@ -598,52 +598,52 @@ text-overflow: ellipsis；
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></li>
 <li><p>全部左浮，center 元素需要撑开 center-wrapper【自适应元素放在最前】</p>
- <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+ <div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-			* &#123;
-<span class="css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
-<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
-			&#125;
-<span class="css">			<span class="hljs-selector-tag">body</span> &#123;</span>
-<span class="css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
-			&#125;
-			.container &#123;
-<span class="css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
-			&#125;
-			.column &#123;
-<span class="css">				<span class="hljs-attribute">float</span>: left;</span>
-<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
-			&#125;
-			.left &#123;
-<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
-			&#125;
-			.center-wrapper &#123;
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
-			&#125;
-			.center &#123;
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
-<span class="css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
-<span class="css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
-			&#125;
-			.right &#123;
-<span class="css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
-<span class="css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
-			&#125;
-			/**
-       *3，4方法类似
-<span class="css">       * -<span class="hljs-number">100%</span>的<span class="hljs-attribute">margin-left</span>将元素移到上行最左</span>
-<span class="css">       * -自身宽度<span class="hljs-attribute">margin-left</span>将元素移到上行最右</span>
-<span class="css">       * 并通过给center加<span class="hljs-attribute">padding</span></span>
-       */
-		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">			* &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-tag">body</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">min-width</span>: <span class="hljs-number">550px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.container</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">overflow</span>: hidden;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.column</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">float</span>: left;</span>
+<span class="language-css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.left</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffbbff</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.center-wrapper</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.center</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">200px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#bfefff</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">min-height</span>: <span class="hljs-number">100px</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-selector-class">.right</span> &#123;</span>
+<span class="language-css">				<span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;</span>
+<span class="language-css">				<span class="hljs-attribute">background</span>: <span class="hljs-number">#eeee00</span>;</span>
+<span class="language-css">			&#125;</span>
+<span class="language-css">			<span class="hljs-comment">/**</span></span>
+<span class="hljs-comment"><span class="language-css">       *3，4方法类似</span></span>
+<span class="hljs-comment"><span class="language-css">       * -100%的margin-left将元素移到上行最左</span></span>
+<span class="hljs-comment"><span class="language-css">       * -自身宽度margin-left将元素移到上行最右</span></span>
+<span class="hljs-comment"><span class="language-css">       * 并通过给center加padding</span></span>
+<span class="hljs-comment"><span class="language-css">       */</span></span>
+<span class="language-css">		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
@@ -723,9 +723,9 @@ text-overflow: ellipsis；
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/axios%E5%92%8Cfetch/">
+                      <a href="/2022/02/24/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">axios和fetch</span>
+                        <span class="hidden-mobile">vue@2.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -283,24 +283,24 @@
 <li><p><code>screen</code> 屏幕信息</p>
 </li>
 </ul>
-<h2 id="DOM-（Document-Object-Model）-文档对象模型"><a href="#DOM-（Document-Object-Model）-文档对象模型" class="headerlink" title="DOM （Document Object Model） 文档对象模型"></a>DOM （Document Object Model） 文档对象模型</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">document</span>.getElementById(id);
-<span class="hljs-built_in">document</span>.getElementsByTagName(name);
-<span class="hljs-built_in">document</span>.createElement(name);
-parentNode.appendChild(node);
-element.innerHTML;
+<h2 id="DOM-（Document-Object-Model）-文档对象模型"><a href="#DOM-（Document-Object-Model）-文档对象模型" class="headerlink" title="DOM （Document Object Model） 文档对象模型"></a>DOM （Document Object Model） 文档对象模型</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(name);
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(name);
+parentNode.<span class="hljs-title function_">appendChild</span>(node);
+element.<span class="hljs-property">innerHTML</span>;
 <span class="hljs-comment">//innerHTML 从对象起始位置到终止位置的全部内容（包括html标签</span>
 <span class="hljs-comment">//outerHTML 包括对象自身标签</span>
 <span class="hljs-comment">//innerText innerHTML但不包括html标签，</span>
 <span class="hljs-comment">//textContent 所有文本内容，包括script和style标签内</span>
 
-element.style.left;
-element.setAttribute();
-element.getAttribute();
-element.addEventListener();
-<span class="hljs-built_in">window</span>.content;
-<span class="hljs-built_in">window</span>.onload;
-<span class="hljs-built_in">window</span>.dump();
-<span class="hljs-built_in">window</span>.scrollTo();</code></pre></div>
+element.<span class="hljs-property">style</span>.<span class="hljs-property">left</span>;
+element.<span class="hljs-title function_">setAttribute</span>();
+element.<span class="hljs-title function_">getAttribute</span>();
+element.<span class="hljs-title function_">addEventListener</span>();
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">content</span>;
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span>;
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">dump</span>();
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">scrollTo</span>();</code></pre></div>
 
 <h2 id="js严格模式use-strict"><a href="#js严格模式use-strict" class="headerlink" title="js严格模式use strict"></a>js严格模式<code>use strict</code></h2><ol>
 <li>无法意外创建全局变量</li>
@@ -313,17 +313,17 @@ element.addEventListener();
 <li>保留关键字</li>
 <li>禁止了不在脚本或者函数层面的函数声明 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-meta">&quot;use strict&quot;</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) &#123;
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>&#123; &#125; <span class="hljs-comment">// !!! 语法错误</span>
-  f();
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params"></span>) &#123; &#125; <span class="hljs-comment">// !!! 语法错误</span>
+  <span class="hljs-title function_">f</span>();
 &#125;
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f2</span>(<span class="hljs-params"></span>) </span>&#123; &#125; <span class="hljs-comment">// !!! 语法错误</span>
-  f2();
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">f2</span>(<span class="hljs-params"></span>) &#123; &#125; <span class="hljs-comment">// !!! 语法错误</span>
+  <span class="hljs-title function_">f2</span>();
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 合法</span>
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eit</span>(<span class="hljs-params"></span>) </span>&#123; &#125; <span class="hljs-comment">// 同样合法</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">baz</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">// 合法</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">eit</span>(<span class="hljs-params"></span>) &#123; &#125; <span class="hljs-comment">// 同样合法</span>
 &#125;</code></pre></div></li>
 </ol>
 <h2 id="操作字符串"><a href="#操作字符串" class="headerlink" title="操作字符串"></a>操作字符串</h2><ul>
@@ -370,9 +370,9 @@ element.addEventListener();
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端性能优化</span>
+                        <span class="hidden-mobile">前端涉及到的数据存储</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

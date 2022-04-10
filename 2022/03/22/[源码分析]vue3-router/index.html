@@ -30,8 +30,8 @@
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="vue">
-<meta property="article:tag" content="源码">
 <meta property="article:tag" content="vue-router">
+<meta property="article:tag" content="源码">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -76,7 +76,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -190,7 +190,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.4k 字
     </span>
   
 
@@ -246,21 +246,21 @@
             
             <div class="markdown-body">
               <h1 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h1><h2 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; ref, inject &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
-<span class="hljs-keyword">const</span> ROUTER_KEY = <span class="hljs-built_in">Symbol</span>();
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ROUTER_KEY</span> = <span class="hljs-title class_">Symbol</span>();
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useRouter</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-keyword">return</span> inject(ROUTER_KEY);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">useRouter</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-title function_">inject</span>(<span class="hljs-variable constant_">ROUTER_KEY</span>);
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRouter</span>(<span class="hljs-params">options</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Router(options);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createRouter</span>(<span class="hljs-params">options</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>(options);
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createWebHashHistory</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindEvent</span>(<span class="hljs-params">fn</span>) </span>&#123;
-		<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;hashchange&quot;</span>, fn);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createWebHashHistory</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">bindEvent</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;hashchange&quot;</span>, fn);
 	&#125;
-	<span class="hljs-keyword">const</span> url = <span class="hljs-built_in">window</span>.location.hash.slice(<span class="hljs-number">1</span>) || <span class="hljs-string">&quot;/&quot;</span>;
+	<span class="hljs-keyword">const</span> url = <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">hash</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>) || <span class="hljs-string">&quot;/&quot;</span>;
 
 	<span class="hljs-keyword">return</span> &#123;
 		bindEvents,
@@ -268,51 +268,51 @@
 	&#125;;
 &#125;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Router</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">options</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>.history = options.history;
-		<span class="hljs-built_in">this</span>.router = options.routes;
-		<span class="hljs-built_in">this</span>.current = ref(<span class="hljs-built_in">this</span>.history.url);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Router</span> &#123;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">options</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span> = options.<span class="hljs-property">history</span>;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span> = options.<span class="hljs-property">routes</span>;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span> = <span class="hljs-title function_">ref</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span>.<span class="hljs-property">url</span>);
 
-		<span class="hljs-built_in">this</span>.history.bindEvents(<span class="hljs-function">() =&gt;</span> &#123;
-			<span class="hljs-built_in">this</span>.current.value = <span class="hljs-built_in">window</span>.location.hash.slice(<span class="hljs-number">1</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span>.<span class="hljs-title function_">bindEvents</span>(<span class="hljs-function">() =&gt;</span> &#123;
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>.<span class="hljs-property">value</span> = <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">hash</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>);
 		&#125;);
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">install</span>(<span class="hljs-params">app</span>)</span> &#123;
-		app.provide(ROUTER_KEY, <span class="hljs-built_in">this</span>);
+	<span class="hljs-title function_">install</span>(<span class="hljs-params">app</span>) &#123;
+		app.<span class="hljs-title function_">provide</span>(<span class="hljs-variable constant_">ROUTER_KEY</span>, <span class="hljs-variable language_">this</span>);
 	&#125;
 &#125;
 
 <span class="hljs-keyword">export</span> &#123; createRouter, createWebHashHistory, useRouter &#125;;</code></pre></div>
 
 <h2 id="router-view"><a href="#router-view" class="headerlink" title="router-view"></a>router-view</h2><div class="hljs code-wrapper"><pre><code class="hljs vue">&lt;template&gt;
-	&lt;component :is&#x3D;&quot;comp&quot;&gt;&lt;&#x2F;component&gt;
-&lt;&#x2F;template&gt;
+	&lt;component :is=&quot;comp&quot;&gt;&lt;/component&gt;
+&lt;/template&gt;
 &lt;script setup&gt;
 import &#123; computed &#125; from &quot;vue&quot;;
 import &#123; useRouter &#125; from &quot;👆&quot;;
-const router &#x3D; useRouter();
-const comp &#x3D; computed(() &#x3D;&gt; &#123;
-	const route &#x3D; router.routes.find((route) &#x3D;&gt; route.path &#x3D;&#x3D;&#x3D; router.current.value); &#x2F;&#x2F; 使用path查找
+const router = useRouter();
+const comp = computed(() =&gt; &#123;
+	const route = router.routes.find((route) =&gt; route.path === router.current.value); // 使用path查找
 	return route ? route.component : null;
 &#125;);
-&lt;&#x2F;script&gt;</code></pre></div>
+&lt;/script&gt;</code></pre></div>
 
 <h2 id="router-link"><a href="#router-link" class="headerlink" title="router-link"></a>router-link</h2><div class="hljs code-wrapper"><pre><code class="hljs vue">&lt;template&gt;
-	&lt;a :href&#x3D;&quot;&#39;#&#39; + props.to&quot;&gt;
+	&lt;a :href=&quot;&#x27;#&#x27; + props.to&quot;&gt;
   &lt;!-- 简单的改变地址栏hash --&gt;
-		&lt;slot &#x2F;&gt;
-	&lt;&#x2F;a&gt;
-&lt;&#x2F;template&gt;
+		&lt;slot /&gt;
+	&lt;/a&gt;
+&lt;/template&gt;
 &lt;script setup&gt;
-const props &#x3D; defineProps(&#123;
+const props = defineProps(&#123;
 	to: &#123;
 		type: String,
 		required: true,
 	&#125;,
 &#125;);
-&lt;&#x2F;script&gt;</code></pre></div>
+&lt;/script&gt;</code></pre></div>
 
             </div>
             <hr>
@@ -327,9 +327,9 @@ const props &#x3D; defineProps(&#123;
                     
                       <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-                    
                       <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
                     
                   </div>
                 

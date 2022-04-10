@@ -73,7 +73,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -292,47 +292,47 @@
 <li><p>实现数据(变量和方法)私有化</p>
 </li>
 <li><p>函数柯里化</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">func,...args1</span>)</span>&#123;
-  <span class="hljs-keyword">const</span> fnLen = func.length
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">func,...args1</span>)&#123;
+  <span class="hljs-keyword">const</span> fnLen = func.<span class="hljs-property">length</span>
   <span class="hljs-keyword">const</span> argsArr = [...args1]
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_curry</span>(<span class="hljs-params">...args2</span>)</span>&#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">_curry</span>(<span class="hljs-params">...args2</span>)&#123;
     argsArr = [...argsArr,...args2]
-    <span class="hljs-keyword">return</span> argsArr.length &gt;= fnLen ? func.apply(func,argsArr) : _curry
+    <span class="hljs-keyword">return</span> argsArr.<span class="hljs-property">length</span> &gt;= fnLen ? func.<span class="hljs-title function_">apply</span>(func,argsArr) : _curry
   &#125;
   <span class="hljs-keyword">return</span> _curry
 &#125;
 
 <span class="hljs-comment">// 传世经典累加函数add</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...args1</span>)</span>&#123;
-  <span class="hljs-keyword">let</span> res = [...args1].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerAdd</span>(<span class="hljs-params">...args2</span>)</span>&#123;
-    res = [...res,...args2].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">...args1</span>)&#123;
+  <span class="hljs-keyword">let</span> res = [...args1].<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">innerAdd</span>(<span class="hljs-params">...args2</span>)&#123;
+    res = [...res,...args2].<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a+b)
     <span class="hljs-keyword">return</span> innerAdd
   &#125;
-  innerAdd.toString = <span class="hljs-function">() =&gt;</span> res
+  innerAdd.<span class="hljs-property">toString</span> = <span class="hljs-function">() =&gt;</span> res
   <span class="hljs-comment">// 打印方法会调用toString</span>
   <span class="hljs-keyword">return</span> innerAdd
 &#125;</code></pre></div></li>
 </ul>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addCounter</span>(<span class="hljs-params"></span>) </span>&#123;
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">addCounter</span>(<span class="hljs-params"></span>) &#123;
   <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>; <span class="hljs-comment">// 执行结束后不会被清除</span>
-  <span class="hljs-keyword">const</span> myFunction = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">const</span> myFunction = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
     counter = counter + <span class="hljs-number">1</span>; <span class="hljs-comment">// myFunction函数可以读取add函数内部的变量</span>
     <span class="hljs-keyword">return</span> counter;
   &#125;;
   <span class="hljs-keyword">return</span> myFunction;
 &#125;
 
-<span class="hljs-keyword">const</span> increment = addCounter();
-<span class="hljs-keyword">const</span> c1 = increment();
-<span class="hljs-keyword">const</span> c2 = increment();
-<span class="hljs-keyword">const</span> c3 = increment();
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;increment:&quot;</span>, c1, c2, c3);
+<span class="hljs-keyword">const</span> increment = <span class="hljs-title function_">addCounter</span>();
+<span class="hljs-keyword">const</span> c1 = <span class="hljs-title function_">increment</span>();
+<span class="hljs-keyword">const</span> c2 = <span class="hljs-title function_">increment</span>();
+<span class="hljs-keyword">const</span> c3 = <span class="hljs-title function_">increment</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;increment:&quot;</span>, c1, c2, c3);
 <span class="hljs-comment">// increment: 1 2 3</span></code></pre></div>
 <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><ul>
 <li>老生常谈的for循环setTimeout打印问题<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;
-  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-built_in">console</span>.log(i)
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i)
   &#125;, <span class="hljs-number">1000</span> * i)
 &#125;
 <span class="hljs-comment">// 6 6 6 6 6 6</span>
@@ -343,8 +343,8 @@
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">7</span>; i++) &#123;
   (<span class="hljs-function">(<span class="hljs-params">j</span>) =&gt;</span> &#123;
-    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-built_in">console</span>.log(j)
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(j)
     &#125;, <span class="hljs-number">1000</span> * j)
   &#125;)(i)
 &#125;
@@ -354,30 +354,30 @@
 
 
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span> ;i&lt;<span class="hljs-number">7</span>;i++)&#123;
-  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(j);
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(j);
   &#125;,<span class="hljs-number">1000</span>*i,i)
 &#125;
 <span class="hljs-comment">// setTimeout 可以接受一个参数当函数调用时传入</span>
 
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ;i&lt;<span class="hljs-number">7</span>;i++)&#123;
-  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(i);
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);
   &#125;,<span class="hljs-number">1000</span>*i)
 &#125;</code></pre></div></li>
-<li><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">num2</span>) </span>&#123;
+<li><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params">num2</span>) &#123;
   <span class="hljs-keyword">var</span> num = <span class="hljs-number">15</span>;
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">abc</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 函数作为返回值</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">abc</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">// 函数作为返回值</span>
     num++;
     <span class="hljs-keyword">return</span>(num + num2);
   &#125;
   <span class="hljs-keyword">return</span> abc;
 &#125;
-<span class="hljs-keyword">var</span> aa = fn(<span class="hljs-number">20</span>); <span class="hljs-comment">//  没有引用？？</span>
-aa(); <span class="hljs-comment">//16+20</span>
-aa(); <span class="hljs-comment">//17+20</span>
-fn(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span>
-fn(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span></code></pre></div></li>
+<span class="hljs-keyword">var</span> aa = <span class="hljs-title function_">fn</span>(<span class="hljs-number">20</span>); <span class="hljs-comment">//  没有引用？？</span>
+<span class="hljs-title function_">aa</span>(); <span class="hljs-comment">//16+20</span>
+<span class="hljs-title function_">aa</span>(); <span class="hljs-comment">//17+20</span>
+<span class="hljs-title function_">fn</span>(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span>
+<span class="hljs-title function_">fn</span>(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span></code></pre></div></li>
 </ul>
 
             </div>
@@ -416,8 +416,8 @@ fn(<span class="hljs-number">20</span>)(); <span class="hljs-comment">//36</span
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/">
-                        <span class="hidden-mobile">前端涉及到的数据存储</span>
+                      <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="hidden-mobile">前端性能优化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

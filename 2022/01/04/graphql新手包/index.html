@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -248,16 +248,16 @@
 <p><code>gql</code>的 api 需要完整描述期望返回的数据，相对于<code>RestFul API</code>减少了数据的冗余。修改一下官网的示例：</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 描述你的数据</span>
 <span class="hljs-comment">// 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的数据类型</span>
-type Project &#123;
-  name: <span class="hljs-built_in">String</span>
-  tagline: <span class="hljs-built_in">String</span>
-  contributors: [User]
+type <span class="hljs-title class_">Project</span> &#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-title class_">String</span>
+  <span class="hljs-attr">tagline</span>: <span class="hljs-title class_">String</span>
+  <span class="hljs-attr">contributors</span>: [<span class="hljs-title class_">User</span>]
 &#125;
 
 <span class="hljs-comment">// 请求你所要的数据</span>
 <span class="hljs-comment">// 请求project中，name值为字符串‘GraphQl’的数据，并返回他的tagline字段</span>
 &#123;
-  <span class="hljs-function"><span class="hljs-title">project</span>(<span class="hljs-params">name: <span class="hljs-string">&quot;GraphQL&quot;</span></span>)</span> &#123;
+  <span class="hljs-title function_">project</span>(<span class="hljs-params">name: <span class="hljs-string">&quot;GraphQL&quot;</span></span>) &#123;
     tagline
   &#125;
 &#125;
@@ -275,7 +275,7 @@ type Project &#123;
 <li><p>与 gql 服务器的<strong>全部</strong>数据交互基于一个指定的<code>URL</code>通<br>  道</p>
 </li>
 <li><p>标准的 gql GET 请求</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">http:<span class="hljs-comment">//myapi/graphql?query=&#123;me&#123;name&#125;&#125;</span>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">http</span>:<span class="hljs-comment">//myapi/graphql?query=&#123;me&#123;name&#125;&#125;</span>
 
 &#123;
   me&#123;
@@ -283,7 +283,7 @@ type Project &#123;
   &#125;
 &#125;</code></pre></div></li>
 <li><p>标准的 gql POST 请求</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">content-type:application/json
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">content-<span class="hljs-attr">type</span>:application/json
 
 &#123;
   <span class="hljs-string">&quot;query&quot;</span>: 查询的对象及参数,
@@ -298,14 +298,14 @@ type Project &#123;
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 在一个gql文件内声明多个query，需要命名query，并支持es6结构引用。单个query请求文件则可不命名。</span>
 
-query queryxxx(
-  $variable1: <span class="hljs-built_in">String</span>
-  $variable2: [<span class="hljs-built_in">String</span>]
-)&#123;
-  myCoWorkers(
-    name:$variable1
-    gender:$variable2
-  )&#123;
+query <span class="hljs-title function_">queryxxx</span>(<span class="hljs-params"></span>
+<span class="hljs-params">  $variable1: <span class="hljs-built_in">String</span></span>
+<span class="hljs-params">  $variable2: [<span class="hljs-built_in">String</span>]</span>
+<span class="hljs-params"></span>)&#123;
+  <span class="hljs-title function_">myCoWorkers</span>(<span class="hljs-params"></span>
+<span class="hljs-params">    name:$variable1</span>
+<span class="hljs-params">    gender:$variable2</span>
+<span class="hljs-params">  </span>)&#123;
     name
     age
     gender
@@ -317,8 +317,8 @@ query queryxxx(
 <ul>
 <li>  也可以在请求时手动编写（需安装’graphql-tag’）</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">$apollo.query(
-  query:gql<span class="hljs-string">`query tagList &#123;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">$apollo.<span class="hljs-title function_">query</span>(
+  <span class="hljs-attr">query</span>:gql<span class="hljs-string">`query tagList &#123;</span>
 <span class="hljs-string">      tags &#123;</span>
 <span class="hljs-string">        id,</span>
 <span class="hljs-string">        label</span>
@@ -373,42 +373,42 @@ or
 
 npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http apollo-cache-inmemory graphql-tag</code></pre></div></li>
 <li><p>封装<code>ApolloClient</code></p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> ApolloClient <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-boost&quot;</span>;
-<span class="hljs-keyword">const</span> $apollo = <span class="hljs-keyword">new</span> ApolloClient(&#123;<span class="hljs-attr">uri</span>:<span class="hljs-string">&#x27;xxx&#x27;</span>&#125;)
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ApolloClient</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-boost&quot;</span>;
+<span class="hljs-keyword">const</span> $apollo = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApolloClient</span>(&#123;<span class="hljs-attr">uri</span>:<span class="hljs-string">&#x27;xxx&#x27;</span>&#125;)
 
 <span class="hljs-comment">// or</span>
 
 <span class="hljs-comment">// 封装举例</span>
 <span class="hljs-comment">// 超时</span>
-<span class="hljs-keyword">import</span> ApolloLinkTimeout <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-link-timeout&quot;</span>;
-<span class="hljs-keyword">const</span> timeoutLink = <span class="hljs-keyword">new</span> ApolloLinkTimeout(<span class="hljs-number">30000</span>);
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">ApolloLinkTimeout</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-link-timeout&quot;</span>;
+<span class="hljs-keyword">const</span> timeoutLink = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApolloLinkTimeout</span>(<span class="hljs-number">30000</span>);
 
 <span class="hljs-comment">// 缓存</span>
-<span class="hljs-keyword">import</span> &#123; InMemoryCache &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;apollo-cache-inmemory&#x27;</span>
-<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> InMemoryCache()
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">InMemoryCache</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;apollo-cache-inmemory&#x27;</span>
+<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">InMemoryCache</span>()
 
 <span class="hljs-comment">// link</span>
-<span class="hljs-keyword">const</span> httpLink = createHttpLink(&#123; <span class="hljs-attr">uri</span>: <span class="hljs-string">&#x27;xxx&#x27;</span> &#125;);
-<span class="hljs-keyword">const</span> timeoutHttpLink = timeoutLink.concat(httpLink);
+<span class="hljs-keyword">const</span> httpLink = <span class="hljs-title function_">createHttpLink</span>(&#123; <span class="hljs-attr">uri</span>: <span class="hljs-string">&#x27;xxx&#x27;</span> &#125;);
+<span class="hljs-keyword">const</span> timeoutHttpLink = timeoutLink.<span class="hljs-title function_">concat</span>(httpLink);
 
-<span class="hljs-keyword">const</span> apolloClient = <span class="hljs-keyword">new</span> ApolloClient(&#123;
-  version:<span class="hljs-string">&#x27;&#x27;</span>,
-  name:<span class="hljs-string">&#x27;&#x27;</span>,
-  link: timeoutHttpLink,<span class="hljs-comment">//同时提供时优先级高于uri，提供更精细化的配置</span>
+<span class="hljs-keyword">const</span> apolloClient = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApolloClient</span>(&#123;
+  <span class="hljs-attr">version</span>:<span class="hljs-string">&#x27;&#x27;</span>,
+  <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;&#x27;</span>,
+  <span class="hljs-attr">link</span>: timeoutHttpLink,<span class="hljs-comment">//同时提供时优先级高于uri，提供更精细化的配置</span>
 
-  cache: <span class="hljs-comment">// InMemoryCache (&#123;......&#125;) 缓存控制 www.apollographql.com/docs/react/caching/cache-configuration/`</span>
+  <span class="hljs-attr">cache</span>: <span class="hljs-comment">// InMemoryCache (&#123;......&#125;) 缓存控制 www.apollographql.com/docs/react/caching/cache-configuration/`</span>
 
-  defaultOptions:&#123;
-      watchQuery: &#123;
-        fetchPolicy: <span class="hljs-string">&#x27;cache-and-network&#x27;</span>,
-        errorPolicy: <span class="hljs-string">&#x27;ignore&#x27;</span>,
+  <span class="hljs-attr">defaultOptions</span>:&#123;
+      <span class="hljs-attr">watchQuery</span>: &#123;
+        <span class="hljs-attr">fetchPolicy</span>: <span class="hljs-string">&#x27;cache-and-network&#x27;</span>,
+        <span class="hljs-attr">errorPolicy</span>: <span class="hljs-string">&#x27;ignore&#x27;</span>,
       &#125;,
-      query: &#123;
-        fetchPolicy: <span class="hljs-string">&#x27;network-only&#x27;</span>,
-        errorPolicy: <span class="hljs-string">&#x27;all&#x27;</span>,
+      <span class="hljs-attr">query</span>: &#123;
+        <span class="hljs-attr">fetchPolicy</span>: <span class="hljs-string">&#x27;network-only&#x27;</span>,
+        <span class="hljs-attr">errorPolicy</span>: <span class="hljs-string">&#x27;all&#x27;</span>,
       &#125;,
-      mutate: &#123;
-        errorPolicy: <span class="hljs-string">&#x27;all&#x27;</span>,
+      <span class="hljs-attr">mutate</span>: &#123;
+        <span class="hljs-attr">errorPolicy</span>: <span class="hljs-string">&#x27;all&#x27;</span>,
       &#125;
     &#125;<span class="hljs-comment">//&#x27;各种查询的默认策略&#x27;</span>
 
@@ -416,62 +416,62 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 <li><p>使用方法</p>
 <ul>
 <li><h4 id="apollo-provider"><a href="#apollo-provider" class="headerlink" title="apollo provider"></a>apollo provider</h4><p>  使用 apollo 组件，需先生成<code>apollo provider</code>，为 vue 实例提供 apollo 能力</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">Vue.use(VueApollo);
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueApollo</span>);
 
-<span class="hljs-keyword">const</span> apolloProvider = <span class="hljs-keyword">new</span> VueApollo(&#123;
-	defaultClient: apolloClient,
+<span class="hljs-keyword">const</span> apolloProvider = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueApollo</span>(&#123;
+	<span class="hljs-attr">defaultClient</span>: apolloClient,
 &#125;);
-<span class="hljs-keyword">new</span> Vue(&#123;
-	el: <span class="hljs-string">&quot;#app&quot;</span>,
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+	<span class="hljs-attr">el</span>: <span class="hljs-string">&quot;#app&quot;</span>,
 	<span class="hljs-comment">// 像 vue-router 或 vuex 一样注入 apolloProvider</span>
 	apolloProvider,
-	render: <span class="hljs-function">(<span class="hljs-params">h</span>) =&gt;</span> h(App),
+	<span class="hljs-attr">render</span>: <span class="hljs-function">(<span class="hljs-params">h</span>) =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>),
 &#125;);</code></pre></div>
 
 <p>  引入后之后，在你的每个 vue 组件实例上将多出$apollo 对象指向 apollo 客户端。</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">this</span>.$apollo ===&gt;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$apollo</span> ===&gt;
 &#123;<span class="hljs-attr">query</span>:[....],
 &#125;</code></pre></div>
 
 <p>  并且与 data 选项平行的 apollo 选择中可以自定义各种 gql 查询，并且他们的结果将作为 vue 变量来使用</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span>&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">return</span> &#123;
-    a:<span class="hljs-number">1</span>
+    <span class="hljs-attr">a</span>:<span class="hljs-number">1</span>
   &#125;
 &#125;,
-apollo:&#123;
-  fetchB:&#123;
-    query:...,
-    variables:...,
-    fetchPolicy:...,
+<span class="hljs-attr">apollo</span>:&#123;
+  <span class="hljs-attr">fetchB</span>:&#123;
+    <span class="hljs-attr">query</span>:...,
+    <span class="hljs-attr">variables</span>:...,
+    <span class="hljs-attr">fetchPolicy</span>:...,
     ...各种apollo的api选项
   &#125;
 &#125;</code></pre></div></li>
 <li><h4 id="apollo-组件"><a href="#apollo-组件" class="headerlink" title="apollo 组件"></a>apollo 组件</h4><p>  在组件模版中编写 gql 查询，同时通过插槽<code>slot</code>分发请求结果,分别有<code>ApolloQuery</code>,<code>ApolloMutation</code>,<code>ApolloSubscribeToMore</code></p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;template&gt;
-  &lt;!-- Apollo 查询 --&gt;
-  &lt;ApolloQuery :query=<span class="hljs-string">&quot;/* 一些查询 */&quot;</span>&gt;
-    &lt;!-- 结果将自动更新 --&gt;
-    &lt;template slot-scope=<span class="hljs-string">&quot;&#123; result: &#123; data, loading &#125; &#125;&quot;</span>&gt;
-      &lt;!-- 一些内容 --&gt;
-      &lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;loading&quot;</span>&gt;Loading...&lt;/div&gt;
-      &lt;ul v-<span class="hljs-keyword">else</span>&gt;
-        &lt;li v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;user of data.users&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;user&quot;</span>&gt;
-          &#123;&#123; user.name &#125;&#125;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/template&gt;
-  &lt;/ApolloQuery&gt;
+  &lt;!-- <span class="hljs-title class_">Apollo</span> 查询 --&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ApolloQuery</span> <span class="hljs-attr">:query</span>=<span class="hljs-string">&quot;/* 一些查询 */&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-comment">&lt;!-- 结果将自动更新 --&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">slot-scope</span>=<span class="hljs-string">&quot;&#123; result: &#123; data, loading &#125; &#125;&quot;</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-comment">&lt;!-- 一些内容 --&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;loading&quot;</span>&gt;</span>Loading...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">v-else</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;user of data.users&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;user&quot;</span>&gt;</span></span>
+<span class="language-xml">          &#123;&#123; user.name &#125;&#125;</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">ApolloQuery</span>&gt;</span></span>
 &lt;/template&gt;</code></pre></div></li>
 <li><h4 id="纯-api-封装"><a href="#纯-api-封装" class="headerlink" title="纯 api 封装"></a>纯 api 封装</h4><p>  基本上没有侵入性的使用方法，封装成函数式的 api，不需要在实例中插入<code>Apollo Provider</code>和<code>vue.use(vueApollo)</code></p>
   <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 伪代码</span>
 <span class="hljs-keyword">import</span> apolloclient
 <span class="hljs-keyword">import</span> gql图表文件
 <span class="hljs-comment">// apollo请求基于promise</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> xxxapi = <span class="hljs-keyword">async</span> (params) =&gt; &#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> $apollo.query(&#123;
-    query:，
-    variables:&#123;&#125;,
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">xxxapi</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">params</span>) =&gt; &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> $apollo.<span class="hljs-title function_">query</span>(&#123;
+    <span class="hljs-attr">query</span>:，
+    <span class="hljs-attr">variables</span>:&#123;&#125;,
     fetchPolicy,
     ...
     ...各种参数

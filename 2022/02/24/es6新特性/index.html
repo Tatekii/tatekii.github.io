@@ -28,8 +28,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-03-30T06:48:39.017Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta property="article:tag" content="ES6">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -278,7 +278,7 @@
 <span class="hljs-keyword">const</span> &#123;name,age&#125; = obj
 <span class="hljs-comment">// 别名</span>
 <span class="hljs-keyword">const</span> &#123;<span class="hljs-attr">name</span>:trueName&#125; = obj
-<span class="hljs-built_in">console</span>.log(trueName)</code></pre></div></li>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(trueName)</code></pre></div></li>
 </ul>
 <h2 id="【字符串】"><a href="#【字符串】" class="headerlink" title="【字符串】"></a>【字符串】</h2><ul>
 <li>方法<ul>
@@ -310,25 +310,25 @@
 <li>指数运算<code>**</code></li>
 </ul>
 <h2 id="【数组】"><a href="#【数组】" class="headerlink" title="【数组】"></a>【数组】</h2><ul>
-<li>方法<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">Array</span>.from() <span class="hljs-comment">// 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</span>
-<span class="hljs-built_in">Array</span>.of() <span class="hljs-comment">// Array()只传一个参数就作为新建的数组长度</span>
-includes()
-copyWithin()
-fill()
-find() / findIndex()
-keys(),values(),entries()
-flat()</code></pre></div></li>
+<li>方法<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>() <span class="hljs-comment">// 从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</span>
+<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">of</span>() <span class="hljs-comment">// Array()只传一个参数就作为新建的数组长度</span>
+<span class="hljs-title function_">includes</span>()
+<span class="hljs-title function_">copyWithin</span>()
+<span class="hljs-title function_">fill</span>()
+<span class="hljs-title function_">find</span>() / <span class="hljs-title function_">findIndex</span>()
+<span class="hljs-title function_">keys</span>(),<span class="hljs-title function_">values</span>(),<span class="hljs-title function_">entries</span>()
+<span class="hljs-title function_">flat</span>()</code></pre></div></li>
 <li>扩展运算符<code>...</code></li>
 </ul>
 <h2 id="【对象】"><a href="#【对象】" class="headerlink" title="【对象】"></a>【对象】</h2><ul>
-<li>方法<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">Object</span>.is(a,b)<span class="hljs-comment">// 比较两个值是否严格相等，与（===）基本类似</span>
+<li>方法<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(a,b)<span class="hljs-comment">// 比较两个值是否严格相等，与（===）基本类似</span>
 <span class="hljs-comment">// Object.is与全等的区别</span>
 <span class="hljs-comment">//  Object.is(+0,-0);  //false</span>
 <span class="hljs-comment">//  +0 === -0  //true</span>
 
 <span class="hljs-comment">//  Object.is(NaN,NaN); //true</span>
 <span class="hljs-comment">//  NaN === NaN  //false</span>
-<span class="hljs-built_in">Object</span>.assign() <span class="hljs-comment">// 潜拷贝</span></code></pre></div></li>
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>() <span class="hljs-comment">// 潜拷贝</span></code></pre></div></li>
 <li>扩展运算符<code>...</code></li>
 </ul>
 <h2 id="【函数】"><a href="#【函数】" class="headerlink" title="【函数】"></a>【函数】</h2><ul>
@@ -345,48 +345,48 @@ flat()</code></pre></div></li>
 <h2 id="【Symbol】"><a href="#【Symbol】" class="headerlink" title="【Symbol】"></a>【Symbol】</h2><p>独一无二的值,<code>Symbol()</code>声明不需要new</p>
 <ul>
 <li><p>作为不变的常量</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> FLAG1 = <span class="hljs-built_in">Symbol</span>()
-<span class="hljs-keyword">const</span> FLAG2 = <span class="hljs-built_in">Symbol</span>()</code></pre></div></li>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">FLAG1</span> = <span class="hljs-title class_">Symbol</span>()
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">FLAG2</span> = <span class="hljs-title class_">Symbol</span>()</code></pre></div></li>
 <li><p>私有变量</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> obj1 = (<span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-keyword">let</span> var1 = symbol(<span class="hljs-string">&#x27;var1&#x27;</span>)
-  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Inner</span></span>&#123;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-built_in">this</span>[var1] = <span class="hljs-string">&#x27;abcde&#x27;</span>
+  <span class="hljs-keyword">let</span> var1 = <span class="hljs-title function_">symbol</span>(<span class="hljs-string">&#x27;var1&#x27;</span>)
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">Inner</span>&#123;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-variable language_">this</span>[var1] = <span class="hljs-string">&#x27;abcde&#x27;</span>
     &#125;
-    <span class="hljs-function"><span class="hljs-title">getVar</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>[var1]
+    <span class="hljs-title function_">getVar</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>[var1]
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> Inner
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Inner</span>
 &#125;)()
-<span class="hljs-keyword">const</span> o1 = obj1()
-<span class="hljs-built_in">console</span>.log(o1)
+<span class="hljs-keyword">const</span> o1 = <span class="hljs-title function_">obj1</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(o1)
 <span class="hljs-comment">// &#123;Symbol(var1):&#x27;abcde&#x27;&#125;</span>
 <span class="hljs-comment">// 不能直接访问</span></code></pre></div>
 <h2 id="【Set-WeakSet】"><a href="#【Set-WeakSet】" class="headerlink" title="【Set/WeakSet】"></a>【Set/WeakSet】</h2></li>
 <li><p>Set类似于数组，但是成员的值都是唯一的，拥有迭代器</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">size
-add()
-<span class="hljs-keyword">delete</span>()
-has()
-clear()</code></pre></div></li>
+<span class="hljs-title function_">add</span>()
+<span class="hljs-title function_">delete</span>()
+<span class="hljs-title function_">has</span>()
+<span class="hljs-title function_">clear</span>()</code></pre></div></li>
 <li><p>WeakSet的成员只能是对象，【弱引用】，【不可遍历】</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">add()
-<span class="hljs-keyword">delete</span>()
-has()</code></pre></div></li>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">add</span>()
+<span class="hljs-title function_">delete</span>()
+<span class="hljs-title function_">has</span>()</code></pre></div></li>
 </ul>
 <h2 id="【Map-WeakMap】"><a href="#【Map-WeakMap】" class="headerlink" title="【Map/WeakMap】"></a>【Map/WeakMap】</h2><ul>
 <li>Object的键传统上只能使用字符串，Map无此限制，拥有迭代器<div class="hljs code-wrapper"><pre><code class="hljs javascript">size
-set(key,value) <span class="hljs-comment">// 返回整个 Map 结构</span>
-get() <span class="hljs-comment">// 找不到该 key 返回 undefined</span>
-has()
-<span class="hljs-keyword">delete</span>() <span class="hljs-comment">// 删除失败返回 false</span>
-clear() <span class="hljs-comment">// 无返回值</span></code></pre></div></li>
-<li>WeakMap只接受对象作为键名（除了null），【键名弱引用】<div class="hljs code-wrapper"><pre><code class="hljs javascript">set()
-get()
-has()
-<span class="hljs-keyword">delete</span>()</code></pre></div></li>
+<span class="hljs-title function_">set</span>(key,value) <span class="hljs-comment">// 返回整个 Map 结构</span>
+<span class="hljs-title function_">get</span>() <span class="hljs-comment">// 找不到该 key 返回 undefined</span>
+<span class="hljs-title function_">has</span>()
+<span class="hljs-title function_">delete</span>() <span class="hljs-comment">// 删除失败返回 false</span>
+<span class="hljs-title function_">clear</span>() <span class="hljs-comment">// 无返回值</span></code></pre></div></li>
+<li>WeakMap只接受对象作为键名（除了null），【键名弱引用】<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">set</span>()
+<span class="hljs-title function_">get</span>()
+<span class="hljs-title function_">has</span>()
+<span class="hljs-title function_">delete</span>()</code></pre></div></li>
 <li>map和object的区别<ol>
 <li>键的变量类型限制</li>
 <li>map原生具有遍历器</li>
@@ -397,27 +397,27 @@ has()
 </ul>
 <h2 id="【Proxy】"><a href="#【Proxy】" class="headerlink" title="【Proxy】"></a>【Proxy】</h2><p>拦截器/代理 <code>const _proxy1 = new Proxy(target,handler)</code></p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 常用handlers</span>
-getPrototypeOf()
+<span class="hljs-title function_">getPrototypeOf</span>()
 <span class="hljs-comment">// Object.getPrototypeOf 方法的捕捉器。</span>
-setPrototypeOf()
+<span class="hljs-title function_">setPrototypeOf</span>()
 <span class="hljs-comment">// Object.setPrototypeOf 方法的捕捉器。</span>
-getOwnPropertyDescriptor()
+<span class="hljs-title function_">getOwnPropertyDescriptor</span>()
 <span class="hljs-comment">// Object.getOwnPropertyDescriptor 方法的捕捉器。</span>
-defineProperty()
+<span class="hljs-title function_">defineProperty</span>()
 <span class="hljs-comment">// Object.defineProperty 方法的捕捉器。</span>
-has()
+<span class="hljs-title function_">has</span>()
 <span class="hljs-comment">// in 操作符的捕捉器。</span>
-get()
+<span class="hljs-title function_">get</span>()
 <span class="hljs-comment">// 属性读取操作的捕捉器。</span>
-set()
+<span class="hljs-title function_">set</span>()
 <span class="hljs-comment">// 属性设置操作的捕捉器。</span>
-deleteProperty()
+<span class="hljs-title function_">deleteProperty</span>()
 <span class="hljs-comment">// delete 操作符的捕捉器。</span>
-ownKeys()
+<span class="hljs-title function_">ownKeys</span>()
 <span class="hljs-comment">// Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。</span>
-apply()
+<span class="hljs-title function_">apply</span>()
 <span class="hljs-comment">// 函数调用操作的捕捉器。</span>
-construct()
+<span class="hljs-title function_">construct</span>()
 <span class="hljs-comment">// new 操作符的捕捉器。</span></code></pre></div>
 
 <h2 id="【Reflect】"><a href="#【Reflect】" class="headerlink" title="【Reflect】"></a>【Reflect】</h2><p>操作对象的API</p>
@@ -433,18 +433,18 @@ construct()
 <li>中途不可停止</li>
 <li>需要捕获promise内错误</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve,reject))
-<span class="hljs-built_in">Promise</span>.prototype.then(onFulfilled,onRejected)
-<span class="hljs-built_in">Promise</span>.prototype.catch()
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>((resolve,reject))
+<span class="hljs-title class_">Promise</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">then</span>(onFulfilled,onRejected)
+<span class="hljs-title class_">Promise</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">catch</span>()
 <span class="hljs-comment">// promise中的错误会一直冒泡到最后，没有捕获则报错</span>
-<span class="hljs-built_in">Promise</span>.prototype.finally()
-<span class="hljs-built_in">Promise</span>.all() <span class="hljs-comment">// 全部fulfilled或者有谁rejected</span>
-<span class="hljs-built_in">Promise</span>.allSettled() <span class="hljs-comment">// 全部得到不管什么状态</span>
-<span class="hljs-built_in">Promise</span>.race() <span class="hljs-comment">// 最先改变status</span>
-<span class="hljs-built_in">Promise</span>.any() <span class="hljs-comment">// 最先fulfilled或者全部rejected</span>
-<span class="hljs-built_in">Promise</span>.resolve()
-<span class="hljs-built_in">Promise</span>.reject()
-<span class="hljs-built_in">Promise</span>.try()
+<span class="hljs-title class_">Promise</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">finally</span>()
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>() <span class="hljs-comment">// 全部fulfilled或者有谁rejected</span>
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">allSettled</span>() <span class="hljs-comment">// 全部得到不管什么状态</span>
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>() <span class="hljs-comment">// 最先改变status</span>
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">any</span>() <span class="hljs-comment">// 最先fulfilled或者全部rejected</span>
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>()
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">try</span>()
 </code></pre></div>
 
 
@@ -466,26 +466,26 @@ construct()
 <li>当这个迭代器的 <code>next()</code> 方法被调用时返回一个对象，<code>&#123;value:当前的返回,done:是否迭代完&#125;</code>，其内的语句会执行到下一个<code>yield</code>的位置，<code>yield</code> 后紧跟迭代器要返回的值。  </li>
 <li>或者如果用的是 <code>yield*</code>，则表示将执行权移交给另一个生成器函数（当前生成器暂停执行）。</li>
 <li>当在生成器函数中显式 <code>return</code> 时，会导致生成器立即变为完成状态，如果 <code>return</code> 后面跟了一个值，那么这个值会作为当前调用 <code>next()</code> 方法返回值。</li>
-<li>调用 <code>next()</code>方法时，如果传入了参数，那么这个参数会传给上一条执行的 <code>yield</code>语句左边的变量，例如下面例子中的 x ：<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>)</span>&#123;
+<li>调用 <code>next()</code>方法时，如果传入了参数，那么这个参数会传给上一条执行的 <code>yield</code>语句左边的变量，例如下面例子中的 x ：<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> *<span class="hljs-title function_">gen</span>(<span class="hljs-params"></span>)&#123;
     <span class="hljs-keyword">yield</span> <span class="hljs-number">10</span>;
     x=<span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;foo&#x27;</span>;
     <span class="hljs-keyword">yield</span> x;
 &#125;
 
-<span class="hljs-keyword">var</span> gen_obj=gen();
-<span class="hljs-built_in">console</span>.log(gen_obj.next());<span class="hljs-comment">// 执行 yield 10，返回 10</span>
-<span class="hljs-built_in">console</span>.log(gen_obj.next());<span class="hljs-comment">// 执行 yield &#x27;foo&#x27;，返回 &#x27;foo&#x27;</span>
-<span class="hljs-built_in">console</span>.log(gen_obj.next(<span class="hljs-number">100</span>));<span class="hljs-comment">// 将 100 赋给上一条 yield &#x27;foo&#x27; 的左值，即执行 x=100，返回 100</span>
-<span class="hljs-built_in">console</span>.log(gen_obj.next());<span class="hljs-comment">// 执行完毕，value 为 undefined，done 为 true</span></code></pre></div></li>
+<span class="hljs-keyword">var</span> gen_obj=<span class="hljs-title function_">gen</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(gen_obj.<span class="hljs-title function_">next</span>());<span class="hljs-comment">// 执行 yield 10，返回 10</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(gen_obj.<span class="hljs-title function_">next</span>());<span class="hljs-comment">// 执行 yield &#x27;foo&#x27;，返回 &#x27;foo&#x27;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(gen_obj.<span class="hljs-title function_">next</span>(<span class="hljs-number">100</span>));<span class="hljs-comment">// 将 100 赋给上一条 yield &#x27;foo&#x27; 的左值，即执行 x=100，返回 100</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(gen_obj.<span class="hljs-title function_">next</span>());<span class="hljs-comment">// 执行完毕，value 为 undefined，done 为 true</span></code></pre></div></li>
 </ul>
 <h2 id="【async-await】"><a href="#【async-await】" class="headerlink" title="【async/await】"></a>【async/await】</h2><p>自执行的Generator函数语法糖。</p>
 <h2 id="【Class】"><a href="#【Class】" class="headerlink" title="【Class】"></a>【Class】</h2><ol>
 <li><p>类表达式和类声明</p>
- <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> A = <span class="hljs-class"><span class="hljs-keyword">class</span> </span>&#123;
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> A = <span class="hljs-keyword">class</span> &#123;
 
 &#125;
 <span class="hljs-comment">// or</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;
 
 &#125;</code></pre></div>
 <blockquote>
@@ -494,65 +494,65 @@ construct()
 </li>
 <li><p>继承</p>
 <p>本质使用的是原型式继承</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span>&#123;
-  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span>&#123;
-    <span class="hljs-built_in">this</span>.name = name
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>&#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name
   &#125;
 
-  <span class="hljs-function"><span class="hljs-title">fun1</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+  <span class="hljs-title function_">fun1</span>(<span class="hljs-params"></span>)&#123;&#125;
 &#125;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> <span class="hljs-title">extend</span> <span class="hljs-title">B</span></span>&#123;
-  <span class="hljs-title">constructor</span> (<span class="hljs-params">name</span>)&#123;
-    <span class="hljs-built_in">super</span>(name) <span class="hljs-comment">// 调用父类构造函数 // </span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> extend B&#123;
+  <span class="hljs-title function_">constructor</span> (name)&#123;
+    <span class="hljs-variable language_">super</span>(name) <span class="hljs-comment">// 调用父类构造函数 // </span>
   &#125;
 
-  <span class="hljs-function"><span class="hljs-title">fun2</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-built_in">super</span>.fun1() <span class="hljs-comment">// 调用一个父类方法</span>
+  <span class="hljs-title function_">fun2</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">fun1</span>() <span class="hljs-comment">// 调用一个父类方法</span>
   &#125;
 &#125;
 </code></pre></div></li>
 <li><p>静态字段，私有字段，私有实例字段</p>
- <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span></span>&#123;
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Example</span>&#123;
   <span class="hljs-comment">//静态字段</span>
   <span class="hljs-keyword">static</span> attr1 = <span class="hljs-number">123</span>
-  <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">func1</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;im func1&#x27;</span>&#125;
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">func1</span>(<span class="hljs-params"></span>)&#123;<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;im func1&#x27;</span>&#125;
   <span class="hljs-comment">//只在类声明中存在，实例不能访问</span>
 
   <span class="hljs-comment">// 公有字段</span>
   attr2 = <span class="hljs-number">666</span>
-  <span class="hljs-function"><span class="hljs-title">func2</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+  <span class="hljs-title function_">func2</span>(<span class="hljs-params"></span>)&#123;&#125;
   <span class="hljs-comment">// 每个实例都复制一份</span>
 
   <span class="hljs-comment">//私有实例字段</span>
   <span class="hljs-comment">//不能直接访问，闭包访问</span>
   #attr3
-  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">name</span>)</span>&#123;
-    <span class="hljs-built_in">this</span>.#attr3 = name
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-variable language_">this</span>.#attr3 = name
   &#125;
-  <span class="hljs-function"><span class="hljs-title">getPrivate</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.#attr3
+  <span class="hljs-title function_">getPrivate</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.#attr3
   &#125;
   #func3 = <span class="hljs-function">() =&gt;</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;im private&#x27;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;im private&#x27;</span>);
   &#125;
-  <span class="hljs-function"><span class="hljs-title">getPrivateFunc</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.#func3()
+  <span class="hljs-title function_">getPrivateFunc</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.#<span class="hljs-title function_">func3</span>()
   &#125;
 &#125;</code></pre></div></li>
 <li><p>getter / setter</p>
 <p> 当使用 get 关键字时，属性将被定义在实例的原型上，当使用Object.defineProperty()时，属性将被定义在实例自身上。</p>
- <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> </span>&#123;
-  <span class="hljs-keyword">get</span> <span class="hljs-title">hello</span>() &#123;
+ <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Example</span> &#123;
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">hello</span>() &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;world&#x27;</span>;
   &#125;
 &#125;
 
-<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Example();
-<span class="hljs-built_in">console</span>.log(obj.hello);
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Example</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">hello</span>);
 <span class="hljs-comment">// &quot;world&quot;</span>
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="hljs-string">&#x27;hello&#x27;</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyDescriptor</span>(obj, <span class="hljs-string">&#x27;hello&#x27;</span>));
 <span class="hljs-comment">// undefined</span></code></pre></div>
 <h2 id="【模块化-ES-module】"><a href="#【模块化-ES-module】" class="headerlink" title="【模块化 ES module】"></a>【模块化 ES module】</h2></li>
 <li><p>语法</p>
@@ -565,13 +565,13 @@ construct()
 <span class="hljs-comment">// ES6中导入模块，使用 import 模块名称 from &#x27;模块标识符&#x27; import &#x27;表示路径&#x27;</span>
 <span class="hljs-comment">// 在 ES6 中，使用 export default 和 export 向外暴露成员：</span>
 <span class="hljs-keyword">var</span> info = &#123;
-  name: <span class="hljs-string">&quot;zs&quot;</span>,
-  age: <span class="hljs-number">20</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;zs&quot;</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">20</span>
 &#125;;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> info;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  address: <span class="hljs-string">&quot;深圳&quot;</span>
+  <span class="hljs-attr">address</span>: <span class="hljs-string">&quot;深圳&quot;</span>
 &#125;;
 <span class="hljs-comment">// 注意： export default 向外暴露的成员，可以使用任意的变量来接收</span>
 <span class="hljs-comment">// 注意： 在一个模块中，export default 只允许向外暴露1次</span>
@@ -595,14 +595,14 @@ construct()
 </li>
 </ol>
 <h2 id="装饰器语法"><a href="#装饰器语法" class="headerlink" title="装饰器语法"></a>装饰器语法</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">@demo
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span></span>&#123;&#125;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span>&#123;&#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">demo</span>(<span class="hljs-params">target</span>)</span>&#123;
-  target.value = <span class="hljs-number">666</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">demo</span>(<span class="hljs-params">target</span>)&#123;
+  target.<span class="hljs-property">value</span> = <span class="hljs-number">666</span>
 &#125;
 
 <span class="hljs-comment">// 等价于</span>
-MyClass = demo(MyClass)</code></pre></div>
+<span class="hljs-title class_">MyClass</span> = <span class="hljs-title function_">demo</span>(<span class="hljs-title class_">MyClass</span>)</code></pre></div>
             </div>
             <hr>
             <div>
@@ -612,9 +612,9 @@ MyClass = demo(MyClass)</code></pre></div>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/ES6/">ES6</a>
                     
@@ -633,9 +633,9 @@ MyClass = demo(MyClass)</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/">
+                      <a href="/2022/02/24/axios%E5%92%8Cfetch/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">div高度为宽度一半</span>
+                        <span class="hidden-mobile">axios和fetch</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

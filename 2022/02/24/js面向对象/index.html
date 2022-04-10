@@ -29,8 +29,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-03-07T06:23:02.292Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://yoursite.com/2022/02/24/images/proto.png">
   
@@ -76,7 +76,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -267,25 +267,25 @@
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 以下 Person 类封装 name、gender、age 等属性，外界只能通过 get() 方法获取一个 Person 对象的 name 属性和 gender 属性，而无法获取 age 属性，但是 age 属性可以供 work() 方法使用。</span>
 
 <span class="hljs-comment">// 注意到 gender 属性使用 int 数据类型进行存储，封装使得用户注意不到这种实现细节。并且在需要修改 gender 属性使用的数据类型时，也可以在不影响客户端代码的情况下进行。</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;
 
-    private <span class="hljs-built_in">String</span> name;
+    private <span class="hljs-title class_">String</span> name;
     private int gender;
     private int age;
 
-    <span class="hljs-built_in">String</span> <span class="hljs-function"><span class="hljs-title">getName</span>(<span class="hljs-params"></span>)</span> &#123;
+    <span class="hljs-title class_">String</span> <span class="hljs-title function_">getName</span>(<span class="hljs-params"></span>) &#123;
         <span class="hljs-keyword">return</span> name;
     &#125;
 
-    <span class="hljs-built_in">String</span> <span class="hljs-function"><span class="hljs-title">getGender</span>(<span class="hljs-params"></span>)</span> &#123;
+    <span class="hljs-title class_">String</span> <span class="hljs-title function_">getGender</span>(<span class="hljs-params"></span>) &#123;
         <span class="hljs-keyword">return</span> gender == <span class="hljs-number">0</span> ? <span class="hljs-string">&quot;man&quot;</span> : <span class="hljs-string">&quot;woman&quot;</span>;
     &#125;
 
-    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">work</span>(<span class="hljs-params"></span>)</span> &#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">work</span>(<span class="hljs-params"></span>) &#123;
         <span class="hljs-keyword">if</span> (<span class="hljs-number">18</span> &lt;= age &amp;&amp; age &lt;= <span class="hljs-number">50</span>) &#123;
-            System.out.println(name + <span class="hljs-string">&quot; is working very hard!&quot;</span>);
+            <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(name + <span class="hljs-string">&quot; is working very hard!&quot;</span>);
         &#125; <span class="hljs-keyword">else</span> &#123;
-            System.out.println(name + <span class="hljs-string">&quot; can&#x27;t work any more!&quot;</span>);
+            <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(name + <span class="hljs-string">&quot; can&#x27;t work any more!&quot;</span>);
         &#125;
     &#125;
 &#125;</code></pre></div>
@@ -298,68 +298,68 @@
 <li><p>  提高代码的复用性，继承是多态的前提。</p>
 </li>
 </ul>
-<h4 id="ES5中的继承方式"><a href="#ES5中的继承方式" class="headerlink" title="ES5中的继承方式"></a>ES5中的继承方式</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Human</span>(<span class="hljs-params">name</span>)</span>&#123;
-    <span class="hljs-built_in">this</span>.name = name
+<h4 id="ES5中的继承方式"><a href="#ES5中的继承方式" class="headerlink" title="ES5中的继承方式"></a>ES5中的继承方式</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Human</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name
 &#125;
-Human.prototype.introduce = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+<span class="hljs-title class_">Human</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">introduce</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>
 &#125;</code></pre></div>
 <ol>
 <li><p>构造函数继承</p>
 <ul>
-<li>只能继承构造函数中的属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params">name</span>)</span>&#123;
-    Human.call(<span class="hljs-built_in">this</span>,name)
+<li>只能继承构造函数中的属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Asian</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-title class_">Human</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>,name)
 &#125;</code></pre></div></li>
 </ul>
 </li>
 <li><p>原型链继承</p>
 <ul>
 <li>不能向父类构造函数传参</li>
-<li>共享引用类型的属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params">name</span>)</span>&#123;
-    <span class="hljs-built_in">this</span>.name = name
+<li>共享引用类型的属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Asian</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name
 &#125;
-Asian.prototype  = <span class="hljs-keyword">new</span> Human()</code></pre></div></li>
+<span class="hljs-title class_">Asian</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>  = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Human</span>()</code></pre></div></li>
 </ul>
 </li>
 <li><p>1+2组合继承</p>
 <ul>
 <li>父类构造函数被调用太多次</li>
-<li>共享引用类型属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params">name</span>)</span>&#123;
-    Human.call(<span class="hljs-built_in">this</span>,name)
+<li>共享引用类型属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Asian</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-title class_">Human</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>,name)
 &#125;
-Asian.prototype  = <span class="hljs-keyword">new</span> Human()</code></pre></div></li>
+<span class="hljs-title class_">Asian</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>  = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Human</span>()</code></pre></div></li>
 </ul>
 </li>
 <li><p>原型式继承</p>
 <ul>
 <li>适用于不想使用构造函数又想共享数据的情况</li>
 <li>与原型链模式一样共享引用类型的属性<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 其实就是Object.create的实现</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
-    F.prototype = Human
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Asian</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">F</span>(<span class="hljs-params"></span>)&#123;&#125;
+    F.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title class_">Human</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">F</span>()
 &#125;</code></pre></div></li>
 </ul>
 </li>
 <li><p>寄生继承</p>
 <ul>
 <li>工厂函数模式</li>
-<li>难以复用<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAsian</span>(<span class="hljs-params">source</span>)</span>&#123;
-    <span class="hljs-keyword">const</span> o = <span class="hljs-built_in">Object</span>.create(source)
-    o.xxx = xxx <span class="hljs-comment">//添加自己的属性</span>
+<li>难以复用<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createAsian</span>(<span class="hljs-params">source</span>)&#123;
+    <span class="hljs-keyword">const</span> o = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(source)
+    o.<span class="hljs-property">xxx</span> = xxx <span class="hljs-comment">//添加自己的属性</span>
     <span class="hljs-keyword">return</span> o
 &#125;
-<span class="hljs-keyword">const</span> s1 = createAsian(Human)</code></pre></div></li>
+<span class="hljs-keyword">const</span> s1 = <span class="hljs-title function_">createAsian</span>(<span class="hljs-title class_">Human</span>)</code></pre></div></li>
 </ul>
 </li>
 <li><p>寄生组合继承</p>
 <ul>
 <li>只调用一次父构造函数</li>
-<li>保持原原型链<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Asian</span>(<span class="hljs-params">name</span>)</span>&#123;
-    Human.call(<span class="hljs-built_in">this</span>,name)
+<li>保持原原型链<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Asian</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-title class_">Human</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>,name)
 &#125;
-Asian.prototype  = <span class="hljs-built_in">Object</span>.create(Human.prototype)
-Asian.prototype.constructor = Asian</code></pre></div>
+<span class="hljs-title class_">Asian</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>  = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">Human</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)
+<span class="hljs-title class_">Asian</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Asian</span></code></pre></div>
 <h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3></li>
 </ul>
 </li>
@@ -371,28 +371,28 @@ Asian.prototype.constructor = Asian</code></pre></div>
 </li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  下面的代码中，乐器类（Instrument）有两个子类：Wind 和 Percussion，它们都覆盖了父类的 play() 方法，并且在 main() 方法中使用父类 Instrument 来引用 Wind 和 Percussion 对象。在Instrument 引用调用 play() 方法时，会执行实际引用对象所在类的 play() 方法，而不是 Instrument 的方法。</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Instrument</span> </span>&#123;
-    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
-        System.out.println(<span class="hljs-string">&quot;Instument is playing...&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Instrument</span> &#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">play</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;Instument is playing...&quot;</span>);
     &#125;
 &#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Instrument</span> </span>&#123;
-    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
-        System.out.println(<span class="hljs-string">&quot;Wind is playing...&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Wind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Instrument</span> &#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">play</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;Wind is playing...&quot;</span>);
     &#125;
 &#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Percussion</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Instrument</span> </span>&#123;
-    <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">play</span>(<span class="hljs-params"></span>)</span> &#123;
-        System.out.println(<span class="hljs-string">&quot;Percussion is playing...&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Percussion</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Instrument</span> &#123;
+    <span class="hljs-keyword">void</span> <span class="hljs-title function_">play</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(<span class="hljs-string">&quot;Percussion is playing...&quot;</span>);
     &#125;
 &#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Music</span> </span>&#123;
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>)</span> &#123;
-        List&lt;Instrument&gt; instruments = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
-        instruments.add(<span class="hljs-keyword">new</span> Wind());
-        instruments.add(<span class="hljs-keyword">new</span> Percussion());
-        <span class="hljs-keyword">for</span>(Instrument instrument : instruments) &#123;
-            instrument.play();
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Music</span> &#123;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>) &#123;
+        <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">Instrument</span>&gt; instruments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+        instruments.<span class="hljs-title function_">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Wind</span>());
+        instruments.<span class="hljs-title function_">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Percussion</span>());
+        <span class="hljs-keyword">for</span>(<span class="hljs-title class_">Instrument</span> instrument : instruments) &#123;
+            instrument.<span class="hljs-title function_">play</span>();
         &#125;
     &#125;
 &#125;</code></pre></div>
@@ -425,38 +425,38 @@ Asian.prototype.constructor = Asian</code></pre></div>
 <li>如果这个原型又是另一个构造函数生成的实例，则这个原型对象也可以访问自己的原型对象，这样层层递进链式访问的关系就叫做<code>原型链</code>；</li>
 <li>js 中查找属性时，先查找实例自身，后查找原型对象，再沿着原型链不断上溯，直到原型链的尽头null；</li>
 </ul>
-<h3 id="特殊的Object和Function"><a href="#特殊的Object和Function" class="headerlink" title="特殊的Object和Function"></a>特殊的<code>Object</code>和<code>Function</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Function</span>.prototype = <span class="hljs-string">&quot;function&quot;</span>
-<span class="hljs-built_in">Function</span>.prototype = <span class="hljs-built_in">Function</span>.__proto__<span class="hljs-comment">//f()&#123;[native code]&#125;</span>
+<h3 id="特殊的Object和Function"><a href="#特殊的Object和Function" class="headerlink" title="特殊的Object和Function"></a>特殊的<code>Object</code>和<code>Function</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-string">&quot;function&quot;</span>
+<span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title class_">Function</span>.<span class="hljs-property">__proto__</span><span class="hljs-comment">//f()&#123;[native code]&#125;</span>
 
 <span class="hljs-comment">// 所有引用类型都继承自Object</span>
-<span class="hljs-built_in">Function</span>.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype <span class="hljs-comment">// true</span>
+<span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-comment">// true</span>
 </code></pre></div>
 
-<h3 id="只有函数才有prototype"><a href="#只有函数才有prototype" class="headerlink" title="只有函数才有prototype"></a>只有函数才有<code>prototype</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f1</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
-f1.__proto__ === <span class="hljs-built_in">Function</span>.prototype; <span class="hljs-comment">// f1直接由Function构造而来</span>
+<h3 id="只有函数才有prototype"><a href="#只有函数才有prototype" class="headerlink" title="只有函数才有prototype"></a>只有函数才有<code>prototype</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params"></span>) &#123;&#125;
+f1.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>; <span class="hljs-comment">// f1直接由Function构造而来</span>
 
 <span class="hljs-keyword">const</span> obj1 = &#123;&#125;;
-obj1.prototype; <span class="hljs-comment">// undefined</span></code></pre></div>
+obj1.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>; <span class="hljs-comment">// undefined</span></code></pre></div>
 
-<h3 id="原形链的终点"><a href="#原形链的终点" class="headerlink" title="原形链的终点"></a>原形链的终点</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.prototype === <span class="hljs-string">&#x27;object&#x27;</span>
+<h3 id="原形链的终点"><a href="#原形链的终点" class="headerlink" title="原形链的终点"></a>原形链的终点</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> === <span class="hljs-string">&#x27;object&#x27;</span>
 <span class="hljs-comment">// 意味着Object的原型是也是一个对象</span>
 
 <span class="hljs-comment">// 而对象的构造器也是Object，则会出现死循环</span>
-！【<span class="hljs-built_in">Object</span>.prototype.__proto__ === <span class="hljs-built_in">Object</span>.prototype】！
+！【<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>】！
 
 
 <span class="hljs-comment">// 为了让原型链有终点。Javascript规定，</span>
-<span class="hljs-built_in">Object</span>.prototype.__proto__ === <span class="hljs-literal">null</span></code></pre></div>
+<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> === <span class="hljs-literal">null</span></code></pre></div>
 
 <p><img src="../images/proto.png" srcset="/img/loading.gif" lazyload alt="proto"></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f1</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
-f1.__proto__ = <span class="hljs-built_in">Function</span>.prototype = <span class="hljs-function"><span class="hljs-title">f</span>(<span class="hljs-params"></span>)</span>&#123; [native code] &#125;
-f1.__proto__.__proto__ = <span class="hljs-built_in">Object</span>.prototype = &#123;<span class="hljs-attr">constructor</span>: ƒ, <span class="hljs-attr">__defineGetter__</span>: ƒ, <span class="hljs-attr">__defineSetter__</span>: ƒ, <span class="hljs-attr">hasOwnProperty</span>: ƒ, <span class="hljs-attr">__lookupGetter__</span>: ƒ, …&#125;
-f1.__proto__.__proto__.__proto__ = <span class="hljs-literal">null</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f1</span>(<span class="hljs-params"></span>)&#123;&#125;
+f1.<span class="hljs-property">__proto__</span> = <span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title function_">f</span>(<span class="hljs-params"></span>)&#123; [native code] &#125;
+f1.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;<span class="hljs-attr">constructor</span>: ƒ, <span class="hljs-attr">__defineGetter__</span>: ƒ, <span class="hljs-attr">__defineSetter__</span>: ƒ, <span class="hljs-attr">hasOwnProperty</span>: ƒ, <span class="hljs-attr">__lookupGetter__</span>: ƒ, …&#125;
+f1.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span> = <span class="hljs-literal">null</span>
 
 <span class="hljs-keyword">const</span> obj = &#123;&#125;
-obj.__proto__ = <span class="hljs-built_in">Object</span>.prototype
-obj.__proto__.__proto__ = <span class="hljs-literal">null</span></code></pre></div>
+obj.<span class="hljs-property">__proto__</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>
+obj.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span> = <span class="hljs-literal">null</span></code></pre></div>
 
 <h3 id="相关方法"><a href="#相关方法" class="headerlink" title="相关方法"></a>相关方法</h3><ul>
 <li><p><code>Object.getPrototype()</code>/<code>__proto__</code></p>
@@ -484,9 +484,9 @@ obj.__proto__.__proto__ = <span class="hljs-literal">null</span></code></pre></d
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                   </div>
                 
@@ -503,9 +503,9 @@ obj.__proto__.__proto__ = <span class="hljs-literal">null</span></code></pre></d
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/js%E7%89%87%E6%AE%B5/">
+                      <a href="/2022/02/24/node%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">待整理的js片段</span>
+                        <span class="hidden-mobile">node相关知识点</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -513,8 +513,8 @@ obj.__proto__.__proto__ = <span class="hljs-literal">null</span></code></pre></d
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/">
-                        <span class="hidden-mobile">js面试题集</span>
+                      <a href="/2022/02/24/react_rookie/">
+                        <span class="hidden-mobile">react-beginner</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

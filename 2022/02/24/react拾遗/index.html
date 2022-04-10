@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -248,7 +248,7 @@
 <span class="hljs-comment">* @param &#123;any&#125; preloadedState 初始化的state</span>
 <span class="hljs-comment">* @param &#123;Function&#125; enhancer 中间件</span>
 <span class="hljs-comment">*/</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">reducer,preloadedState,enhancer</span>)</span>&#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createStore</span>(<span class="hljs-params">reducer,preloadedState,enhancer</span>)&#123;
   <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> preloadedState === <span class="hljs-string">&#x27;function&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> enhancer === <span class="hljs-string">&#x27;undefined&#x27;</span>)&#123;
     <span class="hljs-comment">// 如果preloadedState是个中间件</span>
     enhancer = preloadedState
@@ -260,42 +260,42 @@
 
   <span class="hljs-keyword">let</span> nextListeners = currentListeners
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getState</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">getState</span>(<span class="hljs-params"></span>)&#123;
     <span class="hljs-keyword">return</span> currentState
   &#125;
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subscribe</span>(<span class="hljs-params">listener</span>)</span>&#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">subscribe</span>(<span class="hljs-params">listener</span>)&#123;
     <span class="hljs-keyword">if</span>(nextListeners === currentListeners)&#123;
       nextListeners = [...currentListeners]
       <span class="hljs-comment">// 浅拷贝一次,避免影响别的地方修改currentListeners</span>
     &#125;
-    nextListeners.push(listener)
+    nextListeners.<span class="hljs-title function_">push</span>(listener)
     <span class="hljs-comment">// 添加监听</span>
 
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unsubscribe</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">unsubscribe</span>(<span class="hljs-params"></span>)&#123;
       <span class="hljs-keyword">if</span>(nextListeners === currentListeners)&#123;
         nextListeners = [...currentListeners]
       &#125;
 
-      <span class="hljs-keyword">const</span> index = nextListeners.indexOf(listener)
-      nextListeners.splice(index,<span class="hljs-number">1</span>)
+      <span class="hljs-keyword">const</span> index = nextListeners.<span class="hljs-title function_">indexOf</span>(listener)
+      nextListeners.<span class="hljs-title function_">splice</span>(index,<span class="hljs-number">1</span>)
       <span class="hljs-comment">// 移除监听</span>
     &#125;
   &#125;
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dispatch</span>(<span class="hljs-params">action</span>) </span>&#123;
-    currentState = currentReducer(currentState,action) <span class="hljs-comment">// 计算新state</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-params">action</span>) &#123;
+    currentState = <span class="hljs-title function_">currentReducer</span>(currentState,action) <span class="hljs-comment">// 计算新state</span>
 
     <span class="hljs-keyword">const</span> listeners = (currentListeners = nextListeners) <span class="hljs-comment">// 更新currentListeners数组</span>
 
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i&lt;listener.length;i++&gt;)&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i&lt;listener.<span class="hljs-property">length</span>;i++&gt;)&#123;
       listeners[i]()
     &#125;
 
     <span class="hljs-keyword">return</span> action
   &#125;
 
-  dispatch(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;INIT&#x27;</span>&#125;)
+  <span class="hljs-title function_">dispatch</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;INIT&#x27;</span>&#125;)
   <span class="hljs-comment">// 手动触发一次dispatch,初始化state</span>
 
   <span class="hljs-keyword">return</span>&#123;
@@ -307,37 +307,37 @@
 </code></pre></div>
 
 <h1 id="⭐️React-redux"><a href="#⭐️React-redux" class="headerlink" title="⭐️React-redux"></a>⭐️React-redux</h1><h2 id="connect-API在Class组件中"><a href="#connect-API在Class组件中" class="headerlink" title="connect API在Class组件中"></a><code>connect API在Class组件中</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// connect(...)(UI组件)</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params">mapStateToProps = state =&gt; state,mapDispatchToToProps = ()=&gt;&#123;&#125;</span>) =&gt; (<span class="hljs-params">WrapComponent</span>) =&gt; </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConnectComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">connect</span>(<span class="hljs-params">mapStateToProps = state =&gt; state,mapDispatchToToProps = ()=&gt;&#123;&#125;</span>) =&gt; <span class="hljs-function">(<span class="hljs-params">WrapComponent</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConnectComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span>&#123;
     <span class="hljs-keyword">static</span> contextTypes = &#123;
-      store:PropTypes.object
+      <span class="hljs-attr">store</span>:<span class="hljs-title class_">PropTypes</span>.<span class="hljs-property">object</span>
     &#125;
 
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props,context</span>)</span>&#123;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props,context</span>)&#123;
       <span class="hljs-comment">// context由上层Provider传下</span>
-      <span class="hljs-built_in">super</span>(props,context)
-      <span class="hljs-built_in">this</span>.state = &#123;
-        props:&#123;&#125;
+      <span class="hljs-variable language_">super</span>(props,context)
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+        <span class="hljs-attr">props</span>:&#123;&#125;
       &#125;
     &#125;
 
-    <span class="hljs-function"><span class="hljs-title">componentDidMount</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-keyword">const</span> &#123; store &#125; = <span class="hljs-built_in">this</span>.context
-      store.subscribe(<span class="hljs-function">()=&gt;</span><span class="hljs-built_in">this</span>.update()) <span class="hljs-comment">// store添加加update这个回调</span>
+    <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-keyword">const</span> &#123; store &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">context</span>
+      store.<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">()=&gt;</span><span class="hljs-variable language_">this</span>.<span class="hljs-title function_">update</span>()) <span class="hljs-comment">// store添加加update这个回调</span>
       <span class="hljs-comment">// store中state改变时触发这个update方法</span>
-      <span class="hljs-built_in">this</span>.update()
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">update</span>()
     &#125;
 
-    <span class="hljs-function"><span class="hljs-title">update</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>)&#123;
       <span class="hljs-comment">// update方法将最新的store属性收集并传给ui组件</span>
-      <span class="hljs-keyword">const</span> &#123; store &#125; = <span class="hljs-built_in">this</span>.context
-      <span class="hljs-keyword">const</span> stateProps = mapStateToProps(store.getState())
-      <span class="hljs-keyword">const</span> dispatchProps = mapDispatchToToProps(store.dispatch)
+      <span class="hljs-keyword">const</span> &#123; store &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">context</span>
+      <span class="hljs-keyword">const</span> stateProps = <span class="hljs-title function_">mapStateToProps</span>(store.<span class="hljs-title function_">getState</span>())
+      <span class="hljs-keyword">const</span> dispatchProps = <span class="hljs-title function_">mapDispatchToToProps</span>(store.<span class="hljs-property">dispatch</span>)
       <span class="hljs-comment">// 取得store中的state和dispatch</span>
 
-      <span class="hljs-built_in">this</span>.setState(&#123;
-        props:&#123;
-          ...this.state.props,
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;
+        <span class="hljs-attr">props</span>:&#123;
+          ...<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">props</span>,
           ...stateProps,
           ...dispatchProps
         &#125;
@@ -345,10 +345,10 @@
       <span class="hljs-comment">// setState导致render(),更新子组件props</span>
     &#125;
 
-    <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;
       <span class="hljs-keyword">return</span> (
         <span class="hljs-comment">// 作为正常props一股脑丢给UI组件</span>
-        &lt;WrapComponent &#123;...this.state.props&#125; /&gt;
+        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">WrapComponent</span> &#123;<span class="hljs-attr">...this.state.props</span>&#125; /&gt;</span></span>
       )
     &#125;
   &#125;
@@ -370,7 +370,7 @@
 
 <span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;redux-thunk&quot;</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(xxx-reducer, applyMiddleware(thunk));</code></pre></div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createStore</span>(xxx-reducer, <span class="hljs-title function_">applyMiddleware</span>(thunk));</code></pre></div>
 
 <p>  后就可以使用 function 作为 action</p>
 </li>
@@ -426,9 +426,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/react_rookie/">
+                      <a href="/2022/02/24/topK/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react-beginner</span>
+                        <span class="hidden-mobile">topK问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -436,8 +436,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/require.context%E4%BD%BF%E7%94%A8/">
-                        <span class="hidden-mobile">批量导入</span>
+                      <a href="/2022/02/24/svg%E5%9B%BE%E6%A0%87%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6/">
+                        <span class="hidden-mobile">svg图标封装组件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

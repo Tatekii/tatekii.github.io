@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,7 +246,7 @@
               <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>js 的内存管理是自动的</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj1 = &#123;&#125;; <span class="hljs-comment">// 申请空间</span>
 
-obj1.name = <span class="hljs-string">&quot;mmm&quot;</span>; <span class="hljs-comment">// 使用空间</span>
+obj1.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;mmm&quot;</span>; <span class="hljs-comment">// 使用空间</span>
 
 obj1 = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 释放</span></code></pre></div>
 
@@ -272,17 +272,17 @@ obj1 = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 释
 <li>  无法回收循环引用</li>
 <li>  资源开销较大（计数记录）</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;
 	<span class="hljs-keyword">const</span> o1 = &#123;&#125;;
 	<span class="hljs-keyword">const</span> o2 = &#123;&#125;;
 	<span class="hljs-comment">// 从根无法访问到o1,o2</span>
 	<span class="hljs-comment">// 但是o1,o2的引用计数都不是0</span>
 	<span class="hljs-comment">// 无法被回收</span>
-	o1.a = o2;
-	o2.a = o1;
+	o1.<span class="hljs-property">a</span> = o2;
+	o2.<span class="hljs-property">a</span> = o1;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;
 &#125;
-test();</code></pre></div>
+<span class="hljs-title function_">test</span>();</code></pre></div>
 
 <h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p><em>两次遍历</em>所有对象，1 标记可达对象，2 清除没有标记的对象</p>
 <ul>
@@ -419,22 +419,22 @@ setTimeout
 
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> obj1 = &#123;<span class="hljs-attr">x</span>:<span class="hljs-number">100</span>&#125;
 <span class="hljs-keyword">var</span> obj2 = obj1
-obj1.y = obj1 = &#123;<span class="hljs-attr">x</span>:<span class="hljs-number">200</span>&#125;
+obj1.<span class="hljs-property">y</span> = obj1 = &#123;<span class="hljs-attr">x</span>:<span class="hljs-number">200</span>&#125;
 <span class="hljs-comment">// 先执行 obj1.y = &#123;x:200&#125;</span>
 <span class="hljs-comment">// 后执行 obj1 = &#123;x:200&#125;</span>
 <span class="hljs-comment">// &#123;x:200&#125;里没有.y</span>
-obj1.y =&gt; <span class="hljs-literal">undefined</span>
+obj1.<span class="hljs-property">y</span> =&gt; <span class="hljs-literal">undefined</span>
 obj2 =&gt; &#123;<span class="hljs-attr">x</span>:<span class="hljs-number">100</span>,<span class="hljs-attr">y</span>:&#123;<span class="hljs-attr">x</span>:<span class="hljs-number">200</span>&#125;&#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> arr = [<span class="hljs-string">&#x27;xxx&#x27;</span>,<span class="hljs-string">&#x27;aaa&#x27;</span>]
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">obj</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">obj</span>)&#123;
   obj[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;yyy&#x27;</span> <span class="hljs-comment">// obj = arr = [&#x27;yyy&#x27;,&#x27;aaa&#x27;]</span>
   obj = [<span class="hljs-string">&#x27;nb&#x27;</span>]
   obj[<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;mmm&#x27;</span> <span class="hljs-comment">// obj[&#x27;nb&#x27;,&#x27;mmm&#x27;]</span>
-  <span class="hljs-built_in">console</span>.log(obj)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj)
 &#125;
 
-foo(arr)</code></pre></div>
+<span class="hljs-title function_">foo</span>(arr)</code></pre></div>
 <blockquote>
 <p>变量查找：顺着作用域链依次访问外部上下文 &lt;AO1,AO2,…VO&gt;</p>
 </blockquote>
@@ -442,39 +442,39 @@ foo(arr)</code></pre></div>
 <p>[[scope]] 函数书写时确定，所在上下文</p>
 </blockquote>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">var</span> b = <span class="hljs-number">2</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(c+b++)
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(c+b++)
   &#125;
 &#125;
 
-<span class="hljs-keyword">var</span> f = foo()
-f(<span class="hljs-number">5</span>) <span class="hljs-comment">// 7 5+2</span>
-f(<span class="hljs-number">10</span>) <span class="hljs-comment">// 13 10+3</span></code></pre></div>
+<span class="hljs-keyword">var</span> f = <span class="hljs-title function_">foo</span>()
+<span class="hljs-title function_">f</span>(<span class="hljs-number">5</span>) <span class="hljs-comment">// 7 5+2</span>
+<span class="hljs-title function_">f</span>(<span class="hljs-number">10</span>) <span class="hljs-comment">// 13 10+3</span></code></pre></div>
 
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">10</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">a</span>)</span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">b</span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(b+(++a))
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">a</span>)&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">b</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b+(++a))
   &#125;
 &#125;
-<span class="hljs-keyword">let</span> fn = foo(<span class="hljs-number">10</span>)
-fn(<span class="hljs-number">5</span>) <span class="hljs-comment">// 16</span>
-foo(<span class="hljs-number">6</span>)(<span class="hljs-number">7</span>) <span class="hljs-comment">// 14</span>
-fn(<span class="hljs-number">20</span>) <span class="hljs-comment">// 32</span></code></pre></div>
+<span class="hljs-keyword">let</span> fn = <span class="hljs-title function_">foo</span>(<span class="hljs-number">10</span>)
+<span class="hljs-title function_">fn</span>(<span class="hljs-number">5</span>) <span class="hljs-comment">// 16</span>
+<span class="hljs-title function_">foo</span>(<span class="hljs-number">6</span>)(<span class="hljs-number">7</span>) <span class="hljs-comment">// 14</span>
+<span class="hljs-title function_">fn</span>(<span class="hljs-number">20</span>) <span class="hljs-comment">// 32</span></code></pre></div>
 
 <h1 id="优化手段"><a href="#优化手段" class="headerlink" title="优化手段"></a>优化手段</h1><h3 id="变量局部化"><a href="#变量局部化" class="headerlink" title="变量局部化"></a>变量局部化</h3><p>缩短访问数据时查找路径,变量存储位置离使用的地方越近越好</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// bad</span>
 <span class="hljs-keyword">var</span> i,str = <span class="hljs-string">&#x27;&#x27;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">packageDom</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">packageDom</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span> ; i &lt; <span class="hljs-number">1000</span> ;i++&gt;)&#123;
     str += i <span class="hljs-comment">//  每次循环都要去VO(G)中才能找到str,i</span>
   &#125;
   <span class="hljs-keyword">return</span> str
 &#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// good</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">packageDom</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">packageDom</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&#x27;</span>
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span> ; i &lt; <span class="hljs-number">1000</span> ;i++&gt;)&#123;
     str += i <span class="hljs-comment">//  不用访问EC(G)</span>
@@ -482,36 +482,36 @@ fn(<span class="hljs-number">20</span>) <span class="hljs-comment">// 32</span><
   <span class="hljs-keyword">return</span> str
 &#125;</code></pre></div>
 <h3 id="减少访问层级"><a href="#减少访问层级" class="headerlink" title="减少访问层级"></a>减少访问层级</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// bad</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;personnnn&#x27;</span>
-  <span class="hljs-built_in">this</span>.getName = <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;personnnn&#x27;</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">getName</span> = <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>
   &#125;
 &#125;
-<span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> Person()
-p1.getName()</code></pre></div>
+<span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>()
+p1.<span class="hljs-title function_">getName</span>()</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// good</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;personnnn&#x27;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;personnnn&#x27;</span>
 &#125;
-<span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> Person()
-p1.name</code></pre></div>
+<span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>()
+p1.<span class="hljs-property">name</span></code></pre></div>
 
 <h3 id="缓存数据"><a href="#缓存数据" class="headerlink" title="缓存数据"></a>缓存数据</h3><p>缓存需要多次使用的数据</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// bad</span>
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i &lt; <span class="hljs-number">100000</span> ;i++)&#123;
-  handle(xxxObj.key1)
+  <span class="hljs-title function_">handle</span>(xxxObj.<span class="hljs-property">key1</span>)
 &#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// good</span>
-<span class="hljs-keyword">const</span> cacheItem = xxxObj.key1
+<span class="hljs-keyword">const</span> cacheItem = xxxObj.<span class="hljs-property">key1</span>
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i &lt; <span class="hljs-number">100000</span> ;i++)&#123;
-  handle(cacheItem)
+  <span class="hljs-title function_">handle</span>(cacheItem)
 &#125;</code></pre></div>
 <h3 id="减少判断，提前return"><a href="#减少判断，提前return" class="headerlink" title="减少判断，提前return"></a>减少判断，提前return</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  bad</span>
 <span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">do</span>(<span class="hljs-params">k1,k2</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">do</span>(<span class="hljs-params">k1,k2</span>)&#123;
   <span class="hljs-keyword">if</span>(k1)&#123;
-    <span class="hljs-keyword">if</span>(arr.includes(k1))&#123;
+    <span class="hljs-keyword">if</span>(arr.<span class="hljs-title function_">includes</span>(k1))&#123;
       <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;includes&#x27;</span>
       <span class="hljs-keyword">if</span>(k2&gt;<span class="hljs-number">5</span>)&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-number">666</span>
@@ -523,19 +523,19 @@ p1.name</code></pre></div>
 &#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  good</span>
 <span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">do</span>(<span class="hljs-params">k1,k2</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">do</span>(<span class="hljs-params">k1,k2</span>)&#123;
   <span class="hljs-keyword">if</span>(!k1) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;no argument&#x27;</span>
-  <span class="hljs-keyword">if</span>(!arr.includes(k1)) <span class="hljs-keyword">return</span> 
+  <span class="hljs-keyword">if</span>(!arr.<span class="hljs-title function_">includes</span>(k1)) <span class="hljs-keyword">return</span> 
   <span class="hljs-keyword">if</span>(k2&gt;<span class="hljs-number">5</span>)&#123;
     <span class="hljs-keyword">return</span> <span class="hljs-number">666</span>
   &#125;
 &#125;</code></pre></div>
 <h3 id="减少循环体内操作"><a href="#减少循环体内操作" class="headerlink" title="减少循环体内操作"></a>减少循环体内操作</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// bad</span>
-<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i&lt; arr.length ; i++)&#123;
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i&lt; arr.<span class="hljs-property">length</span> ; i++)&#123;
   ...
 &#125;</code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// good</span>
-<span class="hljs-keyword">const</span> len = arr.length
+<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i &lt; len ; i++)&#123;
   ...
 &#125;</code></pre></div>
@@ -545,10 +545,10 @@ p1.name</code></pre></div>
 &#125;</code></pre></div>
 
 <h3 id="字面量和构造函数"><a href="#字面量和构造函数" class="headerlink" title="字面量和构造函数"></a>字面量和构造函数</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// bad</span>
-<span class="hljs-keyword">const</span> o1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>()
-o1.a = <span class="hljs-number">666</span>
+<span class="hljs-keyword">const</span> o1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>()
+o1.<span class="hljs-property">a</span> = <span class="hljs-number">666</span>
 
-<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&#x27;mmm&#x27;</span>) <span class="hljs-comment">// 特别是基本类型，性能损耗很大</span></code></pre></div>
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&#x27;mmm&#x27;</span>) <span class="hljs-comment">// 特别是基本类型，性能损耗很大</span></code></pre></div>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// good</span>
 <span class="hljs-keyword">const</span> o1 = &#123;
   a : <span class="hljs-number">666</span>

@@ -73,7 +73,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -265,11 +265,11 @@
 <li>  可缓存</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.memoize()</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memoize</span>(<span class="hljs-params">fn</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">memoize</span>(<span class="hljs-params">fn</span>) &#123;
 	<span class="hljs-keyword">const</span> cache = &#123;&#125;;
-	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-		<span class="hljs-keyword">const</span> key = <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-built_in">arguments</span>);
-		cache[key] = cache[key] || fn.apply(fn, <span class="hljs-built_in">arguments</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+		<span class="hljs-keyword">const</span> key = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-variable language_">arguments</span>);
+		cache[key] = cache[key] || fn.<span class="hljs-title function_">apply</span>(fn, <span class="hljs-variable language_">arguments</span>);
 		<span class="hljs-keyword">return</span> cache[key];
 	&#125;;
 &#125;</code></pre></div>
@@ -290,14 +290,14 @@
 <li></li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.curry()</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">func</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curried</span>(<span class="hljs-params">...args</span>) </span>&#123;
-		<span class="hljs-keyword">if</span> (args.length &lt; func.length) &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-				<span class="hljs-keyword">return</span> curried(...args.concat([...arguments]));
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">curry</span>(<span class="hljs-params">func</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">curried</span>(<span class="hljs-params">...args</span>) &#123;
+		<span class="hljs-keyword">if</span> (args.<span class="hljs-property">length</span> &lt; func.<span class="hljs-property">length</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+				<span class="hljs-keyword">return</span> <span class="hljs-title function_">curried</span>(...args.<span class="hljs-title function_">concat</span>([...<span class="hljs-variable language_">arguments</span>]));
 			&#125;;
 		&#125;
-		<span class="hljs-keyword">return</span> func(...args);
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">func</span>(...args);
 	&#125;;
 &#125;</code></pre></div>
 
@@ -305,37 +305,37 @@
 <li>  封装洋葱代码<code>_.toUpper(._first(._reverse(array)))</code></li>
 <li>  忽略中间状态 <em>(数据管道)</em></li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">fn: A -&gt; B -&gt; C -&gt; D
-fn: A -----------&gt; D</code></pre></div>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">fn</span>: A -&gt; B -&gt; C -&gt; D
+<span class="hljs-attr">fn</span>: A -----------&gt; D</code></pre></div>
 
 <ul>
 <li>  默认从右向左执行</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// lodash.flowRight()</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flowRight</span>(<span class="hljs-params">...fns</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;
-		<span class="hljs-keyword">return</span> fns.reduceRight(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">return</span> fn(acc);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">flowRight</span>(<span class="hljs-params">...fns</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) &#123;
+		<span class="hljs-keyword">return</span> fns.<span class="hljs-title function_">reduceRight</span>(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">fn</span>(acc);
 		&#125;, ...args);
 	&#125;;
 &#125;
 
 <span class="hljs-comment">// es6</span>
-<span class="hljs-keyword">const</span> compose =
-	(...fns) =&gt;
-	(...args) =&gt;
-		fns.reduceRight(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> fn(acc), ...args);</code></pre></div>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">compose</span> =
+	(<span class="hljs-params">...fns</span>) =&gt;
+	<span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span>
+		fns.<span class="hljs-title function_">reduceRight</span>(<span class="hljs-function">(<span class="hljs-params">acc, fn</span>) =&gt;</span> <span class="hljs-title function_">fn</span>(acc), ...args);</code></pre></div>
 
 <h3 id="lodash-fp-模块"><a href="#lodash-fp-模块" class="headerlink" title="lodash/fp 模块"></a>lodash/fp 模块</h3><ul>
 <li>  柯里化的 lodash 方法</li>
 <li>  函数参数在前，数据在后</li>
 </ul>
 <p>(FP Guide)[<a target="_blank" rel="noopener" href="https://github.com/lodash/lodash/wiki/FP-Guide]">https://github.com/lodash/lodash/wiki/FP-Guide]</a></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">_.map([<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>], <span class="hljs-built_in">parseInt</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">_.<span class="hljs-title function_">map</span>([<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>], <span class="hljs-built_in">parseInt</span>);
 <span class="hljs-comment">// [1,NaN,NaN]</span>
 <span class="hljs-comment">// mapFn(item,index|key,array)</span>
 <span class="hljs-comment">// parseInt(string,radix)// 将radix进制的string转为十进制</span>
-fp.map(<span class="hljs-built_in">parseInt</span>, [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>]);
+fp.<span class="hljs-title function_">map</span>(<span class="hljs-built_in">parseInt</span>, [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>]);
 <span class="hljs-comment">// [1,2,3]</span></code></pre></div>
 
 <h3 id="PointFree"><a href="#PointFree" class="headerlink" title="PointFree"></a><code>PointFree</code></h3><ul>
@@ -344,8 +344,8 @@ fp.map(<span class="hljs-built_in">parseInt</span>, [<span class="hljs-string">&
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Hello World =&gt; hello_world</span>
 
-<span class="hljs-keyword">const</span> f = fp.flowRight(fp.replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot;_&quot;</span>), fp.toLower);
-f(<span class="hljs-string">&quot;Hello World&quot;</span>);</code></pre></div>
+<span class="hljs-keyword">const</span> f = fp.<span class="hljs-title function_">flowRight</span>(fp.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot;_&quot;</span>), fp.<span class="hljs-property">toLower</span>);
+<span class="hljs-title function_">f</span>(<span class="hljs-string">&quot;Hello World&quot;</span>);</code></pre></div>
 
 <h2 id="函子Functor"><a href="#函子Functor" class="headerlink" title="函子Functor"></a>函子<code>Functor</code></h2><ul>
 <li>  一个包裹值的盒子</li>
@@ -353,39 +353,39 @@ f(<span class="hljs-string">&quot;Hello World&quot;</span>);</code></pre></div>
 <li>  实现 map 契约</li>
 </ul>
 <h3 id="Either函子"><a href="#Either函子" class="headerlink" title="Either函子"></a><code>Either</code>函子</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// Either函子</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Left</span> </span>&#123;
-	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Left(value);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Left</span> &#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Left</span>(value);
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>._value = value;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = value;
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
-	&#125;
-&#125;
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Right</span> </span>&#123;
-	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Right(value);
-	&#125;
-
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>._value = value;
-	&#125;
-
-	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> Right.of(fn(<span class="hljs-built_in">this</span>._value));
+	<span class="hljs-title function_">map</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
 	&#125;
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseJSON</span>(<span class="hljs-params">str</span>) </span>&#123;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Right</span> &#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Right</span>(value);
+	&#125;
+
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = value;
+	&#125;
+
+	<span class="hljs-title function_">map</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">Right</span>.<span class="hljs-title function_">of</span>(<span class="hljs-title function_">fn</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>));
+	&#125;
+&#125;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">parseJSON</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-keyword">try</span> &#123;
-		<span class="hljs-keyword">return</span> Right.of(<span class="hljs-built_in">JSON</span>.parse(str));
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">Right</span>.<span class="hljs-title function_">of</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(str));
 	&#125; <span class="hljs-keyword">catch</span> (e) &#123;
-		<span class="hljs-keyword">return</span> Left.of(&#123; <span class="hljs-attr">error</span>: e.message &#125;);
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">Left</span>.<span class="hljs-title function_">of</span>(&#123; <span class="hljs-attr">error</span>: e.<span class="hljs-property">message</span> &#125;);
 	&#125;
 &#125;</code></pre></div>
 
@@ -393,25 +393,25 @@ f(<span class="hljs-string">&quot;Hello World&quot;</span>);</code></pre></div>
 <li>  将不纯的函数用函子保存</li>
 <li>  延迟执行副作用，并且不纯的操作交由调用者处理</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IO</span> </span>&#123;
-	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">IO</span> &#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
 			<span class="hljs-keyword">return</span> value;
 		&#125;);
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>._value = fn;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = fn;
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(fp.flowRight(fn, <span class="hljs-built_in">this</span>._value));
+	<span class="hljs-title function_">map</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(fp.<span class="hljs-title function_">flowRight</span>(fn, <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>));
 	&#125;
 &#125;
 
-<span class="hljs-keyword">const</span> path = IO.of(process).map(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.execPath);
+<span class="hljs-keyword">const</span> path = <span class="hljs-variable constant_">IO</span>.<span class="hljs-title function_">of</span>(process).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> p.<span class="hljs-property">execPath</span>);
 <span class="hljs-comment">// 输出的path是一个包裹了副作用的纯函数</span>
-path._value();
+path.<span class="hljs-title function_">_value</span>();
 <span class="hljs-comment">// 直到执行._value()时才会处理副作用</span></code></pre></div>
 
 <h2 id="folktale"><a href="#folktale" class="headerlink" title="folktale"></a><code>folktale</code></h2><p>JUMP TO:<a target="_blank" rel="noopener" href="https://folktale.origamitower.com/">https://folktale.origamitower.com/</a></p>
@@ -419,25 +419,25 @@ path._value();
 <span class="hljs-keyword">const</span> &#123; split, find &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;lodash/fp&quot;</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readFile</span>(<span class="hljs-params">filename</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> task(<span class="hljs-function">(<span class="hljs-params">resolver</span>) =&gt;</span> &#123;
-		fs.readFile(filename, <span class="hljs-string">&quot;utf-8&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">if</span> (err) resolver.reject(err);
-			resolver.resolve(data);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">readFile</span>(<span class="hljs-params">filename</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-title function_">task</span>(<span class="hljs-function">(<span class="hljs-params">resolver</span>) =&gt;</span> &#123;
+		fs.<span class="hljs-title function_">readFile</span>(filename, <span class="hljs-string">&quot;utf-8&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">if</span> (err) resolver.<span class="hljs-title function_">reject</span>(err);
+			resolver.<span class="hljs-title function_">resolve</span>(data);
 		&#125;);
 	&#125;);
 &#125;
 
-<span class="hljs-keyword">const</span> readVersion = readFile(<span class="hljs-string">&quot;package.json&quot;</span>)
-	.map(split(<span class="hljs-string">&quot;\n&quot;</span>))
-	.map(find(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x.includes(<span class="hljs-string">&quot;version&quot;</span>)))
-	.run()
-	.listen(&#123;
-		onRejected: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err),
-		onResolved: <span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;res=&gt;&quot;</span>, val),
+<span class="hljs-keyword">const</span> readVersion = <span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;package.json&quot;</span>)
+	.<span class="hljs-title function_">map</span>(<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;\n&quot;</span>))
+	.<span class="hljs-title function_">map</span>(<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;version&quot;</span>)))
+	.<span class="hljs-title function_">run</span>()
+	.<span class="hljs-title function_">listen</span>(&#123;
+		<span class="hljs-attr">onRejected</span>: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(err),
+		<span class="hljs-attr">onResolved</span>: <span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;res=&gt;&quot;</span>, val),
 	&#125;);
 
-<span class="hljs-built_in">console</span>.log(readVersion);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(readVersion);
 <span class="hljs-comment">// TaskExecution &#123;</span>
 <span class="hljs-comment">//   _task: Task &#123; _computation: [Function (anonymous)] &#125;,</span>
 <span class="hljs-comment">//   _deferred: Object [folktale:Deferred] &#123;&#125;,</span>
@@ -455,40 +455,40 @@ path._value();
 <li>  可以扁平化的<code>Point</code>函子</li>
 <li>  实现了静态<code>join``of</code>方法</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IO</span> </span>&#123;
-	<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">value</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">IO</span> &#123;
+	<span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">value</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
 			<span class="hljs-keyword">return</span> value;
 		&#125;);
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>._value = fn;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = fn;
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">map</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(fp.flowRight(fn, <span class="hljs-built_in">this</span>._value));
+	<span class="hljs-title function_">map</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(fp.<span class="hljs-title function_">flowRight</span>(fn, <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>));
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">join</span>(<span class="hljs-params"></span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._value();
+	<span class="hljs-title function_">join</span>(<span class="hljs-params"></span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_value</span>();
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">flatMap</span>(<span class="hljs-params">fn</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.map(fn).join();
+	<span class="hljs-title function_">flatMap</span>(<span class="hljs-params">fn</span>) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">map</span>(fn).<span class="hljs-title function_">join</span>();
 	&#125;
 &#125;
-<span class="hljs-keyword">const</span> readFile = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">filename</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-		<span class="hljs-keyword">return</span> fs.readFileSync(filename, <span class="hljs-string">&quot;utf-8&quot;</span>);
+<span class="hljs-keyword">const</span> readFile = <span class="hljs-keyword">function</span> (<span class="hljs-params">filename</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+		<span class="hljs-keyword">return</span> fs.<span class="hljs-title function_">readFileSync</span>(filename, <span class="hljs-string">&quot;utf-8&quot;</span>);
 	&#125;);
 &#125;;
-<span class="hljs-keyword">const</span> print = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">const</span> print = <span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">IO</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
 		<span class="hljs-keyword">return</span> x;
 	&#125;);
 &#125;;
-<span class="hljs-keyword">const</span> res = readFile(<span class="hljs-string">&quot;package.json&quot;</span>).flatMap(print).join();</code></pre></div>
+<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;package.json&quot;</span>).<span class="hljs-title function_">flatMap</span>(print).<span class="hljs-title function_">join</span>();</code></pre></div>
 
             </div>
             <hr>

@@ -28,8 +28,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-02-25T05:58:53.829Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -248,27 +248,27 @@
 <li><p>最小栈</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MinStack</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.stack = []
-  <span class="hljs-built_in">this</span>.min = [<span class="hljs-literal">Infinity</span>]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MinStack</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">stack</span> = []
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span> = [<span class="hljs-title class_">Infinity</span>]
 &#125;
 
-MinStack.prototype.push = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.stack.push(item)
-  <span class="hljs-built_in">this</span>.min.push(<span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">this</span>.min[<span class="hljs-built_in">this</span>.min.length-<span class="hljs-number">1</span>],item))
+<span class="hljs-title class_">MinStack</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">push</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">stack</span>.<span class="hljs-title function_">push</span>(item)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>],item))
 &#125;
 
-MinStack.prototype.pop = <span class="hljs-function"><span class="hljs-keyword">function</span></span>&#123;
-  <span class="hljs-built_in">this</span>.stack.pop()
-  <span class="hljs-built_in">this</span>.min.pop()
+<span class="hljs-title class_">MinStack</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">pop</span> = <span class="hljs-keyword">function</span>&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">stack</span>.<span class="hljs-title function_">pop</span>()
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>.<span class="hljs-title function_">pop</span>()
 &#125;
 
-MinStack.prototype.top = <span class="hljs-function"><span class="hljs-keyword">function</span></span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.stack[<span class="hljs-built_in">this</span>.stack.length-<span class="hljs-number">1</span>]
+<span class="hljs-title class_">MinStack</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">top</span> = <span class="hljs-keyword">function</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">stack</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">stack</span>.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>]
 &#125;
 
-MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">function</span></span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.min[<span class="hljs-built_in">this</span>.min.length-<span class="hljs-number">1</span>]
+<span class="hljs-title class_">MinStack</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">min</span> = <span class="hljs-keyword">function</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">min</span>.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>]
 &#125;
 </code></pre></div></li>
 <li><p>判断括号是否合法</p>
@@ -278,49 +278,49 @@ MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">
 <span class="hljs-comment">// []</span>
 <span class="hljs-comment">// &#123;&#125;</span>
 <span class="hljs-comment">// (&#123;[)]&#125;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bracketCheck</span>(<span class="hljs-params">str</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">bracketCheck</span>(<span class="hljs-params">str</span>)&#123;
   <span class="hljs-keyword">const</span> brackets = &#123;
     <span class="hljs-string">&#x27;(&#x27;</span>:<span class="hljs-string">&#x27;)&#x27;</span>,
     <span class="hljs-string">&#x27;&#123;&#x27;</span>:<span class="hljs-string">&#x27;&#125;&#x27;</span>,
     <span class="hljs-string">&#x27;[&#x27;</span>:<span class="hljs-string">&#x27;]&#x27;</span>
   &#125;
   <span class="hljs-keyword">let</span> stack = []
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i&lt;str.length;i++)&#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ;i&lt;str.<span class="hljs-property">length</span>;i++)&#123;
     <span class="hljs-keyword">if</span>(brackets[str[i]])&#123;
-      stack.push([str[i]])
-    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str[i] !== brackets[stack.pop()])&#123;
+      stack.<span class="hljs-title function_">push</span>([str[i]])
+    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str[i] !== brackets[stack.<span class="hljs-title function_">pop</span>()])&#123;
       <span class="hljs-comment">// 这个写法6⃣️啊</span>
       <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> stack.length === <span class="hljs-number">0</span>
+  <span class="hljs-keyword">return</span> stack.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>
 &#125;</code></pre></div>
 
 <ul>
 <li>生成n对括号<br>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</li>
 </ul>
 <p>输入：n = 3<br>输出：[“((()))”,”(()())”,”(())()”,”()(())”,”()()()”]</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateParenthesis</span>(<span class="hljs-params">n</span>)</span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateParenthesis</span>(<span class="hljs-params">n</span>)&#123;
   <span class="hljs-comment">//n对括号</span>
   <span class="hljs-comment">//可用的左括号数量l=n</span>
   <span class="hljs-comment">//可用的右括号数量r=n</span>
   <span class="hljs-keyword">const</span> res = []
-  DFS(n,n,<span class="hljs-string">&#x27;&#x27;</span>)
+  <span class="hljs-title function_">DFS</span>(n,n,<span class="hljs-string">&#x27;&#x27;</span>)
   <span class="hljs-keyword">return</span> res
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DFS</span>(<span class="hljs-params">l,r,str</span>)</span>&#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">DFS</span>(<span class="hljs-params">l,r,str</span>)&#123;
     <span class="hljs-comment">// 考虑合理闭合的括号组合</span>
     <span class="hljs-comment">// 生成过程中左右括号可使用的数量</span>
-    <span class="hljs-keyword">if</span>(str.length===<span class="hljs-number">2</span>*n)&#123;
+    <span class="hljs-keyword">if</span>(str.<span class="hljs-property">length</span>===<span class="hljs-number">2</span>*n)&#123;
       <span class="hljs-comment">// 2n个字符说明凑够一种</span>
-      <span class="hljs-keyword">return</span> res.push(str)
+      <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">push</span>(str)
     &#125;
     <span class="hljs-keyword">if</span>(l&gt;<span class="hljs-number">0</span>)&#123;
       <span class="hljs-comment">// 左括号有就能用</span>
-      DFS(l-<span class="hljs-number">1</span>,r,str+<span class="hljs-string">&#x27;(&#x27;</span>)
+      <span class="hljs-title function_">DFS</span>(l-<span class="hljs-number">1</span>,r,str+<span class="hljs-string">&#x27;(&#x27;</span>)
     &#125;
     <span class="hljs-keyword">if</span>(l&lt;r)&#123;
-      DFS(l,r-<span class="hljs-number">1</span>,str+<span class="hljs-string">&#x27;)&#x27;</span>)
+      <span class="hljs-title function_">DFS</span>(l,r-<span class="hljs-number">1</span>,str+<span class="hljs-string">&#x27;)&#x27;</span>)
     &#125;
   &#125;
 &#125;</code></pre></div>
@@ -345,46 +345,46 @@ MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">
 <span class="hljs-comment">// stack = [&#x27;&#x27;,a,c]</span>
 
 <span class="hljs-comment">//</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delDup</span>(<span class="hljs-params">s</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">delDup</span>(<span class="hljs-params">s</span>)&#123;
   <span class="hljs-keyword">const</span> stack = [s[<span class="hljs-number">0</span>]]
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ;i &lt; s.length ;i++)&#123;
-    <span class="hljs-keyword">const</span> pre = stack.pop()
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ;i &lt; s.<span class="hljs-property">length</span> ;i++)&#123;
+    <span class="hljs-keyword">const</span> pre = stack.<span class="hljs-title function_">pop</span>()
     <span class="hljs-comment">// 每次取出上一个末尾字符</span>
     <span class="hljs-keyword">const</span> cur = s[i]
     <span class="hljs-keyword">if</span>(cur !== pre)&#123;
       <span class="hljs-comment">// 不是相同字符则存储起来</span>
       <span class="hljs-comment">// 是相同字符则由于pop方法已经从结果中删除</span>
-      stack.push(pre,cur)
+      stack.<span class="hljs-title function_">push</span>(pre,cur)
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> stack.join(<span class="hljs-string">&#x27;&#x27;</span>)
+  <span class="hljs-keyword">return</span> stack.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>)
 &#125;
 </code></pre></div></li>
 </ul>
 <ul>
 <li>滑动窗口最大值<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// k 为窗口大小</span>
 <span class="hljs-comment">// window存储数组索引</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxInSlideWin</span>(<span class="hljs-params">arr,k</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">maxInSlideWin</span>(<span class="hljs-params">arr,k</span>)&#123;
   <span class="hljs-keyword">let</span> res = []
-  <span class="hljs-keyword">let</span> <span class="hljs-built_in">window</span> = []
+  <span class="hljs-keyword">let</span> <span class="hljs-variable language_">window</span> = []
   <span class="hljs-comment">// window存储索引</span>
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i &lt; arr.length ; i++)&#123;
-    <span class="hljs-keyword">if</span>(i-<span class="hljs-built_in">window</span>[<span class="hljs-number">0</span>]&gt;=k)&#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i &lt; arr.<span class="hljs-property">length</span> ; i++)&#123;
+    <span class="hljs-keyword">if</span>(i-<span class="hljs-variable language_">window</span>[<span class="hljs-number">0</span>]&gt;=k)&#123;
       <span class="hljs-comment">// 窗口大小超过限制</span>
-      <span class="hljs-built_in">window</span>.shift()
+      <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">shift</span>()
       <span class="hljs-comment">// 抛弃前面的值</span>
     &#125;
-    <span class="hljs-keyword">while</span>(arr[<span class="hljs-built_in">window</span>[<span class="hljs-built_in">window</span>.length-<span class="hljs-number">1</span>]]&lt;=arr[i])&#123;
+    <span class="hljs-keyword">while</span>(arr[<span class="hljs-variable language_">window</span>[<span class="hljs-variable language_">window</span>.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>]]&lt;=arr[i])&#123;
       <span class="hljs-comment">// 用指针位置的值与窗口尾部索引值比较</span>
       <span class="hljs-comment">// 循环删除比指针小的值索引</span>
-      <span class="hljs-built_in">window</span>.pop()
+      <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">pop</span>()
     &#125;
-    <span class="hljs-built_in">window</span>.push(i)
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">push</span>(i)
     <span class="hljs-comment">// i之前都比i大</span>
     <span class="hljs-keyword">if</span>(i&gt;=k-<span class="hljs-number">1</span>)&#123;
       <span class="hljs-comment">// 索引k-1开始收集窗口最大值，</span>
       <span class="hljs-comment">// k-1之前窗口都还没到尺寸</span>
-      res.push(arr[<span class="hljs-built_in">window</span>[<span class="hljs-number">0</span>]])
+      res.<span class="hljs-title function_">push</span>(arr[<span class="hljs-variable language_">window</span>[<span class="hljs-number">0</span>]])
       <span class="hljs-comment">// 保证窗口内最左值=边索引为最大值</span>
     &#125;
   &#125;
@@ -402,9 +402,9 @@ MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
@@ -423,9 +423,9 @@ MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
+                      <a href="/2022/02/24/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">文件夹内批量映射为模块</span>
+                        <span class="hidden-mobile">web安全</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -433,8 +433,8 @@ MinStack.prototype.min = <span class="hljs-function"><span class="hljs-keyword">
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%95%B0%E7%BB%84/">
-                        <span class="hidden-mobile">数组</span>
+                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
+                        <span class="hidden-mobile">文件夹内批量映射为模块</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

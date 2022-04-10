@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -245,88 +245,88 @@
             <div class="markdown-body">
               <h2 id="队列结构，先进先出"><a href="#队列结构，先进先出" class="headerlink" title="队列结构，先进先出"></a>队列结构，先进先出</h2><ul>
 <li><p>用数组实现-顺序队列</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ArrayQueue</span>(<span class="hljs-params">len</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len)
-  <span class="hljs-built_in">this</span>.n = len
-  <span class="hljs-built_in">this</span>.head = <span class="hljs-number">0</span>
-  <span class="hljs-built_in">this</span>.tail = <span class="hljs-number">0</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ArrayQueue</span>(<span class="hljs-params">len</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(len)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">n</span> = len
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = <span class="hljs-number">0</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = <span class="hljs-number">0</span>
 &#125;
-ArrayQueue.prototype.enqueue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.tail === <span class="hljs-built_in">this</span>.n)&#123;<span class="hljs-comment">// tail后没有空余空间</span>
+<span class="hljs-title class_">ArrayQueue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">enqueue</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> === <span class="hljs-variable language_">this</span>.<span class="hljs-property">n</span>)&#123;<span class="hljs-comment">// tail后没有空余空间</span>
     <span class="hljs-keyword">if</span>(head === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><span class="hljs-comment">// 判断是否队列前方有已经出队的位置</span>
     <span class="hljs-comment">// 有则将整个队列向前移动</span>
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = head;i&lt;<span class="hljs-built_in">this</span>.tail;i++)&#123;
-      <span class="hljs-built_in">this</span>.items[i-head] = <span class="hljs-built_in">this</span>.items[i]
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = head;i&lt;<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>;i++)&#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>[i-head] = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>[i]
     &#125;
-    <span class="hljs-built_in">this</span>.tail = <span class="hljs-built_in">this</span>.tail-<span class="hljs-built_in">this</span>.head
-    <span class="hljs-built_in">this</span>.head = <span class="hljs-number">0</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>-<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = <span class="hljs-number">0</span>
   &#125;
-  <span class="hljs-built_in">this</span>.items[<span class="hljs-built_in">this</span>.tail] = item
-  <span class="hljs-built_in">this</span>.tail ++
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>] = item
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> ++
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 &#125;
-ArrayQueue.prototype.dequeue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.head === <span class="hljs-built_in">this</span>.tail) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-  <span class="hljs-built_in">this</span>.head ++ 
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.items.shift()
+<span class="hljs-title class_">ArrayQueue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">dequeue</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> === <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> ++ 
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">shift</span>()
 &#125;</code></pre></div></li>
 <li><p>!循环队列</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 避免了顺序队列中的数据搬移操作</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CircularQueue</span>(<span class="hljs-params">len</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len)
-  <span class="hljs-built_in">this</span>.n = len
-  <span class="hljs-built_in">this</span>.head = <span class="hljs-number">0</span>
-  <span class="hljs-built_in">this</span>.tail = <span class="hljs-number">0</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">CircularQueue</span>(<span class="hljs-params">len</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(len)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">n</span> = len
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = <span class="hljs-number">0</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = <span class="hljs-number">0</span>
 &#125;
-CircularQueue.prototype = &#123;
-  enqueue:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)</span>&#123;
-    <span class="hljs-keyword">if</span>((<span class="hljs-built_in">this</span>.tail+<span class="hljs-number">1</span>)%n===<span class="hljs-built_in">this</span>.head) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-    <span class="hljs-built_in">this</span>.items[<span class="hljs-built_in">this</span>.tail] = item
-    <span class="hljs-built_in">this</span>.tail = (<span class="hljs-built_in">this</span>.tail+<span class="hljs-number">1</span>)%n
+<span class="hljs-title class_">CircularQueue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+  <span class="hljs-attr">enqueue</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)&#123;
+    <span class="hljs-keyword">if</span>((<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>+<span class="hljs-number">1</span>)%n===<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>[<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>] = item
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = (<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>+<span class="hljs-number">1</span>)%n
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   &#125;,
-  dequeue:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.head===<span class="hljs-built_in">this</span>.tail) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
-    <span class="hljs-keyword">const</span> ret = <span class="hljs-built_in">this</span>.items[head]
-    <span class="hljs-built_in">this</span>.head = (<span class="hljs-built_in">this</span>.head+<span class="hljs-number">1</span>)%n
+  <span class="hljs-attr">dequeue</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>===<span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">const</span> ret = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>[head]
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = (<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>+<span class="hljs-number">1</span>)%n
     <span class="hljs-keyword">return</span> ret
   &#125;
 &#125;</code></pre></div></li>
 <li><p>用链表实现-链式队列</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Node</span>(<span class="hljs-params">val</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.val = val
-  <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Node</span>(<span class="hljs-params">val</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">val</span> = val
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">next</span> = <span class="hljs-literal">null</span>
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LinkedListQueue</span>(<span class="hljs-params">len</span>)</span>&#123;
-  <span class="hljs-built_in">this</span>.head = <span class="hljs-literal">null</span>
-  <span class="hljs-built_in">this</span>.tail = <span class="hljs-literal">null</span>
-  <span class="hljs-built_in">this</span>.curLen = <span class="hljs-number">0</span>
-  <span class="hljs-built_in">this</span>.maxLen = len
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">LinkedListQueue</span>(<span class="hljs-params">len</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = <span class="hljs-literal">null</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = <span class="hljs-literal">null</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">curLen</span> = <span class="hljs-number">0</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">maxLen</span> = len
 &#125;
-LinkedListQueue.prototype = &#123;
-  enqueue: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>)</span>&#123;
-    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.head===<span class="hljs-literal">null</span>)&#123;
-      <span class="hljs-built_in">this</span>.head = node
-      <span class="hljs-built_in">this</span>.tail = node
-      <span class="hljs-built_in">this</span>.curLen = <span class="hljs-number">1</span>
+<span class="hljs-title class_">LinkedListQueue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+  <span class="hljs-attr">enqueue</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>)&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>===<span class="hljs-literal">null</span>)&#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = node
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = node
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">curLen</span> = <span class="hljs-number">1</span>
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
     &#125;
-    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.curLen &gt;= <span class="hljs-built_in">this</span>.len) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
-    <span class="hljs-keyword">let</span> cur = <span class="hljs-built_in">this</span>.head
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">curLen</span> &gt;= <span class="hljs-variable language_">this</span>.<span class="hljs-property">len</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">let</span> cur = <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>
     <span class="hljs-comment">// 循环到链表末尾</span>
-    <span class="hljs-keyword">while</span>(cur.next)&#123;
-      cur = cur.next
+    <span class="hljs-keyword">while</span>(cur.<span class="hljs-property">next</span>)&#123;
+      cur = cur.<span class="hljs-property">next</span>
     &#125;
-    cur.next = node
-    <span class="hljs-built_in">this</span>.tail = node
-    <span class="hljs-built_in">this</span>.curLen ++
+    cur.<span class="hljs-property">next</span> = node
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tail</span> = node
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">curLen</span> ++
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   &#125;,
-  dequeue : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">let</span> cur = <span class="hljs-built_in">this</span>.head
+  dequeue : <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">let</span> cur = <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span>
     <span class="hljs-comment">// 删除表头</span>
-    <span class="hljs-built_in">this</span>.head = cur.next
-    <span class="hljs-built_in">this</span>.curLen --
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">head</span> = cur.<span class="hljs-property">next</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">curLen</span> --
     <span class="hljs-keyword">return</span> cur
   &#125;
 &#125;</code></pre></div></li>

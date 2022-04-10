@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,46 +246,46 @@
               <p><a target="_blank" rel="noopener" href="https://item.jd.com/11747684.html">javascript设计模式 张容铭</a></p>
 <h2 id="创建性设计模式"><a href="#创建性设计模式" class="headerlink" title="创建性设计模式"></a>创建性设计模式</h2><ul>
 <li><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><p>创建实例时，为了保证被new关键字正确调用，可在构造函数中加入对this指向的判断。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> Factory = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>&#123;
-  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Factory)&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Factory</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)&#123;
+  <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Factory</span>)&#123;
     ...
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">this</span>(args)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">this</span>(args)
   &#125;<span class="hljs-keyword">else</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Factory(...args)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Factory</span>(...args)
   &#125;
 &#125;</code></pre></div></li>
 <li><h3 id="简单工厂模式（静态工厂）"><a href="#简单工厂模式（静态工厂）" class="headerlink" title="简单工厂模式（静态工厂）"></a>简单工厂模式（静态工厂）</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建单独一类对象</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Factory</span>(<span class="hljs-params">name,age,gender</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Factory</span>(<span class="hljs-params">name,age,gender</span>)&#123;
   <span class="hljs-keyword">const</span> o = &#123;&#125;
-  o.name = name
-  o.age = age
-  o.gender = gender
-  o.say = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;my name is&quot;</span>+  <span class="hljs-built_in">this</span>.name)
+  o.<span class="hljs-property">name</span> = name
+  o.<span class="hljs-property">age</span> = age
+  o.<span class="hljs-property">gender</span> = gender
+  o.<span class="hljs-property">say</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;my name is&quot;</span>+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>)
   &#125;
   <span class="hljs-keyword">return</span> o
 &#125;</code></pre></div></li>
 <li><h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 创建多类对象</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Factory</span>(<span class="hljs-params">...args</span>)</span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Factory</span>(<span class="hljs-params">...args</span>)&#123;
     ...
 &#125;
-Factory.prototype = &#123;
-  Product1:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+<span class="hljs-title class_">Factory</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+  <span class="hljs-title class_">Product1</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
     <span class="hljs-comment">// 简单工厂</span>
   &#125;,
-  Product2:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-title class_">Product2</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
     <span class="hljs-comment">//简单工厂</span>
   &#125;
 &#125;</code></pre></div></li>
 <li><h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><ul>
 <li><code>抽象类</code>：没有任何属性，并且原形上的方法都被限制不能使用。</li>
-<li>作用：假设子代都可能调用一些该类的必要方法，如果只是调用而不重写该方法，则会调用类上的被限制的版本而得到错误提示。<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> Car = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
-Car.prototype = &#123;
-  getPrice:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;抽象方法不能调用&quot;</span>)
+<li>作用：假设子代都可能调用一些该类的必要方法，如果只是调用而不重写该方法，则会调用类上的被限制的版本而得到错误提示。<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Car</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;
+<span class="hljs-title class_">Car</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+  <span class="hljs-attr">getPrice</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;抽象方法不能调用&quot;</span>)
   &#125;,
-  getSpeed:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;抽象方法不能调用&quot;</span>)
+  <span class="hljs-attr">getSpeed</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;抽象方法不能调用&quot;</span>)
   &#125;
 &#125;</code></pre></div></li>
 </ul>

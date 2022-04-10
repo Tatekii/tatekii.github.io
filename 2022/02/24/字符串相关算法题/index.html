@@ -28,8 +28,8 @@
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
 <meta property="article:modified_time" content="2022-04-01T08:34:43.494Z">
 <meta property="article:author" content="tatekii">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
+<meta property="article:tag" content="面试">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -250,15 +250,15 @@
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span>
 <span class="hljs-comment">// 输出: &quot;fl&quot;</span>
 
-<span class="hljs-keyword">var</span> longestCommonPrefix = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">strs</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (!strs.length || strs.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-keyword">var</span> longestCommonPrefix = <span class="hljs-keyword">function</span>(<span class="hljs-params">strs</span>) &#123;
+	<span class="hljs-keyword">if</span> (!strs.<span class="hljs-property">length</span> || strs.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
 	<span class="hljs-keyword">let</span> prefix = strs[<span class="hljs-number">0</span>]; <span class="hljs-comment">//  第一个字符串作为参考</span>
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; strs.length; i++) &#123; <span class="hljs-comment">// 后续和他比较</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; strs.<span class="hljs-property">length</span>; i++) &#123; <span class="hljs-comment">// 后续和他比较</span>
 		<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; <span class="hljs-comment">// 从0索引开始，判断公共部分则j++</span>
-		<span class="hljs-keyword">for</span> (; j &lt; prefix.length &amp;&amp; j &lt; strs[i].length; j++) &#123;
+		<span class="hljs-keyword">for</span> (; j &lt; prefix.<span class="hljs-property">length</span> &amp;&amp; j &lt; strs[i].<span class="hljs-property">length</span>; j++) &#123;
             <span class="hljs-keyword">if</span>(prefix[j]!==strs[i][j]) <span class="hljs-keyword">break</span>
 		&#125;
-		prefix = prefix.substr(<span class="hljs-number">0</span>, j); <span class="hljs-comment">// 和strs[i]比较完后重合的部分</span>
+		prefix = prefix.<span class="hljs-title function_">substr</span>(<span class="hljs-number">0</span>, j); <span class="hljs-comment">// 和strs[i]比较完后重合的部分</span>
 	&#125;
 	<span class="hljs-keyword">return</span> prefix;
 &#125;;</code></pre></div>
@@ -266,7 +266,7 @@
 <ul>
 <li>  连字符转为驼峰</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> toCamelCase = <span class="hljs-function">(<span class="hljs-params">str: <span class="hljs-built_in">string</span></span>) =&gt;</span> str.replace(<span class="hljs-regexp">/-\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.slice(<span class="hljs-number">1</span>).toUpperCase());</code></pre></div>
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">toCamelCase</span> = (<span class="hljs-params">str: <span class="hljs-built_in">string</span></span>) =&gt; str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/-\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toUpperCase</span>());</code></pre></div>
 
 <ul>
 <li>  将字符串改为首字母大写</li>
@@ -276,58 +276,58 @@
 <span class="hljs-comment">// 加上判断是否会有下划线</span>
 <span class="hljs-comment">// \w 字母、数字、下划线</span>
 
-<span class="hljs-keyword">const</span> firstUpper = <span class="hljs-function">(<span class="hljs-params">str: string</span>) =&gt;</span> str.replace(<span class="hljs-regexp">/\b_?\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.toUpperCase());</code></pre></div>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">firstUpper</span> = (<span class="hljs-params">str: string</span>) =&gt; str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\b_?\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.<span class="hljs-title function_">toUpperCase</span>());</code></pre></div>
 
 <ul>
 <li>  反转句子</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  正则</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseWords</span>(<span class="hljs-params">str</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> str.trim().replace(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot; &quot;</span>).split(<span class="hljs-string">&quot; &quot;</span>).reverse().join(<span class="hljs-string">&quot; &quot;</span>);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseWords</span>(<span class="hljs-params">str</span>) &#123;
+	<span class="hljs-keyword">return</span> str.<span class="hljs-title function_">trim</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>);
 	<span class="hljs-comment">// \s \s是指空白,包括空格、换行、tab缩进等所有的空白</span>
 	<span class="hljs-comment">// 去除单词之间多余的空白</span>
 &#125;
 
 <span class="hljs-comment">//</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseWords</span>(<span class="hljs-params">str</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseWords</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-comment">// 也可以使用string+ &#x27; &#x27;</span>
 	<span class="hljs-comment">// 这里使用数组</span>
 	<span class="hljs-keyword">let</span> arr = [];
-	str = srt.trim();
+	str = srt.<span class="hljs-title function_">trim</span>();
 	<span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">let</span> right = str.length - <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">let</span> right = str.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">let</span> word = <span class="hljs-string">&quot;&quot;</span>;
 	<span class="hljs-comment">// 去除头尾多余空格</span>
 	<span class="hljs-keyword">while</span> (left &lt;= right) &#123;
-		<span class="hljs-keyword">let</span> char = str.charAt(left);
+		<span class="hljs-keyword">let</span> char = str.<span class="hljs-title function_">charAt</span>(left);
 		<span class="hljs-keyword">if</span> (char === <span class="hljs-string">&quot; &quot;</span> &amp;&amp; word) &#123;
-			arr.unshift(word);
+			arr.<span class="hljs-title function_">unshift</span>(word);
 			word = <span class="hljs-string">&quot;&quot;</span>;
 		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (char !== <span class="hljs-string">&quot; &quot;</span>) &#123;
 			word += char;
 		&#125;
 		left++;
 	&#125;
-	arr.unshift(word);
+	arr.<span class="hljs-title function_">unshift</span>(word);
 	<span class="hljs-comment">// 上面单词的添加是基于该位置字符是否为空</span>
 	<span class="hljs-comment">// 则最后一个单词的末尾非空将不会被添加</span>
 	<span class="hljs-comment">// 所以最后加上arr.unshift(word)</span>
-	<span class="hljs-keyword">return</span> arr.join(<span class="hljs-string">&quot; &quot;</span>);
+	<span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>);
 &#125;</code></pre></div>
 
 <ul>
 <li>  检查回文</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseCheck</span>(<span class="hljs-params">str</span>) </span>&#123;
-	<span class="hljs-keyword">let</span> s = str.toLowerCase().replace(<span class="hljs-regexp">/[\W_]/g</span>, <span class="hljs-string">&quot;&quot;</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseCheck</span>(<span class="hljs-params">str</span>) &#123;
+	<span class="hljs-keyword">let</span> s = str.<span class="hljs-title function_">toLowerCase</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[\W_]/g</span>, <span class="hljs-string">&quot;&quot;</span>);
 	<span class="hljs-comment">// 格式掉不是字母的别的玩意</span>
 	<span class="hljs-comment">// | `\W`   | 匹配任意不是字母，数字，下划线 |</span>
 	<span class="hljs-comment">// `[]` 字符串用中括号括起来，表示匹配其中的任一字符</span>
-	<span class="hljs-keyword">return</span> s === s.split(<span class="hljs-string">&quot;&quot;</span>).reverse().join(<span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-keyword">return</span> s === s.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
 
 	<span class="hljs-comment">// 指针</span>
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>
-	<span class="hljs-keyword">let</span> r = str.length - <span class="hljs-number">1</span> 
+	<span class="hljs-keyword">let</span> r = str.<span class="hljs-property">length</span> - <span class="hljs-number">1</span> 
 	<span class="hljs-keyword">while</span>(l&lt;r)&#123;
 		<span class="hljs-keyword">if</span>(str[l++]===str[r--])&#123;
 			<span class="hljs-keyword">continue</span>
@@ -342,49 +342,49 @@
 <li>  最长不重复子串长度</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 滑动窗口</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">longest1</span>(<span class="hljs-params">str</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> <span class="hljs-built_in">window</span> = [];
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">longest1</span>(<span class="hljs-params">str</span>) &#123;
+	<span class="hljs-keyword">const</span> <span class="hljs-variable language_">window</span> = [];
 	<span class="hljs-comment">// 滑动窗口</span>
 	<span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) &#123;
-		<span class="hljs-keyword">const</span> index = <span class="hljs-built_in">window</span>.indexOf(str[i]);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-property">length</span>; i++) &#123;
+		<span class="hljs-keyword">const</span> index = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">indexOf</span>(str[i]);
 		<span class="hljs-keyword">if</span> (index !== -<span class="hljs-number">1</span>) &#123;
-			<span class="hljs-built_in">window</span>.splice(<span class="hljs-number">0</span>, index + <span class="hljs-number">1</span>);
+			<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>, index + <span class="hljs-number">1</span>);
 			<span class="hljs-comment">// 有重复值时缩小窗口</span>
 		&#125;
-		<span class="hljs-built_in">window</span>.push(str[i]);
+		<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">push</span>(str[i]);
 		<span class="hljs-comment">// 无重复扩大窗口</span>
-		maxLen = <span class="hljs-built_in">Math</span>.max(maxLen, <span class="hljs-built_in">window</span>.length);
+		maxLen = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxLen, <span class="hljs-variable language_">window</span>.<span class="hljs-property">length</span>);
 	&#125;
 	<span class="hljs-keyword">return</span> maxLen;
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">longest2</span>(<span class="hljs-params">str</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">longest2</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-keyword">let</span> _index = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; j &lt; str.length; j++) &#123;
-		_index = str.substring(i, j).indexOf(str[j]);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; j &lt; str.<span class="hljs-property">length</span>; j++) &#123;
+		_index = str.<span class="hljs-title function_">substring</span>(i, j).<span class="hljs-title function_">indexOf</span>(str[j]);
 		<span class="hljs-keyword">if</span> (_index !== -<span class="hljs-number">1</span>) &#123;
 			<span class="hljs-comment">// _index为重复项位置</span>
 			i += _index + <span class="hljs-number">1</span>;
 		&#125;
-		maxLen = <span class="hljs-built_in">Math</span>.max(maxLen, j - i + <span class="hljs-number">1</span>);
+		maxLen = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxLen, j - i + <span class="hljs-number">1</span>);
 	&#125;
 	<span class="hljs-keyword">return</span> maxLen;
 &#125;
 <span class="hljs-comment">// map双指针</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">longest3</span>(<span class="hljs-params">str</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">longest3</span>(<span class="hljs-params">str</span>) &#123;
+	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 	<span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-comment">// 设 i 位置右侧字符无重复</span>
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; str.length; j++) &#123;
-		<span class="hljs-keyword">if</span> (map.has(str[j])) &#123;
-			i = <span class="hljs-built_in">Math</span>.max(map.get(str[j]) + <span class="hljs-number">1</span>, i);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; str.<span class="hljs-property">length</span>; j++) &#123;
+		<span class="hljs-keyword">if</span> (map.<span class="hljs-title function_">has</span>(str[j])) &#123;
+			i = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(map.<span class="hljs-title function_">get</span>(str[j]) + <span class="hljs-number">1</span>, i);
 			<span class="hljs-comment">// 检测到重复，更新i的位置，注意不一定是str[j]+1，str[j]+1不一定比上一个重复元素的查重位置更靠后</span>
 			<span class="hljs-comment">// [3,2,1,1,3,2] 3查重的位置明显小于1查重</span>
 		&#125;
-		map.set(str[j], j);
-		maxLen = <span class="hljs-built_in">Math</span>.max(j - i + <span class="hljs-number">1</span>, maxLen);
+		map.<span class="hljs-title function_">set</span>(str[j], j);
+		maxLen = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(j - i + <span class="hljs-number">1</span>, maxLen);
 	&#125;
 &#125;</code></pre></div>
 
@@ -392,11 +392,11 @@
 <li>  计算二进制数中 1 的个数</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// n 为32位二进制数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hammingWeight1</span>(<span class="hljs-params">n</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> numStr = n.toString(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">hammingWeight1</span>(<span class="hljs-params">n</span>) &#123;
+	<span class="hljs-keyword">const</span> numStr = n.<span class="hljs-title function_">toString</span>(<span class="hljs-number">2</span>);
 	<span class="hljs-comment">// 转为二进制后记数</span>
 	<span class="hljs-keyword">let</span> showTimes = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numStr.length; i++) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numStr.<span class="hljs-property">length</span>; i++) &#123;
 		<span class="hljs-keyword">if</span> (numStr[i] === <span class="hljs-string">&quot;1&quot;</span>) &#123;
 			showTimes++;
 		&#125;
@@ -406,7 +406,7 @@
 
 <span class="hljs-comment">// 位运算</span>
 <span class="hljs-comment">// &gt;&gt;&gt; 无符号向右移</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hammingWeight2</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">hammingWeight2</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">let</span> showTimes = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">while</span> (n != <span class="hljs-number">0</span>) &#123;
 		showTimes += n &amp; <span class="hljs-number">1</span>;
@@ -418,7 +418,7 @@
 &#125;
 
 <span class="hljs-comment">// 整体n &amp;</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hammingWeight3</span>(<span class="hljs-params">n</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">hammingWeight3</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">let</span> showTimes = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">while</span> (n != <span class="hljs-number">0</span>) &#123;
 		showTimes++;
@@ -439,31 +439,31 @@
 <ul>
 <li>  请实现一个函数用来判断字符串是否表示数值（包括整数和小数）</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">numberCheck</span>(<span class="hljs-params">s</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^\s$/</span>.test(s)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(s).toString() !== <span class="hljs-string">&quot;NaN&quot;</span>;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numberCheck</span>(<span class="hljs-params">s</span>) &#123;
+	<span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^\s$/</span>.<span class="hljs-title function_">test</span>(s)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(s).<span class="hljs-title function_">toString</span>() !== <span class="hljs-string">&quot;NaN&quot;</span>;
 &#125;</code></pre></div>
 
 <ul>
 <li>  千分位加逗号</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">numFormat</span>(<span class="hljs-params">num</span>)</span>&#123;
-  <span class="hljs-keyword">var</span> res=num.toString().replace(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>)</span>&#123; <span class="hljs-comment">// 整数部分</span>
-       <span class="hljs-keyword">return</span> n.replace(<span class="hljs-regexp">/(\d)(?=(\d&#123;3&#125;)+$)/g</span>,$<span class="hljs-number">1</span>=&gt;$<span class="hljs-number">1</span>+<span class="hljs-string">&#x27;,&#x27;</span>);
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numFormat</span>(<span class="hljs-params">num</span>)&#123;
+  <span class="hljs-keyword">var</span> res=num.<span class="hljs-title function_">toString</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>)&#123; <span class="hljs-comment">// 整数部分</span>
+       <span class="hljs-keyword">return</span> n.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/(\d)(?=(\d&#123;3&#125;)+$)/g</span>,$<span class="hljs-number">1</span>=&gt;$<span class="hljs-number">1</span>+<span class="hljs-string">&#x27;,&#x27;</span>);
   &#125;)
   <span class="hljs-keyword">return</span> res;
 &#125;
 
 <span class="hljs-comment">// or</span>
-<span class="hljs-built_in">Number</span>[].toLocaleString();</code></pre></div>
+<span class="hljs-title class_">Number</span>[].<span class="hljs-title function_">toLocaleString</span>();</code></pre></div>
 
 <ul>
 <li>  解析 URL 参数</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseQueryString</span>(<span class="hljs-params">url</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">parseQueryString</span>(<span class="hljs-params">url</span>) &#123;
 	<span class="hljs-keyword">const</span> rule = <span class="hljs-regexp">/([^?=&amp;]+)=([^&amp;#]*)/g</span>;
-	<span class="hljs-keyword">return</span> url.match.reduce(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
-		<span class="hljs-keyword">const</span> [key, value] = b.split(<span class="hljs-string">&quot;=&quot;</span>);
+	<span class="hljs-keyword">return</span> url.<span class="hljs-property">match</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+		<span class="hljs-keyword">const</span> [key, value] = b.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;=&quot;</span>);
 		k = <span class="hljs-built_in">decodeURIComponent</span>(key);
 		v = <span class="hljs-built_in">decodeURIComponent</span>(value);
 		a[k] = a[k] ? [...a[k], value] : value;
@@ -474,9 +474,9 @@
 <ul>
 <li>  字符串相加/大数相加</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringAdd</span>(<span class="hljs-params">num1, num2</span>) </span>&#123;
-	<span class="hljs-keyword">let</span> l1 = num1.length;
-	<span class="hljs-keyword">let</span> l2 = num2.length;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringAdd</span>(<span class="hljs-params">num1, num2</span>) &#123;
+	<span class="hljs-keyword">let</span> l1 = num1.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">let</span> l2 = num2.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-string">&quot;&quot;</span>;
 	<span class="hljs-comment">// 进位</span>
 	<span class="hljs-keyword">let</span> carry = <span class="hljs-number">0</span>;
@@ -495,14 +495,14 @@
 <ul>
 <li>  字符串相乘/大数相乘</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringMulti</span>(<span class="hljs-params">x, y</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringMulti</span>(<span class="hljs-params">x, y</span>) &#123;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;0&quot;</span> || y === <span class="hljs-string">&quot;0&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> y;
 	<span class="hljs-keyword">if</span> (y === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> x;
 
-	<span class="hljs-keyword">const</span> len1 = x.length;
-	<span class="hljs-keyword">const</span> len2 = y.length;
-	<span class="hljs-keyword">const</span> pos = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len1 + len2).fill(<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">const</span> len1 = x.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> len2 = y.<span class="hljs-property">length</span>;
+	<span class="hljs-keyword">const</span> pos = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(len1 + len2).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);
 
 	<span class="hljs-keyword">let</span> num1, num2, multi, cur;
 
@@ -512,10 +512,10 @@
 			num2 = y[j];
 
 			multi = num1 * num2;
-			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;multi&quot;</span> + multi);
+			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;multi&quot;</span> + multi);
 			<span class="hljs-comment">// 参考乘法草稿</span>
 			cur = multi + pos[i + j + <span class="hljs-number">1</span>];
-			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;cur&quot;</span> + cur);
+			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;cur&quot;</span> + cur);
 			<span class="hljs-comment">// 进位</span>
 			pos[i + j] += (cur / <span class="hljs-number">10</span>) | <span class="hljs-number">0</span>;
 			<span class="hljs-comment">// 余数</span>
@@ -523,9 +523,9 @@
 		&#125;
 	&#125;
 
-	<span class="hljs-keyword">let</span> res = pos.join(<span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-keyword">let</span> res = pos.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
 	<span class="hljs-keyword">while</span> (res[<span class="hljs-number">0</span>] === <span class="hljs-string">&quot;0&quot;</span>) &#123;
-		res = res.substring(<span class="hljs-number">1</span>);
+		res = res.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>);
 	&#125;
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
@@ -534,23 +534,23 @@
 <li>  实现一个<code>trim</code>函数</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// trim 返回去除了首尾空白的字符串</span>
-<span class="hljs-built_in">String</span>.prototype._trim = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-title class_">String</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_trim</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
 	<span class="hljs-comment">//1.regexp</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.replace(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">&quot;&quot;</span>).replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">&quot;&quot;</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">&quot;&quot;</span>);
 &#125;;
-<span class="hljs-built_in">String</span>.prototype._trim = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-keyword">const</span> str = <span class="hljs-built_in">this</span>;
+<span class="hljs-title class_">String</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_trim</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">const</span> str = <span class="hljs-variable language_">this</span>;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-string">&quot;&quot;</span>;
 	<span class="hljs-keyword">let</span> trimFlag = <span class="hljs-literal">true</span>;
 	<span class="hljs-keyword">let</span> tailIndex; <span class="hljs-comment">// 找出最后一个不是空格的索引</span>
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = str.length - <span class="hljs-number">1</span>; j &gt; <span class="hljs-number">0</span>; j--) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = str.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; j &gt; <span class="hljs-number">0</span>; j--) &#123;
 		<span class="hljs-keyword">if</span> (str[j] !== <span class="hljs-string">&quot; &quot;</span>) &#123;
 			tailIndex = j;
 			<span class="hljs-keyword">break</span>;
 		&#125;
 	&#125;
 
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-property">length</span>; i++) &#123;
 		<span class="hljs-comment">// 越过末位后又开始忽略空格</span>
 		<span class="hljs-keyword">if</span> (i &gt;= tailIndex) &#123;
 			trimFlag = <span class="hljs-literal">true</span>;
@@ -569,34 +569,34 @@
 <ul>
 <li>  实现前缀树 prefixTree</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrefixTree</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-built_in">this</span>.tree = &#123;&#125;;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">PrefixTree</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">tree</span> = &#123;&#125;;
 &#125;
-PrefixTree.prototype.insert = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
+<span class="hljs-title class_">PrefixTree</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">insert</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) &#123;
 	<span class="hljs-comment">// 依次将单词的每个字母向tree对象中递归添加属性</span>
 	<span class="hljs-comment">// msy= &gt;</span>
 	<span class="hljs-comment">// &#123;m:&#123;s:&#123;y:&#123;isEnd:true&#125;&#125;&#125;&#125;</span>
-	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
+	<span class="hljs-keyword">let</span> node = <span class="hljs-variable language_">this</span>.<span class="hljs-property">tree</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
 		<span class="hljs-keyword">if</span> (!node[n]) node[n] = &#123;&#125;;
 		node = node[n];
 	&#125;
-	node.isEnd = <span class="hljs-literal">true</span>;
+	node.<span class="hljs-property">isEnd</span> = <span class="hljs-literal">true</span>;
 &#125;;
-PrefixTree.prototype.loop = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
-	<span class="hljs-keyword">let</span> node = <span class="hljs-built_in">this</span>.tree;
+<span class="hljs-title class_">PrefixTree</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">loop</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) &#123;
+	<span class="hljs-keyword">let</span> node = <span class="hljs-variable language_">this</span>.<span class="hljs-property">tree</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> word) &#123;
 		<span class="hljs-keyword">if</span> (!node[n]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 		node = node[n];
 	&#125;
 	<span class="hljs-keyword">return</span> node;
 &#125;;
-PrefixTree.prototype.search = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) </span>&#123;
-	<span class="hljs-keyword">const</span> ret = <span class="hljs-built_in">this</span>.loop(word);
-	<span class="hljs-keyword">return</span> ret !== <span class="hljs-literal">undefined</span> &amp;&amp; ret.isEnd === <span class="hljs-literal">true</span>;
+<span class="hljs-title class_">PrefixTree</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">search</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) &#123;
+	<span class="hljs-keyword">const</span> ret = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">loop</span>(word);
+	<span class="hljs-keyword">return</span> ret !== <span class="hljs-literal">undefined</span> &amp;&amp; ret.<span class="hljs-property">isEnd</span> === <span class="hljs-literal">true</span>;
 &#125;;
-PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prefix</span>) </span>&#123;
-	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.loop(prefix);
+<span class="hljs-title class_">PrefixTree</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">startWith</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">prefix</span>) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">loop</span>(prefix);
 &#125;;</code></pre></div>
 <ul>
 <li> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/custom-sort-string/submissions/">自定义字符串排序</a></li>
@@ -607,21 +607,21 @@ PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-k
 解释: 
 “<span class="hljs-keyword">a</span>”、“b”、“c”是按顺序出现的，所以“<span class="hljs-keyword">a</span>”、“b”、“c”的顺序应该是“c”、“b”、“<span class="hljs-keyword">a</span>”。
 因为“d”不是按顺序出现的，所以它可以在返回的字符串中的任何位置。“dcba”、“cdba”、“cbda”也是有效的输出。</code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> customSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">order,s</span>)</span>&#123;
-	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>()
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> customSort = <span class="hljs-keyword">function</span>(<span class="hljs-params">order,s</span>)&#123;
+	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()
 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> str <span class="hljs-keyword">of</span> order)&#123;
 		<span class="hljs-comment">// 保证map遍历的顺序就是order的顺序</span>
-		map.set(str,<span class="hljs-number">0</span>) <span class="hljs-comment">// 首先假设这个位置的str出现了0次</span>
+		map.<span class="hljs-title function_">set</span>(str,<span class="hljs-number">0</span>) <span class="hljs-comment">// 首先假设这个位置的str出现了0次</span>
 	&#125;
 
 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> str <span class="hljs-keyword">of</span> s)&#123;
-		map.set(map.get(str) ? map.get(str) + <span class="hljs-number">1</span> : <span class="hljs-number">0</span>) <span class="hljs-comment">// 遍历s，查找是否存在在map上</span>
+		map.<span class="hljs-title function_">set</span>(map.<span class="hljs-title function_">get</span>(str) ? map.<span class="hljs-title function_">get</span>(str) + <span class="hljs-number">1</span> : <span class="hljs-number">0</span>) <span class="hljs-comment">// 遍历s，查找是否存在在map上</span>
 		<span class="hljs-comment">// 存在则把出现次数加1，否则会添加在末尾并设置为0</span>
 	&#125;
   res = <span class="hljs-string">&#x27;&#x27;</span>
 	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> [str,time] <span class="hljs-keyword">of</span> map)&#123;
 		<span class="hljs-comment">// 按照顺序遍历map给res添加字符</span>
-		res += str.repeat(time)
+		res += str.<span class="hljs-title function_">repeat</span>(time)
 	&#125;
 	<span class="hljs-keyword">return</span> res
 &#125;
@@ -636,9 +636,9 @@ PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-k
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
                       <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
@@ -667,8 +667,8 @@ PrefixTree.prototype.startWith = <span class="hljs-function"><span class="hljs-k
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">
-                        <span class="hidden-mobile">web安全</span>
+                      <a href="/2022/02/24/%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%80%E7%9B%B4%E6%8A%A5%E9%94%99sockjs-node/">
+                        <span class="hidden-mobile">控制台一直打印http://xxx/sockjs-node/info?t=xxx</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

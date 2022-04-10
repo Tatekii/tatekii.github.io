@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -528,9 +528,9 @@
 <li>  持久连接</li>
 <li>  基于 TCP 传输，复用 HTTP 的握手通道</li>
 <li>协议升级为 ws<ol>
-<li>客户端请求<div class="hljs code-wrapper"><pre><code class="hljs javascript">Connection: Upgrade;
-Upgrade: websocket;</code></pre></div></li>
-<li>服务端响应协议升级<div class="hljs code-wrapper"><pre><code class="hljs javascript">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">101</span> Switching Protocols</code></pre></div></li>
+<li>客户端请求<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Connection</span>: <span class="hljs-title class_">Upgrade</span>;
+<span class="hljs-title class_">Upgrade</span>: websocket;</code></pre></div></li>
+<li>服务端响应协议升级<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable constant_">HTTP</span>/<span class="hljs-number">1.1</span> <span class="hljs-number">101</span> <span class="hljs-title class_">Switching</span> <span class="hljs-title class_">Protocols</span></code></pre></div></li>
 </ol>
 </li>
 </ul>

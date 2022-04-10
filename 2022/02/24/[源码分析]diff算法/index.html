@@ -75,7 +75,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -269,13 +269,13 @@ newChildrenNode :[a,c,f,r]</code></pre></div></li>
 </ul>
 <h4 id="React-最大递增索引值k"><a href="#React-最大递增索引值k" class="headerlink" title="React 最大递增索引值k"></a>React 最大递增索引值k</h4><ul>
 <li>两次循环，遍历新node去旧node中寻找新vnode位置</li>
-<li>如果索引呈现递增趋势<div class="hljs code-wrapper"><pre><code class="hljs javascript">old: key1 key2 key3
-<span class="hljs-keyword">new</span>: key1 key2 key3</code></pre></div>
+<li>如果索引呈现递增趋势<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">old</span>: key1 key2 key3
+<span class="hljs-attr">new</span>: key1 key2 key3</code></pre></div>
 （newA-&gt;oldA=&gt;0,newB-&gt;oldB=&gt;1,newC-&gt;oldC=&gt;2）则说明新旧 children 中节点顺序相同，不需要移动操作。相反的，如果在寻找的过程中遇到的索引值不呈现递增趋势，则说明需要移动操作</li>
 <li>如果匹配过程中递增规律被打破</li>
 </ul>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">old: key2 key3 key1
-<span class="hljs-keyword">new</span>: key1 key2 key3
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">old</span>: key2 key3 key1
+<span class="hljs-attr">new</span>: key1 key2 key3
 k = <span class="hljs-number">2</span> 之前的所有节点都需要移动</code></pre></div>
 <p>  <code>k</code>为在旧 children 中所遇到的最大索引值，则后续匹配的索引小于这个值意味着都需要移动</p>
 <h3 id="Vue2的双端比较"><a href="#Vue2的双端比较" class="headerlink" title="Vue2的双端比较"></a>Vue2的双端比较</h3><blockquote>
@@ -312,89 +312,89 @@ k = <span class="hljs-number">2</span> 之前的所有节点都需要移动</cod
 <li><p>匹配结束后<code>oEnd&lt;oStart</code>,新增<code>nStart到nEnd</code>新元素到<code>oStart</code>之前</p>
 </li>
 <li><p>匹配结束后<code>nStart&gt;nEnd</code>,删除<code>oStart到oEnd</code>之间元素</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUndef</span> (<span class="hljs-params">v</span>) </span>&#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isUndef</span> (v) &#123;
   <span class="hljs-keyword">return</span> v === <span class="hljs-literal">undefined</span> || v === <span class="hljs-literal">null</span>
 &#125;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDef</span> (<span class="hljs-params">v</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isDef</span> (v) &#123;
   <span class="hljs-keyword">return</span> v !== <span class="hljs-literal">undefined</span> &amp;&amp; v !== <span class="hljs-literal">null</span>
 &#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sameVnode</span> (<span class="hljs-params">a, b</span>) </span>&#123;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">sameVnode</span> (a, b) &#123;
   <span class="hljs-keyword">return</span> (
-    a.key === b.key &amp;&amp; (
+    a.<span class="hljs-property">key</span> === b.<span class="hljs-property">key</span> &amp;&amp; (
       (
-        a.tag === b.tag &amp;&amp;
-        a.isComment === b.isComment &amp;&amp;
-        isDef(a.data) === isDef(b.data) &amp;&amp;
-        !childrenIgnored(a) &amp;&amp; !childrenIgnored(b) &amp;&amp;
-        sameInputType(a, b)
+        a.<span class="hljs-property">tag</span> === b.<span class="hljs-property">tag</span> &amp;&amp;
+        a.<span class="hljs-property">isComment</span> === b.<span class="hljs-property">isComment</span> &amp;&amp;
+        <span class="hljs-title function_">isDef</span>(a.<span class="hljs-property">data</span>) === <span class="hljs-title function_">isDef</span>(b.<span class="hljs-property">data</span>) &amp;&amp;
+        !<span class="hljs-title function_">childrenIgnored</span>(a) &amp;&amp; !<span class="hljs-title function_">childrenIgnored</span>(b) &amp;&amp;
+        <span class="hljs-title function_">sameInputType</span>(a, b)
       ) || (
-        isTrue(a.isAsyncPlaceholder) &amp;&amp;
-        a.asyncFactory === b.asyncFactory &amp;&amp;
-        isUndef(b.asyncFactory.error)
+        <span class="hljs-title function_">isTrue</span>(a.<span class="hljs-property">isAsyncPlaceholder</span>) &amp;&amp;
+        a.<span class="hljs-property">asyncFactory</span> === b.<span class="hljs-property">asyncFactory</span> &amp;&amp;
+        <span class="hljs-title function_">isUndef</span>(b.<span class="hljs-property">asyncFactory</span>.<span class="hljs-property">error</span>)
       )
     )
   )
 &#125;
 
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateChildren</span> (<span class="hljs-params">parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly</span>) </span>&#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateChildren</span> (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) &#123;
     <span class="hljs-keyword">let</span> oldStartIdx = <span class="hljs-number">0</span>
     <span class="hljs-keyword">let</span> newStartIdx = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">let</span> oldEndIdx = oldCh.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">let</span> oldEndIdx = oldCh.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
     <span class="hljs-keyword">let</span> oldStartVnode = oldCh[<span class="hljs-number">0</span>]
     <span class="hljs-keyword">let</span> oldEndVnode = oldCh[oldEndIdx]
-    <span class="hljs-keyword">let</span> newEndIdx = newCh.length - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">let</span> newEndIdx = newCh.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
     <span class="hljs-keyword">let</span> newStartVnode = newCh[<span class="hljs-number">0</span>]
     <span class="hljs-keyword">let</span> newEndVnode = newCh[newEndIdx]
     <span class="hljs-keyword">let</span> oldKeyToIdx, idxInOld, vnodeToMove, refElm
 
     <span class="hljs-keyword">while</span> (oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx) &#123;
-      <span class="hljs-keyword">if</span> (isUndef(oldStartVnode)) &#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isUndef</span>(oldStartVnode)) &#123;
         oldStartVnode = oldCh[++oldStartIdx] <span class="hljs-comment">// Vnode has been moved left</span>
-      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isUndef(oldEndVnode)) &#123;
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isUndef</span>(oldEndVnode)) &#123;
         oldEndVnode = oldCh[--oldEndIdx]
-      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sameVnode(oldStartVnode, newStartVnode)) &#123;
-        patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">sameVnode</span>(oldStartVnode, newStartVnode)) &#123;
+        <span class="hljs-title function_">patchVnode</span>(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
         oldStartVnode = oldCh[++oldStartIdx]
         newStartVnode = newCh[++newStartIdx]
-      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sameVnode(oldEndVnode, newEndVnode)) &#123;
-        patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">sameVnode</span>(oldEndVnode, newEndVnode)) &#123;
+        <span class="hljs-title function_">patchVnode</span>(oldEndVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
         oldEndVnode = oldCh[--oldEndIdx]
         newEndVnode = newCh[--newEndIdx]
-      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sameVnode(oldStartVnode, newEndVnode)) &#123; <span class="hljs-comment">// Vnode moved right</span>
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">sameVnode</span>(oldStartVnode, newEndVnode)) &#123; <span class="hljs-comment">// Vnode moved right</span>
       <span class="hljs-comment">// 说明oldStartVnode节点更新后要移动去末尾位置</span>
-        patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
-        canMove &amp;&amp; nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm))
+        <span class="hljs-title function_">patchVnode</span>(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx)
+        canMove &amp;&amp; nodeOps.<span class="hljs-title function_">insertBefore</span>(parentElm, oldStartVnode.<span class="hljs-property">elm</span>, nodeOps.<span class="hljs-title function_">nextSibling</span>(oldEndVnode.<span class="hljs-property">elm</span>))
         oldStartVnode = oldCh[++oldStartIdx]
         newEndVnode = newCh[--newEndIdx]
-      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sameVnode(oldEndVnode, newStartVnode)) &#123; <span class="hljs-comment">// Vnode moved left</span>
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">sameVnode</span>(oldEndVnode, newStartVnode)) &#123; <span class="hljs-comment">// Vnode moved left</span>
       <span class="hljs-comment">// 说明oldEndVnode节点更新后要移动到最前方</span>
-        patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
-        canMove &amp;&amp; nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm)
+        <span class="hljs-title function_">patchVnode</span>(oldEndVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+        canMove &amp;&amp; nodeOps.<span class="hljs-title function_">insertBefore</span>(parentElm, oldEndVnode.<span class="hljs-property">elm</span>, oldStartVnode.<span class="hljs-property">elm</span>)
         oldEndVnode = oldCh[--oldEndIdx]
         newStartVnode = newCh[++newStartIdx]
       &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-keyword">if</span> (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isUndef</span>(oldKeyToIdx)) oldKeyToIdx = <span class="hljs-title function_">createKeyToOldIdx</span>(oldCh, oldStartIdx, oldEndIdx)
         <span class="hljs-comment">// oldKeyToIndex是旧节点的key2index映射map</span>
-        idxInOld = isDef(newStartVnode.key)
-          ? oldKeyToIdx[newStartVnode.key]
-          : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx)
+        idxInOld = <span class="hljs-title function_">isDef</span>(newStartVnode.<span class="hljs-property">key</span>)
+          ? oldKeyToIdx[newStartVnode.<span class="hljs-property">key</span>]
+          : <span class="hljs-title function_">findIdxInOld</span>(newStartVnode, oldCh, oldStartIdx, oldEndIdx)
           <span class="hljs-comment">// 去旧节点中寻找newStartVnode</span>
-        <span class="hljs-keyword">if</span> (isUndef(idxInOld)) &#123; <span class="hljs-comment">// 找不到则新增newStartVnode元素到oldStart之前</span>
-          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, <span class="hljs-literal">false</span>, newCh, newStartIdx)
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isUndef</span>(idxInOld)) &#123; <span class="hljs-comment">// 找不到则新增newStartVnode元素到oldStart之前</span>
+          <span class="hljs-title function_">createElm</span>(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.<span class="hljs-property">elm</span>, <span class="hljs-literal">false</span>, newCh, newStartIdx)
         &#125; <span class="hljs-keyword">else</span> &#123;
           <span class="hljs-comment">// 找得到则进行移动</span>
           vnodeToMove = oldCh[idxInOld]
-          <span class="hljs-keyword">if</span> (sameVnode(vnodeToMove, newStartVnode)) &#123;
-            patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
+          <span class="hljs-keyword">if</span> (<span class="hljs-title function_">sameVnode</span>(vnodeToMove, newStartVnode)) &#123;
+            <span class="hljs-title function_">patchVnode</span>(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx)
             oldCh[idxInOld] = <span class="hljs-literal">undefined</span>
             <span class="hljs-comment">// 将旧节点中匹配到的位置置空，以后的查找会跳过</span>
-            canMove &amp;&amp; nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm)
+            canMove &amp;&amp; nodeOps.<span class="hljs-title function_">insertBefore</span>(parentElm, vnodeToMove.<span class="hljs-property">elm</span>, oldStartVnode.<span class="hljs-property">elm</span>)
             <span class="hljs-comment">// 匹配到的节点移动到oldStart之前</span>
           &#125; <span class="hljs-keyword">else</span> &#123;
             <span class="hljs-comment">// key相同但不是同一种元素</span>
-            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, <span class="hljs-literal">false</span>, newCh, newStartIdx)
+            <span class="hljs-title function_">createElm</span>(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.<span class="hljs-property">elm</span>, <span class="hljs-literal">false</span>, newCh, newStartIdx)
           &#125;
         &#125;
         newStartVnode = newCh[++newStartIdx]
@@ -402,10 +402,10 @@ k = <span class="hljs-number">2</span> 之前的所有节点都需要移动</cod
     &#125;
     <span class="hljs-comment">// 跳出匹配后</span>
     <span class="hljs-keyword">if</span> (oldStartIdx &gt; oldEndIdx) &#123;
-      refElm = isUndef(newCh[newEndIdx + <span class="hljs-number">1</span>]) ? <span class="hljs-literal">null</span> : newCh[newEndIdx + <span class="hljs-number">1</span>].elm
-      addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue)
+      refElm = <span class="hljs-title function_">isUndef</span>(newCh[newEndIdx + <span class="hljs-number">1</span>]) ? <span class="hljs-literal">null</span> : newCh[newEndIdx + <span class="hljs-number">1</span>].<span class="hljs-property">elm</span>
+      <span class="hljs-title function_">addVnodes</span>(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue)
     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newStartIdx &gt; newEndIdx) &#123;
-      removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx)
+      <span class="hljs-title function_">removeVnodes</span>(parentElm, oldCh, oldStartIdx, oldEndIdx)
     &#125;
   &#125;</code></pre></div>
 <h3 id="Vue3-借鉴inferno和ivi的算法"><a href="#Vue3-借鉴inferno和ivi的算法" class="headerlink" title="Vue3 借鉴inferno和ivi的算法"></a>Vue3 借鉴<code>inferno</code>和<code>ivi</code>的算法</h3></li>
@@ -449,11 +449,11 @@ k = <span class="hljs-number">2</span> 之前的所有节点都需要移动</cod
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">source = [<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
 <span class="hljs-comment">//source中，最大索引为2，2之后有小于2的索引，说明需要移动</span>
 <span class="hljs-comment">//根据source数组求出最长递增子序列</span>
-LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
+<span class="hljs-variable constant_">LIS</span> = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
 <span class="hljs-comment">// LIS中存储的是source索引</span>
 <span class="hljs-comment">// 表示新旧children中这几个节点位置保持递增关系</span></code></pre></div></li>
 <li><p>根据LIS得出不进行移动的节点</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">newChildren[LIS] = [f,k]</code></pre></div></li>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">newChildren[<span class="hljs-variable constant_">LIS</span>] = [f,k]</code></pre></div></li>
 <li><p>从LIS和新children尾处建立两个指针处理余下节点</p>
 </li>
 <li><p>比较指针的索引是是否相同，不同则移动DOM位置到上个指针的真实DOM之前</p>
@@ -467,17 +467,17 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
 <li>字串：要求连续</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 动态规划</span>
-<span class="hljs-keyword">const</span> longestChildSequence = <span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> &#123;
-  <span class="hljs-keyword">let</span> len = arr.length
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">longestChildSequence</span> = arr =&gt; &#123;
+  <span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>
   <span class="hljs-keyword">if</span>(len &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>
-  <span class="hljs-keyword">const</span> dp = <span class="hljs-built_in">Array</span>(len).fill(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">const</span> dp = <span class="hljs-title class_">Array</span>(len).<span class="hljs-title function_">fill</span>(<span class="hljs-number">1</span>)
   <span class="hljs-comment">// dp[i]代表原始数组该位置的最长子序列长度</span>
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span> ; i &lt; len ; i++)&#123;
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span> ; j &lt; i ; j++)&#123;
       <span class="hljs-comment">// j遍历之前遍历过的所有元素</span>
       <span class="hljs-comment">// 可能存在大小不一的递增序列，使用max取得最大值</span>
       <span class="hljs-keyword">if</span>(arr[i] &gt; arr [j])&#123;
-        dp[i] = <span class="hljs-built_in">Math</span>.max(dp[i],dp[j]+<span class="hljs-number">1</span>)
+        dp[i] = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(dp[i],dp[j]+<span class="hljs-number">1</span>)
         <span class="hljs-comment">// [1,2,3,4,1,2,5]</span>
         <span class="hljs-comment">// 如果只使用dp[j]+1 ，dp[6]会在[1,2,5]中得出结果3</span>
         <span class="hljs-comment">// 使用max比较之前更长的序列[1，2，3，4，5]得到5</span>
@@ -485,12 +485,12 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
       &#125;
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(...dp)
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...dp)
 &#125;
 
 <span class="hljs-comment">// 贪心+二分</span>
-<span class="hljs-keyword">const</span> longestChildSequence = <span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> &#123;
-  <span class="hljs-keyword">let</span> len = arr.length
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">longestChildSequence</span> = arr =&gt; &#123;
+  <span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>
   <span class="hljs-keyword">if</span>(len &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>
   <span class="hljs-keyword">const</span> res = [arr[<span class="hljs-number">0</span>]]
   <span class="hljs-comment">//将arr中后续元素arr[i]与res末尾元素比较</span>
@@ -498,15 +498,15 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
   <span class="hljs-comment">//小于则查找res中第一个比arr[i]大的元素并替换</span>
   <span class="hljs-comment">//由于存在替换，子序列值不一定正确，但长度是正确的</span>
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i&lt; len ;i++)&#123;
-    <span class="hljs-keyword">if</span>(arr[i]&gt;res[res.length-<span class="hljs-number">1</span>])&#123;
-      res.push(arr[i])
+    <span class="hljs-keyword">if</span>(arr[i]&gt;res[res.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>])&#123;
+      res.<span class="hljs-title function_">push</span>(arr[i])
     &#125;<span class="hljs-keyword">else</span>&#123;
       <span class="hljs-comment">// res中左右指针的index</span>
       <span class="hljs-comment">// 二分查找</span>
       <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>
-      <span class="hljs-keyword">let</span> right = res.length - <span class="hljs-number">1</span>
+      <span class="hljs-keyword">let</span> right = res.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
       <span class="hljs-keyword">while</span>(left&lt;right)&#123;
-        <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((left+right)/<span class="hljs-number">2</span>)
+        <span class="hljs-keyword">let</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left+right)/<span class="hljs-number">2</span>)
         <span class="hljs-comment">// let mid = ((left+right)/2) | 0</span>
         <span class="hljs-comment">// 浮点小数向下求整</span>
         <span class="hljs-keyword">if</span>(arr[i]&gt;res[mid])&#123;
@@ -518,7 +518,7 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
       res[left] = arr[i]
     &#125;
   &#125;
-  <span class="hljs-keyword">return</span> res.length 
+  <span class="hljs-keyword">return</span> res.<span class="hljs-property">length</span> 
 &#125;</code></pre></div>
             </div>
             <hr>
@@ -550,9 +550,9 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/Promise/">
+                      <a href="/2022/02/24/%5BTODO%5D%5B%E5%BD%92%E7%BA%B3%5Dvue@3/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">实现符合A+规范的Promise</span>
+                        <span class="hidden-mobile">vue-next学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -560,8 +560,8 @@ LIS = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%5BTODO%5D%5B%E5%BD%92%E7%BA%B3%5Dvue@3/">
-                        <span class="hidden-mobile">vue-next学习</span>
+                      <a href="/2022/02/24/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue2/">
+                        <span class="hidden-mobile">vue@2.x实现分析</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

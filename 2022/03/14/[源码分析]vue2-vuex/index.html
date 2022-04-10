@@ -76,7 +76,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -246,95 +246,95 @@
             
             <div class="markdown-body">
               <h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="安装-Vuex"><a href="#安装-Vuex" class="headerlink" title="安装 Vuex"></a>安装 Vuex</h2><p>在组件<code>beforeCreate</code>的钩子中将 vuex 的<code>Store</code>实例挂载在实例<code>this.$store</code>上；</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">vuexInit</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-keyword">const</span> options = <span class="hljs-built_in">this</span>.$options;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">vuexInit</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">const</span> options = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$options</span>;
 	<span class="hljs-comment">// store injection</span>
-	<span class="hljs-keyword">if</span> (options.store) &#123;
-		<span class="hljs-built_in">this</span>.$store = <span class="hljs-keyword">typeof</span> options.store === <span class="hljs-string">&quot;function&quot;</span> ? options.store() : options.store;
-	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options.parent &amp;&amp; options.parent.$store) &#123;
+	<span class="hljs-keyword">if</span> (options.<span class="hljs-property">store</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span> = <span class="hljs-keyword">typeof</span> options.<span class="hljs-property">store</span> === <span class="hljs-string">&quot;function&quot;</span> ? options.<span class="hljs-title function_">store</span>() : options.<span class="hljs-property">store</span>;
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options.<span class="hljs-property">parent</span> &amp;&amp; options.<span class="hljs-property">parent</span>.<span class="hljs-property">$store</span>) &#123;
 		<span class="hljs-comment">// 如果是子组件中执行，也会指向最顶层的$store</span>
-		<span class="hljs-built_in">this</span>.$store = options.parent.$store;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span> = options.<span class="hljs-property">parent</span>.<span class="hljs-property">$store</span>;
 	&#125;
 &#125;</code></pre></div>
 
 <h2 id="实例化-Store"><a href="#实例化-Store" class="headerlink" title="实例化 Store"></a>实例化 Store</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 调用new Store()</span>
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">options = &#123;&#125;</span>)</span> &#123;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Store</span> &#123;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">options = &#123;&#125;</span>) &#123;
 		<span class="hljs-comment">// options是vue实例化的options</span>
 
 		<span class="hljs-keyword">const</span> &#123; plugins = [], strict = <span class="hljs-literal">false</span> &#125; = options;
 
 		<span class="hljs-comment">// store internal state</span>
-		<span class="hljs-built_in">this</span>._committing = <span class="hljs-literal">false</span>;
-		<span class="hljs-built_in">this</span>._actions = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
-		<span class="hljs-built_in">this</span>._actionSubscribers = [];
-		<span class="hljs-built_in">this</span>._mutations = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
-		<span class="hljs-built_in">this</span>._wrappedGetters = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
-		<span class="hljs-built_in">this</span>._modules = <span class="hljs-keyword">new</span> ModuleCollection(options); <span class="hljs-comment">/* ⭐️初始化模块 */</span>
-		<span class="hljs-built_in">this</span>._modulesNamespaceMap = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
-		<span class="hljs-built_in">this</span>._subscribers = [];
-		<span class="hljs-built_in">this</span>._watcherVM = <span class="hljs-keyword">new</span> Vue(); <span class="hljs-comment">/*用一个新的vue实例作为vuexWatcher*/</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_committing</span> = <span class="hljs-literal">false</span>;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_actions</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_actionSubscribers</span> = [];
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_mutations</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_wrappedGetters</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_modules</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModuleCollection</span>(options); <span class="hljs-comment">/* ⭐️初始化模块 */</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_modulesNamespaceMap</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_subscribers</span> = [];
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">_watcherVM</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(); <span class="hljs-comment">/*用一个新的vue实例作为vuexWatcher*/</span>
 
 		<span class="hljs-comment">// bind commit and dispatch to self</span>
-		<span class="hljs-keyword">const</span> store = <span class="hljs-built_in">this</span>;
-		<span class="hljs-keyword">const</span> &#123; dispatch, commit &#125; = <span class="hljs-built_in">this</span>;
-		<span class="hljs-built_in">this</span>.dispatch = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boundDispatch</span>(<span class="hljs-params">type, payload</span>) </span>&#123;
-			<span class="hljs-keyword">return</span> dispatch.call(store, type, payload);
+		<span class="hljs-keyword">const</span> store = <span class="hljs-variable language_">this</span>;
+		<span class="hljs-keyword">const</span> &#123; dispatch, commit &#125; = <span class="hljs-variable language_">this</span>;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">dispatch</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">boundDispatch</span>(<span class="hljs-params">type, payload</span>) &#123;
+			<span class="hljs-keyword">return</span> dispatch.<span class="hljs-title function_">call</span>(store, type, payload);
 		&#125;;
-		<span class="hljs-built_in">this</span>.commit = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boundCommit</span>(<span class="hljs-params">type, payload, options</span>) </span>&#123;
-			<span class="hljs-keyword">return</span> commit.call(store, type, payload, options);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">commit</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">boundCommit</span>(<span class="hljs-params">type, payload, options</span>) &#123;
+			<span class="hljs-keyword">return</span> commit.<span class="hljs-title function_">call</span>(store, type, payload, options);
 		&#125;;
 		<span class="hljs-comment">// 根store就是_module.root</span>
-		<span class="hljs-keyword">const</span> state = <span class="hljs-built_in">this</span>._modules.root.state;
+		<span class="hljs-keyword">const</span> state = <span class="hljs-variable language_">this</span>.<span class="hljs-property">_modules</span>.<span class="hljs-property">root</span>.<span class="hljs-property">state</span>;
 
 		<span class="hljs-comment">/* ⭐️安装模块 */</span>
-		installModule(<span class="hljs-built_in">this</span>, state, [], <span class="hljs-built_in">this</span>._modules.root);
+		<span class="hljs-title function_">installModule</span>(<span class="hljs-variable language_">this</span>, state, [], <span class="hljs-variable language_">this</span>.<span class="hljs-property">_modules</span>.<span class="hljs-property">root</span>);
 
 		<span class="hljs-comment">// 初始化 store vm, 负责提供相应式</span>
 		<span class="hljs-comment">// (also registers _wrappedGetters as computed properties)</span>
-		resetStoreVM(<span class="hljs-built_in">this</span>, state);
+		<span class="hljs-title function_">resetStoreVM</span>(<span class="hljs-variable language_">this</span>, state);
 
 		<span class="hljs-comment">// 应用plugin</span>
-		plugins.forEach(<span class="hljs-function">(<span class="hljs-params">plugin</span>) =&gt;</span> plugin(<span class="hljs-built_in">this</span>));
+		plugins.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">plugin</span>) =&gt;</span> <span class="hljs-title function_">plugin</span>(<span class="hljs-variable language_">this</span>));
 
-		<span class="hljs-keyword">if</span> (Vue.config.devtools) &#123;
+		<span class="hljs-keyword">if</span> (<span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">devtools</span>) &#123;
 			<span class="hljs-comment">// devtool</span>
-			devtoolPlugin(<span class="hljs-built_in">this</span>);
+			<span class="hljs-title function_">devtoolPlugin</span>(<span class="hljs-variable language_">this</span>);
 		&#125;
 	&#125;
 &#125;</code></pre></div>
 
 <h3 id="初始化模块"><a href="#初始化模块" class="headerlink" title="初始化模块"></a>初始化模块</h3><p>从根<code>module</code>开始，按照层级关系递归实例化所有的子<code>module</code>为一整个树形结构的对象</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModuleCollection</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">rawRootModule</span>)</span> &#123;
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ModuleCollection</span> &#123;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">rawRootModule</span>) &#123;
 		<span class="hljs-comment">// 为根store模块开始执行register方法</span>
-		<span class="hljs-built_in">this</span>.register([], rawRootModule, <span class="hljs-literal">false</span>);
+		<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">register</span>([], rawRootModule, <span class="hljs-literal">false</span>);
 	&#125;
 
 	<span class="hljs-comment">// 根据path去查找模块</span>
-	<span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">path</span>)</span> &#123;
-		<span class="hljs-keyword">return</span> path.reduce(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-built_in">module</span>, key</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.getChild(key);
+	<span class="hljs-title function_">get</span>(<span class="hljs-params">path</span>) &#123;
+		<span class="hljs-keyword">return</span> path.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-variable language_">module</span>, key</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">getChild</span>(key);
 			<span class="hljs-comment">/**</span>
 <span class="hljs-comment">			 * getChild (key) &#123;</span>
 <span class="hljs-comment">			 *   return this._children[key]</span>
 <span class="hljs-comment">			 * &#125;</span>
 <span class="hljs-comment">			 */</span>
-		&#125;, <span class="hljs-built_in">this</span>.root);
+		&#125;, <span class="hljs-variable language_">this</span>.<span class="hljs-property">root</span>);
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">register</span>(<span class="hljs-params">path, rawModule, runtime = <span class="hljs-literal">true</span></span>)</span> &#123;
+	<span class="hljs-title function_">register</span>(<span class="hljs-params">path, rawModule, runtime = <span class="hljs-literal">true</span></span>) &#123;
 		<span class="hljs-comment">/// ...</span>
-		<span class="hljs-keyword">const</span> newModule = <span class="hljs-keyword">new</span> Module(rawModule, runtime);
+		<span class="hljs-keyword">const</span> newModule = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Module</span>(rawModule, runtime);
 		<span class="hljs-comment">// 生成单个的module实例</span>
 
-		<span class="hljs-keyword">if</span> (path.length === <span class="hljs-number">0</span>) &#123;
+		<span class="hljs-keyword">if</span> (path.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) &#123;
 			<span class="hljs-comment">// path长度是0说明是根module</span>
-			<span class="hljs-built_in">this</span>.root = newModule;
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">root</span> = newModule;
 		&#125; <span class="hljs-keyword">else</span> &#123;
 			<span class="hljs-comment">// 否则添加为上级的子模块</span>
-			<span class="hljs-keyword">const</span> parent = <span class="hljs-built_in">this</span>.get(path.slice(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>));
-			parent.addChild(path[path.length - <span class="hljs-number">1</span>], newModule);
+			<span class="hljs-keyword">const</span> parent = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">get</span>(path.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>));
+			parent.<span class="hljs-title function_">addChild</span>(path[path.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>], newModule);
 			<span class="hljs-comment">/**</span>
 <span class="hljs-comment">			 * addChild (key, module) &#123;</span>
 <span class="hljs-comment">			 *   this._children[key] = module</span>
@@ -343,36 +343,36 @@
 		&#125;
 
 		<span class="hljs-comment">// 为当前模块中的所有子模块递归调用register</span>
-		<span class="hljs-keyword">if</span> (rawModule.modules) &#123;
-			forEachValue(rawModule.modules, <span class="hljs-function">(<span class="hljs-params">rawChildModule, key</span>) =&gt;</span> &#123;
-				<span class="hljs-built_in">this</span>.register(path.concat(key), rawChildModule, runtime);
+		<span class="hljs-keyword">if</span> (rawModule.<span class="hljs-property">modules</span>) &#123;
+			<span class="hljs-title function_">forEachValue</span>(rawModule.<span class="hljs-property">modules</span>, <span class="hljs-function">(<span class="hljs-params">rawChildModule, key</span>) =&gt;</span> &#123;
+				<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">register</span>(path.<span class="hljs-title function_">concat</span>(key), rawChildModule, runtime);
 			&#125;);
 		&#125;
 	&#125;
 &#125;</code></pre></div>
 
-<h3 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">installModule</span>(<span class="hljs-params">store, rootState, path, <span class="hljs-built_in">module</span>, hot</span>) </span>&#123;
+<h3 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">installModule</span>(<span class="hljs-params">store, rootState, path, <span class="hljs-variable language_">module</span>, hot</span>) &#123;
 	<span class="hljs-comment">// 判断是否根模块</span>
-	<span class="hljs-keyword">const</span> isRoot = !path.length;
+	<span class="hljs-keyword">const</span> isRoot = !path.<span class="hljs-property">length</span>;
 	<span class="hljs-comment">// 判断有没有命名空间</span>
-	<span class="hljs-keyword">const</span> namespace = store._modules.getNamespace(path);
+	<span class="hljs-keyword">const</span> namespace = store.<span class="hljs-property">_modules</span>.<span class="hljs-title function_">getNamespace</span>(path);
 	<span class="hljs-comment">// return namespace + (module.namespaced ? key + &#x27;/&#x27; : &#x27;&#x27;)</span>
 
 	<span class="hljs-comment">// 注册到namespace map</span>
-	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">module</span>.namespaced) &#123;
-		store._modulesNamespaceMap[namespace] = <span class="hljs-built_in">module</span>;
+	<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>.<span class="hljs-property">namespaced</span>) &#123;
+		store.<span class="hljs-property">_modulesNamespaceMap</span>[namespace] = <span class="hljs-variable language_">module</span>;
 	&#125;
 
 	<span class="hljs-comment">// set state</span>
 	<span class="hljs-keyword">if</span> (!isRoot &amp;&amp; !hot) &#123;
-		<span class="hljs-keyword">const</span> parentState = getNestedState(rootState, path.slice(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>));
-		<span class="hljs-keyword">const</span> moduleName = path[path.length - <span class="hljs-number">1</span>];
-		store._withCommit(<span class="hljs-function">() =&gt;</span> &#123;
-			Vue.set(parentState, moduleName, <span class="hljs-built_in">module</span>.state);
+		<span class="hljs-keyword">const</span> parentState = <span class="hljs-title function_">getNestedState</span>(rootState, path.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>));
+		<span class="hljs-keyword">const</span> moduleName = path[path.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>];
+		store.<span class="hljs-title function_">_withCommit</span>(<span class="hljs-function">() =&gt;</span> &#123;
+			<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">set</span>(parentState, moduleName, <span class="hljs-variable language_">module</span>.<span class="hljs-property">state</span>);
 		&#125;);
 	&#125;
 
-	<span class="hljs-keyword">const</span> local = (<span class="hljs-built_in">module</span>.context = makeLocalContext(store, namespace, path));
+	<span class="hljs-keyword">const</span> local = (<span class="hljs-variable language_">module</span>.<span class="hljs-property">context</span> = <span class="hljs-title function_">makeLocalContext</span>(store, namespace, path));
 	<span class="hljs-comment">// 创建一个local上下文</span>
 	<span class="hljs-comment">// 对于有namespace的dispatch和commit会拼接上namespace</span>
 	<span class="hljs-comment">// 对于有namespace的getter有特殊处理，不是直接返回而是用Object。defineProperty设置了getter</span>
@@ -400,25 +400,25 @@
 <span class="hljs-comment">  */</span>
 
  	<span class="hljs-comment">// 注册	 各种方法</span>
-	<span class="hljs-built_in">module</span>.forEachMutation(<span class="hljs-function">(<span class="hljs-params">mutation, key</span>) =&gt;</span> &#123;
+	<span class="hljs-variable language_">module</span>.<span class="hljs-title function_">forEachMutation</span>(<span class="hljs-function">(<span class="hljs-params">mutation, key</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">const</span> namespacedType = namespace + key;
-		registerMutation(store, namespacedType, mutation, local);
+		<span class="hljs-title function_">registerMutation</span>(store, namespacedType, mutation, local);
 	&#125;);
 
-	<span class="hljs-built_in">module</span>.forEachAction(<span class="hljs-function">(<span class="hljs-params">action, key</span>) =&gt;</span> &#123;
-		<span class="hljs-keyword">const</span> type = action.root ? key : namespace + key;
-		<span class="hljs-keyword">const</span> handler = action.handler || action;
-		registerAction(store, type, handler, local);
+	<span class="hljs-variable language_">module</span>.<span class="hljs-title function_">forEachAction</span>(<span class="hljs-function">(<span class="hljs-params">action, key</span>) =&gt;</span> &#123;
+		<span class="hljs-keyword">const</span> type = action.<span class="hljs-property">root</span> ? key : namespace + key;
+		<span class="hljs-keyword">const</span> handler = action.<span class="hljs-property">handler</span> || action;
+		<span class="hljs-title function_">registerAction</span>(store, type, handler, local);
 	&#125;);
 
-	<span class="hljs-built_in">module</span>.forEachGetter(<span class="hljs-function">(<span class="hljs-params">getter, key</span>) =&gt;</span> &#123;
+	<span class="hljs-variable language_">module</span>.<span class="hljs-title function_">forEachGetter</span>(<span class="hljs-function">(<span class="hljs-params">getter, key</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">const</span> namespacedType = namespace + key;
-		registerGetter(store, namespacedType, getter, local);
+		<span class="hljs-title function_">registerGetter</span>(store, namespacedType, getter, local);
 	&#125;);
 
 	<span class="hljs-comment">// 遍历安装子模块</span>
-	<span class="hljs-built_in">module</span>.forEachChild(<span class="hljs-function">(<span class="hljs-params">child, key</span>) =&gt;</span> &#123;
-		installModule(store, rootState, path.concat(key), child, hot);
+	<span class="hljs-variable language_">module</span>.<span class="hljs-title function_">forEachChild</span>(<span class="hljs-function">(<span class="hljs-params">child, key</span>) =&gt;</span> &#123;
+		<span class="hljs-title function_">installModule</span>(store, rootState, path.<span class="hljs-title function_">concat</span>(key), child, hot);
 	&#125;);
 &#125;</code></pre></div>
 <h3 id="实例化store-vm"><a href="#实例化store-vm" class="headerlink" title="实例化store.vm"></a>实例化store.vm</h3><ul>
@@ -427,35 +427,35 @@
 <li><code>computed</code>的特性可以缓存并且<code>state</code>变化的时候才会重新计算</li>
 <li>当 <code>store.state</code> 发生变化的时候，下一次再访问 <code>store.getters</code> 的时候会重新计算。</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">resetStoreVM</span> (<span class="hljs-params">store, state, hot</span>) </span>&#123;
-  <span class="hljs-keyword">const</span> oldVm = store._vm
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">resetStoreVM</span> (store, state, hot) &#123;
+  <span class="hljs-keyword">const</span> oldVm = store.<span class="hljs-property">_vm</span>
 
   <span class="hljs-comment">// bind store public getters</span>
-  store.getters = &#123;&#125;
-  <span class="hljs-keyword">const</span> wrappedGetters = store._wrappedGetters
+  store.<span class="hljs-property">getters</span> = &#123;&#125;
+  <span class="hljs-keyword">const</span> wrappedGetters = store.<span class="hljs-property">_wrappedGetters</span>
   <span class="hljs-keyword">const</span> computed = &#123;&#125;
-  forEachValue(wrappedGetters, <span class="hljs-function">(<span class="hljs-params">fn, key</span>) =&gt;</span> &#123;
+  <span class="hljs-title function_">forEachValue</span>(wrappedGetters, <span class="hljs-function">(<span class="hljs-params">fn, key</span>) =&gt;</span> &#123;
     <span class="hljs-comment">// use computed to leverage its lazy-caching mechanism</span>
-    computed[key] = <span class="hljs-function">() =&gt;</span> fn(store)
-    <span class="hljs-built_in">Object</span>.defineProperty(store.getters, key, &#123;
-      get: <span class="hljs-function">() =&gt;</span> store._vm[key],
-      enumerable: <span class="hljs-literal">true</span> <span class="hljs-comment">// for local getters</span>
+    computed[key] = <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fn</span>(store)
+    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(store.<span class="hljs-property">getters</span>, key, &#123;
+      <span class="hljs-attr">get</span>: <span class="hljs-function">() =&gt;</span> store.<span class="hljs-property">_vm</span>[key],
+      <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// for local getters</span>
     &#125;)
   &#125;)
 
   <span class="hljs-comment">// 使用一个vue实例来存储state，访问state就是访问computed[key]，</span>
 	<span class="hljs-comment">// 实现state改变的时候getter才改变，并且被缓存</span>
-  store._vm = <span class="hljs-keyword">new</span> Vue(&#123;
-    data: &#123;
-      $$state: state
+  store.<span class="hljs-property">_vm</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+    <span class="hljs-attr">data</span>: &#123;
+      <span class="hljs-attr">$$state</span>: state
     &#125;,
     computed
   &#125;)
 
 
   <span class="hljs-comment">// enable strict mode for new vm</span>
-  <span class="hljs-keyword">if</span> (store.strict) &#123;
-    enableStrictMode(store)
+  <span class="hljs-keyword">if</span> (store.<span class="hljs-property">strict</span>) &#123;
+    <span class="hljs-title function_">enableStrictMode</span>(store)
   &#125;
 	<span class="hljs-comment">// 严格模式会添加一个watch监测state的改变是否来自非vuex接口</span>
 
@@ -468,7 +468,7 @@
 	<span class="hljs-comment">// &#125;</span>
 
   <span class="hljs-keyword">if</span> (oldVm) &#123;
-    Vue.nextTick(<span class="hljs-function">() =&gt;</span> oldVm.$destroy())
+    <span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">nextTick</span>(<span class="hljs-function">() =&gt;</span> oldVm.$destroy())
   &#125;
 &#125;</code></pre></div>
 

@@ -30,8 +30,8 @@
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="vue">
-<meta property="article:tag" content="源码">
 <meta property="article:tag" content="vue-router">
+<meta property="article:tag" content="源码">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -76,7 +76,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -264,7 +264,7 @@
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [
 	<span class="hljs-comment">// 动态字段以冒号开始</span>
-	&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/users/:id&quot;</span>, <span class="hljs-attr">component</span>: User &#125;,
+	&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/users/:id&quot;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">User</span> &#125;,
 ];</code></pre></div>
 
 <ul>
@@ -274,24 +274,24 @@
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">/users?id=<span class="hljs-number">123</span></code></pre></div>
 
 <h2 id="路由钩子"><a href="#路由钩子" class="headerlink" title="路由钩子"></a>路由钩子</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span>
-router.beforeEach((to,form,next)) <span class="hljs-comment">// 导航触发时</span>
-router.beforeResolve((to,form,next)) <span class="hljs-comment">// 所有组件内守卫和异步路由组件被解析之后</span>
-router.afterEach((to, <span class="hljs-keyword">from</span>, failure))
+router.<span class="hljs-title function_">beforeEach</span>((to,form,next)) <span class="hljs-comment">// 导航触发时</span>
+router.<span class="hljs-title function_">beforeResolve</span>((to,form,next)) <span class="hljs-comment">// 所有组件内守卫和异步路由组件被解析之后</span>
+router.<span class="hljs-title function_">afterEach</span>((to, <span class="hljs-keyword">from</span>, failure))
 <span class="hljs-comment">// 全局钩子可以定义多个，顺序执行完后才会resolve路由</span>
 
 <span class="hljs-comment">// 路由</span>
-beforeEnter() <span class="hljs-comment">// 不会在 params、query 或 hash 改变触发，只会在导航路径改变触发</span>
+<span class="hljs-title function_">beforeEnter</span>() <span class="hljs-comment">// 不会在 params、query 或 hash 改变触发，只会在导航路径改变触发</span>
 &#123;
-  path:<span class="hljs-string">&#x27;/a&#x27;</span>,
-  component:<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/component/A&#x27;</span>),
-  beforeEnter:<span class="hljs-function">(<span class="hljs-params">(to,<span class="hljs-keyword">from</span>,next)</span>)=&gt;</span>&#123;&#125; <span class="hljs-comment">//</span>
+  <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/a&#x27;</span>,
+  <span class="hljs-attr">component</span>:<span class="hljs-function">()=&gt;</span><span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;@/component/A&#x27;</span>),
+  <span class="hljs-attr">beforeEnter</span>:<span class="hljs-function">(<span class="hljs-params">(to,<span class="hljs-keyword">from</span>,next)</span>)=&gt;</span>&#123;&#125; <span class="hljs-comment">//</span>
 &#125;
 
 <span class="hljs-comment">// 组件内</span>
-beforeRouteEnter((to,<span class="hljs-keyword">from</span>,<span class="hljs-attr">next</span>:<span class="hljs-function">(<span class="hljs-params">vm</span>)=&gt;</span>&#123;<span class="hljs-comment">/*访问this*/</span>&#125;)) <span class="hljs-comment">// 组件实例创建之前</span>
-beforeRouteUpdate((to,<span class="hljs-keyword">from</span>))
+<span class="hljs-title function_">beforeRouteEnter</span>((to,<span class="hljs-keyword">from</span>,<span class="hljs-attr">next</span>:<span class="hljs-function">(<span class="hljs-params">vm</span>)=&gt;</span>&#123;<span class="hljs-comment">/*访问this*/</span>&#125;)) <span class="hljs-comment">// 组件实例创建之前</span>
+<span class="hljs-title function_">beforeRouteUpdate</span>((to,<span class="hljs-keyword">from</span>))
 <span class="hljs-comment">/* CompositionAPI onBeforeRouteUpdate */</span>
-beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
+<span class="hljs-title function_">beforeRouteLeave</span>((to,<span class="hljs-keyword">from</span>))
 <span class="hljs-comment">/* CompositionAPI onBeforeRouteLeave */</span></code></pre></div>
 
 <h3 id="触发流程：pageA-gt-pageB"><a href="#触发流程：pageA-gt-pageB" class="headerlink" title="触发流程：pageA=&gt;pageB"></a>触发流程：pageA=&gt;pageB</h3><ol>
@@ -315,122 +315,122 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 <li><p>执行第【4】步中<code>next</code>回调</p>
 </li>
 </ol>
-<h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="Vue-use-安装路由"><a href="#Vue-use-安装路由" class="headerlink" title="Vue.use 安装路由"></a>Vue.use 安装路由</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">install</span>(<span class="hljs-params">Vue</span>) </span>&#123;
-	<span class="hljs-keyword">if</span> (install.installed &amp;&amp; _Vue === Vue) <span class="hljs-keyword">return</span>;
-	install.installed = <span class="hljs-literal">true</span>;
+<h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="Vue-use-安装路由"><a href="#Vue-use-安装路由" class="headerlink" title="Vue.use 安装路由"></a>Vue.use 安装路由</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">install</span>(<span class="hljs-params">Vue</span>) &#123;
+	<span class="hljs-keyword">if</span> (install.<span class="hljs-property">installed</span> &amp;&amp; _Vue === <span class="hljs-title class_">Vue</span>) <span class="hljs-keyword">return</span>;
+	install.<span class="hljs-property">installed</span> = <span class="hljs-literal">true</span>;
 
-	_Vue = Vue;
+	_Vue = <span class="hljs-title class_">Vue</span>;
 
-	<span class="hljs-keyword">const</span> isDef = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> v !== <span class="hljs-literal">undefined</span>;
+	<span class="hljs-keyword">const</span> <span class="hljs-title function_">isDef</span> = (<span class="hljs-params">v</span>) =&gt; v !== <span class="hljs-literal">undefined</span>;
 
-	<span class="hljs-keyword">const</span> registerInstance = <span class="hljs-function">(<span class="hljs-params">vm, callVal</span>) =&gt;</span> &#123;
-		<span class="hljs-keyword">let</span> i = vm.$options._parentVnode;
+	<span class="hljs-keyword">const</span> <span class="hljs-title function_">registerInstance</span> = (<span class="hljs-params">vm, callVal</span>) =&gt; &#123;
+		<span class="hljs-keyword">let</span> i = vm.<span class="hljs-property">$options</span>.<span class="hljs-property">_parentVnode</span>;
 		<span class="hljs-comment">// 伪代码</span>
-		registerRouteInstance(vm, callVal);
+		<span class="hljs-title function_">registerRouteInstance</span>(vm, callVal);
 		<span class="hljs-comment">// router-view render函数的registerRouteInstance方法</span>
 	&#125;;
 
-	Vue.mixin(&#123;
-		<span class="hljs-function"><span class="hljs-title">beforeCreate</span>(<span class="hljs-params"></span>)</span> &#123;
-			<span class="hljs-keyword">if</span> (isDef(<span class="hljs-built_in">this</span>.$options.router)) &#123;
-				<span class="hljs-built_in">this</span>._routerRoot = <span class="hljs-built_in">this</span>; <span class="hljs-comment">//  路由的root组件</span>
-				<span class="hljs-built_in">this</span>._router = <span class="hljs-built_in">this</span>.$options.router; <span class="hljs-comment">// 路由实例</span>
-				<span class="hljs-built_in">this</span>._router.init(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// init见下文</span>
-				Vue.util.defineReactive(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;_route&quot;</span>, <span class="hljs-built_in">this</span>._router.history.current);
+	<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">mixin</span>(&#123;
+		<span class="hljs-title function_">beforeCreate</span>(<span class="hljs-params"></span>) &#123;
+			<span class="hljs-keyword">if</span> (<span class="hljs-title function_">isDef</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$options</span>.<span class="hljs-property">router</span>)) &#123;
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">_routerRoot</span> = <span class="hljs-variable language_">this</span>; <span class="hljs-comment">//  路由的root组件</span>
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">_router</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$options</span>.<span class="hljs-property">router</span>; <span class="hljs-comment">// 路由实例</span>
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">_router</span>.<span class="hljs-title function_">init</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// init见下文</span>
+				<span class="hljs-title class_">Vue</span>.<span class="hljs-property">util</span>.<span class="hljs-title function_">defineReactive</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-string">&quot;_route&quot;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">_router</span>.<span class="hljs-property">history</span>.<span class="hljs-property">current</span>);
 				<span class="hljs-comment">// 🔥对router-view的响应式绑定</span>
 			&#125; <span class="hljs-keyword">else</span> &#123;
-				<span class="hljs-built_in">this</span>._routerRoot = (<span class="hljs-built_in">this</span>.$parent &amp;&amp; <span class="hljs-built_in">this</span>.$parent._routerRoot) || <span class="hljs-built_in">this</span>;
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">_routerRoot</span> = (<span class="hljs-variable language_">this</span>.<span class="hljs-property">$parent</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">$parent</span>.<span class="hljs-property">_routerRoot</span>) || <span class="hljs-variable language_">this</span>;
 				<span class="hljs-comment">// 如果是子组件，将追溯到拥有router的父组件作为root，执行上面几行逻辑</span>
 			&#125;
-			registerInstance(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">this</span>);
+			<span class="hljs-title function_">registerInstance</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">this</span>);
 		&#125;,
-		<span class="hljs-function"><span class="hljs-title">destroyed</span>(<span class="hljs-params"></span>)</span> &#123;
-			registerInstance(<span class="hljs-built_in">this</span>);
+		<span class="hljs-title function_">destroyed</span>(<span class="hljs-params"></span>) &#123;
+			<span class="hljs-title function_">registerInstance</span>(<span class="hljs-variable language_">this</span>);
 		&#125;,
 	&#125;);
 
 	<span class="hljs-comment">// 为Vue的原型绑定`$router``$route`的getter和全局注册两个组件</span>
-	<span class="hljs-built_in">Object</span>.defineProperty(Vue.prototype, <span class="hljs-string">&quot;$router&quot;</span>, &#123;
-		<span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._routerRoot._router;
+	<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&quot;$router&quot;</span>, &#123;
+		<span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_routerRoot</span>.<span class="hljs-property">_router</span>;
 		&#125;,
 	&#125;);
 
-	<span class="hljs-built_in">Object</span>.defineProperty(Vue.prototype, <span class="hljs-string">&quot;$route&quot;</span>, &#123;
-		<span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span> &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._routerRoot._route;
+	<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&quot;$route&quot;</span>, &#123;
+		<span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_routerRoot</span>.<span class="hljs-property">_route</span>;
 		&#125;,
 	&#125;);
-	Vue.component(<span class="hljs-string">&quot;RouterView&quot;</span>, View);
-	Vue.component(<span class="hljs-string">&quot;RouterLink&quot;</span>, Link);
+	<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&quot;RouterView&quot;</span>, <span class="hljs-title class_">View</span>);
+	<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&quot;RouterLink&quot;</span>, <span class="hljs-title class_">Link</span>);
 
-	<span class="hljs-keyword">const</span> strats = Vue.config.optionMergeStrategies;
-	strats.beforeRouteEnter = strats.beforeRouteLeave = strats.beforeRouteUpdate = strats.created;
+	<span class="hljs-keyword">const</span> strats = <span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">optionMergeStrategies</span>;
+	strats.<span class="hljs-property">beforeRouteEnter</span> = strats.<span class="hljs-property">beforeRouteLeave</span> = strats.<span class="hljs-property">beforeRouteUpdate</span> = strats.<span class="hljs-property">created</span>;
 &#125;</code></pre></div>
 
-<h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VueRouter</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">options: RouterOptions = &#123;&#125;</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>.app = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 根组件</span>
-		<span class="hljs-built_in">this</span>.apps = []; <span class="hljs-comment">// options中有router项的实例</span>
-		<span class="hljs-built_in">this</span>.options = options; <span class="hljs-comment">//  路由配置</span>
-		<span class="hljs-built_in">this</span>.beforeHooks = [];
-		<span class="hljs-built_in">this</span>.resolveHooks = []; <span class="hljs-comment">// 钩子</span>
-		<span class="hljs-built_in">this</span>.afterHooks = [];
-		<span class="hljs-built_in">this</span>.matcher = createMatcher(options.routes || [], <span class="hljs-built_in">this</span>);
+<h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">VueRouter</span> &#123;
+	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">options: RouterOptions = &#123;&#125;</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span> = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 根组件</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">apps</span> = []; <span class="hljs-comment">// options中有router项的实例</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span> = options; <span class="hljs-comment">//  路由配置</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">beforeHooks</span> = [];
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">resolveHooks</span> = []; <span class="hljs-comment">// 钩子</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">afterHooks</span> = [];
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">matcher</span> = <span class="hljs-title function_">createMatcher</span>(options.<span class="hljs-property">routes</span> || [], <span class="hljs-variable language_">this</span>);
 
-		<span class="hljs-keyword">let</span> mode = options.mode || <span class="hljs-string">&quot;hash&quot;</span>;
-		<span class="hljs-built_in">this</span>.fallback = mode === <span class="hljs-string">&quot;history&quot;</span> &amp;&amp; !supportsPushState &amp;&amp; options.fallback !== <span class="hljs-literal">false</span>;
-		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.fallback) &#123;
+		<span class="hljs-keyword">let</span> mode = options.<span class="hljs-property">mode</span> || <span class="hljs-string">&quot;hash&quot;</span>;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">fallback</span> = mode === <span class="hljs-string">&quot;history&quot;</span> &amp;&amp; !supportsPushState &amp;&amp; options.<span class="hljs-property">fallback</span> !== <span class="hljs-literal">false</span>;
+		<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">fallback</span>) &#123;
 			<span class="hljs-comment">// 回退到hash模式</span>
 			mode = <span class="hljs-string">&quot;hash&quot;</span>;
 		&#125;
 		<span class="hljs-keyword">if</span> (!inBrowser) &#123;
 			mode = <span class="hljs-string">&quot;abstract&quot;</span>;
 		&#125;
-		<span class="hljs-built_in">this</span>.mode = mode;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">mode</span> = mode;
 
 		<span class="hljs-keyword">switch</span> (mode) &#123;
 			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;history&quot;</span>:
-				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> HTML5History(<span class="hljs-built_in">this</span>, options.base);
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HTML5History</span>(<span class="hljs-variable language_">this</span>, options.<span class="hljs-property">base</span>);
 				<span class="hljs-keyword">break</span>;
 			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;hash&quot;</span>:
-				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> HashHistory(<span class="hljs-built_in">this</span>, options.base, <span class="hljs-built_in">this</span>.fallback);
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashHistory</span>(<span class="hljs-variable language_">this</span>, options.<span class="hljs-property">base</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">fallback</span>);
 				<span class="hljs-keyword">break</span>;
 			<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;abstract&quot;</span>:
-				<span class="hljs-built_in">this</span>.history = <span class="hljs-keyword">new</span> AbstractHistory(<span class="hljs-built_in">this</span>, options.base);
+				<span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AbstractHistory</span>(<span class="hljs-variable language_">this</span>, options.<span class="hljs-property">base</span>);
 				<span class="hljs-keyword">break</span>;
 		&#125;
 	&#125;
 
-	<span class="hljs-function"><span class="hljs-title">init</span>(<span class="hljs-params">app: any</span>)</span> &#123;
-		<span class="hljs-built_in">this</span>.apps.push(app);
+	<span class="hljs-title function_">init</span>(<span class="hljs-params">app: any</span>) &#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">apps</span>.<span class="hljs-title function_">push</span>(app);
 
-		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.app) &#123;
+		<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span>) &#123;
 			<span class="hljs-keyword">return</span>;
 		&#125;
 
-		<span class="hljs-built_in">this</span>.app = app;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span> = app;
 
-		<span class="hljs-keyword">const</span> history = <span class="hljs-built_in">this</span>.history;
+		<span class="hljs-keyword">const</span> history = <span class="hljs-variable language_">this</span>.<span class="hljs-property">history</span>;
 
-		<span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> HTML5History) &#123;
-			history.transitionTo(history.getCurrentLocation());
-		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> HashHistory) &#123;
-			<span class="hljs-keyword">const</span> setupHashListener = <span class="hljs-function">() =&gt;</span> &#123;
-				history.setupListeners();
+		<span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">HTML5History</span>) &#123;
+			history.<span class="hljs-title function_">transitionTo</span>(history.<span class="hljs-title function_">getCurrentLocation</span>());
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (history <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">HashHistory</span>) &#123;
+			<span class="hljs-keyword">const</span> <span class="hljs-title function_">setupHashListener</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+				history.<span class="hljs-title function_">setupListeners</span>();
 			&#125;;
-			history.transitionTo(history.getCurrentLocation(), setupHashListener, setupHashListener);
+			history.<span class="hljs-title function_">transitionTo</span>(history.<span class="hljs-title function_">getCurrentLocation</span>(), setupHashListener, setupHashListener);
 		&#125;
 
-		history.listen(<span class="hljs-function">(<span class="hljs-params">route</span>) =&gt;</span> &#123;
-			<span class="hljs-built_in">this</span>.apps.forEach(<span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;
-				app._route = route;
+		history.<span class="hljs-title function_">listen</span>(<span class="hljs-function">(<span class="hljs-params">route</span>) =&gt;</span> &#123;
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">apps</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;
+				app.<span class="hljs-property">_route</span> = route;
 			&#125;);
 		&#125;);
 	&#125;
 &#125;</code></pre></div>
 
-<h2 id="路径匹配"><a href="#路径匹配" class="headerlink" title="路径匹配"></a>路径匹配</h2><h3 id="createMatcher"><a href="#createMatcher" class="headerlink" title="createMatcher"></a>createMatcher</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createMatcher</span>(<span class="hljs-params">routes: <span class="hljs-built_in">Array</span>&lt;RouteConfig&gt;, router: VueRouter</span>): <span class="hljs-title">Matcher</span> </span>&#123;
+<h2 id="路径匹配"><a href="#路径匹配" class="headerlink" title="路径匹配"></a>路径匹配</h2><h3 id="createMatcher"><a href="#createMatcher" class="headerlink" title="createMatcher"></a>createMatcher</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createMatcher</span>(<span class="hljs-params">routes: <span class="hljs-built_in">Array</span>&lt;RouteConfig&gt;, router: VueRouter</span>): <span class="hljs-title class_">Matcher</span> &#123;
 	<span class="hljs-comment">// 根据routes构建出path的集合pathList,</span>
 	<span class="hljs-comment">// path 到 RouteRecord的映射表pathMap</span>
 	<span class="hljs-comment">// name 到 RouteRecord的映射表nameMap</span>
@@ -452,94 +452,94 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 	<span class="hljs-comment">//       : &#123; default: route.props &#125;</span>
 	<span class="hljs-comment">// &#125;</span>
 
-	<span class="hljs-keyword">const</span> &#123; pathList, pathMap, nameMap &#125; = createRouteMap(routes);
+	<span class="hljs-keyword">const</span> &#123; pathList, pathMap, nameMap &#125; = <span class="hljs-title function_">createRouteMap</span>(routes);
 
 	<span class="hljs-comment">// 动态添加路由的方法</span>
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addRoutes</span>(<span class="hljs-params">routes</span>) </span>&#123;
-		createRouteMap(routes, pathList, pathMap, nameMap);
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">addRoutes</span>(<span class="hljs-params">routes</span>) &#123;
+		<span class="hljs-title function_">createRouteMap</span>(routes, pathList, pathMap, nameMap);
 	&#125;
 
 	<span class="hljs-comment">//</span>
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">match</span>(<span class="hljs-params">raw: RawLocation, currentRoute?: Route, redirectedFrom?: Location</span>): <span class="hljs-title">Route</span> </span>&#123;
-		<span class="hljs-keyword">const</span> location = normalizeLocation(raw, currentRoute, <span class="hljs-literal">false</span>, router);
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">match</span>(<span class="hljs-params">raw: RawLocation, currentRoute?: Route, redirectedFrom?: Location</span>): <span class="hljs-title class_">Route</span> &#123;
+		<span class="hljs-keyword">const</span> location = <span class="hljs-title function_">normalizeLocation</span>(raw, currentRoute, <span class="hljs-literal">false</span>, router);
 		<span class="hljs-keyword">const</span> &#123; name &#125; = location;
 
 		<span class="hljs-keyword">if</span> (name) &#123;
 			<span class="hljs-keyword">const</span> record = nameMap[name];
-			<span class="hljs-keyword">if</span> (!record) <span class="hljs-keyword">return</span> _createRoute(<span class="hljs-literal">null</span>, location);
-			<span class="hljs-keyword">const</span> paramNames = record.regex.keys.filter(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> !key.optional).map(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> key.name);
+			<span class="hljs-keyword">if</span> (!record) <span class="hljs-keyword">return</span> <span class="hljs-title function_">_createRoute</span>(<span class="hljs-literal">null</span>, location);
+			<span class="hljs-keyword">const</span> paramNames = record.<span class="hljs-property">regex</span>.<span class="hljs-property">keys</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> !key.<span class="hljs-property">optional</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> key.<span class="hljs-property">name</span>);
 
-			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> location.params !== <span class="hljs-string">&quot;object&quot;</span>) &#123;
-				location.params = &#123;&#125;;
+			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> location.<span class="hljs-property">params</span> !== <span class="hljs-string">&quot;object&quot;</span>) &#123;
+				location.<span class="hljs-property">params</span> = &#123;&#125;;
 			&#125;
 
-			<span class="hljs-keyword">if</span> (currentRoute &amp;&amp; <span class="hljs-keyword">typeof</span> currentRoute.params === <span class="hljs-string">&quot;object&quot;</span>) &#123;
-				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> currentRoute.params) &#123;
-					<span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> location.params) &amp;&amp; paramNames.indexOf(key) &gt; -<span class="hljs-number">1</span>) &#123;
-						location.params[key] = currentRoute.params[key];
+			<span class="hljs-keyword">if</span> (currentRoute &amp;&amp; <span class="hljs-keyword">typeof</span> currentRoute.<span class="hljs-property">params</span> === <span class="hljs-string">&quot;object&quot;</span>) &#123;
+				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> currentRoute.<span class="hljs-property">params</span>) &#123;
+					<span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> location.<span class="hljs-property">params</span>) &amp;&amp; paramNames.<span class="hljs-title function_">indexOf</span>(key) &gt; -<span class="hljs-number">1</span>) &#123;
+						location.<span class="hljs-property">params</span>[key] = currentRoute.<span class="hljs-property">params</span>[key];
 					&#125;
 				&#125;
 			&#125;
 
 			<span class="hljs-keyword">if</span> (record) &#123;
-				location.path = fillParams(record.path, location.params, <span class="hljs-string">`named route &quot;<span class="hljs-subst">$&#123;name&#125;</span>&quot;`</span>);
-				<span class="hljs-keyword">return</span> _createRoute(record, location, redirectedFrom);
+				location.<span class="hljs-property">path</span> = <span class="hljs-title function_">fillParams</span>(record.<span class="hljs-property">path</span>, location.<span class="hljs-property">params</span>, <span class="hljs-string">`named route &quot;<span class="hljs-subst">$&#123;name&#125;</span>&quot;`</span>);
+				<span class="hljs-keyword">return</span> <span class="hljs-title function_">_createRoute</span>(record, location, redirectedFrom);
 			&#125;
-		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (location.path) &#123;
-			location.params = &#123;&#125;;
-			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; pathList.length; i++) &#123;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (location.<span class="hljs-property">path</span>) &#123;
+			location.<span class="hljs-property">params</span> = &#123;&#125;;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; pathList.<span class="hljs-property">length</span>; i++) &#123;
 				<span class="hljs-keyword">const</span> path = pathList[i];
 				<span class="hljs-keyword">const</span> record = pathMap[path];
-				<span class="hljs-keyword">if</span> (matchRoute(record.regex, location.path, location.params)) &#123;
-					<span class="hljs-keyword">return</span> _createRoute(record, location, redirectedFrom);
+				<span class="hljs-keyword">if</span> (<span class="hljs-title function_">matchRoute</span>(record.<span class="hljs-property">regex</span>, location.<span class="hljs-property">path</span>, location.<span class="hljs-property">params</span>)) &#123;
+					<span class="hljs-keyword">return</span> <span class="hljs-title function_">_createRoute</span>(record, location, redirectedFrom);
 				&#125;
 			&#125;
 		&#125;
-		<span class="hljs-keyword">return</span> _createRoute(<span class="hljs-literal">null</span>, location);
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">_createRoute</span>(<span class="hljs-literal">null</span>, location);
 	&#125;
 
 	<span class="hljs-comment">// ...</span>
 
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_createRoute</span>(<span class="hljs-params">record: ?RouteRecord, location: Location, redirectedFrom?: Location</span>): <span class="hljs-title">Route</span> </span>&#123;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">_createRoute</span>(<span class="hljs-params">record: ?RouteRecord, location: Location, redirectedFrom?: Location</span>): <span class="hljs-title class_">Route</span> &#123;
 		<span class="hljs-comment">// 重定向</span>
-		<span class="hljs-keyword">if</span> (record &amp;&amp; record.redirect) &#123;
-			<span class="hljs-keyword">return</span> redirect(record, redirectedFrom || location);
+		<span class="hljs-keyword">if</span> (record &amp;&amp; record.<span class="hljs-property">redirect</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">redirect</span>(record, redirectedFrom || location);
 		&#125;
 		<span class="hljs-comment">// alias</span>
-		<span class="hljs-keyword">if</span> (record &amp;&amp; record.matchAs) &#123;
-			<span class="hljs-keyword">return</span> alias(record, location, record.matchAs);
+		<span class="hljs-keyword">if</span> (record &amp;&amp; record.<span class="hljs-property">matchAs</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">alias</span>(record, location, record.<span class="hljs-property">matchAs</span>);
 		&#125;
-		<span class="hljs-keyword">return</span> createRoute(record, location, redirectedFrom, router);
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">createRoute</span>(record, location, redirectedFrom, router);
 	&#125;
 
 	<span class="hljs-comment">//</span>
-	<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createRoute</span>(<span class="hljs-params"></span></span>
-<span class="hljs-function"><span class="hljs-params">		record: ?RouteRecord,</span></span>
-<span class="hljs-function"><span class="hljs-params">		location: Location,</span></span>
-<span class="hljs-function"><span class="hljs-params">		redirectedFrom?: ?Location,</span></span>
-<span class="hljs-function"><span class="hljs-params">		router?: VueRouter</span></span>
-<span class="hljs-function"><span class="hljs-params">	</span>): <span class="hljs-title">Route</span> </span>&#123;
-		<span class="hljs-keyword">const</span> stringifyQuery = router &amp;&amp; router.options.stringifyQuery;
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">createRoute</span>(<span class="hljs-params"></span>
+<span class="hljs-params">		record: ?RouteRecord,</span>
+<span class="hljs-params">		location: Location,</span>
+<span class="hljs-params">		redirectedFrom?: ?Location,</span>
+<span class="hljs-params">		router?: VueRouter</span>
+<span class="hljs-params">	</span>): <span class="hljs-title class_">Route</span> &#123;
+		<span class="hljs-keyword">const</span> stringifyQuery = router &amp;&amp; router.<span class="hljs-property">options</span>.<span class="hljs-property">stringifyQuery</span>;
 
-		<span class="hljs-keyword">let</span> query: any = location.query || &#123;&#125;;
+		<span class="hljs-keyword">let</span> <span class="hljs-attr">query</span>: any = location.<span class="hljs-property">query</span> || &#123;&#125;;
 		<span class="hljs-keyword">try</span> &#123;
-			query = clone(query);
+			query = <span class="hljs-title function_">clone</span>(query);
 		&#125; <span class="hljs-keyword">catch</span> (e) &#123;&#125;
 
-		<span class="hljs-keyword">const</span> route: Route = &#123;
-			name: location.name || (record &amp;&amp; record.name),
-			meta: (record &amp;&amp; record.meta) || &#123;&#125;,
-			path: location.path || <span class="hljs-string">&quot;/&quot;</span>,
-			hash: location.hash || <span class="hljs-string">&quot;&quot;</span>,
+		<span class="hljs-keyword">const</span> <span class="hljs-attr">route</span>: <span class="hljs-title class_">Route</span> = &#123;
+			<span class="hljs-attr">name</span>: location.<span class="hljs-property">name</span> || (record &amp;&amp; record.<span class="hljs-property">name</span>),
+			<span class="hljs-attr">meta</span>: (record &amp;&amp; record.<span class="hljs-property">meta</span>) || &#123;&#125;,
+			<span class="hljs-attr">path</span>: location.<span class="hljs-property">path</span> || <span class="hljs-string">&quot;/&quot;</span>,
+			<span class="hljs-attr">hash</span>: location.<span class="hljs-property">hash</span> || <span class="hljs-string">&quot;&quot;</span>,
 			query,
-			params: location.params || &#123;&#125;,
-			fullPath: getFullPath(location, stringifyQuery),
-			matched: record ? formatMatch(record) : [],
+			<span class="hljs-attr">params</span>: location.<span class="hljs-property">params</span> || &#123;&#125;,
+			<span class="hljs-attr">fullPath</span>: <span class="hljs-title function_">getFullPath</span>(location, stringifyQuery),
+			<span class="hljs-attr">matched</span>: record ? <span class="hljs-title function_">formatMatch</span>(record) : [],
 		&#125;;
 		<span class="hljs-keyword">if</span> (redirectedFrom) &#123;
-			route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery);
+			route.<span class="hljs-property">redirectedFrom</span> = <span class="hljs-title function_">getFullPath</span>(redirectedFrom, stringifyQuery);
 		&#125;
-		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.freeze(route);
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">freeze</span>(route);
 	&#125;
 
 	<span class="hljs-keyword">return</span> &#123;
@@ -548,40 +548,40 @@ beforeRouteLeave((to,<span class="hljs-keyword">from</span>))
 	&#125;;
 &#125;</code></pre></div>
 
-<h2 id="路径切换"><a href="#路径切换" class="headerlink" title="路径切换"></a>路径切换</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">transitionTo (location: RawLocation, onComplete?: <span class="hljs-built_in">Function</span>, onAbort?: <span class="hljs-built_in">Function</span>) &#123;
-  <span class="hljs-keyword">const</span> route = <span class="hljs-built_in">this</span>.router.match(location, <span class="hljs-built_in">this</span>.current)
+<h2 id="路径切换"><a href="#路径切换" class="headerlink" title="路径切换"></a>路径切换</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">transitionTo (<span class="hljs-attr">location</span>: <span class="hljs-title class_">RawLocation</span>, onComplete?: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
+  <span class="hljs-keyword">const</span> route = <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-title function_">match</span>(location, <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>)
   <span class="hljs-comment">// 根据目标 location 和当前路径 this.current 执行 this.router.match 方法去匹配到目标的路径</span>
 
-  <span class="hljs-built_in">this</span>.confirmTransition(route, <span class="hljs-function">() =&gt;</span> &#123;
-    <span class="hljs-built_in">this</span>.updateRoute(route)
-    onComplete &amp;&amp; onComplete(route)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">confirmTransition</span>(route, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">updateRoute</span>(route)
+    onComplete &amp;&amp; <span class="hljs-title function_">onComplete</span>(route)
 
-    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.ready) &#123;
-      <span class="hljs-built_in">this</span>.ready = <span class="hljs-literal">true</span>
-      <span class="hljs-built_in">this</span>.readyCbs.forEach(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; cb(route) &#125;)
+    <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">ready</span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">ready</span> = <span class="hljs-literal">true</span>
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">readyCbs</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; <span class="hljs-title function_">cb</span>(route) &#125;)
     &#125;
   &#125;
   <span class="hljs-comment">//...</span>
   )
 &#125;
 
-updateRoute (route: Route) &#123;
-  <span class="hljs-keyword">const</span> prev = <span class="hljs-built_in">this</span>.current
-  <span class="hljs-built_in">this</span>.current = route
-  <span class="hljs-built_in">this</span>.cb &amp;&amp; <span class="hljs-built_in">this</span>.cb(route)
-  <span class="hljs-built_in">this</span>.router.afterHooks.forEach(<span class="hljs-function"><span class="hljs-params">hook</span> =&gt;</span> &#123; <span class="hljs-comment">/* router.afterEach */</span>
-    hook &amp;&amp; hook(route, prev)
+updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class_">Route</span>) &#123;
+  <span class="hljs-keyword">const</span> prev = <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span> = route
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">cb</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">cb</span>(route)
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-property">afterHooks</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">hook</span> =&gt;</span> &#123; <span class="hljs-comment">/* router.afterEach */</span>
+    hook &amp;&amp; <span class="hljs-title function_">hook</span>(route, prev)
   &#125;)
 &#125;</code></pre></div>
 
-<h3 id="confirmTransition"><a href="#confirmTransition" class="headerlink" title="confirmTransition"></a>confirmTransition</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">confirmTransition (route: Route, <span class="hljs-attr">onComplete</span>: <span class="hljs-built_in">Function</span>, onAbort?: <span class="hljs-built_in">Function</span>) &#123;
-  <span class="hljs-keyword">const</span> current = <span class="hljs-built_in">this</span>.current
+<h3 id="confirmTransition"><a href="#confirmTransition" class="headerlink" title="confirmTransition"></a>confirmTransition</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">confirmTransition (<span class="hljs-attr">route</span>: <span class="hljs-title class_">Route</span>, <span class="hljs-attr">onComplete</span>: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
+  <span class="hljs-keyword">const</span> current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>
 
   <span class="hljs-keyword">const</span> &#123;
     updated,
     deactivated,
     activated
-  &#125; = resolveQueue(<span class="hljs-built_in">this</span>.current.matched, route.matched)
+  &#125; = <span class="hljs-title function_">resolveQueue</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>.<span class="hljs-property">matched</span>, route.<span class="hljs-property">matched</span>)
   <span class="hljs-comment">// matched数组属性保存了从匹配到的record循环向上一直到最外层的所有的record</span>
   <span class="hljs-comment">// resolve解析出三个队列</span>
   <span class="hljs-comment">// a/b/c =&gt; a/b/d</span>
@@ -590,30 +590,30 @@ updateRoute (route: Route) &#123;
   <span class="hljs-comment">// updated : [a,b]</span>
 
   <span class="hljs-comment">// 生成一个按照路由钩子顺序的队列</span>
-  <span class="hljs-keyword">const</span> queue = [].concat(
-    extractLeaveGuards(deactivated), <span class="hljs-comment">/* 执行离开的钩子 */</span>
-    <span class="hljs-built_in">this</span>.router.beforeHooks, <span class="hljs-comment">/* router.beforeEach */</span>
-    extractUpdateHooks(updated), <span class="hljs-comment">/*  beforeRouteUpdate */</span>
-    activated.map(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.beforeEnter), <span class="hljs-comment">/* beforeRouteEnter */</span>
-    resolveAsyncComponents(activated) <span class="hljs-comment">/*解析异步路由组件*/</span>
+  <span class="hljs-keyword">const</span> queue = [].<span class="hljs-title function_">concat</span>(
+    <span class="hljs-title function_">extractLeaveGuards</span>(deactivated), <span class="hljs-comment">/* 执行离开的钩子 */</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-property">beforeHooks</span>, <span class="hljs-comment">/* router.beforeEach */</span>
+    <span class="hljs-title function_">extractUpdateHooks</span>(updated), <span class="hljs-comment">/*  beforeRouteUpdate */</span>
+    activated.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.<span class="hljs-property">beforeEnter</span>), <span class="hljs-comment">/* beforeRouteEnter */</span>
+    <span class="hljs-title function_">resolveAsyncComponents</span>(activated) <span class="hljs-comment">/*解析异步路由组件*/</span>
   )
 
 
-  runQueue(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">runQueue</span>(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
     <span class="hljs-keyword">const</span> postEnterCbs = []
-    <span class="hljs-keyword">const</span> isValid = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">this</span>.current === route
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">isValid</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span> === route
     <span class="hljs-comment">// beforeRouteEnter</span>
-    <span class="hljs-keyword">const</span> enterGuards = extractEnterGuards(activated, postEnterCbs, isValid)
+    <span class="hljs-keyword">const</span> enterGuards = <span class="hljs-title function_">extractEnterGuards</span>(activated, postEnterCbs, isValid)
     <span class="hljs-comment">// ⭐️beforeRouteEnter的回调会添加到postEnterCbs数组中，等路由更新后在最后执行</span>
 
     <span class="hljs-comment">// router.beforeResolve</span>
-    <span class="hljs-keyword">const</span> queue = enterGuards.concat(<span class="hljs-built_in">this</span>.router.resolveHooks)
+    <span class="hljs-keyword">const</span> queue = enterGuards.<span class="hljs-title function_">concat</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-property">resolveHooks</span>)
 
-    runQueue(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
-      onComplete(route)
-      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.router.app) &#123;
-        <span class="hljs-built_in">this</span>.router.app.$nextTick(<span class="hljs-function">() =&gt;</span> &#123;
-          postEnterCbs.forEach(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; cb() &#125;)
+    <span class="hljs-title function_">runQueue</span>(queue, iterator, <span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-title function_">onComplete</span>(route)
+      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-property">app</span>) &#123;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-property">app</span>.$nextTick(<span class="hljs-function">() =&gt;</span> &#123;
+          postEnterCbs.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> &#123; <span class="hljs-title function_">cb</span>() &#125;)
           <span class="hljs-comment">// ⭐️执行postEnterCbs中的回调</span>
         &#125;)
       &#125;
@@ -623,42 +623,42 @@ updateRoute (route: Route) &#123;
 
 <h2 id="lt-router-view-gt"><a href="#lt-router-view-gt" class="headerlink" title="&lt;router-view&gt;"></a><code>&lt;router-view&gt;</code></h2><p>把根 <code>Vue</code> 实例的 <code>_route</code> 属性是响应式的，在每个 <code>&lt;router-view&gt;</code>的<code>render</code> 函数的时候，都会访问 <code>parent.$route</code>，该<code>&lt;router-view&gt;</code> 就订阅了<code>router</code>的变化</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-	name: <span class="hljs-string">&quot;RouterView&quot;</span>,
-	functional: <span class="hljs-literal">true</span>,
-	props: &#123;
-		name: &#123;
-			type: <span class="hljs-built_in">String</span>,
-			<span class="hljs-keyword">default</span>: <span class="hljs-string">&quot;default&quot;</span>,
+	<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;RouterView&quot;</span>,
+	<span class="hljs-attr">functional</span>: <span class="hljs-literal">true</span>,
+	<span class="hljs-attr">props</span>: &#123;
+		<span class="hljs-attr">name</span>: &#123;
+			<span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+			<span class="hljs-attr">default</span>: <span class="hljs-string">&quot;default&quot;</span>,
 		&#125;,
 	&#125;,
-	<span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params">_, &#123; props, children, parent, data &#125;</span>)</span> &#123;
-		data.routerView = <span class="hljs-literal">true</span>;
+	<span class="hljs-title function_">render</span>(<span class="hljs-params">_, &#123; props, children, parent, data &#125;</span>) &#123;
+		data.<span class="hljs-property">routerView</span> = <span class="hljs-literal">true</span>;
 
-		<span class="hljs-keyword">const</span> h = parent.$createElement;
-		<span class="hljs-keyword">const</span> name = props.name;
+		<span class="hljs-keyword">const</span> h = parent.<span class="hljs-property">$createElement</span>;
+		<span class="hljs-keyword">const</span> name = props.<span class="hljs-property">name</span>;
 
-		<span class="hljs-keyword">const</span> route = parent.$route; <span class="hljs-comment">// 🔥执行时会触发响应式收集为router的依赖，当router更新时重新执行</span>
+		<span class="hljs-keyword">const</span> route = parent.<span class="hljs-property">$route</span>; <span class="hljs-comment">// 🔥执行时会触发响应式收集为router的依赖，当router更新时重新执行</span>
 
-		<span class="hljs-keyword">const</span> cache = parent._routerViewCache || (parent._routerViewCache = &#123;&#125;);
+		<span class="hljs-keyword">const</span> cache = parent.<span class="hljs-property">_routerViewCache</span> || (parent.<span class="hljs-property">_routerViewCache</span> = &#123;&#125;);
 
-		<span class="hljs-keyword">while</span> (parent &amp;&amp; parent._routerRoot !== parent) &#123;
-			parent = parent.$parent;
+		<span class="hljs-keyword">while</span> (parent &amp;&amp; parent.<span class="hljs-property">_routerRoot</span> !== parent) &#123;
+			parent = parent.<span class="hljs-property">$parent</span>;
 		&#125;
 
-		<span class="hljs-keyword">const</span> component = (cache[name] = matched.components[name]);
+		<span class="hljs-keyword">const</span> component = (cache[name] = matched.<span class="hljs-property">components</span>[name]);
 
 		<span class="hljs-comment">// 给 matched.instances[name] 赋值当前组件的 vm 实例</span>
-		data.registerRouteInstance = <span class="hljs-function">(<span class="hljs-params">vm, val</span>) =&gt;</span> &#123;
-			<span class="hljs-keyword">const</span> current = matched.instances[name];
+		data.<span class="hljs-property">registerRouteInstance</span> = <span class="hljs-function">(<span class="hljs-params">vm, val</span>) =&gt;</span> &#123;
+			<span class="hljs-keyword">const</span> current = matched.<span class="hljs-property">instances</span>[name];
 			<span class="hljs-keyword">if</span> ((val &amp;&amp; current !== vm) || (!val &amp;&amp; current === vm)) &#123;
-				matched.instances[name] = val;
+				matched.<span class="hljs-property">instances</span>[name] = val;
 			&#125;
 		&#125;;
-		(data.hook || (data.hook = &#123;&#125;)).prepatch = <span class="hljs-function">(<span class="hljs-params">_, vnode</span>) =&gt;</span> &#123;
-			matched.instances[name] = vnode.componentInstance;
+		(data.<span class="hljs-property">hook</span> || (data.<span class="hljs-property">hook</span> = &#123;&#125;)).<span class="hljs-property">prepatch</span> = <span class="hljs-function">(<span class="hljs-params">_, vnode</span>) =&gt;</span> &#123;
+			matched.<span class="hljs-property">instances</span>[name] = vnode.<span class="hljs-property">componentInstance</span>;
 		&#125;;
 
-		<span class="hljs-keyword">return</span> h(component, data, children);
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">h</span>(component, data, children);
 	&#125;,
 &#125;;</code></pre></div>
 
@@ -689,9 +689,9 @@ updateRoute (route: Route) &#123;
                     
                       <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-                    
                       <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
                     
                   </div>
                 

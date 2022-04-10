@@ -74,7 +74,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -273,8 +273,8 @@ npm i -d husky commitlint</code></pre></div></li>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -d @commitlint/config-conventional
 
 <span class="hljs-comment">//  .commitlintrc.js</span>
-<span class="hljs-built_in">module</span>.exports = &#123;
-  <span class="hljs-keyword">extends</span>: 
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">extends</span>: 
   <span class="hljs-comment">// angluar 规范校验</span>
   [<span class="hljs-string">&#x27;@commitlint/config-conventional&#x27;</span>]
 &#125;;</code></pre></div>
@@ -284,11 +284,11 @@ npx husky install
 
 <span class="hljs-comment">// 新建文件 .husky/commit-msg</span>
 
-#!/bin/sh
+#!<span class="hljs-regexp">/bin/</span>sh
 
 npx --no-install commitlint --edit <span class="hljs-string">&quot;$1&quot;</span></code></pre></div></li>
 <li><p>在commit之前执行操作</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">npx husky add .husky/pre-commit <span class="hljs-string">&#x27;npm run lint&#x27;</span>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">npx husky add .<span class="hljs-property">husky</span>/pre-commit <span class="hljs-string">&#x27;npm run lint&#x27;</span>
 <span class="hljs-comment">// 会在commit之前执行eslint</span></code></pre></div></li>
 <li><p>之后的所有commit信息都将校验并抛出校验错误结果</p>
 </li>
@@ -334,9 +334,9 @@ npx --no-install commitlint --edit <span class="hljs-string">&quot;$1&quot;</spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
+                      <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">虚拟列表的简单实现</span>
+                        <span class="hidden-mobile">地址中输入URL回车后发生了什么</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
