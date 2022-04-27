@@ -26,7 +26,7 @@
 <meta property="og:description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; package.json &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-06T02:55:18.377Z">
-<meta property="article:modified_time" content="2022-04-08T02:30:43.920Z">
+<meta property="article:modified_time" content="2022-04-11T09:46:02.097Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="工程化">
@@ -189,7 +189,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.7k 字
+      12k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      73 分钟
+      100 分钟
     </span>
   
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月8日 上午
+                  本文最后更新于：2022年4月11日 下午
                 
               </p>
             
@@ -656,31 +656,240 @@ grunt.<span class="hljs-property">config</span>.<span class="hljs-title function
 	<span class="hljs-keyword">const</span> writeStream = fs.<span class="hljs-title function_">createWriteStream</span>(<span class="hljs-string">&quot;dist/dist.txt&quot;</span>);
 	readStream.<span class="hljs-title function_">pipe</span>(writeStream);
 	<span class="hljs-keyword">return</span> readStream;
-&#125;;</code></pre></div>
-<h3 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h3></li>
+&#125;;</code></pre></div></li>
 </ul>
-<pre><code class=" mermaid">graph LR
+<h3 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h3><pre><code class=" mermaid">graph LR
 A[读取流] --&gt; B[转换流] --&gt; c[写入流]</code></pre>
 
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123;src,dest&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp&#x27;</span>)
-<span class="hljs-keyword">const</span> cleanCss = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-clean-css&#x27;</span>)
-<span class="hljs-keyword">const</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-rename&#x27;</span>)
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; src, dest &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp&quot;</span>);
+<span class="hljs-keyword">const</span> cleanCss = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp-clean-css&quot;</span>);
+<span class="hljs-keyword">const</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp-rename&quot;</span>);
 
 <span class="hljs-built_in">exports</span>.<span class="hljs-property">sample</span> = <span class="hljs-function">() =&gt;</span> &#123;
-  <span class="hljs-title function_">src</span>(<span class="hljs-string">&#x27;src/style/*.css&#x27;</span>) <span class="hljs-comment">// 读取</span>
-    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">cleanCss</span>())                    <span class="hljs-comment">//转换</span>
-    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">rename</span>(&#123;<span class="hljs-attr">extname</span>:<span class="hljs-string">&#x27;.min.css&#x27;</span>&#125;))  <span class="hljs-comment">//转换</span>
-    .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">dest</span>(<span class="hljs-string">&#x27;dist/css&#x27;</span>)) <span class="hljs-comment">//  写入</span>
-&#125;</code></pre></div>
+	<span class="hljs-title function_">src</span>(<span class="hljs-string">&quot;src/style/*.css&quot;</span>) <span class="hljs-comment">// 读取</span>
+		.<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">cleanCss</span>()) <span class="hljs-comment">//转换</span>
+		.<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">rename</span>(&#123; <span class="hljs-attr">extname</span>: <span class="hljs-string">&quot;.min.css&quot;</span> &#125;)) <span class="hljs-comment">//转换</span>
+		.<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">dest</span>(<span class="hljs-string">&quot;dist/css&quot;</span>)); <span class="hljs-comment">//  写入</span>
+&#125;;</code></pre></div>
 
 <h3 id="自动化构建例子"><a href="#自动化构建例子" class="headerlink" title="自动化构建例子"></a>自动化构建例子</h3><ul>
-<li>插件命名规范<div class="hljs code-wrapper"><pre><code class="hljs javascript">gulp-[name]</code></pre></div></li>
-<li>自动加载插件<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> loadPlugins = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gulp-load-plugins&#x27;</span>)
-<span class="hljs-comment">// 使用时使用驼峰名</span>
-<span class="hljs-keyword">const</span> plugins = <span class="hljs-title function_">loadPlugins</span>()  <span class="hljs-comment">// &#123;...plugins&#125;</span></code></pre></div>
-<a target="_blank" rel="noopener" href="https://github.com/Tatekii/zce-gulp-demo">zce-gulp-demo</a></li>
+<li>  插件命名规范</li>
 </ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">gulp - [name];</code></pre></div>
+
+<ul>
+<li>  自动加载插件</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> loadPlugins = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;gulp-load-plugins&quot;</span>);
+<span class="hljs-comment">// 使用时使用驼峰名</span>
+<span class="hljs-keyword">const</span> plugins = <span class="hljs-title function_">loadPlugins</span>(); <span class="hljs-comment">// &#123;...plugins&#125;</span></code></pre></div>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/Tatekii/zce-gulp-demo">zce-gulp-demo</a></p>
 <h2 id="FIS"><a href="#FIS" class="headerlink" title="FIS"></a>FIS</h2><p>看看就好<a target="_blank" rel="noopener" href="https://github.com/fex-team/fis3">JUMP TO fis3</a></p>
+<h1 id="打包工具"><a href="#打包工具" class="headerlink" title="打包工具"></a>打包工具</h1><h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>模块化打包工具</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ol>
+<li>从入口 js 文件出发，通过各个模块的<code>require</code>或者<code>import</code>，解析出一颗包含所有使用到资源的依赖树</li>
+<li>递归这颗，对不同的资源类型根据<code>rules</code>使用不同的的<code>loader</code>加载</li>
+<li>各个模块加载的结果会作为一个个自执行函数放入<code>bundle</code>中，以拥有独立的作用域</li>
+<li>并且模块的加载存在缓存机制，重复加载的模块将直接从缓存对象中读取</li>
+<li>在打包过程中特定时机广播出特定钩子，<code>plugin</code>在对应的时机自动执行</li>
+</ol>
+<h4 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h4><p><a target="_blank" rel="noopener" href="https://webpack.js.org/api/compiler-hooks/">https://webpack.js.org/api/compiler-hooks/</a></p>
+<h4 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// webpack.config.js</span>
+&#123;
+<span class="hljs-attr">module</span>: &#123;
+		<span class="hljs-attr">rules</span>: [
+			&#123;
+				<span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.md$/i</span>,
+				<span class="hljs-attr">use</span>: [<span class="hljs-string">&#x27;html-loader&#x27;</span>,<span class="hljs-string">&quot;./md-loader.js&quot;</span>]
+			&#125;,
+		],
+	&#125;,
+&#125;</code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// markdown-loader</span>
+<span class="hljs-keyword">const</span> &#123; parse &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;marked&quot;</span>);
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">source</span>) =&gt;</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-title function_">parse</span>(source); <span class="hljs-comment">// 交给下一个loader导出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-string">`module.exports = <span class="hljs-subst">$&#123;parse(source)&#125;</span>`</span>; <span class="hljs-comment">// 这是最后的一个loader</span>
+&#125;;</code></pre></div>
+
+<h4 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// webpack.config.js</span>
+&#123;
+	<span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">CleanWebpackPlugin</span>()],
+&#125;</code></pre></div>
+
+<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><ul>
+<li><p>html-webpack-plugin</p>
+<ul>
+<li>魔法字符串<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">plugins</span>: &#123;
+	<span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;
+		<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;my title&quot;</span>,
+	&#125;);
+&#125;</code></pre></div></li>
+</ul>
+</li>
+<li><p>webpack-dev-server</p>
+<ul>
+<li>  HMR 热更新</li>
+</ul>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// js</span>
+<span class="hljs-keyword">import</span> myModule <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./myModule.js&quot;</span>;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>(<span class="hljs-string">&quot;./myModule&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-comment">// 回调函数中是新的状态</span>
+	<span class="hljs-comment">//...手动处理热替换逻辑</span>
+&#125;);
+
+<span class="hljs-comment">// pic</span>
+<span class="hljs-keyword">import</span> pic1 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./pic1&quot;</span>;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>(<span class="hljs-string">&quot;./pic1&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-comment">// 更换图片src</span>
+&#125;);</code></pre></div>
+
+<ul>
+<li>  <code>devServer:&#123;hotOnly:true&#125;</code> 只替换不自动刷新</li>
+</ul>
+</li>
+<li><p>  cheap-module-eval-sourceMap</p>
+</li>
+<li><p>webpack-merge</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-merge&#x27;</span>)
+<span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./webpack.common.js&#x27;</span>)
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">merge</span>(common,&#123;
+    <span class="hljs-attr">mode</span>:<span class="hljs-string">&quot;development&quot;</span>,
+    <span class="hljs-attr">plugins</span>:[...],
+    <span class="hljs-attr">module</span>:&#123;...&#125;
+&#125;)</code></pre></div></li>
+<li><p>DefinePlugin</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">plugins</span>: [
+	<span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">DefinePlugin</span>(&#123;
+		<span class="hljs-attr">API_ROOT</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-string">&quot;http:www.example.com/api&quot;</span>),
+	&#125;),
+];</code></pre></div></li>
+</ul>
+<h4 id="optimization"><a href="#optimization" class="headerlink" title="optimization"></a>optimization</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">optimization</span>:&#123;
+    <span class="hljs-comment">// 摇树</span>
+    <span class="hljs-attr">usedExports</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// 作用域提升，尽量将模块合并到一个函数中</span>
+    <span class="hljs-attr">concatenateModules</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// 压缩</span>
+    <span class="hljs-attr">minimize</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// 检查package.json中声明代码有无副作用</span>
+    <span class="hljs-attr">sideEffects</span>:<span class="hljs-literal">true</span>，
+    <span class="hljs-comment">// 提取公共模块</span>
+    <span class="hljs-attr">splitChunks</span>:<span class="hljs-literal">true</span>
+&#125;,
+<span class="hljs-attr">plugins</span>:&#123;
+    <span class="hljs-comment">// 多入口打包</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;
+        <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;Home&#x27;</span>,
+        <span class="hljs-attr">template</span>:<span class="hljs-string">&#x27;./src/index.html&#x27;</span>,
+        <span class="hljs-attr">filename</span>:<span class="hljs-string">&#x27;index.html&#x27;</span>,
+        <span class="hljs-attr">chunks</span>:[<span class="hljs-string">&#x27;index&#x27;</span>]
+    &#125;),
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;
+        <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;About&#x27;</span>,
+        <span class="hljs-attr">template</span>:<span class="hljs-string">&#x27;./src/about.html&#x27;</span>,
+        <span class="hljs-attr">filename</span>:<span class="hljs-string">&#x27;about.html&#x27;</span>,
+        <span class="hljs-attr">chunks</span>:[<span class="hljs-string">&#x27;about&#x27;</span>]
+    &#125;)
+&#125;</code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//&lt;!-- package.json --&gt;</span>
+&#123;
+	<span class="hljs-attr">sideEffects</span>: [<span class="hljs-string">&quot;/src/*.js&quot;</span>, <span class="hljs-string">&quot;/src/**/*.css&quot;</span>];
+&#125;</code></pre></div>
+
+<ul>
+<li><p>动态导入</p>
+<ul>
+<li>  import 资源返回一个 promise</li>
+</ul>
+</li>
+<li><p>  魔法注释</p>
+</li>
+<li><p>MiniCssExtractPlugin 提取 css</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">module</span>:&#123;
+    <span class="hljs-attr">rules</span>:[
+        &#123;
+            <span class="hljs-attr">test</span>:<span class="hljs-regexp">/\.css$/</span>,
+            <span class="hljs-attr">use</span>:[
+                <span class="hljs-title class_">MiniCssExtractPlugin</span>.<span class="hljs-property">loader</span>,
+                <span class="hljs-comment">//&#x27;style-loader&#x27;用来添加style标签</span>
+                <span class="hljs-string">&#x27;css-loader&#x27;</span>
+            ]
+        &#125;
+    ]
+&#125;,
+ <span class="hljs-attr">plugins</span>:[
+     <span class="hljs-keyword">new</span> <span class="hljs-title class_">MiniCssExtractPlugin</span>()
+]
+<span class="hljs-comment">// js，css代码压缩</span>
+<span class="hljs-attr">optimization</span>:&#123;
+    <span class="hljs-attr">minimizer</span>:&#123; <span class="hljs-comment">// 手动指定压缩选项</span>
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">OptimizeCssAssetsWebpackPlugin</span>()
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">TerserWebpackPlugin</span>()
+    &#125;
+&#125;
+</code></pre></div></li>
+<li><p>hash</p>
+<ul>
+<li>  <code>[hash]</code>项目级别</li>
+<li>  <code>[chunkhash]</code>chunk 级别，同一个 chunk 到文件 hash 都相同</li>
+<li>  <code>[contenthash]</code>文件级别，根据内容生成</li>
+<li>  <code>[hash:8]</code>手动指定 hash 长度</li>
+</ul>
+</li>
+</ul>
+<h2 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h2><p>ESModule 模块打包器</p>
+<ul>
+<li>  自动摇树</li>
+<li>  打包 npm 模块能力(node_module/)</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> resolve <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;rollup-plugin-node-resolve&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+	<span class="hljs-attr">plugins</span>: [<span class="hljs-title function_">resolve</span>()],
+&#125;;</code></pre></div>
+
+<ul>
+<li>  支持 commonjs 模块</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> commonjs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;rollup-commonjs-plugin&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+	<span class="hljs-attr">plugins</span>: [<span class="hljs-title function_">commonjs</span>()],
+&#125;;</code></pre></div>
+
+<ul>
+<li>  动态引入/代码分割</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">output</span>:&#123;
+  <span class="hljs-comment">// file:&#x27;dist/bundle.js&#x27;,</span>
+  <span class="hljs-comment">// format:&#x27;iife&#x27;</span>
+  <span class="hljs-attr">dir</span>:<span class="hljs-string">&#x27;dist&#x27;</span>,<span class="hljs-comment">// 只能指定目录</span>
+  <span class="hljs-attr">format</span>:<span class="hljs-string">&#x27;amd&#x27;</span><span class="hljs-comment">// 不能使用iife格式</span>
+&#125;,</code></pre></div>
+
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// moduleA.js</span>
+<span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./moduleB.js&#x27;</span>).<span class="hljs-title function_">then</span>(&#123;m&#125;=&gt;&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-property">default</span>)
+&#125;)</code></pre></div>
+
+<ul>
+<li>  多入口打包</li>
+</ul>
+<p>自动代码分割提取公共模块</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+	<span class="hljs-attr">input</span>: [
+		<span class="hljs-comment">// 直接改成数组</span>
+	],
+&#125;;</code></pre></div>
+
+<h2 id="Parcel"><a href="#Parcel" class="headerlink" title="Parcel"></a>Parcel</h2><p><strong>0 配置</strong></p>
+<p><a target="_blank" rel="noopener" href="https://parceljs.org/">https://parceljs.org/</a></p>
+<h1 id="代码校验"><a href="#代码校验" class="headerlink" title="代码校验"></a>代码校验</h1><h2 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h2><p><a target="_blank" rel="noopener" href="https://eslint.org/docs/user-guide/getting-started">https://eslint.org/docs/user-guide/getting-started</a></p>
+<h2 id="StyleLint"><a href="#StyleLint" class="headerlink" title="StyleLint"></a>StyleLint</h2><h2 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h2><h2 id="Git-Hooks"><a href="#Git-Hooks" class="headerlink" title="Git Hooks"></a>Git Hooks</h2><ul>
+<li>husky</li>
+</ul>
 
             </div>
             <hr>
@@ -711,6 +920,12 @@ A[读取流] --&gt; B[转换流] --&gt; c[写入流]</code></pre>
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/04/12/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">服务端渲染</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

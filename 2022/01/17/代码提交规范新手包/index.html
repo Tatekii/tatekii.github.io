@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="commit 提交工具 安装 npm i -d commitizen 预设配置 &#x2F;&#x2F; 预设 npm i -d cz-conventional-changelog 修改package.json &#x2F;&#x2F; 添加config &quot;config&quot;: &amp;#123;   &quot;commitizen&quot;: &amp;#123;     &quot;path&quot;: &quot;cz-c">
+    <meta name="description" content="prettier代码美化   安装  lint-stagehttps:&#x2F;&#x2F;github.com&#x2F;okonet&#x2F;lint-staged#examples yarn add prettier --dev  &#x2F;&#x2F; 为了不与eslint冲突 yarn add eslint-config-prettier  &#x2F;&#x2F; 初始化lint-stage npx mrm@2 lint-staged  &#x2F;&#x2F; 这里会自动安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码提交规范新手包">
 <meta property="og:url" content="http://yoursite.com/2022/01/17/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E6%96%B0%E6%89%8B%E5%8C%85/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="commit 提交工具 安装 npm i -d commitizen 预设配置 &#x2F;&#x2F; 预设 npm i -d cz-conventional-changelog 修改package.json &#x2F;&#x2F; 添加config &quot;config&quot;: &amp;#123;   &quot;commitizen&quot;: &amp;#123;     &quot;path&quot;: &quot;cz-c">
+<meta property="og:description" content="prettier代码美化   安装  lint-stagehttps:&#x2F;&#x2F;github.com&#x2F;okonet&#x2F;lint-staged#examples yarn add prettier --dev  &#x2F;&#x2F; 为了不与eslint冲突 yarn add eslint-config-prettier  &#x2F;&#x2F; 初始化lint-stage npx mrm@2 lint-staged  &#x2F;&#x2F; 这里会自动安装">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-17T03:31:37.000Z">
-<meta property="article:modified_time" content="2022-04-04T13:57:09.952Z">
+<meta property="article:modified_time" content="2022-04-25T10:41:25.744Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="git">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      875 字
+      1.4k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      12 分钟
     </span>
   
 
@@ -238,71 +238,90 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月4日 晚上
+                  本文最后更新于：2022年4月25日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="commit-提交工具"><a href="#commit-提交工具" class="headerlink" title="commit 提交工具"></a>commit 提交工具</h2><ul>
+              <h2 id="prettier代码美化"><a href="#prettier代码美化" class="headerlink" title="prettier代码美化"></a>prettier代码美化</h2><ul>
+<li>  安装</li>
+</ul>
+<p>lint-stage<a target="_blank" rel="noopener" href="https://github.com/okonet/lint-staged#examples">https://github.com/okonet/lint-staged#examples</a></p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn add prettier --dev
+
+<span class="hljs-comment">// 为了不与eslint冲突</span>
+yarn add eslint-config-prettier
+
+<span class="hljs-comment">// 初始化lint-stage</span>
+npx mrm@<span class="hljs-number">2</span> lint-staged
+
+<span class="hljs-comment">// 这里会自动安装husky</span>
+</code></pre></div>
+<ul>
+<li>创建配置文件 <code>.prettierrc</code> <code>.prettierIgnore</code></li>
+<li>  修改 eslint 配置</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;!-- package.<span class="hljs-property">json</span> --&gt;
+  <span class="hljs-string">&quot;eslintConfig&quot;</span>: &#123;
+  <span class="hljs-string">&quot;rules&quot;</span>: &#123;
+    <span class="hljs-string">&quot;@typescript-eslint/no-unused-vars&quot;</span>: <span class="hljs-string">&quot;off&quot;</span>
+  &#125;,
+  <span class="hljs-string">&quot;extends&quot;</span>: [
+    <span class="hljs-string">&quot;react-app&quot;</span>,
+    <span class="hljs-string">&quot;react-app/jest&quot;</span>,
+    <span class="hljs-string">&quot;prettier&quot;</span> ++
+  ]
+&#125;,
+
+<span class="hljs-string">&quot;lint-staged&quot;</span>: &#123;
+  <span class="hljs-string">&quot;*.&#123;js,css,md,ts,tsx&#125;&quot;</span>: <span class="hljs-string">&quot;prettier --write&quot;</span>
+&#125;</code></pre></div>
+
+<h2 id="commit-校验工具"><a href="#commit-校验工具" class="headerlink" title="commit 校验工具"></a>commit 校验工具</h2><ul>
+<li>  安装</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 安装cli和配置</span>
+yarn add @commitlint/&#123;config-conventional,cli&#125; --dev
+
+<span class="hljs-comment">// 创建配置commitlint文件</span>
+echo <span class="hljs-string">&quot;module.exports = &#123;extends:[&#x27;@commitlint/config-conventional&#x27;]&#125;&quot;</span> &gt; commitlint.<span class="hljs-property">config</span>.<span class="hljs-property">js</span></code></pre></div>
+
+<ul>
+<li>  配置</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">
+<span class="hljs-comment">// 添加husky钩子</span>
+npx husky add .<span class="hljs-property">husky</span>/commit-msg <span class="hljs-string">&#x27;npx --no-install commitlint --edit &quot;$1&quot;&#x27;</span>
+</code></pre></div>
+
+<h2 id="commit-交互式提交工具"><a href="#commit-交互式提交工具" class="headerlink" title="commit 交互式提交工具"></a>commit 交互式提交工具</h2><p><a target="_blank" rel="noopener" href="https://commitlint.js.org/#/?id=getting-started">https://commitlint.js.org/#/?id=getting-started</a></p>
+<ul>
 <li><p>安装</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -d commitizen</code></pre></div></li>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -d commitizen</code></pre></div></li>
 <li><p>预设配置</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 预设</span>
-npm i -d cz-conventional-changelog</code></pre></div></li>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 预设</span>
+npm i -d cz-conventional-changelog <span class="hljs-comment">// or cz-conventional</span></code></pre></div></li>
 <li><p>修改<code>package.json</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加config</span>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加config</span>
 <span class="hljs-string">&quot;config&quot;</span>: &#123;
   <span class="hljs-string">&quot;commitizen&quot;</span>: &#123;
-    <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;cz-conventional-changelog&quot;</span>
+    <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;cz-conventional-changelog // cz-conventional&quot;</span>
   &#125;
 &#125;</code></pre></div></li>
 <li><p>交互式提交</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加到script</span>
-<span class="hljs-string">&quot;commit&quot;</span>:<span class="hljs-string">&quot;cz&quot;</span>
-
-<span class="hljs-comment">//或者直接</span>
-cz</code></pre></div></li>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 添加到script</span>
+<span class="hljs-string">&quot;commit&quot;</span>:<span class="hljs-string">&quot;cz&quot;</span></code></pre></div></li>
 </ul>
-<h2 id="commit-校验工具"><a href="#commit-校验工具" class="headerlink" title="commit 校验工具"></a>commit 校验工具</h2><ul>
+<h2 id="生成-CHANGELOG"><a href="#生成-CHANGELOG" class="headerlink" title="生成 CHANGELOG"></a>生成 CHANGELOG</h2><ul>
 <li><p>安装</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// husky - git的钩子工具</span>
-<span class="hljs-comment">// commitlint - 校验工具</span>
-
-npm i -d husky commitlint</code></pre></div></li>
-<li><p>配置</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -d @commitlint/config-conventional
-
-<span class="hljs-comment">//  .commitlintrc.js</span>
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
-  <span class="hljs-attr">extends</span>: 
-  <span class="hljs-comment">// angluar 规范校验</span>
-  [<span class="hljs-string">&#x27;@commitlint/config-conventional&#x27;</span>]
-&#125;;</code></pre></div>
-
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 初始化husky</span>
-npx husky install
-
-<span class="hljs-comment">// 新建文件 .husky/commit-msg</span>
-
-#!<span class="hljs-regexp">/bin/</span>sh
-
-npx --no-install commitlint --edit <span class="hljs-string">&quot;$1&quot;</span></code></pre></div></li>
-<li><p>在commit之前执行操作</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">npx husky add .<span class="hljs-property">husky</span>/pre-commit <span class="hljs-string">&#x27;npm run lint&#x27;</span>
-<span class="hljs-comment">// 会在commit之前执行eslint</span></code></pre></div></li>
-<li><p>之后的所有commit信息都将校验并抛出校验错误结果</p>
-</li>
-</ul>
-<h2 id="生成CHANGELOG"><a href="#生成CHANGELOG" class="headerlink" title="生成CHANGELOG"></a>生成CHANGELOG</h2><ul>
-<li><p>安装</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -D standard-version</code></pre></div></li>
-<li><p>添加script</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">npm i -D standard-version</code></pre></div></li>
+<li><p>添加 script</p>
+  <div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;
   <span class="hljs-string">&quot;scripts&quot;</span>: &#123;
     <span class="hljs-string">&quot;release&quot;</span>: <span class="hljs-string">&quot;standard-version&quot;</span>
   &#125;
 &#125;</code></pre></div></li>
-<li><p>运行后会自动生成<code>CHANGELOG.md</code>，当提交类型是feat和fix的时候版本号会累加</p>
+<li><p>  运行后会自动生成<code>CHANGELOG.md</code>，当提交类型是 feat 和 fix 的时候版本号会累加</p>
 </li>
 </ul>
 
@@ -334,9 +353,9 @@ npx --no-install commitlint --edit <span class="hljs-string">&quot;$1&quot;</spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
+                      <a href="/2022/02/24/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">地址中输入URL回车后发生了什么</span>
+                        <span class="hidden-mobile">面向对象题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -344,8 +363,8 @@ npx --no-install commitlint --edit <span class="hljs-string">&quot;$1&quot;</spa
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/17/Mapbox-gl%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-                        <span class="hidden-mobile">mapbox-gl动态style表达式</span>
+                      <a href="/2022/01/17/mapbox-gl/">
+                        <span class="hidden-mobile">mapbox-gl拾遗</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

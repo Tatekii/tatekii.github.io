@@ -18,22 +18,22 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HooksWhy Hooks   Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；   Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；   更易于逻辑复用和关注点分离（同一逻辑的代码可以放在一块）；  usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用  常用 H">
+    <meta name="description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react_hooks">
+<meta property="og:title" content="React Hooks">
 <meta property="og:url" content="http://yoursite.com/2022/03/02/react_hooks/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="HooksWhy Hooks   Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；   Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；   更易于逻辑复用和关注点分离（同一逻辑的代码可以放在一块）；  usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用  常用 H">
+<meta property="og:description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T05:23:15.131Z">
-<meta property="article:modified_time" content="2022-03-02T08:14:58.981Z">
+<meta property="article:modified_time" content="2022-04-22T01:48:33.794Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>react_hooks - 不知名的笔记本</title>
+  <title>React Hooks - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -167,7 +167,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="react_hooks">
+            <span class="h2" id="subtitle" title="React Hooks">
               
             </span>
 
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      4.4k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28 分钟
+      37 分钟
     </span>
   
 
@@ -234,26 +234,32 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">react_hooks</h1>
+            <h1 style="display: none">React Hooks</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月2日 下午
+                  本文最后更新于：2022年4月22日 上午
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h1><h2 id="Why-Hooks"><a href="#Why-Hooks" class="headerlink" title="Why Hooks"></a>Why Hooks</h2><ul>
-<li>  Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；</li>
-<li>  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；</li>
-<li>  更易于逻辑复用和关注点分离（同一逻辑的代码可以放在一块）；</li>
+<li><p>Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；</p>
+</li>
+<li><p>Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；</p>
+</li>
+<li><p>副作用代码不用分散到各种生命周期中；</p>
+<blockquote>
+<p>除了转为视图的代码都是副作用代码</p>
+</blockquote>
+</li>
 </ul>
 <h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><ol>
 <li>Hooks 只能在组件顶层作用域使用</li>
 <li><em>必须保证所有 Hooks 都能被执行到并且按顺序执行</em></li>
 <li>Hooks 只能在函数和其他 Hook 中使用</li>
 </ol>
-<h2 id="常用-Hooks"><a href="#常用-Hooks" class="headerlink" title="常用 Hooks"></a>常用 Hooks</h2><h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p>定义状态和改变状态的函数</p>
+<h2 id="常用-Hooks"><a href="#常用-Hooks" class="headerlink" title="常用 Hooks"></a>常用 Hooks</h2><h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a><code>useState</code></h3><p>定义状态和改变状态的函数</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [currentValue,setNewValue] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(initState)
 
 <span class="hljs-comment">// 改变状态</span>
@@ -267,7 +273,27 @@
 &#125;);
 </code></pre></div>
 
-<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><p>定义副作用</p>
+<p><code>setState</code>的同步和异步</p>
+<ol>
+<li>合成事件和生命周期中的<code>setState</code>是异步的</li>
+<li>原生事件和<code>setTimeout</code>中的<code>setState</code>是同步的</li>
+<li>使用<code>setState</code>的<code>callback</code>总能拿到最新的值</li>
+<li>setState自带批处理优化，多次调用只会执行最新的一次</li>
+</ol>
+<blockquote>
+<p>合成事件</p>
+<p>React对原生DOM事件都做了代理，且事件都是绑定到app根节点上，<br>通过事件冒泡时的 <code>srcElement</code>查找到目标节点上的事件标识，再去合成事件库中寻找相应的回调。</p>
+</blockquote>
+<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a><code>useContext</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyContext</span> = <span class="hljs-title function_">createContext</span>()
+
+&lt;<span class="hljs-title class_">Mycontext</span>.<span class="hljs-property">Provider</span> value=&#123;<span class="hljs-number">666</span>&#125;&gt;
+	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> /&gt;</span></span>  
+&lt;/<span class="hljs-title class_">Mycontext</span>.<span class="hljs-property">Provider</span>&gt;
+
+<span class="hljs-comment">//...MyContext</span>
+<span class="hljs-keyword">const</span> &#123;value&#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">MyContext</span>)</code></pre></div>
+
+<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a><code>useEffect</code></h3><p>定义副作用</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-comment">// 副作用操作</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
@@ -280,22 +306,37 @@
 <span class="hljs-title function_">useEffect</span>(fn, [dep]); <span class="hljs-comment">//  Mount 和 dep 变化时</span>
 <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;&#125;;
-&#125;, []); <span class="hljs-comment">//  unMount执行</span></code></pre></div>
+&#125;, []); <span class="hljs-comment">//  unMount执行</span>
 
-<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>缓存回调函数</p>
+<span class="hljs-comment">// useEffect中使用异步函数</span>
+<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">()=&gt;</span>&#123;
+	(<span class="hljs-title function_">async</span>()=&gt;&#123;
+		<span class="hljs-keyword">await</span> ...
+	&#125;)()
+&#125;)
+
+
+<span class="hljs-title function_">useEffect</span>(<span class="hljs-title function_">async</span>()=&gt;&#123;...&#125;)<span class="hljs-comment">// 报错！useEffect返回的是cleanup函数，加上async后回返回一个promise</span></code></pre></div>
+
+<p><code>useEffect</code>和 <code>componentDidMount</code> 的区别</p>
+<ol>
+<li><code>useEffect</code>在<code>commit</code>执行完之后异步执行 fn 回调</li>
+<li><code>componentDidMount</code>在<code>commit中的mutation</code>执行完时候和<code>layout</code>同步执行</li>
+<li><code>useLayoutEffect</code>能实现和<code>👆</code>一样的效果</li>
+</ol>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a><code>useCallback</code></h3><p>缓存函数实例</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;
 <span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleIncrement</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>)
 <span class="hljs-comment">// 默认每次重新渲染组件，都会创建新的handleElement函数</span>
 <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleIncrement&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
-<span class="hljs-comment">// 同时由于新函数，会导致接收函数的组件也重新渲染</span>
-
-
+<span class="hljs-comment">// ⚠️同时由于创建了新函数，会导致接收函数的组件也重新渲染</span>
 
 <span class="hljs-keyword">const</span> handleIncrement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>),[count])
-<span class="hljs-comment">// 将count加入这个callback的依赖数组，只有当count改变时才创建新的函数，创建新的闭包并更新组件</span></code></pre></div>
+<span class="hljs-comment">// 将count加入这个callback的依赖数组，只有当count改变时才创建新的函数，创建新的闭包并更新组件</span>
+&#125;</code></pre></div>
 
-<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>缓存计算结果</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a><code>useMemo</code></h3><p>缓存计算结果</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果某个数据是通过其它数据计算得到的，那么只有当用到的数据，也就是依赖的数据发生变化的时候，才应该需要重新计算,进而也可以避免不必要的渲染</span>
 <span class="hljs-keyword">const</span> usersToShow = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;
   <span class="hljs-keyword">if</span>(!users) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
@@ -311,8 +352,10 @@
 <blockquote>
 <p>useCallback 和 useMemo 的 dep 数组传空则只返回首次执行结果</p>
 </blockquote>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
-<span class="hljs-comment">// 存储跨渲染的数据</span>
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><code>useRef</code></h3><p>保存的数据发生变化不会处罚重新渲染</p>
+<ol>
+<li>存储跨组建的数据<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
+<span class="hljs-comment">//  一个存活在活动组件中的定时器</span>
 <span class="hljs-keyword">const</span> startTimer = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	timer.<span class="hljs-property">current</span> = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">/*do some*/</span>
@@ -322,23 +365,11 @@
 	<span class="hljs-title function_">cleatInterval</span>(timer.<span class="hljs-property">current</span>);
 	timer.<span class="hljs-property">current</span> = <span class="hljs-literal">null</span>;
 &#125;, []);
-
-<span class="hljs-comment">// DOM引用</span>
-<span class="hljs-keyword">const</span> xxxRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
-<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;xxxRef&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span></span>;</code></pre></div>
-
-<h2 id="校验-Hooks"><a href="#校验-Hooks" class="headerlink" title="校验 Hooks"></a>校验 Hooks</h2><p>通过 eslint 插件<code>eslint-plugin-react-hooks</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;<span class="hljs-comment">//eslint config</span>
-...
-<span class="hljs-string">&quot;rules&quot;</span>:&#123;
-  <span class="hljs-string">&quot;react-hooks/rules-of-hooks&quot;</span>:<span class="hljs-string">&quot;error&quot;</span>,
-<span class="hljs-comment">//检查依赖项的声明</span>
-  <span class="hljs-string">&quot;react-hooks/exhaustive-deps&quot;</span>:<span class="hljs-string">&quot;warn&quot;</span>
-  &#125;
-...
-&#125;</code></pre></div>
-
-<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>使用 provide 的 context</p>
+</code></pre></div></li>
+<li>存储DOM引用<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xxxRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;xxxRef&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span></span>;</code></pre></div></li>
+</ol>
+<h3 id="useContext-1"><a href="#useContext-1" class="headerlink" title="useContext"></a><code>useContext</code></h3><p>使用 provide 的 context</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> text1 = &#123;
   <span class="hljs-attr">p1</span>:<span class="hljs-string">&#x27;请输入&#x27;</span>
 &#125;
@@ -352,11 +383,30 @@
 &lt;/<span class="hljs-title class_">SomeContext</span>&gt;
 </code></pre></div>
 
-<h2 id="自定义-Hooks"><a href="#自定义-Hooks" class="headerlink" title="自定义 Hooks"></a>自定义 Hooks</h2><ul>
-<li>  命名约定以<code>use</code>开头；</li>
-<li>  在函数内使用到了其他 Hooks 才是<code>Hooks</code>函数；</li>
+<h3 id="路由Hooks"><a href="#路由Hooks" class="headerlink" title="路由Hooks"></a>路由Hooks</h3><ul>
+<li><code>useHistory</code></li>
+<li><code>useLocation</code></li>
+<li><code>useRouteMatch</code></li>
+<li><code>useParams</code></li>
 </ul>
-<h3 id="典型-Hooks"><a href="#典型-Hooks" class="headerlink" title="典型 Hooks"></a>典型 Hooks</h3><ul>
+<h2 id="校验-Hooks"><a href="#校验-Hooks" class="headerlink" title="校验 Hooks"></a>校验 Hooks</h2><p>通过 eslint 插件<code>eslint-plugin-react-hooks</code></p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;<span class="hljs-comment">//eslint config</span>
+...
+<span class="hljs-string">&quot;rules&quot;</span>:&#123;
+  <span class="hljs-string">&quot;react-hooks/rules-of-hooks&quot;</span>:<span class="hljs-string">&quot;error&quot;</span>,
+  <span class="hljs-comment">//检查依赖项的声明</span>
+  <span class="hljs-string">&quot;react-hooks/exhaustive-deps&quot;</span>:<span class="hljs-string">&quot;warn&quot;</span>
+  &#125;
+...
+&#125;</code></pre></div>
+
+<h2 id="自定义-Hooks"><a href="#自定义-Hooks" class="headerlink" title="自定义 Hooks"></a>自定义 Hooks</h2><blockquote>
+<p> 命名约定以<code>use</code>开头；</p>
+</blockquote>
+<blockquote>
+<p> 在函数内使用到了其他 Hooks</p>
+</blockquote>
+<ul>
 <li>  获取异步请求结果</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useAsyncReq</span> = (<span class="hljs-params">reqFunc</span>) =&gt; &#123;
@@ -388,12 +438,38 @@
 
 
 <ul>
-<li>监听页面滚动<br>```javascript<br>const getPosition = ()  =&gt; {<br>x:document.body.scrollLeft,<br>y:document.body.scrollTop<br>}</li>
+<li><p>监听页面滚动</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">getPosition</span> = (<span class="hljs-params"></span>)  =&gt; &#123;
+  <span class="hljs-attr">x</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">scrollLeft</span>,
+  <span class="hljs-attr">y</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">scrollTop</span>
+&#125;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">useScroll</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> [position,setPosition] = <span class="hljs-title function_">useState</span>(<span class="hljs-title function_">getPosition</span>())
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">()=&gt;</span>&#123;
+    <span class="hljs-comment">// mount时执行一次</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">handler</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setPosition</span>(<span class="hljs-title function_">getPosition</span>())
+    <span class="hljs-comment">// 添加监听scroll</span>
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;scroll&#x27;</span>,handler)
+    <span class="hljs-comment">// 组件销毁时取消监听</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;scroll&#x27;</span>,handler)
+  &#125;,[])
+
+  <span class="hljs-keyword">return</span> position
+&#125;
+</code></pre></div></li>
+<li><p>input hook</p>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useInput</span> = (<span class="hljs-params">initValue</span>) =&gt; &#123;
+	<span class="hljs-keyword">const</span> [value,setValue] = <span class="hljs-title function_">useState</span>(initValue) 
+	<span class="hljs-keyword">return</span> &#123;
+		value,
+		<span class="hljs-attr">onChange</span>:<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span><span class="hljs-title function_">setValue</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> nameInput = <span class="hljs-title function_">useInput</span>(<span class="hljs-string">&#x27;&#x27;</span>)
+&lt;input &#123;...nameInput&#125; placeholder=<span class="hljs-string">&quot;please input username&quot;</span>&gt;&lt;/input&gt;</code></pre></div></li>
 </ul>
-<p>const useScroll = () =&gt; {<br>  const [position,setPosition] = useState(getPosition())</p>
-<p>  useEffect(()=&gt;{<br>    // mount时执行一次<br>    const handler = () =&gt; setPosition(getPosition())<br>    // 添加监听scroll<br>    document.addEventListener(‘scroll’,handler)<br>    // 组件销毁时取消监听<br>    return () =&gt; document.removeEventListener(‘scroll’,handler)<br>  },[])</p>
-<p>  return position<br>}</p>
-<p>``</p>
 
             </div>
             <hr>
@@ -423,7 +499,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5Dvue2-router/">
+                      <a href="/2022/03/10/vue2-router/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vue-router@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
