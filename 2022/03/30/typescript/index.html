@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="语言类型类型安全   强类型 （不允许隐式类型转换）   弱类型 （允许隐式转换）  类型检查   静态类型语言 （变量类型书写时就确定且不能修改）    动态类型语言 （变量类型运行时才能确定，且可以修改）   javascript   弱类型   动态类型   脚本语言，无需编译  Flowjavascript类型检查器 JUMP TO:FLow …略过 Typescript   javasc">
+    <meta name="description" content="语言类型类型安全   强类型 （不允许隐式类型转换）   弱类型 （允许隐式转换）  类型检查   静态类型语言 （变量类型书写时就确定且不能修改）    动态类型语言 （变量类型运行时才能确定，且可以修改）   javascript   弱类型   动态类型   脚本语言，无需编译  Flowjavascript类型检查器 JUMP TO:Flow …略过 Typescript   javasc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="typescript">
 <meta property="og:url" content="http://yoursite.com/2022/03/30/typescript/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="语言类型类型安全   强类型 （不允许隐式类型转换）   弱类型 （允许隐式转换）  类型检查   静态类型语言 （变量类型书写时就确定且不能修改）    动态类型语言 （变量类型运行时才能确定，且可以修改）   javascript   弱类型   动态类型   脚本语言，无需编译  Flowjavascript类型检查器 JUMP TO:FLow …略过 Typescript   javasc">
+<meta property="og:description" content="语言类型类型安全   强类型 （不允许隐式类型转换）   弱类型 （允许隐式转换）  类型检查   静态类型语言 （变量类型书写时就确定且不能修改）    动态类型语言 （变量类型运行时才能确定，且可以修改）   javascript   弱类型   动态类型   脚本语言，无需编译  Flowjavascript类型检查器 JUMP TO:Flow …略过 Typescript   javasc">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-30T06:49:09.326Z">
-<meta property="article:modified_time" content="2022-03-31T02:55:05.329Z">
+<meta property="article:modified_time" content="2022-04-30T11:16:30.808Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="typescript">
@@ -188,7 +188,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.4k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14 分钟
+      21 分钟
     </span>
   
 
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月31日 上午
+                  本文最后更新于：2022年4月30日 晚上
                 
               </p>
             
@@ -259,7 +259,7 @@
 <li>  脚本语言，无需编译</li>
 </ul>
 <h1 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a>Flow</h1><p><code>javascript</code>类型检查器</p>
-<p>JUMP TO:<a target="_blank" rel="noopener" href="https://github.com/facebook/flow">FLow</a></p>
+<p>JUMP TO:<a target="_blank" rel="noopener" href="https://github.com/facebook/flow">Flow</a></p>
 <p>…略过</p>
 <h1 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h1><ul>
 <li>  <code>javascript</code>的超集</li>
@@ -267,38 +267,25 @@
 <li>  最终会被编译回<code>javascript</code></li>
 </ul>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote>
-<p>原始值类型 </p>
+<p>原始值类型</p>
 </blockquote>
 <ul>
-<li><p>  <code>string</code></p>
-</li>
-<li><p>  <code>number(NaN Infinity)</code></p>
-</li>
-<li><p>  <code>boolean</code></p>
-</li>
-<li><p>  <code>void</code></p>
-</li>
-<li><p>  <code>null</code></p>
-</li>
-<li><p>  <code>undefined</code></p>
-</li>
-<li><p>  <code>symbol</code></p>
-<blockquote>
+<li>  <code>string</code></li>
+<li>  <code>number(NaN Infinity)</code></li>
+<li>  <code>boolean</code></li>
+<li>  <code>void</code></li>
+<li>  <code>null</code></li>
+<li>  <code>undefined</code></li>
+<li>  <code>symbol</code></li>
+</ul>
 <hr>
-</blockquote>
-</li>
-<li><p><code>object</code></p>
-</li>
-<li><p><code>array</code></p>
-</li>
-<li><p><code>tuple</code></p>
-</li>
-<li><p><code>enum</code></p>
-</li>
-<li><p><code>function</code></p>
-</li>
-<li><p><code>any</code></p>
-</li>
+<ul>
+<li>  <code>object</code></li>
+<li>  <code>array</code></li>
+<li>  <code>tuple</code></li>
+<li>  <code>enum</code></li>
+<li>  <code>function</code></li>
+<li>  <code>any</code></li>
 </ul>
 <h2 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-number">123</span>;
 <span class="hljs-comment">// num1:number</span>
@@ -360,13 +347,61 @@ num1 = <span class="hljs-string">&quot;mmm&quot;</span>; <span class="hljs-comme
   &#125;
 &#125;</code></pre></div>
 
-
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> createArray&lt;T&gt;(<span class="hljs-attr">length</span>:<span class="hljs-built_in">number</span>,<span class="hljs-attr">value</span>:T):T[]&#123;
-  <span class="hljs-keyword">const</span> arr = <span class="hljs-title class_">Array</span>&lt;T&gt;(length).<span class="hljs-title function_">fill</span>(value)
-  <span class="hljs-keyword">return</span> arr
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> createArray&lt;T&gt;(<span class="hljs-attr">length</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">value</span>: T): T[] &#123;
+	<span class="hljs-keyword">const</span> arr = <span class="hljs-title class_">Array</span>&lt;T&gt;(length).<span class="hljs-title function_">fill</span>(value);
+	<span class="hljs-keyword">return</span> arr;
 &#125;</code></pre></div>
 
-<h2 id="类型声明"><a href="#类型声明" class="headerlink" title="类型声明"></a>类型声明</h2>
+<h2 id="类型声明"><a href="#类型声明" class="headerlink" title="类型声明"></a>类型声明</h2><h2 id="interface-接口-和-type-类型别名-的区别"><a href="#interface-接口-和-type-类型别名-的区别" class="headerlink" title="interface(接口) 和 type(类型别名)的区别"></a>interface(接口) 和 type(类型别名)的区别</h2><ol>
+<li><code>interface</code>不能实现类型别名<code>number | string</code></li>
+<li><code>interface</code>不能实现<code>utility type</code></li>
+</ol>
+<h2 id="utility-type"><a href="#utility-type" class="headerlink" title="utility type"></a>utility type</h2><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Person</span>&#123;
+	<span class="hljs-attr">name</span>:<span class="hljs-built_in">string</span>
+	<span class="hljs-attr">age</span>:<span class="hljs-built_in">number</span>
+
+&#125;
+<span class="hljs-comment">// name age可选</span>
+<span class="hljs-keyword">const</span> xiaoming = <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Person</span>&gt;
+<span class="hljs-comment">// 只有name属性</span>
+<span class="hljs-keyword">const</span> xiaohong  = <span class="hljs-title class_">Omit</span>&lt;<span class="hljs-title class_">Person</span>,<span class="hljs-string">&quot;name&quot;</span>&gt;
+<span class="hljs-comment">// name age 都删除</span>
+<span class="hljs-keyword">const</span> huahua = <span class="hljs-title class_">Omit</span>&lt;<span class="hljs-title class_">Person</span>,<span class="hljs-string">&quot;name&quot;</span> | <span class="hljs-string">&quot;age&quot;</span>&gt;
+<span class="hljs-comment">// [name,age]</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">PersonKeys</span> = keyof <span class="hljs-title class_">Person</span>
+<span class="hljs-comment">// &#123;name:string&#125;</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">PersonOnlyName</span> = <span class="hljs-title class_">Pick</span>&lt;<span class="hljs-title class_">Person</span>,<span class="hljs-string">&#x27;name&#x27;</span>&gt;
+<span class="hljs-comment">// age string</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Age</span> = <span class="hljs-title class_">Exclude</span>&lt;<span class="hljs-title class_">PersonKey</span>,<span class="hljs-string">&#x27;name&#x27;</span>&gt;</code></pre></div>
+
+<ul>
+<li>  <code>Partial</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">// 模拟</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Partial</span>&lt;T&gt; = &#123;
+	[P <span class="hljs-keyword">in</span> keyof T]?: T[P]; <span class="hljs-comment">// 改成可选的</span>
+&#125;;</code></pre></div>
+
+<ul>
+<li>  <code>Pick</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">// 模拟</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Pick</span>&lt;T, K <span class="hljs-keyword">extends</span> keyof T&gt; = &#123;
+	[P <span class="hljs-keyword">in</span> K]: T[P]; <span class="hljs-comment">// 选出你要的属性</span>
+&#125;;</code></pre></div>
+
+<ul>
+<li>  <code>Exclude</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">// 删除联合类型中的类型</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Exclude</span> = &lt;T,U&gt; = T <span class="hljs-keyword">extends</span> U ? <span class="hljs-built_in">never</span> : U</code></pre></div>
+
+<ul>
+<li>  <code>Omit</code></li>
+</ul>
+<div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">// 删除联合类型中的属性</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Omit</span>&lt;T, K <span class="hljs-keyword">extends</span> keyof <span class="hljs-built_in">any</span>&gt; = <span class="hljs-title class_">Pick</span>&lt;T, <span class="hljs-title class_">Exclude</span>&lt;keyof T, K&gt;&gt;;</code></pre></div>
+
             </div>
             <hr>
             <div>
