@@ -1,0 +1,655 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon.png">
+  <link rel="icon" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="tatekii">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="React⭐️ 时间切片   主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行执行js脚本,Layout重排,Paint重绘   如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿   React 在每一帧中预留了时间给 js 任务执行(5ms),并将大的 js 任务拆分到每一帧中  React 架构旧架构   Reconciler协调器查找组件的更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react实现分析">
+<meta property="og:url" content="http://yoursite.com/2022/05/10/[%E6%BA%90%E7%A0%81]react/index.html">
+<meta property="og:site_name" content="不知名的笔记本">
+<meta property="og:description" content="React⭐️ 时间切片   主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行执行js脚本,Layout重排,Paint重绘   如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿   React 在每一帧中预留了时间给 js 任务执行(5ms),并将大的 js 任务拆分到每一帧中  React 架构旧架构   Reconciler协调器查找组件的更">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-10T07:49:07.500Z">
+<meta property="article:modified_time" content="2022-05-10T10:01:36.040Z">
+<meta property="article:author" content="tatekii">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="源码">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>react实现分析 - 不知名的笔记本</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>不知名的笔记本</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="react实现分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-10 15:49" pubdate>
+        2022年5月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">react实现分析</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年5月10日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><h3 id="⭐️-时间切片"><a href="#⭐️-时间切片" class="headerlink" title="⭐️ 时间切片"></a>⭐️ 时间切片</h3><ul>
+<li>  主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行<code>执行js脚本</code>,<code>Layout重排</code>,<code>Paint重绘</code></li>
+<li>  如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿</li>
+<li>  React 在每一帧中预留了时间给 js 任务执行(<code>5ms</code>),并将大的 js 任务拆分到每一帧中</li>
+</ul>
+<h2 id="React-架构"><a href="#React-架构" class="headerlink" title="React 架构"></a>React 架构</h2><h3 id="旧架构"><a href="#旧架构" class="headerlink" title="旧架构"></a>旧架构</h3><ul>
+<li>  <code>Reconciler协调器</code>查找组件的更新</li>
+<li>  <code>Renderer渲染器</code>将更新内容渲染到页面上</li>
+<li>  交替执行</li>
+<li>  <code>Reconciler</code>使用递归来更新组件,一旦组件潜逃过深其实也会超过 16.6ms 造成卡顿</li>
+</ul>
+<h3 id="新架构"><a href="#新架构" class="headerlink" title="新架构"></a>新架构</h3><ul>
+<li>  <code>Scheduler</code>当目前帧浏览器有多余时间可用时调度任务进入<code>Reconciler</code></li>
+<li>  <code>Reconciler</code>为组件打上删除，更新，插入的标记</li>
+<li>  当<code>Reconciler</code>完成全部工作后交给<code>Renderer</code>更新 DOM</li>
+<li>  组件的更新（打标记）会由于任务优先级或者浏览器剩余时间的变化随时中断</li>
+</ul>
+<h3 id="Fiber-架构"><a href="#Fiber-架构" class="headerlink" title="Fiber 架构"></a>Fiber 架构</h3><p>一套应用程序的状态可中断可恢复的更新机制</p>
+<h4 id="⭐️-双缓存"><a href="#⭐️-双缓存" class="headerlink" title="⭐️ 双缓存"></a>⭐️ 双缓存</h4><ul>
+<li>  在内存中构建更新的状态并直接替换</li>
+<li>  Fiber 树有两颗，前屏幕上显示内容对应的 Fiber 树称为<code>current Fiber</code>树，正在内存中构建的 Fiber 树称为<code>workInProgress Fiber</code>树</li>
+</ul>
+<h4 id="每一个-Fiber-节点包含："><a href="#每一个-Fiber-节点包含：" class="headerlink" title="每一个 Fiber 节点包含："></a>每一个 Fiber 节点包含：</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">FiberNode</span>(<span class="hljs-params"></span>
+<span class="hljs-params">  tag: WorkTag,</span>
+<span class="hljs-params">  pendingProps: mixed,</span>
+<span class="hljs-params">  key: <span class="hljs-literal">null</span> | string,</span>
+<span class="hljs-params">  mode: TypeOfMode,</span>
+<span class="hljs-params"></span>) &#123;
+  <span class="hljs-comment">// Instance</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tag</span> = tag; <span class="hljs-comment">// class/func component</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">key</span> = key; <span class="hljs-comment">// ⭐️key</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">elementType</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">type</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">stateNode</span> = <span class="hljs-literal">null</span>; <span class="hljs-comment">// DOM</span>
+
+  <span class="hljs-comment">// Fiber</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">return</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">child</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">sibling</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">index</span> = <span class="hljs-number">0</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">ref</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">pendingProps</span> = pendingProps;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">memoizedProps</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">updateQueue</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">memoizedState</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">dependencies</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">mode</span> = mode;
+
+  <span class="hljs-comment">// Effects</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">effectTag</span> = <span class="hljs-title class_">NoEffect</span>; <span class="hljs-comment">// effect标记</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">subtreeTag</span> = <span class="hljs-title class_">NoSubtreeEffect</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">deletions</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">nextEffect</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstEffect</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastEffect</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">lanes</span> = <span class="hljs-title class_">NoLanes</span>;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">childLanes</span> = <span class="hljs-title class_">NoLanes</span>;
+
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">alternate</span> = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 上一次更新的fiberNode</span>
+&#125;</code></pre></div>
+<ul>
+<li>  组件类型</li>
+<li>  <code>⭐️key</code></li>
+<li>  <code>DOM</code>节点</li>
+<li>  指向其他 Fiber 节点的指针</li>
+<li>  本次更新的相关信息</li>
+<li>  调度优先级信息</li>
+</ul>
+<h2 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h2><h3 id="render-阶段"><a href="#render-阶段" class="headerlink" title="render 阶段"></a>render 阶段</h3><ul>
+<li><p>  从<code>rootFiber</code>开始向下深度遍历，调用 fiber 节点的<code>beginWork</code>方法,创建新的子 fiber 节点，一直到叶子节点</p>
+</li>
+<li><p>  某个 fiber 节点执行完<code>completeWork</code>后，会访问其兄弟节点让他兄弟执行<code>beginWork</code></p>
+</li>
+<li><p>  没有兄弟节则<code>return</code>到父节点</p>
+</li>
+<li><p>  一只 return 到<code>rootFiber</code>则<code>render</code>结束</p>
+</li>
+</ul>
+<h4 id="beginWork"><a href="#beginWork" class="headerlink" title="beginWork"></a><code>beginWork</code></h4><blockquote>
+<p>⭐️diff</p>
+</blockquote>
+<p>创建子 fiber 节点，可能复用上一次更新的子 fiber 节点，或者新建新 fiber 节点，并在上面打上标记</p>
+<ul>
+<li>⚠️<code>renderWithHooks</code></li>
+</ul>
+<h4 id="completeWork"><a href="#completeWork" class="headerlink" title="completeWork"></a><code>completeWork</code></h4><p>区分 mount/update，生成新的 DOM 节点，并处理<code>props</code>，<code>return</code>到<code>rootFiber</code>时就已拥有了一颗完整的 DOM 树</p>
+<h3 id="commit-阶段"><a href="#commit-阶段" class="headerlink" title="commit 阶段"></a>commit 阶段</h3><p>执行<code>effectList</code>,用来保存 fiber 节点需要执行副作用的单向链表，执行相应的 DOM 操作。</p>
+<h4 id="commitBeforeMutationEffects"><a href="#commitBeforeMutationEffects" class="headerlink" title="commitBeforeMutationEffects"></a><code>commitBeforeMutationEffects</code></h4><ul>
+<li>  <code>getSnapshotBeforeUpdate</code></li>
+<li>  <code>flushPassiveEffects</code></li>
+</ul>
+<h4 id="commitMutationEffects"><a href="#commitMutationEffects" class="headerlink" title="commitMutationEffects"></a><code>commitMutationEffects</code></h4><ul>
+<li>  解绑<code>ref</code></li>
+<li>  ⚠️ 同步执行<code>useLayoutEffect</code>的销毁函数</li>
+<li>  根据不同的标记执行DOM操作</li>
+<li>  <code>componentWillUnmount</code></li>
+</ul>
+<h4 id="switch-root-current"><a href="#switch-root-current" class="headerlink" title="switch root.current"></a><code>switch root.current</code></h4><p>切换 current fiber 树</p>
+<h4 id="commitLayoutEffects"><a href="#commitLayoutEffects" class="headerlink" title="commitLayoutEffects"></a><code>commitLayoutEffects</code></h4><ul>
+<li>  赋值新的<code>ref</code></li>
+<li>  ⚠️ 同步执行<code>useLayoutEffect</code>的回调</li>
+<li>  ⚠️ 异步执行<code>useEffect</code>的销毁和回调</li>
+<li>  <code>componentDidMount</code></li>
+<li>  <code>componentDidUpdate</code></li>
+<li>  执行 render 函数的回调</li>
+</ul>
+<h2 id="状态更新"><a href="#状态更新" class="headerlink" title="状态更新"></a>状态更新</h2><ul>
+<li><code>ReactDOM.render</code></li>
+<li><code>this.setState</code></li>
+<li><code>this.forceUpdate</code></li>
+<li><code>useState</code></li>
+<li><code>useReducer</code></li>
+</ul>
+<p>每次触发状态更新都会新建<code>Update</code>对象</p>
+<blockquote>
+<p>组件中多次触发的update也会形成一条链表</p>
+</blockquote>
+<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-attr">queue</span>: <span class="hljs-title class_">UpdateQueue</span>&lt;<span class="hljs-title class_">State</span>&gt; = &#123;
+    <span class="hljs-attr">baseState</span>: fiber.<span class="hljs-property">memoizedState</span>, <span class="hljs-comment">// 之前的state</span>
+    <span class="hljs-attr">firstBaseUpdate</span>: <span class="hljs-literal">null</span>, 
+    <span class="hljs-attr">lastBaseUpdate</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-comment">// 👆本次更新前的update链表</span>
+    <span class="hljs-attr">shared</span>: &#123;
+      <span class="hljs-attr">pending</span>: <span class="hljs-literal">null</span>,
+    &#125;,
+    <span class="hljs-attr">effects</span>: <span class="hljs-literal">null</span>,
+  &#125;;</code></pre></div>
+
+<h3 id="更新的优先级"><a href="#更新的优先级" class="headerlink" title="更新的优先级"></a>更新的优先级</h3><ul>
+<li>生命周期钩子（同步）</li>
+<li>用户输入（同步）</li>
+<li>UI交互（高优先级）</li>
+<li>其他</li>
+<li>一次<code>render</code>中的部分低优先级<code>update</code>可能被跳过/插队</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/pages/contents/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">
+                        <span class="hidden-mobile">自动化测试</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"blog-1glh2chxcbf8757a","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2020115702号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

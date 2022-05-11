@@ -26,7 +26,7 @@
 <meta property="og:description" content="概念 diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除 采用同级比较  基础的diff 新节点没有子节点-&gt;删除全部旧的子节点 新节点只有一个子节点-&gt;删除旧的并添加新的  核心diff 新旧节点都有多个子节点时，新旧子节点间的diffoldChildrenNode :[a,x,c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-05-09T07:21:16.911Z">
+<meta property="article:modified_time" content="2022-05-10T03:23:21.211Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="vue">
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      55 分钟
+      56 分钟
     </span>
   
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月9日 下午
+                  本文最后更新于：2022年5月10日 上午
                 
               </p>
             
@@ -511,7 +511,8 @@ newChildren = [key2,key3,key1]</code></pre></div>
       <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>
       <span class="hljs-keyword">let</span> right = res.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>
       <span class="hljs-keyword">while</span>(left&lt;right)&#123;
-        <span class="hljs-keyword">let</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left+right)/<span class="hljs-number">2</span>)
+        <span class="hljs-comment">// let mid = Math.floor((left+right)/2)</span>
+        <span class="hljs-keyword">let</span> mid = (left+right) &gt;&gt; <span class="hljs-number">1</span>
         <span class="hljs-comment">// let mid = ((left+right)/2) | 0</span>
         <span class="hljs-comment">// 浮点小数向下求整</span>
         <span class="hljs-keyword">if</span>(arr[i]&gt;res[mid])&#123;

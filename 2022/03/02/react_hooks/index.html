@@ -26,7 +26,7 @@
 <meta property="og:description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T05:23:15.131Z">
-<meta property="article:modified_time" content="2022-04-22T01:48:33.794Z">
+<meta property="article:modified_time" content="2022-05-10T07:48:34.274Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="react">
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月22日 上午
+                  本文最后更新于：2022年5月10日 下午
                 
               </p>
             
@@ -320,8 +320,8 @@
 
 <p><code>useEffect</code>和 <code>componentDidMount</code> 的区别</p>
 <ol>
-<li><code>useEffect</code>在<code>commit</code>执行完之后异步执行 fn 回调</li>
-<li><code>componentDidMount</code>在<code>commit中的mutation</code>执行完时候和<code>layout</code>同步执行</li>
+<li><code>useEffect</code>在<code>commit</code>执行完之后会异步执行，不阻塞渲染</li>
+<li><code>componentDidMount/componentDidUpdate</code>在<code>mutation</code>执行完时候和<code>layout</code>同步执行</li>
 <li><code>useLayoutEffect</code>能实现和<code>👆</code>一样的效果</li>
 </ol>
 <h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a><code>useCallback</code></h3><p>缓存函数实例</p>
@@ -499,7 +499,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/10/vue2-router/">
+                      <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vue-router@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
