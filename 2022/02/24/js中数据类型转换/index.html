@@ -26,7 +26,7 @@
 <meta property="og:description" content="ECAMScript 中不能自定义数据类型，只能为下列 7 种简单数据类型（原始类型） String  Number  NaNtypeof NaN &#x3D;&#x3D;&#x3D; &amp;#x27;number&amp;#x27; 唯一一个自相反的值 NaN !&#x3D;&#x3D; NaN   Boolean  在条件判断时，除了 undefined， null， false， NaN， &#39;&#39;， 0， -0，其他所有值都转为 true">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-22T11:56:37.597Z">
+<meta property="article:modified_time" content="2022-05-31T02:18:50.804Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月22日 晚上
+                  本文最后更新于：2022年5月31日 上午
                 
               </p>
             
@@ -351,9 +351,9 @@
 [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].<span class="hljs-title function_">map</span>(<span class="hljs-built_in">parseInt</span>)
 <span class="hljs-comment">// [1, NaN, NaN]</span>
 <span class="hljs-comment">// map调用的回调会默认传入三个参数【当前元素，当前索引，当前数组】</span>
-<span class="hljs-comment">// parseInt(1,0) =&gt; 1</span>
-<span class="hljs-comment">// parseInt(2,1) =&gt; radix&gt;=2,NaN</span>
-<span class="hljs-comment">// parseInt(3,2) =&gt; 木有二进制表示的3,NaN</span></code></pre></div>
+<span class="hljs-comment">// parseInt(1,0) =&gt; radix为undefined或者0时，相当于radix10</span>
+<span class="hljs-comment">// parseInt(2,1) =&gt; 1进制的2？？NaN</span>
+<span class="hljs-comment">// parseInt(3,2) =&gt; 2进制的3？？ NaN</span></code></pre></div>
 <h3 id="parseFloat-string-主要用于字符串"><a href="#parseFloat-string-主要用于字符串" class="headerlink" title="parseFloat(string) 主要用于字符串"></a>parseFloat(string) 主要用于字符串</h3></li>
 <li>只解析十进制</li>
 <li>忽略2次出现的小数点<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;1234blue&quot;</span>); <span class="hljs-comment">// 1234</span>

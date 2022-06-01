@@ -26,7 +26,7 @@
 <meta property="og:description" content="创建数组&#x2F;&#x2F; 字面量 let arr &#x3D; [] let arr &#x3D; [1,2,3,4] &#x2F;&#x2F; 构造函数 let arr &#x3D; new Array() let arr &#x3D; new Array(&#x2F;传入数组代表数组长度&#x2F;) let arr &#x3D; new Array(&amp;#x27;item1&amp;#x27;,&amp;#x27;item2&amp;#x27;&#x2F;传入元素&#x2F;) let arr &#x3D; Array(10)&#x2F;省略new操作符&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-24T04:06:28.586Z">
+<meta property="article:modified_time" content="2022-05-23T14:53:40.537Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月24日 中午
+                  本文最后更新于：2022年5月23日 晚上
                 
               </p>
             
@@ -458,7 +458,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 </code></pre></div>
 
 <h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><h3 id="V8-中的-sort"><a href="#V8-中的-sort" class="headerlink" title="V8 中的 sort()"></a>V8 中的 sort()</h3><ul>
-<li>  7.0 之前 arr.length =10【插入排序】， 10【快速排序】</li>
+<li>  7.0 之前 arr.length = 10【插入排序】， &gt; 10【快速排序】</li>
 <li>  7.0 之后 【timesort】</li>
 </ul>
 <h3 id="常见排序方法"><a href="#常见排序方法" class="headerlink" title="常见排序方法"></a>常见排序方法</h3><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
@@ -523,7 +523,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;
 		<span class="hljs-keyword">let</span> minIndex = i;
 		<span class="hljs-comment">// 假设i为从i到len的最小值</span>
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt; len; j++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt; len; j++) &#123;&gt;
 			<span class="hljs-comment">// 从i+1开始寻找最小值</span>
 			<span class="hljs-keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;
 				minIndex = j;
@@ -626,9 +626,8 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">shellSort1</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
-	<span class="hljs-keyword">let</span> gap = len &gt;&gt; <span class="hljs-number">1</span>;
 	<span class="hljs-comment">// 这里初始设为长度一半</span>
-	<span class="hljs-keyword">for</span> (; gap &gt; <span class="hljs-number">0</span>; gap = gap &gt;&gt; <span class="hljs-number">1</span>) &#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> gap = len &gt;&gt; <span class="hljs-number">1</span>; gap &gt; <span class="hljs-number">0</span>; gap = gap &gt;&gt; <span class="hljs-number">1</span>) &#123;
 		<span class="hljs-comment">// 不断缩小间隔的长度</span>
 		<span class="hljs-comment">// 最终会为1</span>
 		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = gap; i &lt; len; i++) &#123;
@@ -753,9 +752,9 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%A0%86/">
+                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">堆及相关算法</span>
+                        <span class="hidden-mobile">工程化批处理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -763,8 +762,8 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
-                        <span class="hidden-mobile">工程化批处理</span>
+                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                        <span class="hidden-mobile">浏览器缓存策略</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

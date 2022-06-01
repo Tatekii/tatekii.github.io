@@ -26,7 +26,7 @@
 <meta property="og:description" content="vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-10T15:07:29.596Z">
-<meta property="article:modified_time" content="2022-04-21T02:00:43.412Z">
+<meta property="article:modified_time" content="2022-05-31T00:25:10.713Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="源码">
@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月21日 上午
+                  本文最后更新于：2022年5月31日 早上
                 
               </p>
             
@@ -664,16 +664,16 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
 
 <h1 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h1><ol>
 <li>在每个组件的<code>beforeCreate</code>和<code>destroyed</code>钩子中混入路由方法</li>
-<li>依据<code>routes</code>中子路，递归生成<code>path/name</code>映射组件位置的映射表<code>RouteRecords</code></li>
+<li>依据<code>routes</code>中的路由配置，递归生成<code>path/name</code>映射到组件的映射表<code>RouteRecords</code></li>
 <li>对实例的<code>_route</code>属性绑定响应式</li>
 <li>根据选择的<code>mode</code>不同，生成不同的<code>history</code>模式，与地址栏绑定修改</li>
 <li><code>&lt;router-view&gt;</code>组件的渲染函数会访问<code>_route</code>属性，订阅了路由状态的改变</li>
 <li>地址栏或者<code>router-link</code>改变后修改了<code>_route</code></li>
-<li><code>matcher</code>计算出从当前url到目标url的改变路径（<code>matched</code>record数组）</li>
-<li>对比新旧的<code>[matched]</code>从第一个不同的位置解析出<code>activated``updated``deactivated</code>三个队列</li>
-<li>按照路由钩子构造队列，分别对队列中的组件执行离开钩子，更新钩子和进入钩子，并且混入全局的钩子</li>
-<li>通知订阅了的<code>router-view</code>组件重新渲染，<code>router-view</code>会计算自己组件在vue组件树中位置，去<code>matched</code>中找到该渲染的组件</li>
-<li>最后更新路由的新状态</li>
+<li><code>matcher</code>计算出从当前url到目标url的改变路径（<code>matched record</code>数组）</li>
+<li>对比新旧的<code>matched</code>解析出<code>activated``updated``deactivated</code>三个队列</li>
+<li>对这三个队列中的组件分别执行相应的执行离开钩子，更新钩子和进入钩子，全局的钩子也会在相应的位置执行</li>
+<li>通知<code>router-view</code>组件重新渲染，<code>router-view</code>会计算自己组件在vue组件树中位置，去<code>matched</code>中找到该渲染的组件</li>
+<li>最后更新路由实例状态</li>
 </ol>
 
             </div>

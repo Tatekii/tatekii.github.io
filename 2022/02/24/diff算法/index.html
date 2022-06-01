@@ -26,7 +26,7 @@
 <meta property="og:description" content="概念 diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除 采用同级比较  基础的diff 新节点没有子节点-&gt;删除全部旧的子节点 新节点只有一个子节点-&gt;删除旧的并添加新的  核心diff 新旧节点都有多个子节点时，新旧子节点间的diffoldChildrenNode :[a,x,c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-05-10T03:23:21.211Z">
+<meta property="article:modified_time" content="2022-05-31T01:31:56.981Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="vue">
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月10日 上午
+                  本文最后更新于：2022年5月31日 上午
                 
               </p>
             
@@ -263,7 +263,7 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
 <li>用移动节点达到更新目的⭐️</li>
 </ul>
 <h2 id="Vue2的双端比较"><a href="#Vue2的双端比较" class="headerlink" title="Vue2的双端比较"></a>Vue2的双端比较</h2><blockquote>
-<p>借鉴<code>snabbdom.js</code></p>
+<p>借鉴<code>snabbdom.js</code> </p>
 </blockquote>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript">
 (oStart)               [oEnd]
@@ -386,7 +386,7 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
   &#125;</code></pre></div>
 <h2 id="React的最大递增索引值"><a href="#React的最大递增索引值" class="headerlink" title="React的最大递增索引值"></a>React的最大递增索引值</h2></li>
 <li>由于react使用链表存储oldFiber节点，故新旧节点比较时不能使用双指针</li>
-<li>需要两次便利<ol>
+<li>需要两次遍历<ol>
 <li>第一次遍历更新的节点</li>
 <li>第二次处理不属于更新的节点</li>
 </ol>
@@ -396,10 +396,10 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
 <ul>
 <li>如果 <code>key</code> 不同，会导致DOM不可复用，跳出第一轮遍历</li>
 <li>如果 <code>type</code> 不同，会导致DOM不可服用，将oldFiber节点标记为删除</li>
-<li>如果遍历完新旧或者任意一个，跳出第一轮遍历  <code>i === newChildren.length - 1）或者oldFiber.sibling === null</code><h3 id="2-第二轮"><a href="#2-第二轮" class="headerlink" title="2. 第二轮"></a>2. 第二轮</h3><h4 id="newChildren和oldFiber同时遍历完"><a href="#newChildren和oldFiber同时遍历完" class="headerlink" title="newChildren和oldFiber同时遍历完"></a>newChildren和oldFiber同时遍历完</h4>只需要在为第一遍遍历时标记<code>更新</code><h4 id="oldFiber遍历完了"><a href="#oldFiber遍历完了" class="headerlink" title="oldFiber遍历完了"></a>oldFiber遍历完了</h4>旧DOM都复用了，新children余下的都是需要新<code>插入</code>的DOM</li>
+<li>如果遍历完新旧或者任意一个，跳出第一轮遍历  <code>i === newChildren.length - 1）或者oldFiber.sibling === null</code><h3 id="2-第二轮"><a href="#2-第二轮" class="headerlink" title="2. 第二轮"></a>2. 第二轮</h3><h4 id="if-newChildren和oldFiber同时遍历完"><a href="#if-newChildren和oldFiber同时遍历完" class="headerlink" title="if newChildren和oldFiber同时遍历完"></a>if newChildren和oldFiber同时遍历完</h4>只需要在为第一遍遍历时标记<code>更新</code><h4 id="if-oldFiber遍历完了"><a href="#if-oldFiber遍历完了" class="headerlink" title="if oldFiber遍历完了"></a>if oldFiber遍历完了</h4>旧DOM都复用了，新children余下的都是需要新<code>插入</code>的DOM</li>
 </ul>
-<h4 id="newChildren遍历完了"><a href="#newChildren遍历完了" class="headerlink" title="newChildren遍历完了"></a>newChildren遍历完了</h4><p>oldFiber余下的节点都需要标记为<code>删除</code></p>
-<h4 id="⭐️都没遍历完，节点发生了移动"><a href="#⭐️都没遍历完，节点发生了移动" class="headerlink" title="⭐️都没遍历完，节点发生了移动"></a>⭐️都没遍历完，节点发生了移动</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">oldFiber    = key1 -&gt; key2 -&gt; key3
+<h4 id="if-newChildren遍历完了"><a href="#if-newChildren遍历完了" class="headerlink" title="if newChildren遍历完了"></a>if newChildren遍历完了</h4><p>oldFiber余下的节点都需要标记为<code>删除</code></p>
+<h4 id="if-都没遍历完，节点发生了移动"><a href="#if-都没遍历完，节点发生了移动" class="headerlink" title="if 都没遍历完，节点发生了移动"></a>if 都没遍历完，节点发生了移动</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">oldFiber    = key1 -&gt; key2 -&gt; key3
 
 newChildren = [key2,key3,key1]</code></pre></div>
 <blockquote>
@@ -566,8 +566,8 @@ newChildren = [key2,key3,key1]</code></pre></div>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/">
-                        <span class="hidden-mobile">实现自适应div高度为宽度一半</span>
+                      <a href="/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/">
+                        <span class="hidden-mobile">es6~now新特性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -26,7 +26,7 @@
 <meta property="og:description" content="promisePromise 对象用于处理异步操作，它表示一个尚未完成且预计在未来完成的异步操作。 特性   解决回调地狱，使用统一的 API 接口处理异步任务   链式调用   返回值穿透（onFulfilled 不是 function 时，上一步的执行结果 value 将继续向后传递）   错误冒泡（   回调地狱  function f1()&amp;#123;   &#x2F;&#x2F;f2的执行需要等待f1的结果">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-30T06:08:56.708Z">
+<meta property="article:modified_time" content="2022-05-31T00:16:07.648Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="es6">
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      87 分钟
+      88 分钟
     </span>
   
 
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月30日 下午
+                  本文最后更新于：2022年5月31日 早上
                 
               </p>
             
@@ -468,13 +468,12 @@ node promises-aplus-tests yourpeomise.<span class="hljs-property">js</span>
 &#125;
 
 <span class="hljs-comment">// 通用常量</span>
-<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PENDING</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-variable constant_">PENDING</span>);
-<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">FULFILLED</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-variable constant_">FULFILLED</span>);
-<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">REJECTED</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-variable constant_">REJECTED</span>);</code></pre></div>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PENDING</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;PENDING&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">FULFILLED</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;FULFILLED&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">REJECTED</span> = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;REJECTED&#x27;</span>);</code></pre></div>
 
 <ul>
-<li>  function 版</li>
-</ul>
+<li><p>  function 版<br>s</p>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">MyPromise</span>(<span class="hljs-params">executor</span>) &#123;
 	<span class="hljs-variable language_">this</span>.<span class="hljs-property">status</span> = <span class="hljs-variable constant_">PENDING</span>;
 	<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span> = <span class="hljs-literal">undefined</span>;
@@ -555,10 +554,9 @@ node promises-aplus-tests yourpeomise.<span class="hljs-property">js</span>
 	&#125;);
 
 	<span class="hljs-keyword">return</span> promise2;
-&#125;;</code></pre></div>
-
-<ul>
-<li>  class 版</li>
+&#125;;</code></pre></div></li>
+<li><p>  class 版</p>
+</li>
 </ul>
 <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyPromise</span> &#123;
 	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">executor</span>) &#123;
@@ -799,8 +797,8 @@ p2.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%5B%E6%BA%90%E7%A0%81%5Dvue2/">
-                        <span class="hidden-mobile">vue@2.x实现分析</span>
+                      <a href="/2022/02/24/%5B%E6%BA%90%E7%A0%81%5Dvue3/">
+                        <span class="hidden-mobile">vue@3学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

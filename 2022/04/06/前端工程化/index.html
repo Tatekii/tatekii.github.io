@@ -26,7 +26,7 @@
 <meta property="og:description" content="工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; package.json &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-06T02:55:18.377Z">
-<meta property="article:modified_time" content="2022-04-11T09:46:02.097Z">
+<meta property="article:modified_time" content="2022-05-31T04:35:45.970Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="工程化">
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月11日 下午
+                  本文最后更新于：2022年5月31日 下午
                 
               </p>
             
@@ -688,7 +688,7 @@ A[读取流] --&gt; B[转换流] --&gt; c[写入流]</code></pre>
 <h2 id="FIS"><a href="#FIS" class="headerlink" title="FIS"></a>FIS</h2><p>看看就好<a target="_blank" rel="noopener" href="https://github.com/fex-team/fis3">JUMP TO fis3</a></p>
 <h1 id="打包工具"><a href="#打包工具" class="headerlink" title="打包工具"></a>打包工具</h1><h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>模块化打包工具</p>
 <h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ol>
-<li>从入口 js 文件出发，通过各个模块的<code>require</code>或者<code>import</code>，解析出一颗包含所有使用到资源的依赖树</li>
+<li>从入口 js 文件出发，通过各个模块的<code>require</code>或者<code>import</code>，解析出一棵包含所有使用到资源的依赖树</li>
 <li>递归这颗，对不同的资源类型根据<code>rules</code>使用不同的的<code>loader</code>加载</li>
 <li>各个模块加载的结果会作为一个个自执行函数放入<code>bundle</code>中，以拥有独立的作用域</li>
 <li>并且模块的加载存在缓存机制，重复加载的模块将直接从缓存对象中读取</li>

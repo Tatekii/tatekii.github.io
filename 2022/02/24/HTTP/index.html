@@ -26,7 +26,7 @@
 <meta property="og:description" content="HTTP（HyperText Transfer Protocol，超文本传输协议HTTP 是基于 TCP&#x2F;IP 协议的应用层协议，用于客户端和服务器之间的通信  链路层，网络层，传输层，应用层  HTTP 报文组成部分 请求报文    请求行 Request Method,Request URL   请求头 包含若干属性，key:value 值   空行   请求体   响应报文    状态行 R">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-18T08:34:35.570Z">
+<meta property="article:modified_time" content="2022-05-23T15:12:46.334Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="http">
 <meta property="article:tag" content="面试">
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月18日 下午
+                  本文最后更新于：2022年5月23日 晚上
                 
               </p>
             
@@ -475,8 +475,8 @@
 </ol>
 <h3 id="HTTPS-工作流程"><a href="#HTTPS-工作流程" class="headerlink" title="HTTPS 工作流程"></a>HTTPS 工作流程</h3><ol>
 <li>用户访问:443,发送客户端支持的加密算法列表和随机数<code>Random_C</code></li>
-<li>服务器根据支持的贾母算法计算并返回证书和随机数<code>Random_S</code></li>
-<li>用户浏览器使用 <strong><em>CA 公钥</em></strong> 打开并验证证书的合法性得到证书中的 <strong><em>服务器公钥</em></strong></li>
+<li>服务器根据支持的算法计算并返回证书和随机数<code>Random_S</code></li>
+<li>用户浏览器使用操作系统里的 <strong><em>CA 公钥</em></strong> 打开并验证证书的合法性得到证书中的 <strong><em>服务器公钥</em></strong></li>
 <li>用户生成生新的随机数<code>Premaster secret</code>，并使用 <strong><em>服务器公钥</em></strong> 加密发送给服务器</li>
 <li>服务器使用自己的 <strong><em>服务器私钥</em></strong> 解密，得到 <code>Premaster secret</code></li>
 <li>此后双方使用同样的加密算法对三个随机数进行计算得到对称的密钥<code>enc_key</code></li>

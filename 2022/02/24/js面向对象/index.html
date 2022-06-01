@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/24/images/proto.png">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-03-07T06:23:02.292Z">
+<meta property="article:modified_time" content="2022-05-31T03:05:59.529Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="javascript">
@@ -240,7 +240,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月7日 下午
+                  本文最后更新于：2022年5月31日 上午
                 
               </p>
             
@@ -420,7 +420,7 @@
 <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p><code>JavaScript</code> 是一种基于原型的语言 (prototype-based language)</p>
 <p>区别于其他面向对象的语言实例中复制父类的全部属性，js 则使用原型去访问父类的公开属性。</p>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><ul>
-<li>JS中万物都为对象，但只有函数拥有原型；</li>
+<li>JS中万物都为对象，(但只有函数拥有原型)</li>
 <li>构造函数生成的实例对象都包含一个指向其原型对象的内部指针<code>O.__proto__/O.constructor.prototype</code>;</li>
 <li>如果这个原型又是另一个构造函数生成的实例，则这个原型对象也可以访问自己的原型对象，这样层层递进链式访问的关系就叫做<code>原型链</code>；</li>
 <li>js 中查找属性时，先查找实例自身，后查找原型对象，再沿着原型链不断上溯，直到原型链的尽头null；</li>
@@ -439,6 +439,7 @@ f1.<span class="hljs-property">__proto__</span> === <span class="hljs-title clas
 obj1.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>; <span class="hljs-comment">// undefined</span></code></pre></div>
 
 <h3 id="原形链的终点"><a href="#原形链的终点" class="headerlink" title="原形链的终点"></a>原形链的终点</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> === <span class="hljs-string">&#x27;object&#x27;</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Object</span> === <span class="hljs-string">&#x27;function&#x27;</span>
 <span class="hljs-comment">// 意味着Object的原型是也是一个对象</span>
 
 <span class="hljs-comment">// 而对象的构造器也是Object，则会出现死循环</span>
@@ -469,7 +470,7 @@ obj.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__p
 </ul>
 <h2 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h2><ol>
 <li>函数的 <code>this</code> 指向函数运行时的执行上下文</li>
-<li>当函数执行时候没有制定<code>this</code>，则<code>this</code>指向<code>Global</code>对象</li>
+<li>当函数执行时候没指定<code>this</code>，则<code>this</code>指向<code>global</code>对象</li>
 <li>当函数被当作对象的方法调用时,<code>this</code> 指向调用对象</li>
 <li><code>new</code>操作符生成的对象 <code>this</code> 指向自己</li>
 <li>箭头函数的<code>this</code>取决于书写时外部函数体的<code>this</code></li>

@@ -26,7 +26,7 @@
 <meta property="og:description" content="React⭐️ 时间切片   主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行执行js脚本,Layout重排,Paint重绘   如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿   React 在每一帧中预留了时间给 js 任务执行(5ms),并将大的 js 任务拆分到每一帧中  React 架构旧架构   Reconciler协调器查找组件的更">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-10T07:49:07.500Z">
-<meta property="article:modified_time" content="2022-05-10T10:01:36.040Z">
+<meta property="article:modified_time" content="2022-05-31T00:16:02.934Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="react">
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月10日 晚上
+                  本文最后更新于：2022年5月31日 早上
                 
               </p>
             
@@ -253,7 +253,7 @@
 <li>  <code>Reconciler协调器</code>查找组件的更新</li>
 <li>  <code>Renderer渲染器</code>将更新内容渲染到页面上</li>
 <li>  交替执行</li>
-<li>  <code>Reconciler</code>使用递归来更新组件,一旦组件潜逃过深其实也会超过 16.6ms 造成卡顿</li>
+<li>  <code>Reconciler</code>使用递归来更新组件,一旦组件嵌套过深其实也会超过 16.6ms 造成卡顿</li>
 </ul>
 <h3 id="新架构"><a href="#新架构" class="headerlink" title="新架构"></a>新架构</h3><ul>
 <li>  <code>Scheduler</code>当目前帧浏览器有多余时间可用时调度任务进入<code>Reconciler</code></li>
@@ -324,11 +324,11 @@
 </li>
 <li><p>  没有兄弟节则<code>return</code>到父节点</p>
 </li>
-<li><p>  一只 return 到<code>rootFiber</code>则<code>render</code>结束</p>
+<li><p>  一直 return 到<code>rootFiber</code>则<code>render</code>结束</p>
 </li>
 </ul>
 <h4 id="beginWork"><a href="#beginWork" class="headerlink" title="beginWork"></a><code>beginWork</code></h4><blockquote>
-<p>⭐️diff</p>
+<p>⭐️[[diff算法]]</p>
 </blockquote>
 <p>创建子 fiber 节点，可能复用上一次更新的子 fiber 节点，或者新建新 fiber 节点，并在上面打上标记</p>
 <ul>
@@ -414,12 +414,6 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/2022/05/11/pages/contents/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">

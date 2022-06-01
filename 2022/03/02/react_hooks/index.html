@@ -26,7 +26,7 @@
 <meta property="og:description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T05:23:15.131Z">
-<meta property="article:modified_time" content="2022-05-10T07:48:34.274Z">
+<meta property="article:modified_time" content="2022-05-31T04:30:53.421Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="react">
@@ -238,7 +238,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月10日 下午
+                  本文最后更新于：2022年5月31日 下午
                 
               </p>
             
@@ -352,7 +352,7 @@
 <blockquote>
 <p>useCallback 和 useMemo 的 dep 数组传空则只返回首次执行结果</p>
 </blockquote>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><code>useRef</code></h3><p>保存的数据发生变化不会处罚重新渲染</p>
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><code>useRef</code></h3><p>保存的数据发生变化不会触发重新渲染</p>
 <ol>
 <li>存储跨组建的数据<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
 <span class="hljs-comment">//  一个存活在活动组件中的定时器</span>

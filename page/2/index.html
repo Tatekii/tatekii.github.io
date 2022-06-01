@@ -177,15 +177,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/17/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E6%96%B0%E6%89%8B%E5%8C%85/" target="_self">
-          代码提交规范新手包
+        <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          CSS面试题
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/01/17/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E6%96%B0%E6%89%8B%E5%8C%85/" target="_self">
+        <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
           
-          prettier代码美化   安装  lint-stagehttps:&#x2F;&#x2F;github.com&#x2F;okonet&#x2F;lint-staged#examples yarn add prettier --dev  &#x2F;&#x2F; 为了不与eslint冲突 yarn add eslint-config-prettier  &#x2F;&#x2F; 初始化lint-stage npx mrm@2 lint-staged  &#x2F;&#x2F; 这里会自动安装
+          CSS选择器 *【0】  类选择器class【10】  id选择器【100】  标签选择器tag【1】  组合   a,b&amp;#123;a or b&amp;#125;  a b&amp;#123;b是a的后代节点&amp;#125; a+b&amp;#123;b是a的兄弟下一个节点&amp;#125; a&gt;b&amp;#123;b是a的直接子节点&amp;#125; a~b&amp;#123;b是a之后的任意兄弟节点&amp;#125;  属性选择器，子串值选择
         </a>
       </p>
 
@@ -193,8 +193,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-17 11:31" pubdate>
-              2022-01-17
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
             </time>
           </div>
         
@@ -203,9 +203,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
             
-              <a href="/tags/git/">git</a>
+              <a href="/tags/CSS/">CSS</a>
             
           </div>
         
@@ -219,15 +219,61 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/react_rookie/" target="_self">
-          react-beginner
+        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
+          vue-router@3.x实现分析
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/24/react_rookie/" target="_self">
+        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
           
-          React 构建用户页面的 javascript 库，并不是完整的 MVC 框架  IntroReact.createElementJSX 元素只是调用 React.createElement(component, props, ...children) 的语法糖 ReactDOM.render(element, container[, callback)在提供的 container 里渲染一个
+          vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-10 23:07" pubdate>
+              2022-03-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
+            
+              <a href="/tags/vue-router/">vue-router</a>
+            
+              <a href="/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/Promise/" target="_self">
+          实现符合A+规范的Promise
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/24/Promise/" target="_self">
+          
+          promisePromise 对象用于处理异步操作，它表示一个尚未完成且预计在未来完成的异步操作。 特性   解决回调地狱，使用统一的 API 接口处理异步任务   链式调用   返回值穿透（onFulfilled 不是 function 时，上一步的执行结果 value 将继续向后传递）   错误冒泡（   回调地狱  function f1()&amp;#123;   &#x2F;&#x2F;f2的执行需要等待f1的结果
         </a>
       </p>
 
@@ -246,9 +292,53 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/javascript/">javascript</a>
+            
+              <a href="/tags/es6/">es6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/10/%5B%E6%BA%90%E7%A0%81%5Dreact/" target="_self">
+          react实现分析
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/10/%5B%E6%BA%90%E7%A0%81%5Dreact/" target="_self">
+          
+          React⭐️ 时间切片   主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行执行js脚本,Layout重排,Paint重绘   如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿   React 在每一帧中预留了时间给 js 任务执行(5ms),并将大的 js 任务拆分到每一帧中  React 架构旧架构   Reconciler协调器查找组件的更
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-10 15:49" pubdate>
+              2022-05-10
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
             
               <a href="/tags/react/">react</a>
             
+              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
+            
           </div>
         
       </div>
@@ -261,15 +351,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
-          算法题
+        <a href="/2022/03/16/%E6%89%8B%E5%86%99/" target="_self">
+          手写系列
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/24/%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
+        <a href="/2022/03/16/%E6%89%8B%E5%86%99/" target="_self">
           
-          两数之合function twoSum(arr, target) &amp;#123; 	let res &#x3D; []; 	let map &#x3D; new Map(); 	&#x2F;&#x2F; 使用数值-&gt;索引建立map 	&#x2F;&#x2F; 每次循环计算得出当前差值 	&#x2F;&#x2F; 在map中查找这个差值既能得出索引 	for (let i &#x3D; 0; i &lt; arr.length; i++) &amp;#123; 		let k &#x3D; targe
+          事件中心 EventCenterclass EventCenter &amp;#123; 	constructor() &amp;#123; 		this.events &#x3D; new Map(); 	&amp;#125; 	register(event, isOnce, fn, ...args1) &amp;#123; 		const curEvent &#x3D; this.events.has(event) ? this.events.
         </a>
       </p>
 
@@ -277,8 +367,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
+            <time datetime="2022-03-16 14:45" pubdate>
+              2022-03-16
             </time>
           </div>
         
@@ -291,8 +381,6 @@
             
               <a href="/tags/javascript/">javascript</a>
             
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
           </div>
         
       </div>
@@ -305,15 +393,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/" target="_self">
-          实现自适应div高度为宽度一半
+        <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
+          自动化测试
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/" target="_self">
+        <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
           
-          知识点position属性 static 正常流，默认值 top, right, bottom, left 和 z-index 属性无效。   relative 相对正常流偏移 原位置有预留空间   absolute 移出正常文档流 相对于最近的 非static 定位祖先元素偏移 不为元素预留空间   fixed 移出正常文档流 相对于屏幕视口（viewport）的位置来指定元素位置 不为元素预留
+          自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示    typescript   eslint  Unit Test单元测试&#x2F;**   example *&#x2F; describe(&quot;测试组&quot;, () &#x3D;&gt; &amp;#123; 	it(&quot;async 测试&quot;, () &#x3D;&gt; &amp;#123; 		expect.assertions(1
         </a>
       </p>
 
@@ -321,8 +409,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
+            <time datetime="2022-05-05 11:13" pubdate>
+              2022-05-05
             </time>
           </div>
         
@@ -331,51 +419,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/css/">css</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/01/17/mapbox-gl/" target="_self">
-          mapbox-gl拾遗
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/01/17/mapbox-gl/" target="_self">
-          
-          expressionshttps:&#x2F;&#x2F;docs.mapbox.com&#x2F;mapbox-gl-js&#x2F;style-spec&#x2F;expressions&#x2F; 定义 适用于Style中的layout,paint,filter属性，均可添加表达式。 表达式定义了如何使用逻辑、数学、字符串或颜色操作组合feature中的一个或多个properties或zoom，以生成适当的样式属性值或过滤器决策。  语法[expre
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-17 10:02" pubdate>
-              2022-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/mapbox/">mapbox</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
             
           </div>
         
@@ -433,15 +477,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/%E5%8E%9F%E7%94%9Fjs/" target="_self">
-          原生js
+        <a href="/2022/02/24/%E5%A0%86/" target="_self">
+          堆及相关算法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/24/%E5%8E%9F%E7%94%9Fjs/" target="_self">
+        <a href="/2022/02/24/%E5%A0%86/" target="_self">
           
-          javascript js 是一门函数优先的轻量级解释型语言，基于原型编程的动态脚本语言   函数是一等公民（变量提升，函数可以作为函数的参数，返回值，可以赋值给变量，【函数式编程的条件】 面向对象编程 弱类型语言（变量的类型在运行时会变化，强类型语言的变量类型编译时就确定且不会改变 基于原型（区别于基于类[类和实例]，js 中万物皆为[对象] 基于原型的语言具有所谓原型对象（prototypic
+          二叉堆 堆就是完全二叉树 完全二叉树：除了深度最深的一层外所有层节点数都满员 深度：从根节点到该节点经历的节点个数   每一个节点都比左右子节点大–&gt;最大堆，最大值在根节点  每一个节点都比左右子节点小–&gt;最小堆，最小值在根节点  完全二叉树可以使用数组来存储   建立堆 将节点与父节点比较  &#x2F;&#x2F;小顶堆 function buildHeap(items,heapSize)&amp;#123;
         </a>
       </p>
 
@@ -451,6 +495,92 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2022-02-24 20:43" pubdate>
               2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/javascript/">javascript</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/topK/" target="_self">
+          topK问题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/24/topK/" target="_self">
+          
+          最大&#x2F;小的 K 个数，第 K 个最大&#x2F;最小值 局部冒泡！！输出结果无序 function bubbleSort(arr, k) &amp;#123;   for (let i &#x3D; 0; i &lt; k; i++) &amp;#123;     &#x2F;&#x2F; 冒泡执行k次     for (let j &#x3D; arr.length - 1; j &gt; i; j--) &amp;#123;       if (arr[j] &amp;lt
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+              <a href="/tags/javascript/">javascript</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/31/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
+          javascript性能优化
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/31/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
+          
+          内存管理js 的内存管理是自动的 let obj1 &#x3D; &amp;#123;&amp;#125;; &#x2F;&#x2F; 申请空间  obj1.name &#x3D; &quot;mmm&quot;; &#x2F;&#x2F; 使用空间  obj1 &#x3D; null; &#x2F;&#x2F; 释放  内存问题   内存泄漏   内存膨胀   频繁垃圾回收  分离 DOM   页面上不装载的 DOM   垃圾对象引用的 DOM   活动对象引用的 DOM  垃圾回收不是可达对象就被
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-31 10:56" pubdate>
+              2022-03-31
             </time>
           </div>
         
@@ -469,141 +599,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/" target="_self">
-          工程化批处理
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/" target="_self">
-          
-          1. 批量注册中间件.&#x2F;controllers中  controllerA.js controllerB.js controllerC.js  .&#x2F;controllers&#x2F;index.js  const _ &#x3D; require(&amp;#x27;lodash&amp;#x27;) const fs &#x3D; require(&amp;#x27;fs&amp;#x27;) const path &#x3D; require(&amp;#x27;path
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/node/">node</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" target="_self">
-          虚拟列表的简单实现
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/" target="_self">
-          
-          https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;8uttkBw-dwYXsybKePQ3nA &lt;!DOCTYPE html&gt; &lt;html lang&#x3D;&quot;en&quot;&gt;   &lt;head&gt;     &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;     &lt;meta http-equiv&#x3D;&quot;X-UA-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
-          vue-router@3.x实现分析
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
-          
-          vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-10 23:07" pubdate>
-              2022-03-10
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-            
-              <a href="/tags/vue-router/">vue-router</a>
-            
-              <a href="/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

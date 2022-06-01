@@ -18,15 +18,15 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示  typescript eslint单元测试对应用程序中最小的单元（函数，组件）进行测试 有利于模块化设计， 代码覆盖率高 👎难以保证多个单元一起运行时的正确率  Jest Jest &#x3D; Mocha + Chai + Sinon + mockserver + istanbul 集成测试在浏览器环境或者想互相依赖的模">
+    <meta name="description" content="自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示    typescript   eslint  Unit Test单元测试&#x2F;**   example *&#x2F; describe(&quot;测试组&quot;, () &#x3D;&gt; &amp;#123; 	it(&quot;async 测试&quot;, () &#x3D;&gt; &amp;#123; 		expect.assertions(1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动化测试">
 <meta property="og:url" content="http://yoursite.com/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示  typescript eslint单元测试对应用程序中最小的单元（函数，组件）进行测试 有利于模块化设计， 代码覆盖率高 👎难以保证多个单元一起运行时的正确率  Jest Jest &#x3D; Mocha + Chai + Sinon + mockserver + istanbul 集成测试在浏览器环境或者想互相依赖的模">
+<meta property="og:description" content="自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示    typescript   eslint  Unit Test单元测试&#x2F;**   example *&#x2F; describe(&quot;测试组&quot;, () &#x3D;&gt; &amp;#123; 	it(&quot;async 测试&quot;, () &#x3D;&gt; &amp;#123; 		expect.assertions(1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-05T03:13:41.617Z">
-<meta property="article:modified_time" content="2022-05-09T06:22:53.689Z">
+<meta property="article:modified_time" content="2022-05-24T08:05:21.360Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="自动化测试">
 <meta name="twitter:card" content="summary_large_image">
@@ -187,7 +187,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      614 字
+      1.5k 字
     </span>
   
 
@@ -196,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      13 分钟
     </span>
   
 
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月9日 下午
+                  本文最后更新于：2022年5月24日 下午
                 
               </p>
             
@@ -245,39 +245,83 @@
               <h1 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h1><p>电脑代替你做回归测试</p>
 <h2 id="测试分类"><a href="#测试分类" class="headerlink" title="测试分类"></a>测试分类</h2><h3 id="静态测试"><a href="#静态测试" class="headerlink" title="静态测试"></a>静态测试</h3><p>在编写代码逻辑阶段时进行报错提示</p>
 <ul>
-<li><code>typescript</code></li>
-<li><code>eslint</code><h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3>对应用程序中最小的单元（函数，组件）进行测试</li>
-<li>有利于模块化设计，</li>
-<li>代码覆盖率高</li>
-<li>👎难以保证多个单元一起运行时的正确率</li>
+<li>  <code>typescript</code></li>
+<li>  <code>eslint</code></li>
+</ul>
+<h3 id="Unit-Test单元测试"><a href="#Unit-Test单元测试" class="headerlink" title="Unit Test单元测试"></a><code>Unit Test</code>单元测试</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**   example */</span>
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;测试组&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+	<span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;async 测试&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+		expect.<span class="hljs-title function_">assertions</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// 期望断言个数,异步的时候记得用</span>
+		<span class="hljs-title function_">expect</span>(xxx).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">123</span>);
+	&#125;);
+
+	<span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;promise 测试&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+		<span class="hljs-comment">// 别传递done了💪</span>
+		expect.<span class="hljs-title function_">assertions</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// 期望断言个数,异步的时候记得用</span>
+		<span class="hljs-keyword">return</span> asyncFunc.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+			<span class="hljs-title function_">expect</span>(res.<span class="hljs-property">length</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">10</span>);
+			<span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBeGreaterThan</span>(<span class="hljs-number">5</span>);
+		&#125;);
+	&#125;);
+
+	<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;async test&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;
+		expect.<span class="hljs-title function_">assertions</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// 期望断言个数,异步的时候记得用</span>
+		<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runAsyncOperation</span>();
+		<span class="hljs-title function_">expect</span>(result).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">true</span>);
+	&#125;);
+&#125;);
+
+<span class="hljs-comment">/** </span>
+<span class="hljs-comment"> * mock fetch</span>
+<span class="hljs-comment"> * 测试中尽量不要引用别的库，他们都test过了</span>
+<span class="hljs-comment"> * 直接mock他的返回</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">const</span> mockFetch = jest.<span class="hljs-title function_">fn</span>().<span class="hljs-title function_">mockReturnValue</span>(<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">revolve</span>(&#123;
+  <span class="hljs-attr">json</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(&#123;
+    <span class="hljs-comment">// ...your data</span>
+  &#125;)
+&#125;))
+
+<span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;mockFetch被执行了&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
+  expect.<span class="hljs-title function_">assertion</span>(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">return</span> randomUrl.<span class="hljs-title function_">requestBaidu</span>(mockFetch).<span class="hljs-title function_">then</span>(<span class="hljs-function">()=&gt;</span>&#123;
+    <span class="hljs-title function_">expect</span>(mockFetch.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>) <span class="hljs-comment">// mockFetch被call了一次</span>
+  &#125;)
+&#125;)</code></pre></div>
+
+<p>对应用程序中最小的单元（函数，组件）进行测试</p>
+<ul>
+<li>  有利于模块化设计，</li>
+<li>  代码覆盖率高</li>
+<li>  👎 难以保证多个单元一起运行时的正确率</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://jestjs.io/"><code>Jest</code></a></p>
 <p><code>Jest = Mocha + Chai + Sinon + mockserver + istanbul</code></p>
-<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><p>在浏览器环境或者想互相依赖的模块集成到一起进行测试</p>
+<h3 id="Integration-Test集成测试"><a href="#Integration-Test集成测试" class="headerlink" title="Integration Test集成测试"></a><code>Integration Test</code>集成测试</h3><p>在浏览器环境或者将互相依赖的模块集成到一起进行测试</p>
 <ul>
-<li>从用户角度出发，就像写产品说明书</li>
-<li>不关注代码逻辑细节，只关注行为</li>
-<li>快速重构</li>
-<li>👎代码覆盖率低</li>
-<li>👎难以定位问题</li>
+<li>  从用户角度出发，就像写产品说明书</li>
+<li>  不关注代码逻辑细节，只关注行为</li>
+<li>  快速重构</li>
+<li>  👎 代码覆盖率低</li>
+<li>  👎 难以定位问题</li>
 </ul>
 <h3 id="端到端测试-E2E"><a href="#端到端测试-E2E" class="headerlink" title="端到端测试(E2E)"></a>端到端测试(E2E)</h3><p>通过操作浏览器的行为进行测试</p>
 <ul>
-<li>真实的运行环境</li>
-<li>👎速度很慢</li>
-<li>👎调试定位问题困难</li>
+<li>  真实的运行环境</li>
+<li>  👎 速度很慢</li>
+<li>  👎 调试定位问题困难</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://www.cypress.io/"><code>Cyress</code></a></p>
-<h3 id="快照测试"><a href="#快照测试" class="headerlink" title="快照测试"></a>快照测试</h3><p>通过对浏览器中的运行中的应用程序打快照进行对比(DOM结构)</p>
+<h3 id="快照测试"><a href="#快照测试" class="headerlink" title="快照测试"></a>快照测试</h3><p>通过对浏览器中的运行中的应用程序打快照进行对比(DOM 结构)</p>
 <ul>
-<li>主要用于UI测试</li>
+<li>  主要用于 UI 测试</li>
 </ul>
 <h2 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h2><h3 id="代码覆盖率"><a href="#代码覆盖率" class="headerlink" title="代码覆盖率"></a>代码覆盖率</h3><p>代码被执行的比例</p>
 <ul>
-<li>行覆盖率（line coverage）：是否每一行都执行了？</li>
-<li>函数覆盖率（function coverage）：是否每个函数都调用了？</li>
-<li>分支覆盖率（branch coverage）：是否每个if代码块都执行了？</li>
-<li>语句覆盖率（statement coverage）：是否每个语句都执行了？</li>
+<li>  行覆盖率（line coverage）：是否每一行都执行了？</li>
+<li>  函数覆盖率（function coverage）：是否每个函数都调用了？</li>
+<li>  分支覆盖率（branch coverage）：是否每个 if 代码块都执行了？</li>
+<li>  语句覆盖率（statement coverage）：是否每个语句都执行了？</li>
 </ul>
 <h3 id="需求覆盖率"><a href="#需求覆盖率" class="headerlink" title="需求覆盖率"></a>需求覆盖率</h3><p>由软件需求出发的测试(快照测试，端到端测试)，逻辑代码本身是个黑盒，只能人为标记需求覆盖率。</p>
 <h2 id="测试开发"><a href="#测试开发" class="headerlink" title="测试开发"></a>测试开发</h2><h3 id="TDD-测试驱动开发"><a href="#TDD-测试驱动开发" class="headerlink" title="TDD 测试驱动开发"></a>TDD 测试驱动开发</h3><p>先写测试再写功能</p>
@@ -289,8 +333,8 @@
 <li>编写测试用例</li>
 <li>…</li>
 </ol>
-<h4 id="TDD的原则"><a href="#TDD的原则" class="headerlink" title="TDD的原则"></a>TDD的原则</h4><ul>
-<li>独立测试</li>
+<h4 id="TDD-的原则"><a href="#TDD-的原则" class="headerlink" title="TDD 的原则"></a>TDD 的原则</h4><ul>
+<li>  独立测试</li>
 <li></li>
 </ul>
 <h3 id="BDD-行为驱动开发"><a href="#BDD-行为驱动开发" class="headerlink" title="BDD 行为驱动开发"></a>BDD 行为驱动开发</h3><p>实现功能后添加测试</p>
