@@ -34,30 +34,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>graphql新手包 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -66,21 +63,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -150,6 +166,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -162,65 +179,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="graphql新手包">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-04 15:38" pubdate>
-        2022年1月4日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.6k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      39 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="graphql新手包"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-04 15:38" pubdate>
+          2022年1月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -229,24 +260,23 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">graphql新手包</h1>
             
-              <p class="note note-info">
-                
-                  本文最后更新于：2022年1月4日 下午
-                
-              </p>
-            
             <div class="markdown-body">
+              
               <h2 id="GraphQl"><a href="#GraphQl" class="headerlink" title="GraphQl"></a>GraphQl</h2><p><code>GraphQL</code>是一个旨在简化前端和后端之间通信的规范。它主要由服务端的 schema 语言和客户端的查询语言组成。<br>【_查询语法和 schema 语法几乎是相等的_】。</p>
 <p><code>gql</code>的 api 需要完整描述期望返回的数据，相对于<code>RestFul API</code>减少了数据的冗余。修改一下官网的示例：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 描述你的数据</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 描述你的数据</span>
 <span class="hljs-comment">// 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的数据类型</span>
 type <span class="hljs-title class_">Project</span> &#123;
   <span class="hljs-attr">name</span>: <span class="hljs-title class_">String</span>
@@ -275,7 +305,7 @@ type <span class="hljs-title class_">Project</span> &#123;
 <li><p>与 gql 服务器的<strong>全部</strong>数据交互基于一个指定的<code>URL</code>通<br>  道</p>
 </li>
 <li><p>标准的 gql GET 请求</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">http</span>:<span class="hljs-comment">//myapi/graphql?query=&#123;me&#123;name&#125;&#125;</span>
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-attr">http</span>:<span class="hljs-comment">//myapi/graphql?query=&#123;me&#123;name&#125;&#125;</span>
 
 &#123;
   me&#123;
@@ -283,7 +313,7 @@ type <span class="hljs-title class_">Project</span> &#123;
   &#125;
 &#125;</code></pre></div></li>
 <li><p>标准的 gql POST 请求</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">content-<span class="hljs-attr">type</span>:application/json
+  <div class="code-wrapper"><pre><code class="hljs javascript">content-<span class="hljs-attr">type</span>:application/json
 
 &#123;
   <span class="hljs-string">&quot;query&quot;</span>: 查询的对象及参数,
@@ -296,7 +326,7 @@ type <span class="hljs-title class_">Project</span> &#123;
 <h3 id="gql-文件"><a href="#gql-文件" class="headerlink" title="gql 文件"></a>gql 文件</h3><ul>
 <li>  比较方便的管理 gql 接口的方式就是预先编写<code>.graphql</code>文件，方便复用和拓展。</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 在一个gql文件内声明多个query，需要命名query，并支持es6结构引用。单个query请求文件则可不命名。</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 在一个gql文件内声明多个query，需要命名query，并支持es6结构引用。单个query请求文件则可不命名。</span>
 
 query <span class="hljs-title function_">queryxxx</span>(<span class="hljs-params"></span>
 <span class="hljs-params">  $variable1: <span class="hljs-built_in">String</span></span>
@@ -317,7 +347,7 @@ query <span class="hljs-title function_">queryxxx</span>(<span class="hljs-param
 <ul>
 <li>  也可以在请求时手动编写（需安装’graphql-tag’）</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">$apollo.<span class="hljs-title function_">query</span>(
+<div class="code-wrapper"><pre><code class="hljs javascript">$apollo.<span class="hljs-title function_">query</span>(
   <span class="hljs-attr">query</span>:gql<span class="hljs-string">`query tagList &#123;</span>
 <span class="hljs-string">      tags &#123;</span>
 <span class="hljs-string">        id,</span>
@@ -334,7 +364,7 @@ query <span class="hljs-title function_">queryxxx</span>(<span class="hljs-param
 <li><p>  variables 变量</p>
 </li>
 <li><p>fetchPolicy 缓存选项</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section"># cache-first[default]</span>
+  <div class="code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section"># cache-first[default]</span>
 
 Apollo Client 首先对缓存执行查询。如果缓存中存在所有请求的数据，则返回该数据。否则，Apollo Client 会针对您的 GraphQL 服务器执行查询，并在缓存数据后返回该数据。
 
@@ -365,7 +395,7 @@ Apollo Client 会针对您的 GraphQL 服务器执行完整查询，而无需先
 </ul>
 <h3 id="使用-Apollo（vue-v2）"><a href="#使用-Apollo（vue-v2）" class="headerlink" title="使用 Apollo（vue v2）"></a>使用 Apollo（vue v2）</h3><ul>
 <li><p>安装<code>Apollo</code></p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">yarn add vue-apollo graphql apollo-boost
+  <div class="code-wrapper"><pre><code class="hljs javascript">yarn add vue-apollo graphql apollo-boost
 
 #  apollo-boost 是创建apollo client的懒人包，包含常用的默认值，无需繁琐的手动配置
 
@@ -373,7 +403,7 @@ or
 
 npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http apollo-cache-inmemory graphql-tag</code></pre></div></li>
 <li><p>封装<code>ApolloClient</code></p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ApolloClient</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-boost&quot;</span>;
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ApolloClient</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;apollo-boost&quot;</span>;
 <span class="hljs-keyword">const</span> $apollo = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApolloClient</span>(&#123;<span class="hljs-attr">uri</span>:<span class="hljs-string">&#x27;xxx&#x27;</span>&#125;)
 
 <span class="hljs-comment">// or</span>
@@ -416,7 +446,7 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 <li><p>使用方法</p>
 <ul>
 <li><h4 id="apollo-provider"><a href="#apollo-provider" class="headerlink" title="apollo provider"></a>apollo provider</h4><p>  使用 apollo 组件，需先生成<code>apollo provider</code>，为 vue 实例提供 apollo 能力</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueApollo</span>);
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueApollo</span>);
 
 <span class="hljs-keyword">const</span> apolloProvider = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueApollo</span>(&#123;
 	<span class="hljs-attr">defaultClient</span>: apolloClient,
@@ -429,12 +459,12 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 &#125;);</code></pre></div>
 
 <p>  引入后之后，在你的每个 vue 组件实例上将多出$apollo 对象指向 apollo 客户端。</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$apollo</span> ===&gt;
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$apollo</span> ===&gt;
 &#123;<span class="hljs-attr">query</span>:[....],
 &#125;</code></pre></div>
 
 <p>  并且与 data 选项平行的 apollo 选择中可以自定义各种 gql 查询，并且他们的结果将作为 vue 变量来使用</p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)&#123;
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)&#123;
   <span class="hljs-keyword">return</span> &#123;
     <span class="hljs-attr">a</span>:<span class="hljs-number">1</span>
   &#125;
@@ -448,7 +478,7 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
   &#125;
 &#125;</code></pre></div></li>
 <li><h4 id="apollo-组件"><a href="#apollo-组件" class="headerlink" title="apollo 组件"></a>apollo 组件</h4><p>  在组件模版中编写 gql 查询，同时通过插槽<code>slot</code>分发请求结果,分别有<code>ApolloQuery</code>,<code>ApolloMutation</code>,<code>ApolloSubscribeToMore</code></p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;template&gt;
+  <div class="code-wrapper"><pre><code class="hljs javascript">&lt;template&gt;
   &lt;!-- <span class="hljs-title class_">Apollo</span> 查询 --&gt;
   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ApolloQuery</span> <span class="hljs-attr">:query</span>=<span class="hljs-string">&quot;/* 一些查询 */&quot;</span>&gt;</span></span>
 <span class="language-xml">    <span class="hljs-comment">&lt;!-- 结果将自动更新 --&gt;</span></span>
@@ -464,7 +494,7 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 <span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">ApolloQuery</span>&gt;</span></span>
 &lt;/template&gt;</code></pre></div></li>
 <li><h4 id="纯-api-封装"><a href="#纯-api-封装" class="headerlink" title="纯 api 封装"></a>纯 api 封装</h4><p>  基本上没有侵入性的使用方法，封装成函数式的 api，不需要在实例中插入<code>Apollo Provider</code>和<code>vue.use(vueApollo)</code></p>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 伪代码</span>
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 伪代码</span>
 <span class="hljs-keyword">import</span> apolloclient
 <span class="hljs-keyword">import</span> gql图表文件
 <span class="hljs-comment">// apollo请求基于promise</span>
@@ -485,37 +515,76 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>相较于<code>restful</code>少了大量处理数据的步骤，接口天然更加安全(参数类型参数数量对不上都会请求失败)，apollo 功能也是十分强大（轮询，分页，缓存），再回去用 restful 会有一种略难受的感觉。并且后端的同学也表示舒服。</p>
 <p>之后打算在别的项目里陆续试一试智能查询和 apollo 组件，看看有没有耦合度低的接入方式或者复用的 apollo 组件。</p>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/graphql/">graphql</a>
-                    
-                      <a class="hover-with-bg" href="/tags/apollo/">apollo</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/graphql/">#graphql</a>
+      
+        <a href="/tags/apollo/">#apollo</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>graphql新手包</div>
+      <div>http://yoursite.com/2022/01/04/graphql新手包/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/17/mapbox-gl/">
+                      <a href="/2022/01/17/mapbox-gl/" title="mapbox-gl拾遗">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">mapbox-gl拾遗</span>
                         <span class="visible-mobile">上一篇</span>
@@ -525,7 +594,7 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/09/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                      <a href="/2021/09/09/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="js设计模式">
                         <span class="hidden-mobile">js设计模式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -537,12 +606,8 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -553,7 +618,9 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -564,25 +631,56 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -607,66 +705,69 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -685,50 +786,18 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -738,18 +807,161 @@ npm install --save vue-apollo graphql apollo-client apollo-link apollo-link-http
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

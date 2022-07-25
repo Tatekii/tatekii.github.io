@@ -34,30 +34,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>算法题 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -66,21 +63,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -150,6 +166,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -162,65 +179,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="算法题">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      19k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      162 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="算法题"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          19k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          162 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -229,22 +260,30 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">算法题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年4月21日 上午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年4月21日 上午
+                  
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="两数之合"><a href="#两数之合" class="headerlink" title="两数之合"></a>两数之合</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">arr, target</span>) &#123;
+              
+              <h3 id="两数之合"><a href="#两数之合" class="headerlink" title="两数之合"></a>两数之合</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">arr, target</span>) &#123;
 	<span class="hljs-keyword">let</span> res = [];
 	<span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 	<span class="hljs-comment">// 使用数值-&gt;索引建立map</span>
@@ -260,7 +299,7 @@
 	<span class="hljs-keyword">return</span> res.<span class="hljs-property">length</span> === <span class="hljs-number">1</span> ? res[<span class="hljs-number">0</span>] : res;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="排序数组的两数之和"><a href="#排序数组的两数之和" class="headerlink" title="排序数组的两数之和"></a>排序数组的两数之和</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">nums, target</span>) &#123;
+<h3 id="排序数组的两数之和"><a href="#排序数组的两数之和" class="headerlink" title="排序数组的两数之和"></a>排序数组的两数之和</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">twoSum</span>(<span class="hljs-params">nums, target</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> r = nums.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span> (l &lt; r) &#123;
@@ -276,7 +315,7 @@
 &#125;</code></pre></div>
 </code></pre>
 <h3 id="三数之合"><a href="#三数之合" class="headerlink" title="三数之合"></a>三数之合</h3><p>求出数组中三个数之和等于 target 的所有组合</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params">arr, target</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params">arr, target</span>) &#123;
 	<span class="hljs-keyword">let</span> res = [];
 	<span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> res;
@@ -316,7 +355,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="最大面积"><a href="#最大面积" class="headerlink" title="最大面积"></a>最大面积</h3><div class="hljs code-wrapper"><pre><code class="hljs">给定数组，按数组 index 为 x 轴坐标,value 为 y 轴坐标在二纬坐标系画线，连接哪两条线时得到最大面积
+<h3 id="最大面积"><a href="#最大面积" class="headerlink" title="最大面积"></a>最大面积</h3><div class="code-wrapper"><pre><code class="hljs">给定数组，按数组 index 为 x 轴坐标,value 为 y 轴坐标在二纬坐标系画线，连接哪两条线时得到最大面积
 
 &gt; 面积 = 两直线中较短的高度 \* 两线间距离
 
@@ -335,7 +374,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="删除排序数组中的重复项，不能使用额外空间，返回不重复的长度"><a href="#删除排序数组中的重复项，不能使用额外空间，返回不重复的长度" class="headerlink" title="删除排序数组中的重复项，不能使用额外空间，返回不重复的长度"></a>删除排序数组中的重复项，不能使用额外空间，返回不重复的长度</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">removeDuplicates</span>(<span class="hljs-params">arr</span>) &#123;
+<h3 id="删除排序数组中的重复项，不能使用额外空间，返回不重复的长度"><a href="#删除排序数组中的重复项，不能使用额外空间，返回不重复的长度" class="headerlink" title="删除排序数组中的重复项，不能使用额外空间，返回不重复的长度"></a>删除排序数组中的重复项，不能使用额外空间，返回不重复的长度</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">removeDuplicates</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>; j &lt; len; j++) &#123;
@@ -346,7 +385,7 @@
 	<span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="设计一个支持在平均时间复杂度-O-1-下，执行以下操作的数据结构。"><a href="#设计一个支持在平均时间复杂度-O-1-下，执行以下操作的数据结构。" class="headerlink" title="设计一个支持在平均时间复杂度 O(1) 下，执行以下操作的数据结构。"></a>设计一个支持在平均时间复杂度 O(1) 下，执行以下操作的数据结构。</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-title function_">insert</span>(val) ：当元素 val 不存在时，向集合中插入该项。
+<h3 id="设计一个支持在平均时间复杂度-O-1-下，执行以下操作的数据结构。"><a href="#设计一个支持在平均时间复杂度-O-1-下，执行以下操作的数据结构。" class="headerlink" title="设计一个支持在平均时间复杂度 O(1) 下，执行以下操作的数据结构。"></a>设计一个支持在平均时间复杂度 O(1) 下，执行以下操作的数据结构。</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-title function_">insert</span>(val) ：当元素 val 不存在时，向集合中插入该项。
 <span class="hljs-title function_">remove</span>(val) ：元素 val 存在时，从集合中移除该项。
 getRandom ：随机返回现有集合中的一项。每个元素应该有 相同的概率 被返回。
 示例 :
@@ -438,7 +477,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
   <span class="hljs-keyword">return</span> [...<span class="hljs-variable language_">this</span>.<span class="hljs-property">data</span>][index]
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="合并两个有序数组"><a href="#合并两个有序数组" class="headerlink" title="合并两个有序数组"></a>合并两个有序数组</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// arr1 = [1,2,5]  m=3</span>
+<h3 id="合并两个有序数组"><a href="#合并两个有序数组" class="headerlink" title="合并两个有序数组"></a>合并两个有序数组</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// arr1 = [1,2,5]  m=3</span>
 <span class="hljs-comment">// arr2 = [2,3,4]  n=3</span>
 <span class="hljs-comment">// 假设arr1能装下arr2</span>
 
@@ -458,11 +497,11 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	&#125;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="计算两个数组的交集"><a href="#计算两个数组的交集" class="headerlink" title="计算两个数组的交集"></a>计算两个数组的交集</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">arr1, arr2</span>) &#123;
+<h3 id="计算两个数组的交集"><a href="#计算两个数组的交集" class="headerlink" title="计算两个数组的交集"></a>计算两个数组的交集</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">arr1, arr2</span>) &#123;
 	<span class="hljs-keyword">return</span> [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr1.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> arr2.<span class="hljs-title function_">includes</span>(item)))];
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="计算多个数组的交集"><a href="#计算多个数组的交集" class="headerlink" title="计算多个数组的交集"></a>计算多个数组的交集</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">...arrs</span>) &#123;
+<h3 id="计算多个数组的交集"><a href="#计算多个数组的交集" class="headerlink" title="计算多个数组的交集"></a>计算多个数组的交集</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">intersection</span>(<span class="hljs-params">...arrs</span>) &#123;
 	<span class="hljs-keyword">if</span> (arrs.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> [];
 	<span class="hljs-keyword">if</span> (arrs.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arrs[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">return</span> [
@@ -476,7 +515,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	];
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="大数相乘-可以输出字符串"><a href="#大数相乘-可以输出字符串" class="headerlink" title="大数相乘(可以输出字符串)"></a>大数相乘(可以输出字符串)</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">bigMulti</span>(<span class="hljs-params">x, y</span>) &#123;
+<h3 id="大数相乘-可以输出字符串"><a href="#大数相乘-可以输出字符串" class="headerlink" title="大数相乘(可以输出字符串)"></a>大数相乘(可以输出字符串)</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">bigMulti</span>(<span class="hljs-params">x, y</span>) &#123;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;0&quot;</span> || y === <span class="hljs-string">&quot;0&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> y;
 	<span class="hljs-keyword">if</span> (y === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> x;
@@ -502,7 +541,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="保留精度加法"><a href="#保留精度加法" class="headerlink" title="保留精度加法"></a>保留精度加法</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fixAdd</span> = (<span class="hljs-params">x, y</span>) =&gt; &#123;
+<h3 id="保留精度加法"><a href="#保留精度加法" class="headerlink" title="保留精度加法"></a>保留精度加法</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fixAdd</span> = (<span class="hljs-params">x, y</span>) =&gt; &#123;
 	<span class="hljs-keyword">const</span> len1 = x.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">const</span> len2 = y.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">const</span> maxLen = len1 &gt;= len2 ? len1 : len2;
@@ -510,7 +549,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> (x * times + y * times) / times;
 &#125;;</code></pre></div>
 </code></pre>
-<h3 id="满-9-加-1"><a href="#满-9-加-1" class="headerlink" title="满 9 加 1"></a>满 9 加 1</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add1</span>(<span class="hljs-params">num</span>) &#123;
+<h3 id="满-9-加-1"><a href="#满-9-加-1" class="headerlink" title="满 9 加 1"></a>满 9 加 1</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add1</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> dig = num.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; dig &gt;= <span class="hljs-number">0</span>; dig--) &#123;
 		<span class="hljs-keyword">if</span> (num[dig] === <span class="hljs-number">9</span>) &#123;
 			num[dig] = <span class="hljs-number">0</span>;
@@ -523,7 +562,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> num;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="将数组中的-0-全部移动到最后且非-0-部分保持原顺序"><a href="#将数组中的-0-全部移动到最后且非-0-部分保持原顺序" class="headerlink" title="将数组中的 0 全部移动到最后且非 0 部分保持原顺序"></a>将数组中的 0 全部移动到最后且非 0 部分保持原顺序</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">move0</span>(<span class="hljs-params">num</span>) &#123;
+<h3 id="将数组中的-0-全部移动到最后且非-0-部分保持原顺序"><a href="#将数组中的-0-全部移动到最后且非-0-部分保持原顺序" class="headerlink" title="将数组中的 0 全部移动到最后且非 0 部分保持原顺序"></a>将数组中的 0 全部移动到最后且非 0 部分保持原顺序</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">move0</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">while</span> (i &lt; num.<span class="hljs-property">length</span>) &#123;
@@ -537,7 +576,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	&#125;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="数的次方（不使用内置库-pow"><a href="#数的次方（不使用内置库-pow" class="headerlink" title="数的次方（不使用内置库 pow"></a>数的次方（不使用内置库 pow</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果指数n是偶数，x^n = x^(n/2) * x^(n/2)</span>
+<h3 id="数的次方（不使用内置库-pow"><a href="#数的次方（不使用内置库-pow" class="headerlink" title="数的次方（不使用内置库 pow"></a>数的次方（不使用内置库 pow</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果指数n是偶数，x^n = x^(n/2) * x^(n/2)</span>
 <span class="hljs-comment">// 如果指数n是奇数，x^n = x * x^(n/2) * x^(n/2)</span>
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">myPow</span>(<span class="hljs-params">x, n</span>) &#123;
@@ -552,7 +591,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> / res : res;
 &#125;</code></pre></div>
 
-<h3 id="数字的开方-（不使用内置库-pow-和-X-X"><a href="#数字的开方-（不使用内置库-pow-和-X-X" class="headerlink" title="数字的开方 （不使用内置库 pow 和 X ** X"></a>数字的开方 （不使用内置库 pow 和 X ** X</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  返回值只保留整数部分 ，8 =&gt; 2</span>
+<h3 id="数字的开方-（不使用内置库-pow-和-X-X"><a href="#数字的开方-（不使用内置库-pow-和-X-X" class="headerlink" title="数字的开方 （不使用内置库 pow 和 X ** X"></a>数字的开方 （不使用内置库 pow 和 X ** X</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  返回值只保留整数部分 ，8 =&gt; 2</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">mySqrt</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> r = num;
@@ -571,7 +610,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> r;
 &#125;</code></pre></div>
 
-<h3 id="输出-1-到最大的-n-位数"><a href="#输出-1-到最大的-n-位数" class="headerlink" title="输出 1 到最大的 n 位数"></a>输出 1 到最大的 n 位数</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<h3 id="输出-1-到最大的-n-位数"><a href="#输出-1-到最大的-n-位数" class="headerlink" title="输出 1 到最大的 n 位数"></a>输出 1 到最大的 n 位数</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
 <span class="hljs-comment">  / <span class="hljs-doctag">@params</span> n=1 一位数，最大9，输出123456789</span>
 <span class="hljs-comment">  / <span class="hljs-doctag">@params</span> n=2 两位数呀 最大99</span>
 <span class="hljs-comment">  */</span>
@@ -597,7 +636,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> v + i);
 &#125;</code></pre></div>
 
-<h3 id="和为-s-的所有正数序列"><a href="#和为-s-的所有正数序列" class="headerlink" title="和为 s 的所有正数序列"></a>和为 s 的所有正数序列</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<h3 id="和为-s-的所有正数序列"><a href="#和为-s-的所有正数序列" class="headerlink" title="和为 s 的所有正数序列"></a>和为 s 的所有正数序列</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> *  15</span>
 <span class="hljs-comment"> * [1,2,3,4,5] [4,5,6] [7,8]</span>
 <span class="hljs-comment"> */</span>
@@ -651,7 +690,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 
-<h3 id="数组中出现次数超过数组长度一半的元素"><a href="#数组中出现次数超过数组长度一半的元素" class="headerlink" title="数组中出现次数超过数组长度一半的元素"></a>数组中出现次数超过数组长度一半的元素</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 一定会是排序后的数组中点</span>
+<h3 id="数组中出现次数超过数组长度一半的元素"><a href="#数组中出现次数超过数组长度一半的元素" class="headerlink" title="数组中出现次数超过数组长度一半的元素"></a>数组中出现次数超过数组长度一半的元素</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 一定会是排序后的数组中点</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">majorityElement</span>(<span class="hljs-params">nums</span>) &#123;
 	nums = nums.<span class="hljs-title function_">sort</span>();
 	<span class="hljs-keyword">return</span> nums[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(nums.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>)];
@@ -673,7 +712,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 
 <h3 id="圆圈中最后剩下的数字"><a href="#圆圈中最后剩下的数字" class="headerlink" title="圆圈中最后剩下的数字"></a>圆圈中最后剩下的数字</h3><p>0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。</p>
 <p>例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 朴朴素素超时方法</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 朴朴素素超时方法</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> (v += i));
 	<span class="hljs-keyword">let</span> pos = <span class="hljs-number">0</span>;
@@ -707,7 +746,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> pos;
 &#125;</code></pre></div>
 
-<h3 id="将数组中的奇数移动到前，偶数移动到后"><a href="#将数组中的奇数移动到前，偶数移动到后" class="headerlink" title="将数组中的奇数移动到前，偶数移动到后"></a>将数组中的奇数移动到前，偶数移动到后</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">exchange</span>(<span class="hljs-params">nums</span>) &#123;
+<h3 id="将数组中的奇数移动到前，偶数移动到后"><a href="#将数组中的奇数移动到前，偶数移动到后" class="headerlink" title="将数组中的奇数移动到前，偶数移动到后"></a>将数组中的奇数移动到前，偶数移动到后</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">exchange</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-comment">// 对撞指针</span>
 	<span class="hljs-comment">// 分别寻找符合条件的数</span>
 	<span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>,
@@ -734,11 +773,11 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> nums;
 &#125;</code></pre></div>
 
-<h3 id="青蛙跳台阶-斐波那契数列"><a href="#青蛙跳台阶-斐波那契数列" class="headerlink" title="青蛙跳台阶/斐波那契数列"></a>青蛙跳台阶/斐波那契数列</h3><div class="hljs code-wrapper"><pre><code class="hljs">&gt; 注意别搞混了，fibonacci 数列排列是固定的
+<h3 id="青蛙跳台阶-斐波那契数列"><a href="#青蛙跳台阶-斐波那契数列" class="headerlink" title="青蛙跳台阶/斐波那契数列"></a>青蛙跳台阶/斐波那契数列</h3><div class="code-wrapper"><pre><code class="hljs">&gt; 注意别搞混了，fibonacci 数列排列是固定的
 &gt; fib 数列 [0,1,1,2,3]
 &gt; 青蛙跳法 [1,1,2,3,5]
 </code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numWays</span>(<span class="hljs-params">n</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numWays</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> n;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>;
@@ -785,7 +824,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	&#125;
 &#125;</code></pre></div>
 
-<h3 id="连续子数组的和的最大值"><a href="#连续子数组的和的最大值" class="headerlink" title="连续子数组的和的最大值"></a>连续子数组的和的最大值</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
+<h3 id="连续子数组的和的最大值"><a href="#连续子数组的和的最大值" class="headerlink" title="连续子数组的和的最大值"></a>连续子数组的和的最大值</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
 	<span class="hljs-comment">// 用dp记录该位置作为子数组末尾的累加值</span>
 	<span class="hljs-comment">// [nums[0],nums[1]],dp[1] = num[0] + num[1]</span>
 	<span class="hljs-comment">// dp[2] = dp[1] + nums[2]</span>
@@ -802,7 +841,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> max;
 &#125;</code></pre></div>
 
-<h3 id="反转嵌套数组"><a href="#反转嵌套数组" class="headerlink" title="反转嵌套数组"></a>反转嵌套数组</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 已知数组 a=[1,[2,[3,[4,null]]]], 实现数组 b=[4,[3,[2,[1,null]]]] ，考虑n级嵌套的情况</span>
+<h3 id="反转嵌套数组"><a href="#反转嵌套数组" class="headerlink" title="反转嵌套数组"></a>反转嵌套数组</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 已知数组 a=[1,[2,[3,[4,null]]]], 实现数组 b=[4,[3,[2,[1,null]]]] ，考虑n级嵌套的情况</span>
 <span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, <span class="hljs-literal">null</span>]]]];
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseArray</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">arr, temp</span>) &#123;
@@ -824,10 +863,10 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 &#125;
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reverseArray</span>(a));</code></pre></div>
 
-<h3 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h3><div class="hljs code-wrapper"><pre><code class="hljs">0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。
+<h3 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h3><div class="code-wrapper"><pre><code class="hljs">0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。
 例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。
 </code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归公式</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 递归公式</span>
 <span class="hljs-comment">// f(n,m) = (f(n-1,m)+m)%n 本轮索引=上轮索引+m%n</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">lastRemaining</span>(<span class="hljs-params">n, m</span>) &#123;
 	<span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
@@ -842,7 +881,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> i;
 &#125;</code></pre></div>
 
-<h3 id="连续子数组的最大和"><a href="#连续子数组的最大和" class="headerlink" title="连续子数组的最大和"></a>连续子数组的最大和</h3><div class="hljs code-wrapper"><pre><code class="hljs">输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
+<h3 id="连续子数组的最大和"><a href="#连续子数组的最大和" class="headerlink" title="连续子数组的最大和"></a>连续子数组的最大和</h3><div class="code-wrapper"><pre><code class="hljs">输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
 要求时间复杂度为 O(n)。
 
     示例1:
@@ -851,7 +890,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
     输出: 6
     解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
 </code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 状态转移</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 状态转移</span>
 <span class="hljs-comment">// 由连续元素来求和</span>
 <span class="hljs-comment">// dp[i] 位置的累加值由dp[i-1]决定，dp[i-1]不为负则加上dp[i-1]</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">maxSubArray</span>(<span class="hljs-params">nums</span>) &#123;
@@ -880,7 +919,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> max;
 &#125;</code></pre></div>
 
-<h3 id="0-n-1-中缺省的值"><a href="#0-n-1-中缺省的值" class="headerlink" title="[0 ~ n-1]中缺省的值"></a>[0 ~ n-1]中缺省的值</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 正确的数组应该value===index</span>
+<h3 id="0-n-1-中缺省的值"><a href="#0-n-1-中缺省的值" class="headerlink" title="[0 ~ n-1]中缺省的值"></a>[0 ~ n-1]中缺省的值</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 正确的数组应该value===index</span>
 <span class="hljs-comment">// [0,1,3] =&gt; 2</span>
 <span class="hljs-comment">// [1,2] =&gt; 0</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">missingNumber</span>(<span class="hljs-params">nums</span>) &#123;
@@ -906,7 +945,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> l;
 &#125;</code></pre></div>
 
-<h3 id="输入一个矩形，顺时针打印矩形其中元素"><a href="#输入一个矩形，顺时针打印矩形其中元素" class="headerlink" title="输入一个矩形，顺时针打印矩形其中元素"></a>输入一个矩形，顺时针打印矩形其中元素</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> matrix = [
+<h3 id="输入一个矩形，顺时针打印矩形其中元素"><a href="#输入一个矩形，顺时针打印矩形其中元素" class="headerlink" title="输入一个矩形，顺时针打印矩形其中元素"></a>输入一个矩形，顺时针打印矩形其中元素</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> matrix = [
 	[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
 	[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
 	[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>],
@@ -942,7 +981,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 
-<h3 id="电商-SKU-全排列-笛卡尔积"><a href="#电商-SKU-全排列-笛卡尔积" class="headerlink" title="电商 SKU 全排列/笛卡尔积"></a>电商 SKU 全排列/笛卡尔积</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> attrs = &#123;
+<h3 id="电商-SKU-全排列-笛卡尔积"><a href="#电商-SKU-全排列-笛卡尔积" class="headerlink" title="电商 SKU 全排列/笛卡尔积"></a>电商 SKU 全排列/笛卡尔积</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> attrs = &#123;
 	<span class="hljs-attr">names</span>: [<span class="hljs-string">&quot;iPhone X&quot;</span>, <span class="hljs-string">&quot;iPhone XS&quot;</span>, <span class="hljs-string">&quot;iPhone 11&quot;</span>],
 	<span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;黑色&quot;</span>, <span class="hljs-string">&quot;白色&quot;</span>, <span class="hljs-string">&quot;红色&quot;</span>],
 	<span class="hljs-attr">storage</span>: [<span class="hljs-string">&quot;64g&quot;</span>, <span class="hljs-string">&quot;128G&quot;</span>, <span class="hljs-string">&quot;256g&quot;</span>],
@@ -974,7 +1013,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div>
 </code></pre>
-<h3 id="1-到-n-的数字组成-k-长度的数组的所有组合"><a href="#1-到-n-的数字组成-k-长度的数组的所有组合" class="headerlink" title="1 到 n 的数字组成 k 长度的数组的所有组合"></a>1 到 n 的数字组成 k 长度的数组的所有组合</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: n = 4, k = 2;</span>
+<h3 id="1-到-n-的数字组成-k-长度的数组的所有组合"><a href="#1-到-n-的数字组成-k-长度的数组的所有组合" class="headerlink" title="1 到 n 的数字组成 k 长度的数组的所有组合"></a>1 到 n 的数字组成 k 长度的数组的所有组合</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: n = 4, k = 2;</span>
 <span class="hljs-comment">// 输出: [[2,4],[3,4],[2,3],[1,2],[1,3],[1,4],]</span>
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">combine</span>(<span class="hljs-params">n, k</span>) &#123;
@@ -1000,7 +1039,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="请你判断一个-9-x-9-的数独是否有效。根据以下规则-，验证已经填入的数字是否有效"><a href="#请你判断一个-9-x-9-的数独是否有效。根据以下规则-，验证已经填入的数字是否有效" class="headerlink" title="请你判断一个  9 x 9 的数独是否有效。根据以下规则 ，验证已经填入的数字是否有效"></a>请你判断一个  9 x 9 的数独是否有效。根据以下规则 ，验证已经填入的数字是否有效</h3><div class="hljs code-wrapper"><pre><code class="hljs">1. 数字  1-9  在每一行只能出现一次。
+<h3 id="请你判断一个-9-x-9-的数独是否有效。根据以下规则-，验证已经填入的数字是否有效"><a href="#请你判断一个-9-x-9-的数独是否有效。根据以下规则-，验证已经填入的数字是否有效" class="headerlink" title="请你判断一个  9 x 9 的数独是否有效。根据以下规则 ，验证已经填入的数字是否有效"></a>请你判断一个  9 x 9 的数独是否有效。根据以下规则 ，验证已经填入的数字是否有效</h3><div class="code-wrapper"><pre><code class="hljs">1. 数字  1-9  在每一行只能出现一次。
 1. 数字  1-9  在每一列只能出现一次。
 1. 数字  1-9  在每一个以粗实线分隔的  3x3  宫内只能出现一次。（请参考示例图）
 1. 空白为&#39;.&#39;
@@ -1042,7 +1081,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;</code></pre></div>
 </code></pre>
-<h3 id="实现-LRU-缓存结构-（最近最少访问"><a href="#实现-LRU-缓存结构-（最近最少访问" class="headerlink" title="实现 LRU 缓存结构 （最近最少访问"></a>实现 LRU 缓存结构 （最近最少访问</h3><div class="hljs code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">LRUCache</span>(<span class="hljs-params">capacity</span>)&#123;
+<h3 id="实现-LRU-缓存结构-（最近最少访问"><a href="#实现-LRU-缓存结构-（最近最少访问" class="headerlink" title="实现 LRU 缓存结构 （最近最少访问"></a>实现 LRU 缓存结构 （最近最少访问</h3><div class="code-wrapper"><pre><code class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">LRUCache</span>(<span class="hljs-params">capacity</span>)&#123;
 			<span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span> = capacity
 			<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>()
 &#125;
@@ -1078,7 +1117,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 <blockquote>
 <p>sqrt 平方根</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isPrime</span>(<span class="hljs-params">num</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isPrime</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt; num - <span class="hljs-number">1</span>; i++) &#123;
 		<span class="hljs-keyword">if</span> (num % i === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
@@ -1096,7 +1135,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;</code></pre></div>
 
-<h3 id="计算-n-以内的质数数量"><a href="#计算-n-以内的质数数量" class="headerlink" title="计算 n 以内的质数数量"></a>计算 n 以内的质数数量</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> countPrimes = <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;
+<h3 id="计算-n-以内的质数数量"><a href="#计算-n-以内的质数数量" class="headerlink" title="计算 n 以内的质数数量"></a>计算 n 以内的质数数量</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> countPrimes = <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-comment">// n之前的数组，先全部默认是质数</span>
 	<span class="hljs-comment">// primeArray[i] = true</span>
 	<span class="hljs-keyword">const</span> primeArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-literal">true</span>);
@@ -1115,7 +1154,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 	<span class="hljs-keyword">return</span> primeCount;
 &#125;;</code></pre></div>
 
-<h3 id="求出两个数组最长的公共子数组长度"><a href="#求出两个数组最长的公共子数组长度" class="headerlink" title="求出两个数组最长的公共子数组长度"></a>求出两个数组最长的公共子数组长度</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入：nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]</span>
+<h3 id="求出两个数组最长的公共子数组长度"><a href="#求出两个数组最长的公共子数组长度" class="headerlink" title="求出两个数组最长的公共子数组长度"></a>求出两个数组最长的公共子数组长度</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入：nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]</span>
 <span class="hljs-comment">// 输出：3</span>
 <span class="hljs-comment">// 解释：长度最长的公共子数组是 [3,2,1]</span>
 
@@ -1143,7 +1182,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 &#125;</code></pre></div>
 
 <h3 id="计算岛屿的周长"><a href="#计算岛屿的周长" class="headerlink" title="计算岛屿的周长"></a>计算岛屿的周长</h3><p>二维数组，1 为陆地，0 为海水，铺成矩阵，陆地与陆地不会对角接壤（不会出现陆地环绕的海水），求出接壤陆地组成的岛屿的周长（一块陆地四条边）</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">getPerimeter</span>(<span class="hljs-params">grid</span>) &#123;
 	<span class="hljs-keyword">if</span> (!grid || !grid.<span class="hljs-property">length</span> || !grid[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">const</span> row = grid.<span class="hljs-property">length</span>;
@@ -1203,11 +1242,11 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 &#125;</code></pre></div>
 
 <h3 id="最大公约数（GCD）"><a href="#最大公约数（GCD）" class="headerlink" title="最大公约数（GCD）"></a>最大公约数（GCD）</h3><p>使用递归。基本情况是当 y 等于 0 时。在这种情况下，返回 x。否则，返回 y 的 GCD 和 x / y 的其余部分。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">gcd</span> = (<span class="hljs-params">x, y</span>) =&gt; (!y ? x : <span class="hljs-title function_">gcd</span>(y, x % y));
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">gcd</span> = (<span class="hljs-params">x, y</span>) =&gt; (!y ? x : <span class="hljs-title function_">gcd</span>(y, x % y));
 <span class="hljs-comment">// gcd (8, 36) -&gt; 4</span></code></pre></div>
 
 <h3 id="bifurcate"><a href="#bifurcate" class="headerlink" title="bifurcate"></a>bifurcate</h3><p>按照布尔值对数组中元素分类</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">bifurcate</span> = (<span class="hljs-params">arr, filter</span>) =&gt; arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, val, i</span>) =&gt;</span> (acc[filter[i] ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>].<span class="hljs-title function_">push</span>(val), acc), [[], []]);
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">bifurcate</span> = (<span class="hljs-params">arr, filter</span>) =&gt; arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, val, i</span>) =&gt;</span> (acc[filter[i] ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>].<span class="hljs-title function_">push</span>(val), acc), [[], []]);
 <span class="hljs-title function_">bifurcate</span>([<span class="hljs-string">&quot;beep&quot;</span>, <span class="hljs-string">&quot;boop&quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>], [<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>]);
 <span class="hljs-comment">// [ [&#x27;beep&#x27;, &#x27;boop&#x27;, &#x27;bar&#x27;], [&#x27;foo&#x27;] ]</span></code></pre></div>
 
@@ -1216,7 +1255,7 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 <p> </p>
 <p>示例 1：</p>
 <p>输入：intervals = [[1,3],[2,6],[8,10],[15,18]]<br>输出：[[1,6],[8,10],[15,18]]<br>解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-keyword">function</span>(<span class="hljs-params">intervals</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-keyword">function</span>(<span class="hljs-params">intervals</span>) &#123;
     <span class="hljs-keyword">if</span>(!intervals || !intervals.<span class="hljs-property">length</span> || intervals.<span class="hljs-property">length</span>&lt;<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> intervals
     intervals.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>a[<span class="hljs-number">0</span>]-b[<span class="hljs-number">0</span>])
     <span class="hljs-keyword">const</span> res = []
@@ -1237,37 +1276,76 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
     res.<span class="hljs-title function_">push</span>(pre)
     <span class="hljs-keyword">return</span> res
 &#125;;</code></pre></div>
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>算法题</div>
+      <div>http://yoursite.com/2022/02/24/算法题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/" title="浏览器缓存策略">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">浏览器缓存策略</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1277,8 +1355,8 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">
-                        <span class="hidden-mobile">虚拟列表的简单实现</span>
+                      <a href="/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/" title="网络分层模型">
+                        <span class="hidden-mobile">网络分层模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -1289,12 +1367,8 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -1305,7 +1379,9 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -1316,25 +1392,56 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -1359,66 +1466,69 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -1437,50 +1547,18 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -1490,18 +1568,161 @@ randomSet.<span class="hljs-title function_">getRandom</span>();
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -27,15 +27,21 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +50,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -128,6 +153,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -140,29 +166,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -177,17 +209,59 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
-          CSS面试题
+        <a href="/2022/06/08/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" target="_self">
+          数据可视化
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
-          
-          CSS选择器 *【0】  类选择器class【10】  id选择器【100】  标签选择器tag【1】  组合   a,b&amp;#123;a or b&amp;#125;  a b&amp;#123;b是a的后代节点&amp;#125; a+b&amp;#123;b是a的兄弟下一个节点&amp;#125; a&gt;b&amp;#123;b是a的直接子节点&amp;#125; a~b&amp;#123;b是a之后的任意兄弟节点&amp;#125;  属性选择器，子串值选择
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/08/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" target="_self">
+        <div>
+          数据可视化 数据类型定量数据 连续性变量 离散变量定性数据 文本描述 有序&#x2F;无序变量  转换图形 数据映射到标度 选择合适图形体现映射
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-08 10:40" pubdate>
+              2022-06-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">#数据可视化</a>
+            
+              <a href="/tags/canvas/">#canvas</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
+          栈算法题
         </a>
-      </p>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E6%A0%88%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
+        <div>
+          栈结构，先进后出 最小栈   function MinStack()&amp;#123;   this.stack &#x3D; []   this.min &#x3D; [Infinity] &amp;#125;  MinStack.prototype.push &#x3D; function(item)&amp;#123;   this.stack.push(item)   this.min.push(Math.min(this.min[this
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -203,55 +277,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
-              <a href="/tags/CSS/">CSS</a>
+              <a href="/tags/javascript/">#javascript</a>
             
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
-          vue-router@3.x实现分析
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" target="_self">
-          
-          vue-router模式hash模式原理：监听onHashChange和修改URL的hash值#xxx    不刷新页面   hash不会发送到服务器   hash的改变会保存历史记录   通过&lt;a&gt;标签的href或者location.hash修改  history模式原理：监听history.popState，通过pushState&#96;&#96;replaceState修改历史栈    不刷新
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-10 23:07" pubdate>
-              2022-03-10
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-            
-              <a href="/tags/vue-router/">vue-router</a>
-            
-              <a href="/tags/vue/">vue</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
             
           </div>
         
@@ -265,17 +295,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/Promise/" target="_self">
-          实现符合A+规范的Promise
+        <a href="/2022/02/24/%E6%95%B0%E7%BB%84/" target="_self">
+          数组
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/Promise/" target="_self">
-          
-          promisePromise 对象用于处理异步操作，它表示一个尚未完成且预计在未来完成的异步操作。 特性   解决回调地狱，使用统一的 API 接口处理异步任务   链式调用   返回值穿透（onFulfilled 不是 function 时，上一步的执行结果 value 将继续向后传递）   错误冒泡（   回调地狱  function f1()&amp;#123;   &#x2F;&#x2F;f2的执行需要等待f1的结果
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E6%95%B0%E7%BB%84/" target="_self">
+        <div>
+          创建数组&#x2F;&#x2F; 字面量 let arr &#x3D; [] let arr &#x3D; [1,2,3,4] &#x2F;&#x2F; 构造函数 let arr &#x3D; new Array() let arr &#x3D; new Array(&#x2F;传入数组代表数组长度&#x2F;) let arr &#x3D; new Array(&amp;#x27;item1&amp;#x27;,&amp;#x27;item2&amp;#x27;&#x2F;传入元素&#x2F;) let arr &#x3D; Array(10)&#x2F;省略new操作符&#x2F;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -291,9 +321,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/es6/">es6</a>
+              <a href="/tags/javascript/">#javascript</a>
             
           </div>
         
@@ -307,24 +335,24 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/05/10/%5B%E6%BA%90%E7%A0%81%5Dreact/" target="_self">
-          react实现分析
+        <a href="/2022/06/06/react%E5%AE%9E%E7%8E%B0computed/" target="_self">
+          react hook实现computed
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/05/10/%5B%E6%BA%90%E7%A0%81%5Dreact/" target="_self">
-          
-          React⭐️ 时间切片   主流显示器的刷新率是 60Hz,浏览器渲染一帧需要执行执行js脚本,Layout重排,Paint重绘   如果 js 脚本的执行时间超过 16.6ms，就会造成浏览器这次刷新没有时间去绘制,造成卡顿   React 在每一帧中预留了时间给 js 任务执行(5ms),并将大的 js 任务拆分到每一帧中  React 架构旧架构   Reconciler协调器查找组件的更
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/06/react%E5%AE%9E%E7%8E%B0computed/" target="_self">
+        <div>
+          https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;usecomputedvalue-custom-hook-mo5b4?from-embed 实现类computed的计算属性type computedValueProps &#x3D; [() &#x3D;&gt; void, any[]]; function useComputedValue(allArgs: computedValueProps) &amp;#123;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-10 15:49" pubdate>
-              2022-05-10
+            <time datetime="2022-06-06 11:51" pubdate>
+              2022-06-06
             </time>
           </div>
         
@@ -333,11 +361,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/react/">react</a>
-            
-              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
+              <a href="/tags/react/">#react</a>
             
           </div>
         
@@ -351,99 +375,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/16/%E6%89%8B%E5%86%99/" target="_self">
-          手写系列
+        <a href="/2022/02/24/HTTP/" target="_self">
+          HTTP协议
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/03/16/%E6%89%8B%E5%86%99/" target="_self">
-          
-          事件中心 EventCenterclass EventCenter &amp;#123; 	constructor() &amp;#123; 		this.events &#x3D; new Map(); 	&amp;#125; 	register(event, isOnce, fn, ...args1) &amp;#123; 		const curEvent &#x3D; this.events.has(event) ? this.events.
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-16 14:45" pubdate>
-              2022-03-16
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
-          自动化测试
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
-          
-          自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示    typescript   eslint  Unit Test单元测试&#x2F;**   example *&#x2F; describe(&quot;测试组&quot;, () &#x3D;&gt; &amp;#123; 	it(&quot;async 测试&quot;, () &#x3D;&gt; &amp;#123; 		expect.assertions(1
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-05 11:13" pubdate>
-              2022-05-05
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
-          字符串算法题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%A2%98/" target="_self">
-          
-          操作字符串   charAt() 返回索引位置字符   charCodeAt()返回索引位置字符 UTF16 代码    concat() 拼接   indexOf(), lastIndexOf() 返回索引   includes() 返回 Boolean   match() 匹配正则   replace() 替换   split() 分割字符串   slice() 截取返回新字符串，以索引
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/HTTP/" target="_self">
+        <div>
+          HTTP（HyperText Transfer Protocol，超文本传输协议HTTP 是基于 TCP&#x2F;IP 协议的应用层协议，用于客户端和服务器之间的通信  链路层，网络层，传输层，应用层  HTTP 报文组成部分 请求报文    请求行 Request Method,Request URL   请求头 包含若干属性，key:value 值   空行   请求体   响应报文    状态行 R
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -459,11 +401,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/tags/http/">#http</a>
             
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
           </div>
         
@@ -477,17 +417,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/%E5%A0%86/" target="_self">
-          堆及相关算法
+        <a href="/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/" target="_self">
+          网络分层模型
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E5%A0%86/" target="_self">
-          
-          二叉堆 堆就是完全二叉树 完全二叉树：除了深度最深的一层外所有层节点数都满员 深度：从根节点到该节点经历的节点个数   每一个节点都比左右子节点大–&gt;最大堆，最大值在根节点  每一个节点都比左右子节点小–&gt;最小堆，最小值在根节点  完全二叉树可以使用数组来存储   建立堆 将节点与父节点比较  &#x2F;&#x2F;小顶堆 function buildHeap(items,heapSize)&amp;#123;
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/" target="_self">
+        <div>
+          OSI 参考模型OSI参考模型（OSI&#x2F;RM）的全称是开放系统互连参考模型（Open System Interconnection Reference Model，OSI&#x2F;RM），它是由国际标准化组织（International Standard Organization，ISO）提出的一个网络系统互连模型。  在这个 OSI 七层模型中，每一层都为其上一层提供服务和访问接口  不同主机之间的相同
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -503,9 +443,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+              <a href="/tags/http/">#http</a>
             
           </div>
         
@@ -519,17 +457,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/topK/" target="_self">
-          topK问题
+        <a href="/2022/02/24/%E9%93%BE%E8%A1%A8/" target="_self">
+          链表
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/topK/" target="_self">
-          
-          最大&#x2F;小的 K 个数，第 K 个最大&#x2F;最小值 局部冒泡！！输出结果无序 function bubbleSort(arr, k) &amp;#123;   for (let i &#x3D; 0; i &lt; k; i++) &amp;#123;     &#x2F;&#x2F; 冒泡执行k次     for (let j &#x3D; arr.length - 1; j &gt; i; j--) &amp;#123;       if (arr[j] &amp;lt
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E9%93%BE%E8%A1%A8/" target="_self">
+        <div>
+          特性   数组需要申请连续的内存空间，链表可以使用“零散的”内存空间   头尾操作时间复杂度O(1)   随机访问时间复杂度O(n)  结构   零散的内存块称为结点   记录下一个结点地址的指针叫做后继指针next   headNode   tailNode.next &#x3D; null  种类   单链表  循环链表   tailNode.next &#x3D; headNode   适合处理环状结构的数据
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -545,11 +483,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/javascript/">#javascript</a>
             
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
             
           </div>
         
@@ -563,24 +503,24 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/31/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
-          javascript性能优化
+        <a href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          HTML面试题
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/03/31/js%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
-          
-          内存管理js 的内存管理是自动的 let obj1 &#x3D; &amp;#123;&amp;#125;; &#x2F;&#x2F; 申请空间  obj1.name &#x3D; &quot;mmm&quot;; &#x2F;&#x2F; 使用空间  obj1 &#x3D; null; &#x2F;&#x2F; 释放  内存问题   内存泄漏   内存膨胀   频繁垃圾回收  分离 DOM   页面上不装载的 DOM   垃圾对象引用的 DOM   活动对象引用的 DOM  垃圾回收不是可达对象就被
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          HTML5 新特性移除 纯表现的元素&#x2F;可以用css实现的元素：basefont，big，center，font, s，strike  对可用性产生负面影响的元素：frame,frameset  语意化更好的标签，比如header,nav,section,article,footer,aside  增强了input类型:color,date,datetime-local,range,tel,sear
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-31 10:56" pubdate>
-              2022-03-31
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
             </time>
           </div>
         
@@ -589,9 +529,93 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
-              <a href="/tags/js/">js</a>
+              <a href="/tags/HTML/">#HTML</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/react_rookie/" target="_self">
+          react-beginner
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/react_rookie/" target="_self">
+        <div>
+          React 构建用户页面的 javascript 库，并不是完整的 MVC 框架  IntroReact.createElementJSX 元素只是调用 React.createElement(component, props, ...children) 的语法糖 ReactDOM.render(element, container[, callback)在提供的 container 里渲染一个
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+              <a href="/tags/react/">#react</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/" target="_self">
+          js面试题集
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/" target="_self">
+        <div>
+          执行顺序  setTimeout(function () &amp;#123; 	console.log(&quot;setTimeout&quot;); &amp;#125;);  new Promise(function (resolve) &amp;#123; 	console.log(&quot;promishe&quot;); &amp;#125;).then(function () &amp;#123; 	consol
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+              <a href="/tags/javascript/">#javascript</a>
             
           </div>
         
@@ -603,7 +627,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
@@ -636,66 +660,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -714,64 +741,48 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://api.eatrice.top/movies',
-        headers: {},
-        dataType: 'json',
-        success: function(result) {
-          var text;
-          if (result) {
-            var keys = 'Content'.split(',');
-            if (result instanceof Array) {
-              result = result[0];
-            }
-            for (const k of keys) {
-              var value = result[k];
-              if (typeof value === 'string') {
-                text = value;
-                break;
-              } else if (value instanceof Object) {
-                result = value;
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://api.eatrice.top/movies',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'Content'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
               }
             }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://api.eatrice.top/movies:', error);
+            }
+            typing(text);
           }
-          text ? typing(text) : typing(title);
-        },
-        error: function() {
-          typing(title);
-        }
-      })
+        })
       
     })(window, document);
   </script>
@@ -781,18 +792,30 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

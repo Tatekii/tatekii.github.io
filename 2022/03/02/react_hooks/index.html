@@ -18,19 +18,22 @@
   <meta name="author" content="tatekii">
   <meta name="keywords" content="">
   
-    <meta name="description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
+    <meta name="description" content="HooksWhy Hooks   Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；    Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Hooks">
 <meta property="og:url" content="http://yoursite.com/2022/03/02/react_hooks/index.html">
 <meta property="og:site_name" content="不知名的笔记本">
-<meta property="og:description" content="HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用">
+<meta property="og:description" content="HooksWhy Hooks   Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；    Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-02T05:23:15.131Z">
-<meta property="article:modified_time" content="2022-05-31T04:30:53.421Z">
+<meta property="article:modified_time" content="2022-07-12T06:20:36.053Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>React Hooks - 不知名的笔记本</title>
@@ -38,25 +41,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -65,21 +62,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -149,6 +165,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -161,65 +178,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="React Hooks">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-02 13:23" pubdate>
-        2022年3月2日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.4k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      37 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="React Hooks"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-02 13:23" pubdate>
+          2022年3月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -228,25 +259,33 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">React Hooks</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月31日 下午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年7月12日 下午
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <h1 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h1><h2 id="Why-Hooks"><a href="#Why-Hooks" class="headerlink" title="Why Hooks"></a>Why Hooks</h2><ul>
-<li><p>Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；</p>
+<li><p>  Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；</p>
 </li>
-<li><p>Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；</p>
+<li><p>  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；</p>
 </li>
 <li><p>副作用代码不用分散到各种生命周期中；</p>
 <blockquote>
@@ -260,7 +299,7 @@
 <li>Hooks 只能在函数和其他 Hook 中使用</li>
 </ol>
 <h2 id="常用-Hooks"><a href="#常用-Hooks" class="headerlink" title="常用 Hooks"></a>常用 Hooks</h2><h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a><code>useState</code></h3><p>定义状态和改变状态的函数</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [currentValue,setNewValue] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(initState)
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [currentValue,setNewValue] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(initState)
 
 <span class="hljs-comment">// 改变状态</span>
 <span class="hljs-title function_">setNewValue</span>(newValue)
@@ -278,23 +317,23 @@
 <li>合成事件和生命周期中的<code>setState</code>是异步的</li>
 <li>原生事件和<code>setTimeout</code>中的<code>setState</code>是同步的</li>
 <li>使用<code>setState</code>的<code>callback</code>总能拿到最新的值</li>
-<li>setState自带批处理优化，多次调用只会执行最新的一次</li>
+<li>setState 自带批处理优化，多次调用只会执行最新的一次</li>
 </ol>
 <blockquote>
 <p>合成事件</p>
-<p>React对原生DOM事件都做了代理，且事件都是绑定到app根节点上，<br>通过事件冒泡时的 <code>srcElement</code>查找到目标节点上的事件标识，再去合成事件库中寻找相应的回调。</p>
+<p>React 对原生 DOM 事件都做了代理，且事件都是绑定到 app 根节点上，<br>通过事件冒泡时的 <code>srcElement</code>查找到目标节点上的事件标识，再去合成事件库中寻找相应的回调。</p>
 </blockquote>
-<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a><code>useContext</code></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyContext</span> = <span class="hljs-title function_">createContext</span>()
+<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a><code>useContext</code></h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyContext</span> = <span class="hljs-title function_">createContext</span>()
 
 &lt;<span class="hljs-title class_">Mycontext</span>.<span class="hljs-property">Provider</span> value=&#123;<span class="hljs-number">666</span>&#125;&gt;
-	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> /&gt;</span></span>  
+	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> /&gt;</span></span>
 &lt;/<span class="hljs-title class_">Mycontext</span>.<span class="hljs-property">Provider</span>&gt;
 
 <span class="hljs-comment">//...MyContext</span>
 <span class="hljs-keyword">const</span> &#123;value&#125; = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">MyContext</span>)</code></pre></div>
 
 <h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a><code>useEffect</code></h3><p>定义副作用</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-comment">// 副作用操作</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> &#123;
 		<span class="hljs-comment">// 在组件销毁和effect重新执行之前执行</span>
@@ -325,19 +364,19 @@
 <li><code>useLayoutEffect</code>能实现和<code>👆</code>一样的效果</li>
 </ol>
 <h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a><code>useCallback</code></h3><p>缓存函数实例</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;
-<span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">handleIncrement</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>)
-<span class="hljs-comment">// 默认每次重新渲染组件，都会创建新的handleElement函数</span>
-<span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleIncrement&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
-<span class="hljs-comment">// ⚠️同时由于创建了新函数，会导致接收函数的组件也重新渲染</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) &#123;
+	<span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">const</span> <span class="hljs-title function_">handleIncrement</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>);
+	<span class="hljs-comment">// 默认每次重新渲染组件，都会创建新的handleElement函数</span>
+	<span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;handleIncrement&#125;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+	<span class="hljs-comment">// ⚠️同时由于创建了新函数，会导致接收函数的组件也重新渲染</span>
 
-<span class="hljs-keyword">const</span> handleIncrement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>),[count])
-<span class="hljs-comment">// 将count加入这个callback的依赖数组，只有当count改变时才创建新的函数，创建新的闭包并更新组件</span>
+	<span class="hljs-keyword">const</span> handleIncrement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setCount</span>(count + <span class="hljs-number">1</span>), [count]);
+	<span class="hljs-comment">// 将count加入这个callback的依赖数组，只有当count改变时才创建新的函数，创建新的闭包并更新组件</span>
 &#125;</code></pre></div>
 
 <h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a><code>useMemo</code></h3><p>缓存计算结果</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果某个数据是通过其它数据计算得到的，那么只有当用到的数据，也就是依赖的数据发生变化的时候，才应该需要重新计算,进而也可以避免不必要的渲染</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 如果某个数据是通过其它数据计算得到的，那么只有当用到的数据，也就是依赖的数据发生变化的时候，才应该需要重新计算,进而也可以避免不必要的渲染</span>
 <span class="hljs-keyword">const</span> usersToShow = <span class="hljs-title function_">useMemo</span>(<span class="hljs-function">() =&gt;</span> &#123;
   <span class="hljs-keyword">if</span>(!users) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
   <span class="hljs-keyword">return</span> users.<span class="hljs-property">data</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">user</span>) =&gt;</span> &#123;
@@ -354,7 +393,9 @@
 </blockquote>
 <h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a><code>useRef</code></h3><p>保存的数据发生变化不会触发重新渲染</p>
 <ol>
-<li>存储跨组建的数据<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
+<li>存储跨组建的数据</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>);
 <span class="hljs-comment">//  一个存活在活动组件中的定时器</span>
 <span class="hljs-keyword">const</span> startTimer = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	timer.<span class="hljs-property">current</span> = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;
@@ -364,13 +405,16 @@
 <span class="hljs-keyword">const</span> stopTimer = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> &#123;
 	<span class="hljs-title function_">cleatInterval</span>(timer.<span class="hljs-property">current</span>);
 	timer.<span class="hljs-property">current</span> = <span class="hljs-literal">null</span>;
-&#125;, []);
-</code></pre></div></li>
-<li>存储DOM引用<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xxxRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
-<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;xxxRef&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span></span>;</code></pre></div></li>
+&#125;, []);</code></pre></div>
+
+<ol start="2">
+<li>存储 DOM 引用</li>
 </ol>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> xxxRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;xxxRef&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span></span>;</code></pre></div>
+
 <h3 id="useContext-1"><a href="#useContext-1" class="headerlink" title="useContext"></a><code>useContext</code></h3><p>使用 provide 的 context</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> text1 = &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> text1 = &#123;
   <span class="hljs-attr">p1</span>:<span class="hljs-string">&#x27;请输入&#x27;</span>
 &#125;
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">SomeContext</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>(text1)
@@ -383,14 +427,14 @@
 &lt;/<span class="hljs-title class_">SomeContext</span>&gt;
 </code></pre></div>
 
-<h3 id="路由Hooks"><a href="#路由Hooks" class="headerlink" title="路由Hooks"></a>路由Hooks</h3><ul>
-<li><code>useHistory</code></li>
-<li><code>useLocation</code></li>
-<li><code>useRouteMatch</code></li>
-<li><code>useParams</code></li>
+<h3 id="路由-Hooks"><a href="#路由-Hooks" class="headerlink" title="路由 Hooks"></a>路由 Hooks</h3><ul>
+<li>  <code>useHistory</code></li>
+<li>  <code>useLocation</code></li>
+<li>  <code>useRouteMatch</code></li>
+<li>  <code>useParams</code></li>
 </ul>
 <h2 id="校验-Hooks"><a href="#校验-Hooks" class="headerlink" title="校验 Hooks"></a>校验 Hooks</h2><p>通过 eslint 插件<code>eslint-plugin-react-hooks</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">&#123;<span class="hljs-comment">//eslint config</span>
+<div class="code-wrapper"><pre><code class="hljs javascript">&#123;<span class="hljs-comment">//eslint config</span>
 ...
 <span class="hljs-string">&quot;rules&quot;</span>:&#123;
   <span class="hljs-string">&quot;react-hooks/rules-of-hooks&quot;</span>:<span class="hljs-string">&quot;error&quot;</span>,
@@ -401,15 +445,15 @@
 &#125;</code></pre></div>
 
 <h2 id="自定义-Hooks"><a href="#自定义-Hooks" class="headerlink" title="自定义 Hooks"></a>自定义 Hooks</h2><blockquote>
-<p> 命名约定以<code>use</code>开头；</p>
+<p>命名约定以<code>use</code>开头；</p>
 </blockquote>
 <blockquote>
-<p> 在函数内使用到了其他 Hooks</p>
+<p>在函数内使用到了其他 Hooks</p>
 </blockquote>
 <ul>
 <li>  获取异步请求结果</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useAsyncReq</span> = (<span class="hljs-params">reqFunc</span>) =&gt; &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useAsyncReq</span> = (<span class="hljs-params">reqFunc</span>) =&gt; &#123;
 	<span class="hljs-keyword">const</span> [data, setData] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);
 	<span class="hljs-keyword">const</span> [isLoading, setLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
 	<span class="hljs-keyword">const</span> [error, setError] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);
@@ -430,16 +474,15 @@
 			.<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> &#123;
 				<span class="hljs-title function_">setLoading</span>(<span class="hljs-literal">false</span>);
 			&#125;);
-      
 	&#125;, [reqFunc]);
 
 	<span class="hljs-keyword">export</span> &#123; execute, isLoading, data, error &#125;;
 &#125;;</code></pre></div>
 
-
 <ul>
-<li><p>监听页面滚动</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">getPosition</span> = (<span class="hljs-params"></span>)  =&gt; &#123;
+<li>  <code>useScroll</code></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">getPosition</span> = (<span class="hljs-params"></span>)  =&gt; &#123;
   <span class="hljs-attr">x</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">scrollLeft</span>,
   <span class="hljs-attr">y</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">scrollTop</span>
 &#125;
@@ -458,48 +501,128 @@
 
   <span class="hljs-keyword">return</span> position
 &#125;
-</code></pre></div></li>
-<li><p>input hook</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useInput</span> = (<span class="hljs-params">initValue</span>) =&gt; &#123;
-	<span class="hljs-keyword">const</span> [value,setValue] = <span class="hljs-title function_">useState</span>(initValue) 
+</code></pre></div>
+
+<ul>
+<li>  <code>useInput</code></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useInput</span> = (<span class="hljs-params">initValue</span>) =&gt; &#123;
+	<span class="hljs-keyword">const</span> [value,setValue] = <span class="hljs-title function_">useState</span>(initValue)
 	<span class="hljs-keyword">return</span> &#123;
 		value,
 		<span class="hljs-attr">onChange</span>:<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span><span class="hljs-title function_">setValue</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)
 	&#125;
 &#125;
 <span class="hljs-keyword">const</span> nameInput = <span class="hljs-title function_">useInput</span>(<span class="hljs-string">&#x27;&#x27;</span>)
-&lt;input &#123;...nameInput&#125; placeholder=<span class="hljs-string">&quot;please input username&quot;</span>&gt;&lt;/input&gt;</code></pre></div></li>
-</ul>
+&lt;input &#123;...nameInput&#125; placeholder=<span class="hljs-string">&quot;please input username&quot;</span>&gt;&lt;/input&gt;</code></pre></div>
 
+<ul>
+<li>  <code>useLatest</code></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> useLatest = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> &#123;
+	<span class="hljs-keyword">const</span> refed = useRef&lt;T&gt;(value);
+	refed.<span class="hljs-property">current</span> = value;
+	<span class="hljs-keyword">return</span> refed;
+&#125;;</code></pre></div>
+
+<ul>
+<li>  <code>useCreated</code></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">/**  比较依赖数组是否变化 */</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">isDepChange</span> = (<span class="hljs-params">oldDeps:DependencyList, newDeps:DependencyList</span>) =&gt; &#123;
+	<span class="hljs-keyword">if</span> (oldDeps === newDeps) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; oldDeps.<span class="hljs-property">length</span>; i++) &#123;
+		<span class="hljs-keyword">if</span> ((!<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(oldDeps[i]), newDeps[i])) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;;
+<span class="hljs-keyword">const</span> useCreated = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">func:()=&gt;T,deps:DependencyList</span>) =&gt;</span> &#123;
+
+	<span class="hljs-keyword">const</span> &#123; current &#125; = <span class="hljs-title function_">useRef</span>(&#123;
+		deps,
+		obj : <span class="hljs-literal">undefined</span> <span class="hljs-keyword">as</span> <span class="hljs-literal">undefined</span> | T,
+		<span class="hljs-attr">initialized</span>:<span class="hljs-literal">false</span>
+	&#125;)
+
+	<span class="hljs-keyword">if</span>(current.<span class="hljs-property">initialized</span> === <span class="hljs-literal">false</span> || <span class="hljs-title function_">isDepChange</span>(current.<span class="hljs-property">deps</span>,deps))&#123;
+		current.<span class="hljs-property">deps</span> = deps
+		current.<span class="hljs-property">obj</span> = <span class="hljs-title function_">func</span>()
+		current.<span class="hljs-property">initialized</span> = <span class="hljs-literal">true</span>
+	&#125;
+
+	<span class="hljs-keyword">return</span> current.<span class="hljs-property">obj</span> <span class="hljs-keyword">as</span> T
+&#125;;</code></pre></div>
+
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/react/">react</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/react/">#react</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>React Hooks</div>
+      <div>http://yoursite.com/2022/03/02/react_hooks/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/">
+                      <a href="/2022/03/10/%5B%E6%BA%90%E7%A0%81%5Dvue2-router/" title="vue-router@3.x实现分析">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vue-router@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
@@ -509,7 +632,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/HTTP/">
+                      <a href="/2022/02/24/HTTP/" title="HTTP协议">
                         <span class="hidden-mobile">HTTP协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -521,12 +644,8 @@
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -537,7 +656,9 @@
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -548,25 +669,56 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -591,66 +743,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -669,50 +824,18 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -722,18 +845,161 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

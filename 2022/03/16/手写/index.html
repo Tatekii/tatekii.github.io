@@ -33,30 +33,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>手写系列 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -65,21 +62,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -149,6 +165,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -161,65 +178,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="手写系列">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-16 14:45" pubdate>
-        2022年3月16日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      10k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      84 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="手写系列"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-16 14:45" pubdate>
+          2022年3月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          84 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -228,22 +259,30 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">手写系列</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月31日 早上
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年5月31日 早上
+                  
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="事件中心-EventCenter"><a href="#事件中心-EventCenter" class="headerlink" title="事件中心 EventCenter"></a>事件中心 EventCenter</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">EventCenter</span> &#123;
+              
+              <h2 id="事件中心-EventCenter"><a href="#事件中心-EventCenter" class="headerlink" title="事件中心 EventCenter"></a>事件中心 EventCenter</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">EventCenter</span> &#123;
 	<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;
 		<span class="hljs-variable language_">this</span>.<span class="hljs-property">events</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 	&#125;
@@ -307,7 +346,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <li>如果执行结果是对象则返回这个结果</li>
 <li>否则返回<code>this</code></li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isObj</span> = obj =&gt; obj !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">&#x27;object&#x27;</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isObj</span> = obj =&gt; obj !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">&#x27;object&#x27;</span>
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">_new</span>(<span class="hljs-params">_constructor,...args</span>)&#123;
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> _constructor !== <span class="hljs-string">&quot;function&quot;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&quot;constructor must new a function&quot;</span>);
@@ -317,7 +356,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 &#125;
 </code></pre></div>
 
-<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a><code>Object.create</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property">_create</span> = <span class="hljs-function">(<span class="hljs-params">proto, propertiesObject</span>) =&gt;</span> &#123;
+<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a><code>Object.create</code></h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property">_create</span> = <span class="hljs-function">(<span class="hljs-params">proto, propertiesObject</span>) =&gt;</span> &#123;
 	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> proto !== <span class="hljs-string">&quot;function&quot;</span> || <span class="hljs-keyword">typeof</span> proto !== <span class="hljs-string">&quot;object&quot;</span>) &#123;
 		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&quot;instance can only be object or function&quot;</span>);
 	&#125;
@@ -334,7 +373,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 &#125;;</code></pre></div>
 
 <h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a><code>instanceof</code></h2><p>检测右侧的原型是否在左侧的原型链上游，但它不能检测<code>null</code> 和 <code>undefined</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">_instanceof</span>(<span class="hljs-params">L, R</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">_instanceof</span>(<span class="hljs-params">L, R</span>) &#123;
 	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> L !== <span class="hljs-string">&quot;object&quot;</span> || !L) &#123;
 		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&quot;need object data&quot;</span>);
 	&#125;
@@ -351,7 +390,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <li>  将高频调用函数更改为固定时间不再调用才执行回调</li>
 <li>  输入框联想，提交按钮</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> callback 回调</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> wait 间隔时间</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">boolean</span>&#125; immediate 立即执行？</span>
@@ -378,7 +417,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <li>  将高频调用函数更改为固定间隔执行回调</li>
 <li>  窗口滚动，窗口缩放</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> callback 回调</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@param</span> wait 间隔时间</span>
 <span class="hljs-comment"> */</span>
@@ -417,7 +456,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 &#125;</code></pre></div>
 
 <h2 id="重试函数"><a href="#重试函数" class="headerlink" title="重试函数"></a>重试函数</h2><p>实现一个重试函数，按一定间隔不断尝试执行一个 promise</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">retry</span>(<span class="hljs-params">callback, wait, limit</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">retry</span>(<span class="hljs-params">callback, wait, limit</span>) &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">function</span> <span class="hljs-title function_">attempt</span>(<span class="hljs-params"></span>) &#123;
 			<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-title function_">callback</span>())
@@ -455,7 +494,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <span class="hljs-comment">// reach maximum retry times</span></code></pre></div>
 
 <h2 id="并发线程池"><a href="#并发线程池" class="headerlink" title="并发线程池"></a>并发线程池</h2><p>同时执行几个函数（or 不同参数的同一个函数</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> *  <span class="hljs-doctag">@params</span> limit 并行限制</span>
 <span class="hljs-comment"> *  <span class="hljs-doctag">@params</span> args 回调参数数组</span>
 <span class="hljs-comment"> *  <span class="hljs-doctag">@params</span> func 函数</span>
@@ -489,7 +528,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <li>  浅拷贝<code>Object.assign/&#123;...originObj&#125;</code>面对引用类型只拷贝了指针</li>
 <li>  <code>JSON.parse(JSON.stringify(originObj))</code>面对<em>函数</em>和<em>Symbol</em>会报错</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isObj</span> = (<span class="hljs-params">o</span>) =&gt; <span class="hljs-number">0</span> !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> o === <span class="hljs-string">&quot;object&quot;</span>;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isObj</span> = (<span class="hljs-params">o</span>) =&gt; <span class="hljs-number">0</span> !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> o === <span class="hljs-string">&quot;object&quot;</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">source, cache = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>()</span>) &#123;
 	<span class="hljs-comment">// cache处理循环引用</span>
 	<span class="hljs-keyword">if</span> (!<span class="hljs-title function_">isObj</span>(source) || cache.<span class="hljs-title function_">has</span>(source)) <span class="hljs-keyword">return</span> source;
@@ -505,7 +544,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	<span class="hljs-keyword">return</span> newObj;
 &#125;</code></pre></div>
 
-<h2 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property">_assign</span> = <span class="hljs-function">(<span class="hljs-params">target, ...properties</span>) =&gt;</span> &#123;
+<h2 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property">_assign</span> = <span class="hljs-function">(<span class="hljs-params">target, ...properties</span>) =&gt;</span> &#123;
 	<span class="hljs-keyword">if</span> (target === <span class="hljs-literal">null</span> || <span class="hljs-keyword">typeof</span> target !== <span class="hljs-string">&quot;object&quot;</span>) &#123;
 		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">&quot;can only assign an object&quot;</span>);
 	&#125;
@@ -519,10 +558,10 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	&#125;, target);
 &#125;;</code></pre></div>
 
-<h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">_typeof</span> = (<span class="hljs-params">o</span>) =&gt; <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">call</span>(o).<span class="hljs-title function_">slice</span>(<span class="hljs-number">8</span>, -<span class="hljs-number">1</span>).<span class="hljs-title function_">toLowerCase</span>();</code></pre></div>
+<h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">_typeof</span> = (<span class="hljs-params">o</span>) =&gt; <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">call</span>(o).<span class="hljs-title function_">slice</span>(<span class="hljs-number">8</span>, -<span class="hljs-number">1</span>).<span class="hljs-title function_">toLowerCase</span>();</code></pre></div>
 
 <h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call/apply/bind"></a>call/apply/bind</h2><p>非严格模式下，则 <code>context</code> 指定为 <code>null</code> 或 <code>undefined</code> 时会自动替换为指向全局对象，原始值会被包装。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_call</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context, ...args</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Function</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_call</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">context, ...args</span>) &#123;
 	<span class="hljs-keyword">const</span> func = <span class="hljs-variable language_">this</span>;
 	context = context || <span class="hljs-variable language_">window</span>;
 	<span class="hljs-keyword">const</span> caller = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&quot;caller&quot;</span>);
@@ -552,7 +591,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	<span class="hljs-keyword">return</span> boundFn;
 &#125;;</code></pre></div>
 
-<h2 id="实现一个迭代器"><a href="#实现一个迭代器" class="headerlink" title="实现一个迭代器"></a>实现一个迭代器</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createIterator</span>(<span class="hljs-params">arrayLike</span>) &#123;
+<h2 id="实现一个迭代器"><a href="#实现一个迭代器" class="headerlink" title="实现一个迭代器"></a>实现一个迭代器</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createIterator</span>(<span class="hljs-params">arrayLike</span>) &#123;
 	<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">return</span> &#123;
 		<span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) &#123;
@@ -568,7 +607,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 &#125;</code></pre></div>
 
 <h2 id="封装-ajax"><a href="#封装-ajax" class="headerlink" title="封装 ajax"></a>封装 ajax</h2><p>使用 promise 封装 ajax,<code>async javascript xml</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">request</span> = (<span class="hljs-params">method, url, params = &#123;&#125;</span>) =&gt; &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">request</span> = (<span class="hljs-params">method, url, params = &#123;&#125;</span>) =&gt; &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
 		xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
@@ -600,14 +639,14 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	&#125;);
 &#125;;</code></pre></div>
 
-<h2 id="sleep-函数"><a href="#sleep-函数" class="headerlink" title="sleep 函数"></a>sleep 函数</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-params">wait</span>) &#123;
+<h2 id="sleep-函数"><a href="#sleep-函数" class="headerlink" title="sleep 函数"></a>sleep 函数</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-params">wait</span>) &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> &#123;
 		<span class="hljs-built_in">setTimeout</span>(resolve, wait);
 	&#125;);
 &#125;</code></pre></div>
 
 <h2 id="fill-方法"><a href="#fill-方法" class="headerlink" title="fill 方法"></a>fill 方法</h2><p>如果 start 是个负数, 则开始索引会被自动计算成为 length+start, 其中 length 是 this 对象的 length 属性值。如果 end 是个负数, 则结束索引会被自动计算成为 length+end。</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_fill</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">value, startIndex, endIndex</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_fill</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">value, startIndex, endIndex</span>) &#123;
 	<span class="hljs-keyword">let</span> i = startIndex &gt;= <span class="hljs-number">0</span> ? startIndex : startIndex + <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>;
 	endIndex = endIndex &gt;= <span class="hljs-number">0</span> ? endIndex : endIndex + <span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">while</span> (i &lt; endIndex) &#123;
@@ -616,7 +655,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
 &#125;;</code></pre></div>
 
-<h2 id="LRU-缓存"><a href="#LRU-缓存" class="headerlink" title="LRU 缓存"></a>LRU 缓存</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">LRU</span>(<span class="hljs-params">capacity</span>) &#123;
+<h2 id="LRU-缓存"><a href="#LRU-缓存" class="headerlink" title="LRU 缓存"></a>LRU 缓存</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">LRU</span>(<span class="hljs-params">capacity</span>) &#123;
 	<span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span> = capacity;
 	<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 &#125;
@@ -648,7 +687,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 	&#125;
 &#125;;</code></pre></div>
 
-<h2 id="co-自执行-generator-函数"><a href="#co-自执行-generator-函数" class="headerlink" title="co 自执行 generator 函数"></a>co 自执行 generator 函数</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">co</span>(<span class="hljs-params">generator</span>) &#123;
+<h2 id="co-自执行-generator-函数"><a href="#co-自执行-generator-函数" class="headerlink" title="co 自执行 generator 函数"></a>co 自执行 generator 函数</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">co</span>(<span class="hljs-params">generator</span>) &#123;
 	<span class="hljs-keyword">const</span> gen = <span class="hljs-title function_">generator</span>();
 	<span class="hljs-keyword">let</span> ret;
 	<span class="hljs-keyword">try</span> &#123;
@@ -683,35 +722,74 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 
 <span class="hljs-title function_">co</span>(gen1).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v)); <span class="hljs-comment">// 1</span></code></pre></div>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>手写系列</div>
+      <div>http://yoursite.com/2022/03/16/手写/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月16日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/22/%5B%E6%BA%90%E7%A0%81%5Dvue3-router/">
+                      <a href="/2022/03/22/%5B%E6%BA%90%E7%A0%81%5Dvue3-router/" title="vue-router@4.x实现分析">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vue-router@4.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
@@ -721,7 +799,7 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/">
+                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/" title="vuex@3.x实现分析">
                         <span class="hidden-mobile">vuex@3.x实现分析</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -733,12 +811,8 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -749,7 +823,9 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -760,25 +836,56 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -803,66 +910,69 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -881,50 +991,18 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -934,18 +1012,161 @@ event.<span class="hljs-title function_">fire</span>(<span class="hljs-string">&
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -27,15 +27,21 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +50,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -128,6 +153,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -140,29 +166,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -177,17 +209,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" target="_self">
-          地址中输入URL回车后发生了什么
+        <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
+          前端性能优化
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" target="_self">
-          
-          步骤【DNS解析】 查找浏览器DNS缓存 查找系统HOST文件 DNS查询 主机和本地域名服务器之间使用递归查询，本地域名服务器要负责一直到查询得出结果 本地域名服务器和其他服务器之间的使用迭代查询，域名服务器会告诉本地服务器下一次去询问谁，防止单台域名服务器压力过大     DNS请求使用UDP协议，如果请求失败则使用TCP重试  1. 本地DNS服务器查找自己缓存 2. 本地DNS服务器向【根
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" target="_self">
+        <div>
+          【打包时间】 缩小loader的作用范围include,exclude 缩小模块搜索范围module.exports &#x3D; &amp;#123;   &#x2F;&#x2F;...   resolve: &amp;#123;     modules: [path.resolve(__dirname, &amp;#x27;src&amp;#x27;), &amp;#x27;node_modules&amp;#x27;], &#x2F;&#x2F; 搜索位置     extensions:
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -203,7 +235,337 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/" target="_self">
+          es6~now新特性
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/" target="_self">
+        <div>
+          Javascript &#x3D; Web Api + ECMAScript   ES2015 后都使用年份做版本  【let &#x2F; const】 都用于声明变量 不存在变量提升，暂时性死区 不能重复声明 块级作用域 []  let 可以重新赋值const 声明时需赋值 只读不可改变（对于复杂变量，可以修改变量内容，变量内存地址未改变）  【解构赋值】只有可遍历（具备遍历器[Symbol.Iterator]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+              <a href="/tags/ES6/">#ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" target="_self">
+          js运行机制
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" target="_self">
+        <div>
+          ref:javascript 运行机制 EventLoop JS 的单线程JavaScript 的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。这决定了它只能是单线程,保证执行任务的有序并避开复杂的同步问题。 EventLoop js 是单线程运行的 浏览器是多线程的  在代码执行的时候，通过将不同函数的执行上下文压入执行栈中来保证代码
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/29/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" target="_self">
+          函数式编程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/29/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" target="_self">
+        <div>
+          函数式编程   对数据之间的运算过程进行抽象   “函数”是数学中的“函数”a &#x3D; sin(30)，是一种映射关系   相同的输入一定会得到相同的输出（副作用）  函数是一等公民   函数可以存储在变量中   函数可以作为参数 （高阶函数）   函数可以作为返回值 （高阶函数）   高阶函数 &#x3D;&gt; 抽象通用问题，屏蔽实现的细节  闭包closureJUMP To:闭包 纯函数pf   不修改
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-29 14:22" pubdate>
+              2022-03-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+          二叉树
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+        <div>
+          树型结构   节点不能闭环    只有一个根节点    除了根节点，每个节点有且只有一个父节点    深度：节点到根节点的最长路径经过节点个数    高度：节点到叶节点最长路径经过节点个数    树的高度：根节点到叶节点的最长路径经过节点个数   二叉树最多只有两个子节点的树结构 二叉树是 n 个有限元素的集合，该集合或者为空、或者由一个称为根（root）的元素及两个不相交的、被分别称为左子树和右
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" target="_self">
+          web安全
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" target="_self">
+        <div>
+          同源策略定义 两个URl !同协议 !同域名 !同端口 同源策略限制了同一个源加载的脚本和文档如何与其他源的资源进行交互，包括js脚本，缓存的读取，cookie，ajax等 三种标签不受同源限制script link img  跨域的方法 代理服务器nginx,各种devServer  document.domain 前提是两个页面主要域相同 &amp;#x27;someWebSite.com&#x2F;dir1&#x2F;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/" target="_self">
+          前端涉及到的数据存储
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E5%89%8D%E7%AB%AF%E5%AD%98%E5%82%A8/" target="_self">
+        <div>
+          LocalStorage[h5 web storage] 不会过期  数据大小5MB  同源共享同一份localStorage  只能为string类型,注意需要JSON转换   SessionStorage[h5 web storage] 会话期间可用（即只要浏览器处于打开状态，包括页面重新加载和恢复）  数据大小5MB  不跨窗口共享,就算同一url的多个tab各自独立   Cookie 手动
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" target="_self">
+          vue组件之间通信方式
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" target="_self">
+        <div>
+          ref和$refs   ref挂载在普通 HTML 组件上访问它得到 DOM    ref挂载在 VUE 组件上访问它得到组件实例   &lt;base-input ref&#x3D;&quot;usernameInput&quot;&gt;&lt;base-input&gt;&lt;&#x2F;base-input&gt;&lt;&#x2F;base-input&gt;  this.$refs.usernameInput
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+            
+              <a href="/tags/vue/">#vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" target="_self">
+          地址中输入URL回车后发生了什么
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" target="_self">
+        <div>
+          步骤【DNS解析】 查找浏览器DNS缓存 查找系统HOST文件 DNS查询 主机和本地域名服务器之间使用递归查询，本地域名服务器要负责一直到查询得出结果 本地域名服务器和其他服务器之间的使用迭代查询，域名服务器会告诉本地服务器下一次去询问谁，防止单台域名服务器压力过大     DNS请求使用UDP协议，如果请求失败则使用TCP重试  1. 本地DNS服务器查找自己缓存 2. 本地DNS服务器向【根
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-24 20:43" pubdate>
+              2022-02-24
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
           </div>
         
@@ -222,12 +584,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/04/graphql%E6%96%B0%E6%89%8B%E5%8C%85/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/04/graphql%E6%96%B0%E6%89%8B%E5%8C%85/" target="_self">
+        <div>
           GraphQlGraphQL是一个旨在简化前端和后端之间通信的规范。它主要由服务端的 schema 语言和客户端的查询语言组成。【_查询语法和 schema 语法几乎是相等的_】。 gql的 api 需要完整描述期望返回的数据，相对于RestFul API减少了数据的冗余。修改一下官网的示例： &#x2F;&#x2F; 描述你的数据 &#x2F;&#x2F; 定义了一个名为Project的对象类型，该类型上有三个字段，并且字段拥有不同的
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -243,343 +605,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/javascript/">#javascript</a>
             
-              <a href="/tags/graphql/">graphql</a>
+              <a href="/tags/graphql/">#graphql</a>
             
-              <a href="/tags/apollo/">apollo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%A2%98/" target="_self">
-          面向对象题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%A2%98/" target="_self">
-          
-          打车时可以打专车或快车。任何车都有车牌号和名称。快车每公里1元，专车每公里2元。行程开始时，显示车辆信息。行程结束时，显示打车金额。行程距离为5公里。  class Car&amp;#123;   constructor(licence,name)&amp;#123;     this.licence &#x3D; licence     this.name &#x3D; name   &amp;#125; &amp;#125; class Fa
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/" target="_self">
-          浏览器缓存策略
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/" target="_self">
-          
-          强缓存浏览器在本地验证资源是否过期，如果没过期直接使用本地缓存，并返回200和显示(from memory cache &#x2F; from disk cache)(根据内存空闲情况和资源类型，并且memory cache页面关闭后会清理，下次加载是从disk cache) 强缓存字段Expires  http 1.0  时间戳格式Expires: Wed, 22 Oct 2018 08:41:00 GM
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/09/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
-          js设计模式
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/09/js%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
-          
-          javascript设计模式 张容铭 创建性设计模式 安全模式创建实例时，为了保证被new关键字正确调用，可在构造函数中加入对this指向的判断。 const Factory &#x3D; function(...args)&amp;#123;   if(this instanceof Factory)&amp;#123;     ...     return new this(args)   &amp;#125;else&amp;#12
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-09 17:50" pubdate>
-              2021-09-09
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/js/">js</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E9%98%9F%E5%88%97/" target="_self">
-          队列及算法题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E9%98%9F%E5%88%97/" target="_self">
-          
-          队列结构，先进先出 用数组实现-顺序队列 function ArrayQueue(len)&amp;#123;   this.items &#x3D; new Array(len)   this.n &#x3D; len   this.head &#x3D; 0   this.tail &#x3D; 0 &amp;#125; ArrayQueue.prototype.enqueue &#x3D; function(item)&amp;#123;   if(this.ta
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/" target="_self">
-          js模块化
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/" target="_self">
-          
-          模块化的演进过程   文件划分 命名空间 (将每个模块暴露在全局对象 IIFE 立即执行函数   模块化开发的思想模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。 CommonJS (Node.js) 运行在服务端  代码同步加载  代码可以多次加载，但是运行结果会被缓存  require(&#39;xxx&#39;)
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/svg%E5%9B%BE%E6%A0%87%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6/" target="_self">
-          svg图标封装组件
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/svg%E5%9B%BE%E6%A0%87%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6/" target="_self">
-          
-          VUE项目中将svg图标封装为组件,后续拷贝进svg文件直接使用  icon组件&lt;template&gt;   &lt;svg :class&#x3D;&quot;svgClass&quot; aria-hidden&#x3D;&quot;true&quot;     &#x2F;&#x2F; &#x2F;* aria-hidden&#x3D;&quot;true&quot;将元素从可访问树上移除 *&#x2F;    v-on&#x3D;&quot;$listene
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/mvcmvpmvvm/" target="_self">
-          MVC/MVP/MVVM
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/mvcmvpmvvm/" target="_self">
-          
-          MVCModel-View-ControllerView-&gt;Controller-&gt;Model ^                     | |                     v &lt;---------------------&lt;  View可以访问Model,不可避免的会包含一些业务逻辑，导致特定View依赖特定Model 视图的更新逻辑由View自己完成 Vie
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/flex%E5%B8%83%E5%B1%80/" target="_self">
-          flex布局
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/flex%E5%B8%83%E5%B1%80/" target="_self">
-          
-          ref:阮一峰的网络日志 容器的属性 flex-direction 主轴的方向   row(默认住) | row-reverse 横向排列 column | column-reverse纵向排列   flex-wrap 换行  nowrap不换行 wrap换行 wrap-reverse逆序换行   flex-flow(上述两种的简写)  justify-content 主轴上的对齐方式  flex
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/css/">css</a>
+              <a href="/tags/apollo/">#apollo</a>
             
           </div>
         
@@ -591,7 +621,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span>
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
@@ -624,66 +654,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -702,64 +735,48 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://api.eatrice.top/movies',
-        headers: {},
-        dataType: 'json',
-        success: function(result) {
-          var text;
-          if (result) {
-            var keys = 'Content'.split(',');
-            if (result instanceof Array) {
-              result = result[0];
-            }
-            for (const k of keys) {
-              var value = result[k];
-              if (typeof value === 'string') {
-                text = value;
-                break;
-              } else if (value instanceof Object) {
-                result = value;
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://api.eatrice.top/movies',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'Content'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
               }
             }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://api.eatrice.top/movies:', error);
+            }
+            typing(text);
           }
-          text ? typing(text) : typing(title);
-        },
-        error: function() {
-          typing(title);
-        }
-      })
+        })
       
     })(window, document);
   </script>
@@ -769,18 +786,30 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -33,30 +33,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>js运行机制 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -65,21 +62,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -149,6 +165,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -161,65 +178,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="js运行机制">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      6.9k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      58 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="js运行机制"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -228,21 +259,29 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">js运行机制</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年3月30日 下午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年3月30日 下午
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/10714ad38f9a">ref:javascript 运行机制 EventLoop</a></p>
 <h2 id="JS-的单线程"><a href="#JS-的单线程" class="headerlink" title="JS 的单线程"></a>JS 的单线程</h2><p>JavaScript 的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。这决定了它只能是单线程,保证执行任务的有序并避开复杂的同步问题。</p>
 <h2 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h2><ul>
@@ -279,18 +318,18 @@
 <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><ol>
 <li><p>```javascript<br> // 1<br> console.log(“script start”); // 1</p>
 <p> setTimeout(function () {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;setTimeout&quot;); // 4
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;setTimeout&quot;); // 4
 </code></pre></div>
 <p> }, 0);</p>
 <p> Promise.resolve()</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> .then(function () &#123;
+<div class="code-wrapper"><pre><code class="hljs"> .then(function () &#123;
      console.log(&quot;promise1&quot;); //2
  &#125;)
  .then(function () &#123;
      console.log(&quot;promise2&quot;); //3
  &#125;);
 </code></pre></div>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-comment">// 2</span></span>
 <span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">//1</span></span>
@@ -330,7 +369,7 @@
 <span class="language-javascript">    	&#125;); <span class="hljs-comment">//12</span></span>
 <span class="language-javascript">    &#125;);</span></code></pre></div></li>
 <li><p>```javascript<br> // 3<br> async function async1() {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(1); //1
+<div class="code-wrapper"><pre><code class="hljs"> console.log(1); //1
  new Promise(() =&gt; &#123;
      console.log(2); //2
  &#125;);
@@ -341,16 +380,16 @@
 </code></pre></div>
 <p> }</p>
 <p> Promise.resolve().then(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(4); //5
+<div class="code-wrapper"><pre><code class="hljs"> console.log(4); //5
 </code></pre></div>
 <p> });</p>
 <p> setTimeout(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(5); //7
+<div class="code-wrapper"><pre><code class="hljs"> console.log(5); //7
 </code></pre></div>
 <p> });</p>
 <p> async1();</p>
 <p> console.log(6); //4</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span>
 <span class="language-javascript">    	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;定时器开始啦&quot;</span>);</span>
@@ -372,20 +411,20 @@
 <span class="language-javascript">    <span class="hljs-comment">// 执行then函数啦</span></span>
 <span class="language-javascript">    <span class="hljs-comment">// 定时器开始啦</span></span></code></pre></div></li>
 <li><p>```javascript<br> setTimeout(function () {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;setTimeout&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;setTimeout&quot;);
 </code></pre></div>
 <p> });</p>
 <p> new Promise(function (resolve) {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;promise&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;promise&quot;);
  resolve();
 </code></pre></div>
 <p> }).then(function () {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;then&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;then&quot;);
 </code></pre></div>
 <p> });</p>
 <p> console.log(“console”);</p>
 <p> // promise<br> // console<br> // then<br> // setTimeout</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1&quot;</span>);</span>
 <span class="language-javascript"></span>
@@ -424,14 +463,14 @@
 <span class="language-javascript">    	&#125;);</span>
 <span class="language-javascript">    &#125;);</span></code></pre></div></li>
 <li><p>```javascript<br> setTimeout(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(1);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(1);
 </code></pre></div>
 <p> }, 0);<br> Promise.resolve().then(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(2);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(2);
 </code></pre></div>
 <p> });<br> console.log(3);</p>
 <p> // 3 2<br> // 1</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span>
 <span class="language-javascript">    	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>);</span>
@@ -451,21 +490,21 @@
 <span class="language-javascript">    <span class="hljs-comment">// 2 5 3 4</span></span>
 <span class="language-javascript">    <span class="hljs-comment">// 1</span></span></code></pre></div></li>
 <li><p>```javascript<br> let a = new Promise((resolve) =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(2);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(2);
  resolve();
 </code></pre></div>
 <p> }).then(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(5);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(5);
 </code></pre></div>
 <p> });<br> a.then(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(3);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(3);
 </code></pre></div>
 <p> });<br> a.then(() =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(4);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(4);
 </code></pre></div>
 <p> });</p>
 <p> // 2 5 3 4</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span>
 <span class="language-javascript">    	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;promise1&quot;</span>);</span>
@@ -490,11 +529,11 @@
 <span class="language-javascript"></span>
 <span class="language-javascript">    <span class="hljs-comment">// promise1,then11,promise2,then21,then12,then23</span></span></code></pre></div></li>
 <li><p>```javascript<br> new Promise((resolve, reject) =&gt; {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;promise1&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;promise1&quot;);
  resolve();
 </code></pre></div>
 <p> })</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> .then(() =&gt; &#123;
+<div class="code-wrapper"><pre><code class="hljs"> .then(() =&gt; &#123;
      console.log(&quot;then11&quot;);
      return new Promise((resolve, reject) =&gt; &#123;
          console.log(&quot;promise2&quot;);
@@ -512,7 +551,7 @@
  &#125;);
 </code></pre></div>
 <p> // promise1 then11  promise2 then21 then12  then23</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;</span>
 <span class="language-javascript">    	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;promise1&quot;</span>);</span>
@@ -543,31 +582,31 @@
 <span class="language-javascript"></span>
 <span class="language-javascript">    <span class="hljs-comment">//promise1 promise3 then11 promise2 then31 then21 then12 then23</span></span></code></pre></div></li>
 <li><p>```javascript<br> async function async1() {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;async1 start&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;async1 start&quot;);
  await async2();
  console.log(&quot;async1 end&quot;);
 </code></pre></div>
 <p> }</p>
 <p> async function async2() {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;async2&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;async2&quot;);
 </code></pre></div>
 <p> }</p>
 <p> console.log(“script start”);</p>
 <p> setTimeout(function () {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;settimeout&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;settimeout&quot;);
 </code></pre></div>
 <p> }, 0);</p>
 <p> async1();</p>
 <p> new Promise(function (resolve) {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;promise1&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;promise1&quot;);
  resolve();
 </code></pre></div>
 <p> }).then(function () {</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> console.log(&quot;promise2&quot;);
+<div class="code-wrapper"><pre><code class="hljs"> console.log(&quot;promise2&quot;);
 </code></pre></div>
 <p> });<br> console.log(“script end”);</p>
 <p> // script start,async1 start,async2,promise1,script end,async1 end,promise2<br> // settimeout</p>
- <div class="hljs code-wrapper"><pre><code class="hljs coffeescript">
+ <div class="code-wrapper"><pre><code class="hljs coffeescript">
 <span class="hljs-number">1.</span>  ```<span class="language-javascript">javascript</span>
 <span class="language-javascript">    <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">async1</span>(<span class="hljs-params"></span>) &#123;</span>
 <span class="language-javascript">    	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;async1 start&quot;</span>); <span class="hljs-comment">// 2</span></span>
@@ -608,35 +647,74 @@
 <span class="language-javascript">    <span class="hljs-comment">//sttimeout,setImmediate</span></span></code></pre></div></li>
 </ol>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>js运行机制</div>
+      <div>http://yoursite.com/2022/02/24/js事件循环/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/js%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                      <a href="/2022/02/24/js%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="js数据类型的判断与转换">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">js数据类型的判断与转换</span>
                         <span class="visible-mobile">上一篇</span>
@@ -646,7 +724,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                      <a href="/2022/02/24/js%E6%A8%A1%E5%9D%97%E5%8C%96/" title="js模块化">
                         <span class="hidden-mobile">js模块化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -658,12 +736,8 @@
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -674,7 +748,9 @@
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -685,25 +761,56 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -728,66 +835,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -806,50 +916,18 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -859,18 +937,161 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

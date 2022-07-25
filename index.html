@@ -27,15 +27,21 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +50,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -128,6 +153,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -140,29 +166,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -177,59 +209,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
-          HTML面试题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
-          
-          HTML5 新特性移除 纯表现的元素&#x2F;可以用css实现的元素：basefont，big，center，font, s，strike  对可用性产生负面影响的元素：frame,frameset  语意化更好的标签，比如header,nav,section,article,footer,aside  增强了input类型:color,date,datetime-local,range,tel,sear
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/HTML/">HTML</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/04/06/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" target="_self">
           前端工程化
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/04/06/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" target="_self">
-          
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/04/06/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" target="_self">
+        <div>
           工程化流程graph LR A(创建项目)  --&gt; B(编码) --&gt; C(开发&#x2F;预览) --&gt; D(提交) --&gt; F(部署)   脚手架生成  --&gt; 代码格式化&#x2F;风格校验 --&gt; 热更新&#x2F;Mock数据 --&gt; GitHooks --&gt; CI&#x2F;CD  脚手架脚手架结构 制定 cli 入口文件  &#x2F;&#x2F; package.json &amp;#123;
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -245,13 +235,274 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/javascript/">#javascript</a>
             
-              <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">工程化</a>
+              <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">#工程化</a>
             
-              <a href="/tags/cli/">cli</a>
+              <a href="/tags/cli/">#cli</a>
             
           </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/14/docker/" target="_self">
+          docker
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/14/docker/" target="_self">
+        <div>
+          docker与容器化container容器是将操作系统层虚拟化，虚拟机则是虚拟化硬件，因此容器更具有便携性、高效地利用服务器。容器更多的用于表示 软件的一个标准化单元。由于容器的标准化，因此它可以无视基础设施（Infrastructure）的差异，部署到任何一个地方。  分离 变更管理，日志记录 写时复制  homebrew安装 brew install docker --cask # --cas
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-14 10:26" pubdate>
+              2022-07-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker/">#docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
+          自动化测试
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/05/05/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" target="_self">
+        <div>
+          自动化测试电脑代替你做回归测试 测试分类静态测试在编写代码逻辑阶段时进行报错提示    typescript   eslint  Unit Test单元测试&#x2F;**   example *&#x2F; describe(&quot;测试组&quot;, () &#x3D;&gt; &amp;#123; 	it(&quot;async 测试&quot;, () &#x3D;&gt; &amp;#123; 		expect.assertions(1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-05 11:13" pubdate>
+              2022-05-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B5%8B%E8%AF%95/">#测试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/14/redis/" target="_self">
+          redis
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/14/redis/" target="_self">
+        <div>
+          Redis概念遵循BSD协议的高性能key-value(松散型)数据库 特性：  持久化 多数据结构set,hashMap... 事务原子性 数据备份  应用场景：  高速缓存 计数&amp;消息系统（高并发，发布&#x2F;订阅阻塞） 分布式会话session&amp;分布式锁（商城秒杀）  🚀docker镜像 # docker-compose.yml version: &quot;3&quot; se
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-14 10:01" pubdate>
+              2022-07-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/14/mongodb/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/14/mongodb/" target="_self">
+        <div>
+          title: NoSQl&amp;MongoDBtags:   mongodb 数据库   NoSQL非关系型数据库  易拓展，高性能，高复用 key-value 无事务特性要求ACID（原子性，一致性，隔离性，持久型）  docker安装 NoSQL设计内嵌设计关联数据用数组存储 &amp;#123;   &quot;username&quot;: &quot;Mark&quot;,   &quot;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-14 11:02" pubdate>
+              2022-07-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/13/git/" target="_self">
+          Git版本控制
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/13/git/" target="_self">
+        <div>
+          Git 各区域命令工作区 git clone git init git add git pull git push git fetchfetch到FETCH_HEAD git checkout git log git reflog本地所有变更(checkout,reset^HEAD)的日志 git config&#x2F;status git status  版本库stage git reset git c
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-13 10:31" pubdate>
+              2022-07-13
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/git/">#git</a>
+            
+              <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">#工程化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/12/Koa/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/12/Koa/" target="_self">
+        <div>
+          路由压缩koa-combine-routers静态资源koa-static
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-12 18:06" pubdate>
+              2022-07-12
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/07/12/%E6%95%8F%E6%8D%B7/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/12/%E6%95%8F%E6%8D%B7/" target="_self">
+        <div>
+          敏捷：快速响应变化敏捷开发： 最小可行化产品 快速迭代，增量开发 简短会议，频繁沟通，多次反馈，调整确认
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-07-12 17:31" pubdate>
+              2022-07-12
+            </time>
+          </div>
+        
+        
         
       </div>
     </article>
@@ -268,12 +519,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/03/02/react_hooks/" target="_self">
-          
-          HooksWhy Hooks Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；  Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook 中使用
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/02/react_hooks/" target="_self">
+        <div>
+          HooksWhy Hooks   Class 组件的复用不能直接继承，往往需要无页面逻辑的高阶组件；    Hooks 使函数式组件获得类组件能力，拥有自己的状态和响应式；  副作用代码不用分散到各种生命周期中；  除了转为视图的代码都是副作用代码    usage Hooks 只能在组件顶层作用域使用 必须保证所有 Hooks 都能被执行到并且按顺序执行 Hooks 只能在函数和其他 Hook
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -289,9 +540,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/javascript/">#javascript</a>
             
-              <a href="/tags/react/">react</a>
+              <a href="/tags/react/">#react</a>
             
           </div>
         
@@ -305,17 +556,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/react_rookie/" target="_self">
-          react-beginner
+        <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          CSS面试题
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/24/react_rookie/" target="_self">
-          
-          React 构建用户页面的 javascript 库，并不是完整的 MVC 框架  IntroReact.createElementJSX 元素只是调用 React.createElement(component, props, ...children) 的语法糖 ReactDOM.render(element, container[, callback)在提供的 container 里渲染一个
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          CSS选择器 *【0】  类选择器class【10】  id选择器【100】  标签选择器tag【1】  组合   a,b&amp;#123;a or b&amp;#125;  a b&amp;#123;b是a的后代节点&amp;#125; a+b&amp;#123;b是a的兄弟下一个节点&amp;#125; a&gt;b&amp;#123;b是a的直接子节点&amp;#125; a~b&amp;#123;b是a之后的任意兄弟节点&amp;#125;  属性选择器，子串值选择
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -331,263 +582,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/javascript/">javascript</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
             
-              <a href="/tags/react/">react</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/" target="_self">
-          js面试题集
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/js%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86/" target="_self">
-          
-          执行顺序  setTimeout(function () &amp;#123; 	console.log(&quot;setTimeout&quot;); &amp;#125;);  new Promise(function (resolve) &amp;#123; 	console.log(&quot;promishe&quot;); &amp;#125;).then(function () &amp;#123; 	consol
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_self">
-          面向对象
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_self">
-          
-          ref:https:&#x2F;&#x2F;github.com&#x2F;CyC2018 面向对象的设计思想面向对象的设计思想是从自然界中来的，因为在自然界中就存在类（Class）和实例（Instance）的概念。    Class 是一种抽象概念，比如我们定义的 Class——Student ，是指学生这个概念，    而实例（Instance）则是一个个具体的 Student ，比如， Michael 和 Bob 是两个
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85/" target="_self">
-          作用域链与闭包
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E4%B8%8E%E9%97%AD%E5%8C%85/" target="_self">
-          
-          作用域与作用域链作用域：变量可以起作用的范围 全局作用域 变量在函数外的当前global顶层声明  全局变量：在任何地方都可以访问到的变量，关闭网页或浏览器才会销毁。顶层  听过var声明的全局变量会直接挂载在Global对象上，let和const则不会，但他们效果是相同的。     函数作用域（局部作用域） 变量在函数内声明  局部变量：只在固定的代码片段内可访问到的变量,在函数开始执行时创建，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/js%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          js数据类型的判断与转换
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/js%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          
-          ECAMScript 中不能自定义数据类型，只能为下列 7 种简单数据类型（原始类型） String  Number  NaNtypeof NaN &#x3D;&#x3D;&#x3D; &amp;#x27;number&amp;#x27; 唯一一个自相反的值 NaN !&#x3D;&#x3D; NaN   Boolean  在条件判断时，除了 undefined， null， false， NaN， &#39;&#39;， 0， -0，其他所有值都转为 true
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/24/diff%E7%AE%97%E6%B3%95/" target="_self">
-          diff算法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/24/diff%E7%AE%97%E6%B3%95/" target="_self">
-          
-          概念 diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除 采用同级比较  基础的diff 新节点没有子节点-&gt;删除全部旧的子节点 新节点只有一个子节点-&gt;删除旧的并添加新的  核心diff 新旧节点都有多个子节点时，新旧子节点间的diffoldChildrenNode :[a,x,c
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-24 20:43" pubdate>
-              2022-02-24
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-              <a href="/tags/vue/">vue</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/" target="_self">
-          vuex@3.x实现分析
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/" target="_self">
-          
-          初始化阶段安装 Vuex在组件beforeCreate的钩子中将 vuex 的Store实例挂载在实例this.$store上； function vuexInit() &amp;#123; 	const options &#x3D; this.$options; 	&#x2F;&#x2F; store injection 	if (options.store) &amp;#123; 		this.$store &#x3D; typeof option
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-14 11:02" pubdate>
-              2022-03-14
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-              <a href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-            
-              <a href="/tags/vue/">vue</a>
-            
-              <a href="/tags/vuex/">vuex</a>
+              <a href="/tags/CSS/">#CSS</a>
             
           </div>
         
@@ -599,7 +596,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
@@ -632,66 +629,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -710,64 +710,48 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://api.eatrice.top/movies',
-        headers: {},
-        dataType: 'json',
-        success: function(result) {
-          var text;
-          if (result) {
-            var keys = 'Content'.split(',');
-            if (result instanceof Array) {
-              result = result[0];
-            }
-            for (const k of keys) {
-              var value = result[k];
-              if (typeof value === 'string') {
-                text = value;
-                break;
-              } else if (value instanceof Object) {
-                result = value;
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://api.eatrice.top/movies',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'Content'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
               }
             }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://api.eatrice.top/movies:', error);
+            }
+            typing(text);
           }
-          text ? typing(text) : typing(title);
-        },
-        error: function() {
-          typing(title);
-        }
-      })
+        })
       
     })(window, document);
   </script>
@@ -777,18 +761,30 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

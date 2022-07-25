@@ -34,30 +34,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>字符串算法题 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -66,21 +63,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -150,6 +166,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -162,65 +179,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="字符串算法题">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      8.5k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      71 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="字符串算法题"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -229,21 +260,29 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">字符串算法题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月24日 上午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年5月24日 上午
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <h2 id="操作字符串"><a href="#操作字符串" class="headerlink" title="操作字符串"></a>操作字符串</h2><ul>
 <li>  <code>charAt()</code> 返回索引位置字符</li>
 <li>  <code>charCodeAt()</code>返回索引位置字符 UTF16 代码</li>
@@ -259,7 +298,7 @@
 <li>  <code>trim()</code> //删除空格</li>
 <li>  <code>toLowerCase(), toUpperCase()</code></li>
 </ul>
-<h3 id="最长公公前缀"><a href="#最长公公前缀" class="headerlink" title="最长公公前缀"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-prefix/">最长公公前缀</a></h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span>
+<h3 id="最长公公前缀"><a href="#最长公公前缀" class="headerlink" title="最长公公前缀"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-prefix/">最长公公前缀</a></h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span>
 <span class="hljs-comment">// 输出: &quot;fl&quot;</span>
 
 <span class="hljs-keyword">var</span> longestCommonPrefix = <span class="hljs-keyword">function</span> (<span class="hljs-params">strs</span>) &#123;
@@ -276,16 +315,16 @@
 	<span class="hljs-keyword">return</span> prefix;
 &#125;;</code></pre></div>
 
-<h3 id="连字符转为驼峰"><a href="#连字符转为驼峰" class="headerlink" title="连字符转为驼峰"></a>连字符转为驼峰</h3><div class="hljs code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">toCamelCase</span> = (<span class="hljs-params">str: <span class="hljs-built_in">string</span></span>) =&gt; str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/-\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toUpperCase</span>());</code></pre></div>
+<h3 id="连字符转为驼峰"><a href="#连字符转为驼峰" class="headerlink" title="连字符转为驼峰"></a>连字符转为驼峰</h3><div class="code-wrapper"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">toCamelCase</span> = (<span class="hljs-params">str: <span class="hljs-built_in">string</span></span>) =&gt; str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/-\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toUpperCase</span>());</code></pre></div>
 
-<h3 id="将字符串改为首字母大写"><a href="#将字符串改为首字母大写" class="headerlink" title="将字符串改为首字母大写"></a>将字符串改为首字母大写</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// -i-hate -_you_</span>
+<h3 id="将字符串改为首字母大写"><a href="#将字符串改为首字母大写" class="headerlink" title="将字符串改为首字母大写"></a>将字符串改为首字母大写</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// -i-hate -_you_</span>
 <span class="hljs-comment">// \b匹配单词边界</span>
 <span class="hljs-comment">// 加上判断是否会有下划线</span>
 <span class="hljs-comment">// \w 字母、数字、下划线</span>
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">firstUpper</span> = (<span class="hljs-params">str: string</span>) =&gt; str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\b_?\w/g</span>, <span class="hljs-function">(<span class="hljs-params">$</span>) =&gt;</span> $.<span class="hljs-title function_">toUpperCase</span>());</code></pre></div>
 
-<h3 id="反转句子"><a href="#反转句子" class="headerlink" title="反转句子"></a>反转句子</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  正则</span>
+<h3 id="反转句子"><a href="#反转句子" class="headerlink" title="反转句子"></a>反转句子</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//  正则</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseWords</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-keyword">return</span> str.<span class="hljs-title function_">trim</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot; &quot;</span>).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>);
 	<span class="hljs-comment">// \s \s是指空白,包括空格、换行、tab缩进等所有的空白</span>
@@ -319,7 +358,7 @@
 	<span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot; &quot;</span>);
 &#125;</code></pre></div>
 
-<h3 id="检查回文"><a href="#检查回文" class="headerlink" title="检查回文"></a>检查回文</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseCheck</span>(<span class="hljs-params">str</span>) &#123;
+<h3 id="检查回文"><a href="#检查回文" class="headerlink" title="检查回文"></a>检查回文</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseCheck</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-keyword">let</span> s = str.<span class="hljs-title function_">toLowerCase</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[\W_]/g</span>, <span class="hljs-string">&quot;&quot;</span>);
 	<span class="hljs-comment">// 格式掉不是字母的别的玩意</span>
 	<span class="hljs-comment">// | `\W`   | 匹配任意不是字母，数字，下划线 |</span>
@@ -339,7 +378,7 @@
 	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 &#125;</code></pre></div>
 
-<h3 id="最长不重复子串长度"><a href="#最长不重复子串长度" class="headerlink" title="最长不重复子串长度"></a>最长不重复子串长度</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 滑动窗口</span>
+<h3 id="最长不重复子串长度"><a href="#最长不重复子串长度" class="headerlink" title="最长不重复子串长度"></a>最长不重复子串长度</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 滑动窗口</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">longest1</span>(<span class="hljs-params">str</span>) &#123;
 	<span class="hljs-keyword">const</span> <span class="hljs-variable language_">window</span> = [];
 	<span class="hljs-keyword">let</span> maxLen = <span class="hljs-number">0</span>;
@@ -391,7 +430,7 @@
 	&#125;
 &#125;</code></pre></div>
 
-<h3 id="计算二进制数中-1-的个数"><a href="#计算二进制数中-1-的个数" class="headerlink" title="计算二进制数中 1 的个数"></a>计算二进制数中 1 的个数</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// n 为32位二进制数</span>
+<h3 id="计算二进制数中-1-的个数"><a href="#计算二进制数中-1-的个数" class="headerlink" title="计算二进制数中 1 的个数"></a>计算二进制数中 1 的个数</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// n 为32位二进制数</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">hammingWeight1</span>(<span class="hljs-params">n</span>) &#123;
 	<span class="hljs-keyword">const</span> numStr = n.<span class="hljs-title function_">toString</span>(<span class="hljs-number">2</span>);
 	<span class="hljs-comment">// 转为二进制后记数</span>
@@ -436,12 +475,12 @@
 	<span class="hljs-keyword">return</span> showTimes;
 &#125;</code></pre></div>
 
-<h3 id="请实现一个函数用来判断字符串是否表示数值（包括整数和小数）"><a href="#请实现一个函数用来判断字符串是否表示数值（包括整数和小数）" class="headerlink" title="请实现一个函数用来判断字符串是否表示数值（包括整数和小数）"></a>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numberCheck</span>(<span class="hljs-params">s</span>) &#123;
+<h3 id="请实现一个函数用来判断字符串是否表示数值（包括整数和小数）"><a href="#请实现一个函数用来判断字符串是否表示数值（包括整数和小数）" class="headerlink" title="请实现一个函数用来判断字符串是否表示数值（包括整数和小数）"></a>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numberCheck</span>(<span class="hljs-params">s</span>) &#123;
 	<span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^\s$/</span>.<span class="hljs-title function_">test</span>(s)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(s).<span class="hljs-title function_">toString</span>() !== <span class="hljs-string">&quot;NaN&quot;</span>;
 &#125;</code></pre></div>
 
-<h3 id="千分位加逗号"><a href="#千分位加逗号" class="headerlink" title="千分位加逗号"></a>千分位加逗号</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numFormat</span>(<span class="hljs-params">num</span>) &#123;
+<h3 id="千分位加逗号"><a href="#千分位加逗号" class="headerlink" title="千分位加逗号"></a>千分位加逗号</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">numFormat</span>(<span class="hljs-params">num</span>) &#123;
 	<span class="hljs-keyword">var</span> res = num.<span class="hljs-title function_">toString</span>().<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\d+/</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;
 		<span class="hljs-comment">// 整数部分</span>
 		<span class="hljs-keyword">return</span> n.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\d(?=(\d&#123;3&#125;)+$)/g</span>, <span class="hljs-function">(<span class="hljs-params">$<span class="hljs-number">1</span></span>) =&gt;</span> $<span class="hljs-number">1</span> + <span class="hljs-string">&quot;,&quot;</span>);
@@ -452,7 +491,7 @@
 <span class="hljs-comment">// or</span>
 <span class="hljs-title class_">Number</span>.<span class="hljs-title function_">toLocaleString</span>();</code></pre></div>
 
-<h3 id="解析-URL-参数"><a href="#解析-URL-参数" class="headerlink" title="解析 URL 参数"></a>解析 URL 参数</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">parseQueryString</span>(<span class="hljs-params">url</span>) &#123;
+<h3 id="解析-URL-参数"><a href="#解析-URL-参数" class="headerlink" title="解析 URL 参数"></a>解析 URL 参数</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">parseQueryString</span>(<span class="hljs-params">url</span>) &#123;
 	<span class="hljs-keyword">const</span> rule = <span class="hljs-regexp">/([^?=&amp;]+)=([^&amp;#]*)/g</span>;
 	<span class="hljs-keyword">return</span> url.<span class="hljs-property">match</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
 		<span class="hljs-keyword">const</span> [key, value] = b.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;=&quot;</span>);
@@ -463,7 +502,7 @@
 	&#125;, &#123;&#125;);
 &#125;</code></pre></div>
 
-<h3 id="字符串相加-大数相加"><a href="#字符串相加-大数相加" class="headerlink" title="字符串相加/大数相加"></a>字符串相加/大数相加</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringAdd</span>(<span class="hljs-params">num1, num2</span>) &#123;
+<h3 id="字符串相加-大数相加"><a href="#字符串相加-大数相加" class="headerlink" title="字符串相加/大数相加"></a>字符串相加/大数相加</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringAdd</span>(<span class="hljs-params">num1, num2</span>) &#123;
 	<span class="hljs-keyword">let</span> l1 = num1.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">let</span> l2 = num2.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">let</span> res = <span class="hljs-string">&quot;&quot;</span>;
@@ -481,7 +520,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 
-<h3 id="字符串相乘-大数相乘"><a href="#字符串相乘-大数相乘" class="headerlink" title="字符串相乘/大数相乘"></a>字符串相乘/大数相乘</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringMulti</span>(<span class="hljs-params">x, y</span>) &#123;
+<h3 id="字符串相乘-大数相乘"><a href="#字符串相乘-大数相乘" class="headerlink" title="字符串相乘/大数相乘"></a>字符串相乘/大数相乘</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">stringMulti</span>(<span class="hljs-params">x, y</span>) &#123;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;0&quot;</span> || y === <span class="hljs-string">&quot;0&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
 	<span class="hljs-keyword">if</span> (x === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> y;
 	<span class="hljs-keyword">if</span> (y === <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-keyword">return</span> x;
@@ -516,7 +555,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;</code></pre></div>
 
-<h3 id="实现一个trim函数"><a href="#实现一个trim函数" class="headerlink" title="实现一个trim函数"></a>实现一个<code>trim</code>函数</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// trim 返回去除了首尾空白的字符串</span>
+<h3 id="实现一个trim函数"><a href="#实现一个trim函数" class="headerlink" title="实现一个trim函数"></a>实现一个<code>trim</code>函数</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// trim 返回去除了首尾空白的字符串</span>
 <span class="hljs-title class_">String</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_trim</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
 	<span class="hljs-comment">//1.regexp</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">&quot;&quot;</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">&quot;&quot;</span>);
@@ -549,7 +588,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div>
 
-<h3 id="实现前缀树-prefixTree"><a href="#实现前缀树-prefixTree" class="headerlink" title="实现前缀树 prefixTree"></a>实现前缀树 prefixTree</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">PrefixTree</span>(<span class="hljs-params"></span>) &#123;
+<h3 id="实现前缀树-prefixTree"><a href="#实现前缀树-prefixTree" class="headerlink" title="实现前缀树 prefixTree"></a>实现前缀树 prefixTree</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">PrefixTree</span>(<span class="hljs-params"></span>) &#123;
 	<span class="hljs-variable language_">this</span>.<span class="hljs-property">tree</span> = &#123;&#125;;
 &#125;
 <span class="hljs-title class_">PrefixTree</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">insert</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">word</span>) &#123;
@@ -580,13 +619,13 @@
 &#125;;</code></pre></div>
 
 <h3 id="自定义字符串排序"><a href="#自定义字符串排序" class="headerlink" title="自定义字符串排序"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/custom-sort-string/submissions/">自定义字符串排序</a></h3><p>将 s 字符串中的字符按照 order 字符串中的前后顺序进行排序</p>
-<div class="hljs code-wrapper"><pre><code class="hljs livecodeserver">输入: order = <span class="hljs-string">&quot;cba&quot;</span>, s = <span class="hljs-string">&quot;abcd&quot;</span>
+<div class="code-wrapper"><pre><code class="hljs livecodeserver">输入: order = <span class="hljs-string">&quot;cba&quot;</span>, s = <span class="hljs-string">&quot;abcd&quot;</span>
 输出: <span class="hljs-string">&quot;cbad&quot;</span>
 解释:
 “<span class="hljs-keyword">a</span>”、“b”、“c”是按顺序出现的，所以“<span class="hljs-keyword">a</span>”、“b”、“c”的顺序应该是“c”、“b”、“<span class="hljs-keyword">a</span>”。
 因为“d”不是按顺序出现的，所以它可以在返回的字符串中的任何位置。“dcba”、“cdba”、“cbda”也是有效的输出。</code></pre></div>
 
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> customSort = <span class="hljs-keyword">function</span> (<span class="hljs-params">order, s</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> customSort = <span class="hljs-keyword">function</span> (<span class="hljs-params">order, s</span>) &#123;
 	<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> str <span class="hljs-keyword">of</span> order) &#123;
 		<span class="hljs-comment">// Map是有序的，保证遍历map的顺序就是order的顺序,</span>
@@ -604,7 +643,7 @@
 	<span class="hljs-keyword">return</span> res;
 &#125;;</code></pre></div>
 
-<h3 id="版本号排序"><a href="#版本号排序" class="headerlink" title="版本号排序"></a>版本号排序</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 0.0.1 , 0.2.1</span>
+<h3 id="版本号排序"><a href="#版本号排序" class="headerlink" title="版本号排序"></a>版本号排序</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 0.0.1 , 0.2.1</span>
 <span class="hljs-keyword">const</span> versions = [<span class="hljs-string">&quot;9.0.1&quot;</span>, <span class="hljs-string">&quot;0.1.2&quot;</span>, <span class="hljs-string">&quot;0.3.1&quot;</span>, <span class="hljs-string">&quot;1.0.0&quot;</span>];
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">sort</span>(<span class="hljs-params">arr</span>) &#123;
@@ -621,7 +660,7 @@
 	&#125;);
 &#125;</code></pre></div>
 
-<h3 id="字母的所有组合"><a href="#字母的所有组合" class="headerlink" title="字母的所有组合"></a>字母的所有组合</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">anagrams</span> = str =&gt; &#123;
+<h3 id="字母的所有组合"><a href="#字母的所有组合" class="headerlink" title="字母的所有组合"></a>字母的所有组合</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">anagrams</span> = str =&gt; &#123;
   <span class="hljs-keyword">if</span>(str.<span class="hljs-property">length</span>===<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> [str , str[<span class="hljs-number">1</span>] + str[<span class="hljs-number">0</span>]]
   <span class="hljs-comment">// 手写长度为2时候的排列</span>
 
@@ -651,44 +690,83 @@
   <span class="hljs-string">&#x27;dbca&#x27;</span>, <span class="hljs-string">&#x27;dcab&#x27;</span>, <span class="hljs-string">&#x27;dcba&#x27;</span>
 ]</code></pre></div>
 
-<h3 id="字符串按字母排序"><a href="#字符串按字母排序" class="headerlink" title="字符串按字母排序"></a>字符串按字母排序</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">sortCharactersInString</span> = (<span class="hljs-params">str</span>) =&gt;
+<h3 id="字符串按字母排序"><a href="#字符串按字母排序" class="headerlink" title="字符串按字母排序"></a>字符串按字母排序</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">sortCharactersInString</span> = (<span class="hljs-params">str</span>) =&gt;
 	str
 		.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>)
 		.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.<span class="hljs-title function_">localeCompare</span>(b))
 		.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
 <span class="hljs-comment">// sortCharactersInString(&#x27;cabbage&#x27;) -&gt; &#x27;aabbceg&#x27;</span></code></pre></div>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>字符串算法题</div>
+      <div>http://yoursite.com/2022/02/24/字符串算法题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E5%A0%86/">
+                      <a href="/2022/02/24/%E5%A0%86/" title="堆及相关算法">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">堆及相关算法</span>
                         <span class="visible-mobile">上一篇</span>
@@ -698,7 +776,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
+                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/" title="工程化批处理">
                         <span class="hidden-mobile">工程化批处理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -710,12 +788,8 @@
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -726,7 +800,9 @@
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -737,25 +813,56 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -780,66 +887,69 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -858,50 +968,18 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -911,18 +989,161 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -35,30 +35,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>vue-router@3.x实现分析 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -67,21 +64,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -151,6 +167,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -163,65 +180,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="vue-router@3.x实现分析">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-10 23:07" pubdate>
-        2022年3月10日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      10k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      85 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue-router@3.x实现分析"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-10 23:07" pubdate>
+          2022年3月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          85 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -230,21 +261,29 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">vue-router@3.x实现分析</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月31日 早上
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年5月31日 早上
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><h3 id="hash模式"><a href="#hash模式" class="headerlink" title="hash模式"></a><code>hash</code>模式</h3><p>原理：监听<code>onHashChange</code>和修改<code>URL</code>的<code>hash</code>值<code>#xxx</code></p>
 <ul>
 <li>  不刷新页面</li>
@@ -262,7 +301,7 @@
 <h2 id="abstract模式"><a href="#abstract模式" class="headerlink" title="abstract模式"></a><code>abstract</code>模式</h2><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
 <li>  params</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> routes = [
 	<span class="hljs-comment">// 动态字段以冒号开始</span>
 	&#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/users/:id&quot;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">User</span> &#125;,
 ];</code></pre></div>
@@ -271,9 +310,9 @@
 <li>  query</li>
 </ul>
 <p>URL 地址的 query 部分</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">/users?id=<span class="hljs-number">123</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs javascript">/users?id=<span class="hljs-number">123</span></code></pre></div>
 
-<h2 id="路由钩子"><a href="#路由钩子" class="headerlink" title="路由钩子"></a>路由钩子</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span>
+<h2 id="路由钩子"><a href="#路由钩子" class="headerlink" title="路由钩子"></a>路由钩子</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 全局</span>
 router.<span class="hljs-title function_">beforeEach</span>((to,form,next)) <span class="hljs-comment">// 导航触发时</span>
 router.<span class="hljs-title function_">beforeResolve</span>((to,form,next)) <span class="hljs-comment">// 所有组件内守卫和异步路由组件被解析之后</span>
 router.<span class="hljs-title function_">afterEach</span>((to, <span class="hljs-keyword">from</span>, failure))
@@ -315,7 +354,7 @@ router.<span class="hljs-title function_">afterEach</span>((to, <span class="hlj
 <li><p>执行第【4】步中<code>next</code>回调</p>
 </li>
 </ol>
-<h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="Vue-use-安装路由"><a href="#Vue-use-安装路由" class="headerlink" title="Vue.use 安装路由"></a>Vue.use 安装路由</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">install</span>(<span class="hljs-params">Vue</span>) &#123;
+<h1 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h1><h2 id="Vue-use-安装路由"><a href="#Vue-use-安装路由" class="headerlink" title="Vue.use 安装路由"></a>Vue.use 安装路由</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">install</span>(<span class="hljs-params">Vue</span>) &#123;
 	<span class="hljs-keyword">if</span> (install.<span class="hljs-property">installed</span> &amp;&amp; _Vue === <span class="hljs-title class_">Vue</span>) <span class="hljs-keyword">return</span>;
 	install.<span class="hljs-property">installed</span> = <span class="hljs-literal">true</span>;
 
@@ -368,7 +407,7 @@ router.<span class="hljs-title function_">afterEach</span>((to, <span class="hlj
 	strats.<span class="hljs-property">beforeRouteEnter</span> = strats.<span class="hljs-property">beforeRouteLeave</span> = strats.<span class="hljs-property">beforeRouteUpdate</span> = strats.<span class="hljs-property">created</span>;
 &#125;</code></pre></div>
 
-<h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">VueRouter</span> &#123;
+<h2 id="实例化一个-router"><a href="#实例化一个-router" class="headerlink" title="实例化一个 router"></a>实例化一个 router</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">VueRouter</span> &#123;
 	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">options: RouterOptions = &#123;&#125;</span>) &#123;
 		<span class="hljs-variable language_">this</span>.<span class="hljs-property">app</span> = <span class="hljs-literal">null</span>; <span class="hljs-comment">// 根组件</span>
 		<span class="hljs-variable language_">this</span>.<span class="hljs-property">apps</span> = []; <span class="hljs-comment">// options中有router项的实例</span>
@@ -430,7 +469,7 @@ router.<span class="hljs-title function_">afterEach</span>((to, <span class="hlj
 	&#125;
 &#125;</code></pre></div>
 
-<h2 id="路径匹配"><a href="#路径匹配" class="headerlink" title="路径匹配"></a>路径匹配</h2><h3 id="createMatcher"><a href="#createMatcher" class="headerlink" title="createMatcher"></a>createMatcher</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createMatcher</span>(<span class="hljs-params">routes: <span class="hljs-built_in">Array</span>&lt;RouteConfig&gt;, router: VueRouter</span>): <span class="hljs-title class_">Matcher</span> &#123;
+<h2 id="路径匹配"><a href="#路径匹配" class="headerlink" title="路径匹配"></a>路径匹配</h2><h3 id="createMatcher"><a href="#createMatcher" class="headerlink" title="createMatcher"></a>createMatcher</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createMatcher</span>(<span class="hljs-params">routes: <span class="hljs-built_in">Array</span>&lt;RouteConfig&gt;, router: VueRouter</span>): <span class="hljs-title class_">Matcher</span> &#123;
 	<span class="hljs-comment">// 根据routes构建出path的集合pathList,</span>
 	<span class="hljs-comment">// path 到 RouteRecord的映射表pathMap</span>
 	<span class="hljs-comment">// name 到 RouteRecord的映射表nameMap</span>
@@ -548,7 +587,7 @@ router.<span class="hljs-title function_">afterEach</span>((to, <span class="hlj
 	&#125;;
 &#125;</code></pre></div>
 
-<h2 id="路径切换"><a href="#路径切换" class="headerlink" title="路径切换"></a>路径切换</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript">transitionTo (<span class="hljs-attr">location</span>: <span class="hljs-title class_">RawLocation</span>, onComplete?: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
+<h2 id="路径切换"><a href="#路径切换" class="headerlink" title="路径切换"></a>路径切换</h2><div class="code-wrapper"><pre><code class="hljs javascript">transitionTo (<span class="hljs-attr">location</span>: <span class="hljs-title class_">RawLocation</span>, onComplete?: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
   <span class="hljs-keyword">const</span> route = <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-title function_">match</span>(location, <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>)
   <span class="hljs-comment">// 根据目标 location 和当前路径 this.current 执行 this.router.match 方法去匹配到目标的路径</span>
 
@@ -574,7 +613,7 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
   &#125;)
 &#125;</code></pre></div>
 
-<h3 id="confirmTransition"><a href="#confirmTransition" class="headerlink" title="confirmTransition"></a>confirmTransition</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript">confirmTransition (<span class="hljs-attr">route</span>: <span class="hljs-title class_">Route</span>, <span class="hljs-attr">onComplete</span>: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
+<h3 id="confirmTransition"><a href="#confirmTransition" class="headerlink" title="confirmTransition"></a>confirmTransition</h3><div class="code-wrapper"><pre><code class="hljs javascript">confirmTransition (<span class="hljs-attr">route</span>: <span class="hljs-title class_">Route</span>, <span class="hljs-attr">onComplete</span>: <span class="hljs-title class_">Function</span>, onAbort?: <span class="hljs-title class_">Function</span>) &#123;
   <span class="hljs-keyword">const</span> current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">current</span>
 
   <span class="hljs-keyword">const</span> &#123;
@@ -622,7 +661,7 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
 &#125;</code></pre></div>
 
 <h2 id="lt-router-view-gt"><a href="#lt-router-view-gt" class="headerlink" title="&lt;router-view&gt;"></a><code>&lt;router-view&gt;</code></h2><p>把根 <code>Vue</code> 实例的 <code>_route</code> 属性是响应式的，在每个 <code>&lt;router-view&gt;</code>的<code>render</code> 函数的时候，都会访问 <code>parent.$route</code>，该<code>&lt;router-view&gt;</code> 就订阅了<code>router</code>的变化</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
 	<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;RouterView&quot;</span>,
 	<span class="hljs-attr">functional</span>: <span class="hljs-literal">true</span>,
 	<span class="hljs-attr">props</span>: &#123;
@@ -676,39 +715,78 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
 <li>最后更新路由实例状态</li>
 </ol>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
-                    
-                      <a class="hover-with-bg" href="/tags/vue-router/">vue-router</a>
-                    
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+        <a href="/tags/%E6%BA%90%E7%A0%81/">#源码</a>
+      
+        <a href="/tags/vue-router/">#vue-router</a>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue-router@3.x实现分析</div>
+      <div>http://yoursite.com/2022/03/10/[源码]vue2-router/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月10日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/">
+                      <a href="/2022/03/14/%5B%E6%BA%90%E7%A0%81%5Dvue2-vuex/" title="vuex@3.x实现分析">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vuex@3.x实现分析</span>
                         <span class="visible-mobile">上一篇</span>
@@ -718,7 +796,7 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/02/react_hooks/">
+                      <a href="/2022/03/02/react_hooks/" title="React Hooks">
                         <span class="hidden-mobile">React Hooks</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -730,12 +808,8 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -746,7 +820,9 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -757,25 +833,56 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -800,66 +907,69 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -878,50 +988,18 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -931,18 +1009,161 @@ updateRoute (<span class="hljs-attr">route</span>: <span class="hljs-title class
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

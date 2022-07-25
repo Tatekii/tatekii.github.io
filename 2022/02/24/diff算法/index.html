@@ -34,30 +34,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>diff算法 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -66,21 +63,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -150,6 +166,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -162,65 +179,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="diff算法">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      6.6k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      56 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="diff算法"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -229,21 +260,29 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">diff算法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月31日 上午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年5月31日 上午
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
 <li>diff算法，包含渲染器如何对各种类型的vNode的属性，text，fragment进行patch更新，以及判断是patch vNode，还是新增还是删除</li>
 <li>采用同级比较</li>
@@ -253,7 +292,7 @@
 <li>新节点只有一个子节点-&gt;删除旧的并添加新的</li>
 </ul>
 <h3 id="核心diff"><a href="#核心diff" class="headerlink" title="核心diff"></a>核心diff</h3><ul>
-<li>新旧节点都有多个子节点时，新旧子节点间的diff<div class="hljs code-wrapper"><pre><code class="hljs javascript">oldChildrenNode :[a,x,c,f]
+<li>新旧节点都有多个子节点时，新旧子节点间的diff<div class="code-wrapper"><pre><code class="hljs javascript">oldChildrenNode :[a,x,c,f]
 
 newChildrenNode :[a,c,f,r]</code></pre></div>
 <h3 id="key的作用"><a href="#key的作用" class="headerlink" title="key的作用"></a>key的作用</h3></li>
@@ -265,7 +304,7 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
 <h2 id="Vue2的双端比较"><a href="#Vue2的双端比较" class="headerlink" title="Vue2的双端比较"></a>Vue2的双端比较</h2><blockquote>
 <p>借鉴<code>snabbdom.js</code> </p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">
+<div class="code-wrapper"><pre><code class="hljs javascript">
 (oStart)               [oEnd]
  oldA   oldB   oldC    oldD
 
@@ -288,7 +327,7 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
 <li>if 找到将其真实DOM移动到<code>oStart</code>之前，并在原vnode位置置空undefined，后序比较会跳过他</li>
 <li>else 找不到则添加新增新元素<code>nStart</code>到<code>oStart</code>之前</li>
 <li>匹配结束后<code>oEnd&lt;oStart</code>,新增<code>nStart到nEnd</code>新元素到<code>oStart</code>之前</li>
-<li>匹配结束后<code>nStart&gt;nEnd</code>,删除<code>oStart到oEnd</code>之间元素<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isUndef</span> (v) &#123;
+<li>匹配结束后<code>nStart&gt;nEnd</code>,删除<code>oStart到oEnd</code>之间元素<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isUndef</span> (v) &#123;
   <span class="hljs-keyword">return</span> v === <span class="hljs-literal">undefined</span> || v === <span class="hljs-literal">null</span>
 &#125;
 
@@ -399,7 +438,7 @@ newChildrenNode :[a,c,f,r]</code></pre></div>
 <li>如果遍历完新旧或者任意一个，跳出第一轮遍历  <code>i === newChildren.length - 1）或者oldFiber.sibling === null</code><h3 id="2-第二轮"><a href="#2-第二轮" class="headerlink" title="2. 第二轮"></a>2. 第二轮</h3><h4 id="if-newChildren和oldFiber同时遍历完"><a href="#if-newChildren和oldFiber同时遍历完" class="headerlink" title="if newChildren和oldFiber同时遍历完"></a>if newChildren和oldFiber同时遍历完</h4>只需要在为第一遍遍历时标记<code>更新</code><h4 id="if-oldFiber遍历完了"><a href="#if-oldFiber遍历完了" class="headerlink" title="if oldFiber遍历完了"></a>if oldFiber遍历完了</h4>旧DOM都复用了，新children余下的都是需要新<code>插入</code>的DOM</li>
 </ul>
 <h4 id="if-newChildren遍历完了"><a href="#if-newChildren遍历完了" class="headerlink" title="if newChildren遍历完了"></a>if newChildren遍历完了</h4><p>oldFiber余下的节点都需要标记为<code>删除</code></p>
-<h4 id="if-都没遍历完，节点发生了移动"><a href="#if-都没遍历完，节点发生了移动" class="headerlink" title="if 都没遍历完，节点发生了移动"></a>if 都没遍历完，节点发生了移动</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript">oldFiber    = key1 -&gt; key2 -&gt; key3
+<h4 id="if-都没遍历完，节点发生了移动"><a href="#if-都没遍历完，节点发生了移动" class="headerlink" title="if 都没遍历完，节点发生了移动"></a>if 都没遍历完，节点发生了移动</h4><div class="code-wrapper"><pre><code class="hljs javascript">oldFiber    = key1 -&gt; key2 -&gt; key3
 
 newChildren = [key2,key3,key1]</code></pre></div>
 <blockquote>
@@ -415,7 +454,7 @@ newChildren = [key2,key3,key1]</code></pre></div>
 </ol>
 <ul>
 <li><p>排除相同的首位节点</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">[j]             [preEnd]
+<div class="code-wrapper"><pre><code class="hljs javascript">[j]             [preEnd]
  |                  |
  a   e   f  k   b   c
  |                  |
@@ -442,23 +481,23 @@ newChildren = [key2,key3,key1]</code></pre></div>
 </ul>
 </li>
 <li><p>使用剩余新children的长度建立source索引数组</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">  oldChildren = [e,f,k]
+<div class="code-wrapper"><pre><code class="hljs javascript">  oldChildren = [e,f,k]
   newChildren = [f,k,e]
   source = [-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>]
 - 为新vnode建立key，index索引表
   <span class="hljs-string">``</span><span class="hljs-string">`javascript</span>
 <span class="hljs-string">  keyIndex = &#123;f:0,k:1,e:2&#125;</span></code></pre></div></li>
 <li><p>遍历旧children中key去keyIndex中查找<code>k = keyIndex[oldChildren[i]]</code>，有这个k则把<code>source</code>数组该位置的-1改为旧vNode的索引，并且patch该节点 ;<code>k=undefined</code>则说明该节点已经被删除，而source中依旧为-1的节点为新增节点</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">source = [<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre></div></li>
+<div class="code-wrapper"><pre><code class="hljs javascript">source = [<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]</code></pre></div></li>
 <li><p>判断是否需要移动</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">source = [<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+<div class="code-wrapper"><pre><code class="hljs javascript">source = [<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
 <span class="hljs-comment">//source中，最大索引为2，2之后有小于2的索引，说明需要移动</span>
 <span class="hljs-comment">//根据source数组求出最长递增子序列</span>
 <span class="hljs-variable constant_">LIS</span> = [<span class="hljs-number">1</span>，<span class="hljs-number">2</span>]
 <span class="hljs-comment">// LIS中存储的是source索引</span>
 <span class="hljs-comment">// 表示新旧children中这几个节点位置保持递增关系</span></code></pre></div></li>
 <li><p>根据LIS得出不进行移动的节点</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">newChildren[<span class="hljs-variable constant_">LIS</span>] = [f,k]</code></pre></div></li>
+<div class="code-wrapper"><pre><code class="hljs javascript">newChildren[<span class="hljs-variable constant_">LIS</span>] = [f,k]</code></pre></div></li>
 <li><p>从LIS和新children尾处建立两个指针处理余下节点</p>
 </li>
 <li><p>比较指针的索引是是否相同，不同则移动DOM位置到上个指针的真实DOM之前</p>
@@ -471,7 +510,7 @@ newChildren = [key2,key3,key1]</code></pre></div>
 <li>子序列：不要求连续</li>
 <li>字串：要求连续</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 动态规划</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 动态规划</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">longestChildSequence</span> = arr =&gt; &#123;
   <span class="hljs-keyword">let</span> len = arr.<span class="hljs-property">length</span>
   <span class="hljs-keyword">if</span>(len &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>
@@ -526,37 +565,76 @@ newChildren = [key2,key3,key1]</code></pre></div>
   &#125;
   <span class="hljs-keyword">return</span> res.<span class="hljs-property">length</span> 
 &#125;</code></pre></div>
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>diff算法</div>
+      <div>http://yoursite.com/2022/02/24/diff算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                      <a href="/2022/02/24/css%E9%9D%A2%E8%AF%95%E9%A2%98/" title="CSS面试题">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">CSS面试题</span>
                         <span class="visible-mobile">上一篇</span>
@@ -566,8 +644,8 @@ newChildren = [key2,key3,key1]</code></pre></div>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/es6%E6%96%B0%E7%89%B9%E6%80%A7/">
-                        <span class="hidden-mobile">es6~now新特性</span>
+                      <a href="/2022/02/24/div%E9%AB%98%E5%BA%A6%E4%B8%BA%E9%AB%98%E5%BA%A6%E4%B8%80%E5%8D%8A/" title="实现自适应div高度为宽度一半">
+                        <span class="hidden-mobile">实现自适应div高度为宽度一半</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -578,12 +656,8 @@ newChildren = [key2,key3,key1]</code></pre></div>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -594,7 +668,9 @@ newChildren = [key2,key3,key1]</code></pre></div>
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -605,25 +681,56 @@ newChildren = [key2,key3,key1]</code></pre></div>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -648,66 +755,69 @@ newChildren = [key2,key3,key1]</code></pre></div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -726,50 +836,18 @@ newChildren = [key2,key3,key1]</code></pre></div>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -779,18 +857,161 @@ newChildren = [key2,key3,key1]</code></pre></div>
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

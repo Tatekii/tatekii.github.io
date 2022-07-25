@@ -32,30 +32,27 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>js数据类型的判断与转换 - 不知名的笔记本</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -64,21 +61,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -148,6 +164,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -160,65 +177,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="js数据类型的判断与转换">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      5.8k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      49 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="js数据类型的判断与转换"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -227,27 +258,35 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">js数据类型的判断与转换</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月31日 上午
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年5月31日 上午
+                  
                 
               </p>
             
             <div class="markdown-body">
+              
               <h1 id="ECAMScript-中不能自定义数据类型，只能为下列-7-种"><a href="#ECAMScript-中不能自定义数据类型，只能为下列-7-种" class="headerlink" title="ECAMScript 中不能自定义数据类型，只能为下列 7 种"></a>ECAMScript 中不能自定义数据类型，只能为下列 7 种</h1><h2 id="简单数据类型（原始类型）"><a href="#简单数据类型（原始类型）" class="headerlink" title="简单数据类型（原始类型）"></a>简单数据类型（原始类型）</h2><ul>
 <li><p><code>String</code></p>
 </li>
 <li><p><code>Number</code></p>
 <ul>
-<li><code>NaN</code><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span> === <span class="hljs-string">&#x27;number&#x27;</span>
+<li><code>NaN</code><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span> === <span class="hljs-string">&#x27;number&#x27;</span>
 唯一一个自相反的值
 <span class="hljs-title class_">NaN</span> !== <span class="hljs-title class_">NaN</span></code></pre></div></li>
 </ul>
@@ -299,12 +338,12 @@
 <li>对未声明的变量，只有对它调用<code>typeof</code>不报错，return <code>undefined</code></li>
 <li>特殊的几个</li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// &#x27;undefined&#x27;</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// &#x27;undefined&#x27;</span>
 <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Symbol</span>(); <span class="hljs-comment">// &#x27;symbol&#x27;</span>
 <span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// &#x27;object&#x27;</span>
 <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span>; <span class="hljs-comment">// number</span></code></pre></div>
 
-<h2 id="isNaN"><a href="#isNaN" class="headerlink" title="isNaN"></a><code>isNaN</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">isNaN</span>(<span class="hljs-title class_">NaN</span>));    <span class="hljs-comment">//true</span>
+<h2 id="isNaN"><a href="#isNaN" class="headerlink" title="isNaN"></a><code>isNaN</code></h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">isNaN</span>(<span class="hljs-title class_">NaN</span>));    <span class="hljs-comment">//true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">isNaN</span>(<span class="hljs-number">10</span>));     <span class="hljs-comment">//false</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">&quot;10&quot;</span>));   <span class="hljs-comment">//false</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">&quot;blue&quot;</span>)); <span class="hljs-comment">//true</span>
@@ -312,19 +351,19 @@
 </code></pre></div>
 
 <h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a><code>instanceof</code></h2><p><code>instanceof</code> 运算符用来测试一个<em>对象</em>在其原型链中是否存在一个构造函数的 <code>prototype</code> 属性，但它不能检测<code>null</code> 和 <code>undefined</code></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">[] <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span> <span class="hljs-comment">// true</span>
+<div class="code-wrapper"><pre><code class="hljs javascript">[] <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span> <span class="hljs-comment">// true</span>
 &#123;&#125; <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span> <span class="hljs-comment">// true</span>
 <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Date</span> <span class="hljs-comment">// true</span>
 <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>() <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">RegExp</span> <span class="hljs-comment">// true</span>
 <span class="hljs-literal">null</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-literal">null</span> <span class="hljs-comment">// error</span>
 <span class="hljs-literal">undefined</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-literal">undefined</span> <span class="hljs-comment">// error</span></code></pre></div>
 
-<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a><code>constructor</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> arr = [];
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a><code>constructor</code></h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> arr = [];
 <span class="hljs-keyword">const</span> obj = &#123;&#125;;
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arr.<span class="hljs-property">constructor</span>); <span class="hljs-comment">// [Function: Array]</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">constructor</span>); <span class="hljs-comment">// [Function: Object]</span></code></pre></div>
 
-<h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a><code>Object.prototype.toString.call()</code></h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(); <span class="hljs-comment">// [object Undefined]</span>
+<h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a><code>Object.prototype.toString.call()</code></h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(); <span class="hljs-comment">// [object Undefined]</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// [object String]</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// [object Number]</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">// [object Boolean]</span>
@@ -337,12 +376,12 @@
 <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(&#123;&#125;); <span class="hljs-comment">// [object Object]</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>()); <span class="hljs-comment">// [object Error]</span></code></pre></div>
 
-<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="转为数值"><a href="#转为数值" class="headerlink" title="转为数值"></a>转为数值</h2><h3 id="Number-适用于任何类型"><a href="#Number-适用于任何类型" class="headerlink" title="Number() 适用于任何类型"></a>Number() 适用于任何类型</h3><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;Hello world!&quot;</span>);  <span class="hljs-comment">// NaN</span>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="转为数值"><a href="#转为数值" class="headerlink" title="转为数值"></a>转为数值</h2><h3 id="Number-适用于任何类型"><a href="#Number-适用于任何类型" class="headerlink" title="Number() 适用于任何类型"></a>Number() 适用于任何类型</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;Hello world!&quot;</span>);  <span class="hljs-comment">// NaN</span>
 <span class="hljs-keyword">let</span> num2 = <span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// 0</span>
 <span class="hljs-keyword">let</span> num3 = <span class="hljs-title class_">Number</span>(<span class="hljs-string">&quot;000011&quot;</span>); <span class="hljs-comment">// 11</span>
 <span class="hljs-keyword">let</span> num4 = <span class="hljs-title class_">Number</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 1</span></code></pre></div>
 <h3 id="parseInt-string-radix-主要用于字符串"><a href="#parseInt-string-radix-主要用于字符串" class="headerlink" title="parseInt(string, radix) 主要用于字符串"></a>parseInt(string, radix) 主要用于字符串</h3><ul>
-<li>如果第一个字符不是数值字符、加号或减号，立即返回NaN<br>,这意味着空字符串也会返回 NaN<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num2 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&quot;&quot;</span>);  <span class="hljs-comment">// NaN</span>
+<li>如果第一个字符不是数值字符、加号或减号，立即返回NaN<br>,这意味着空字符串也会返回 NaN<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num2 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&quot;&quot;</span>);  <span class="hljs-comment">// NaN</span>
 <span class="hljs-keyword">let</span> num3 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&quot;0xA&quot;</span>); <span class="hljs-comment">// 10</span>
 <span class="hljs-keyword">let</span> num4 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-number">22.5</span>); <span class="hljs-comment">//22</span>
 <span class="hljs-keyword">let</span> num5 = <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&quot;abc&quot;</span>); <span class="hljs-comment">// NaN</span>
@@ -356,7 +395,7 @@
 <span class="hljs-comment">// parseInt(3,2) =&gt; 2进制的3？？ NaN</span></code></pre></div>
 <h3 id="parseFloat-string-主要用于字符串"><a href="#parseFloat-string-主要用于字符串" class="headerlink" title="parseFloat(string) 主要用于字符串"></a>parseFloat(string) 主要用于字符串</h3></li>
 <li>只解析十进制</li>
-<li>忽略2次出现的小数点<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;1234blue&quot;</span>); <span class="hljs-comment">// 1234</span>
+<li>忽略2次出现的小数点<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num1 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;1234blue&quot;</span>); <span class="hljs-comment">// 1234</span>
 <span class="hljs-keyword">let</span> num2 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;0xA&quot;</span>); <span class="hljs-comment">// 0</span>
 <span class="hljs-keyword">let</span> num3 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;22.5&quot;</span>); <span class="hljs-comment">// 22.5</span>
 <span class="hljs-keyword">let</span> num4 = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">&quot;22.34.5&quot;</span>); <span class="hljs-comment">// 22.34</span>
@@ -370,7 +409,7 @@
 <li>undefined 转换为 ‘undefined’</li>
 </ul>
 <h2 id="转为布尔值"><a href="#转为布尔值" class="headerlink" title="转为布尔值"></a>转为布尔值</h2><ul>
-<li>Boolean()<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//除了以下六个转为 false 其他全部都为 true</span>
+<li>Boolean()<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//除了以下六个转为 false 其他全部都为 true</span>
 <span class="hljs-literal">undefined</span>
 <span class="hljs-literal">null</span>
 <span class="hljs-number">0</span>
@@ -385,7 +424,7 @@
 <li>转成 boolean 类型：<code>!</code>（逻辑非运算符）</li>
 </ul>
 <h2 id="字符串连接符与算术运算符"><a href="#字符串连接符与算术运算符" class="headerlink" title="字符串连接符与算术运算符"></a>字符串连接符与算术运算符</h2><p><code>+</code>左右有字符串则转为字符串拼接，否则转为数字计算</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//+是字符串连接符： String(1) + &#x27;true&#x27; = &#x27;1true&#x27;</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//+是字符串连接符： String(1) + &#x27;true&#x27; = &#x27;1true&#x27;</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> + <span class="hljs-string">&quot;true&quot;</span>); <span class="hljs-comment">//1true</span>
 <span class="hljs-comment">//+是算术运算符 ： 1 + Number(true) = 1 + 1 = 2</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> + <span class="hljs-literal">true</span>); <span class="hljs-comment">//2</span>
@@ -397,7 +436,7 @@
 
 <h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p>会把其他数据类型转换成 number 之后再比较关系</p>
 <p><em>此时并不是按照 Number()的形式转成数字，而是按照字符串对应的 unicode 编码来转成数字</em></p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2&quot;</span> &gt; <span class="hljs-string">&quot;10&quot;</span>); <span class="hljs-comment">//true     &#x27;2&#x27;.charCodeAt() &gt; &#x27;10&#x27;.charCodeAt() = 50 &gt; 49 = true</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2&quot;</span> &gt; <span class="hljs-string">&quot;10&quot;</span>); <span class="hljs-comment">//true     &#x27;2&#x27;.charCodeAt() &gt; &#x27;10&#x27;.charCodeAt() = 50 &gt; 49 = true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2&quot;</span>.<span class="hljs-title function_">charCodeAt</span>()); <span class="hljs-comment">//数字50</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;10&quot;</span>.<span class="hljs-title function_">charCodeAt</span>()); <span class="hljs-comment">//数字49（默认返回第一个字符的编码，如果想要查询第二个字符可以传参下标）</span>
 <span class="hljs-comment">//多个字符从左往右依次比较</span>
@@ -416,7 +455,7 @@
 <li>先使用<code>valueOf()</code>方法获取其原始值，如果原始值不是<code>number</code>类型，则使用 <code>toString()</code>方法转成<code>string</code></li>
 <li>再将 <code>string</code> 转成 <code>number</code> 运算</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] == <span class="hljs-string">&quot;1,2&quot;</span>; <span class="hljs-comment">//true     先将左边数组转成string，然后右边也是string则转成unicode编码运算</span>
+<div class="code-wrapper"><pre><code class="hljs javascript">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] == <span class="hljs-string">&quot;1,2&quot;</span>; <span class="hljs-comment">//true     先将左边数组转成string，然后右边也是string则转成unicode编码运算</span>
 [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>].<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">// [1,2]</span>
 [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>].<span class="hljs-title function_">toString</span>(); <span class="hljs-comment">// &#x27;1,2&#x27;</span>
 <span class="hljs-keyword">var</span> a = &#123;&#125;;
@@ -431,7 +470,7 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
 <li>空数组的 toString()方法会得到空字符串<code>&#39;&#39;</code></li>
 <li>空对象的 toString()方法会得到字符串<code>[object Object]</code> </li>
 </ul>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Boolean</span>([])); <span class="hljs-comment">// true</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Boolean</span>([])); <span class="hljs-comment">// true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Boolean</span>(![])); <span class="hljs-comment">// false</span>
 <span class="hljs-comment">// Boolean除了0,-0,null,undefined,false,&#x27;&#x27;都转为true</span>
 
@@ -455,14 +494,14 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
 
 
 <h2 id="值的比较"><a href="#值的比较" class="headerlink" title="值的比较"></a>值的比较</h2><h3 id="es6-新增Object-is-判断"><a href="#es6-新增Object-is-判断" class="headerlink" title="es6 新增Object.is()判断"></a>es6 新增<code>Object.is()</code>判断</h3><p>修复了转布尔值的bug</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>); <span class="hljs-comment">// true</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-literal">undefined</span>, <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-number">0</span>, -<span class="hljs-number">0</span>); <span class="hljs-comment">// false</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-number">0</span>, +<span class="hljs-number">0</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(-<span class="hljs-number">0</span>, -<span class="hljs-number">0</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-title class_">NaN</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// false</span>
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">is</span>(<span class="hljs-title class_">NaN</span>, <span class="hljs-number">0</span> / <span class="hljs-number">0</span>); <span class="hljs-comment">// true</span></code></pre></div>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> _Object.<span class="hljs-title function_">is</span>(<span class="hljs-params">x,y</span>)&#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> _Object.<span class="hljs-title function_">is</span>(<span class="hljs-params">x,y</span>)&#123;
   <span class="hljs-keyword">if</span>(!<span class="hljs-title class_">Object</span>.<span class="hljs-property">is</span>)&#123;
     <span class="hljs-keyword">if</span>(x===y)&#123;
       <span class="hljs-keyword">return</span> x!==<span class="hljs-number">0</span> || <span class="hljs-number">1</span>/x === <span class="hljs-number">1</span>/y
@@ -476,40 +515,79 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
 <li>转string<br><code>123+&#39;&#39;</code>  // ‘123’</li>
 <li>转number<br><code>+123</code> // 123</li>
 <li>位运算<ul>
-<li>向下取整<div class="hljs code-wrapper"><pre><code class="hljs javascript">~~<span class="hljs-number">1.9</span> = <span class="hljs-number">1</span>
+<li>向下取整<div class="code-wrapper"><pre><code class="hljs javascript">~~<span class="hljs-number">1.9</span> = <span class="hljs-number">1</span>
 <span class="hljs-number">1.9</span> &gt;&gt; <span class="hljs-number">0</span> = <span class="hljs-number">1</span></code></pre></div></li>
-<li>Math.floor(N/2)<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-number">124.9</span> &gt;&gt; <span class="hljs-number">1</span> = <span class="hljs-number">62</span></code></pre></div></li>
+<li>Math.floor(N/2)<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-number">124.9</span> &gt;&gt; <span class="hljs-number">1</span> = <span class="hljs-number">62</span></code></pre></div></li>
 </ul>
 </li>
 </ul>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>js数据类型的判断与转换</div>
+      <div>http://yoursite.com/2022/02/24/js中数据类型转换/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                      <a href="/2022/02/24/html%E9%9D%A2%E8%AF%95%E9%A2%98/" title="HTML面试题">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">HTML面试题</span>
                         <span class="visible-mobile">上一篇</span>
@@ -519,7 +597,7 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+                      <a href="/2022/02/24/js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" title="js运行机制">
                         <span class="hidden-mobile">js运行机制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -531,12 +609,8 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -547,7 +621,9 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -558,25 +634,56 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -601,66 +708,69 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -679,50 +789,18 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -732,18 +810,161 @@ a.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title fu
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

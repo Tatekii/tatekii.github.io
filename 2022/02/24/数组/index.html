@@ -26,10 +26,13 @@
 <meta property="og:description" content="创建数组&#x2F;&#x2F; 字面量 let arr &#x3D; [] let arr &#x3D; [1,2,3,4] &#x2F;&#x2F; 构造函数 let arr &#x3D; new Array() let arr &#x3D; new Array(&#x2F;传入数组代表数组长度&#x2F;) let arr &#x3D; new Array(&amp;#x27;item1&amp;#x27;,&amp;#x27;item2&amp;#x27;&#x2F;传入元素&#x2F;) let arr &#x3D; Array(10)&#x2F;省略new操作符&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-24T12:43:14.000Z">
-<meta property="article:modified_time" content="2022-05-23T14:53:40.537Z">
+<meta property="article:modified_time" content="2022-06-07T04:00:11.179Z">
 <meta property="article:author" content="tatekii">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>数组 - 不知名的笔记本</title>
@@ -37,25 +40,19 @@
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -64,21 +61,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":10,"cursorChar":"🎬","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>不知名的笔记本</strong>
@@ -148,6 +164,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -160,65 +177,79 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="数组">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-24 20:43" pubdate>
-        2022年2月24日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      9.2k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      77 分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数组"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-24 20:43" pubdate>
+          2022年2月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          9.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          78 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -227,22 +258,30 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">数组</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年5月23日 晚上
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022年6月7日 中午
+                  
                 
               </p>
             
             <div class="markdown-body">
-              <h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 字面量</span>
+              
+              <h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 字面量</span>
 <span class="hljs-keyword">let</span> arr = []
 <span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
 <span class="hljs-comment">// 构造函数</span>
@@ -276,7 +315,7 @@
 <li>  <code>...</code>展开运算符</li>
 </ul>
 <h3 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h3><p>遍历数组的回调<code>mapFn</code>包含自动传入的参数(currentValue,currentIndex,thisArr)</p>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// parseInt(string, radix)   解析一个字符串并返回指定基数的十进制整数</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// parseInt(string, radix)   解析一个字符串并返回指定基数的十进制整数</span>
 <span class="hljs-comment">// 解释了</span>
 [<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>].<span class="hljs-title function_">map</span>(<span class="hljs-built_in">parseInt</span>)
 =&gt;  <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-number">0</span>),<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-number">1</span>),<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-number">2</span>)
@@ -309,7 +348,7 @@
 <li>  <code>of Object.values()</code></li>
 <li>  <code>of Object.entries()</code></li>
 </ul>
-  <div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index <span class="hljs-keyword">of</span> [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>].<span class="hljs-title function_">keys</span>()) &#123;
+  <div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> index <span class="hljs-keyword">of</span> [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>].<span class="hljs-title function_">keys</span>()) &#123;
 	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(index);
 &#125;
 <span class="hljs-comment">// 0</span>
@@ -340,7 +379,7 @@
 <li><p><code>Array.isArray()</code></p>
 </li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> notArr = &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> notArr = &#123;
 	<span class="hljs-attr">__proto__</span>: <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>,
 &#125;;
 notArr.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Array</span>;
@@ -354,7 +393,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(notArr);
 <span class="hljs-comment">// false</span></code></pre></div>
 
-<h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
+<h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
 <span class="hljs-comment">// 1</span>
 <span class="hljs-keyword">let</span> uni1 = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr));
 <span class="hljs-comment">// 2</span>
@@ -376,7 +415,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	<span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">indexOf</span>(item) === index;
 &#125;);</code></pre></div>
 
-<h2 id="计算数组中元素出现的次数"><a href="#计算数组中元素出现的次数" class="headerlink" title="计算数组中元素出现的次数"></a>计算数组中元素出现的次数</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
+<h2 id="计算数组中元素出现的次数"><a href="#计算数组中元素出现的次数" class="headerlink" title="计算数组中元素出现的次数"></a>计算数组中元素出现的次数</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
 <span class="hljs-comment">//reduce</span>
 <span class="hljs-keyword">let</span> countArr = arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">obj, i</span>) =&gt;</span> &#123;
 	<span class="hljs-keyword">if</span> (obj[i]) &#123;
@@ -398,7 +437,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	&#125;
 &#125;</code></pre></div>
 
-<h2 id="对于-obj-按照属性分类"><a href="#对于-obj-按照属性分类" class="headerlink" title="对于 obj 按照属性分类"></a>对于 obj 按照属性分类</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 面试题教你归类json</span>
+<h2 id="对于-obj-按照属性分类"><a href="#对于-obj-按照属性分类" class="headerlink" title="对于 obj 按照属性分类"></a>对于 obj 按照属性分类</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 面试题教你归类json</span>
 <span class="hljs-comment">// JSON.parse(jsonStr)</span>
 <span class="hljs-keyword">let</span> person = [
 	&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">21</span> &#125;,
@@ -418,7 +457,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 
 <span class="hljs-keyword">let</span> res = <span class="hljs-title function_">groupBy</span>(person, <span class="hljs-string">&quot;age&quot;</span>);</code></pre></div>
 
-<h2 id="扁平化数组"><a href="#扁平化数组" class="headerlink" title="扁平化数组"></a>扁平化数组</h2><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 1 reduce</span>
+<h2 id="扁平化数组"><a href="#扁平化数组" class="headerlink" title="扁平化数组"></a>扁平化数组</h2><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 1 reduce</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">flat1</span>(<span class="hljs-params">arr</span>) &#123;
   <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">res, item</span>) =&gt;</span>  &#123;
     <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">concat</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(item) ? <span class="hljs-title function_">flat1</span>(item) : item);
@@ -464,7 +503,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h3 id="常见排序方法"><a href="#常见排序方法" class="headerlink" title="常见排序方法"></a>常见排序方法</h3><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
 <p>O(n^2) 第一个循环设定冒泡范围，第二个循环冒泡元素</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">bubbleSort</span>(<span class="hljs-params">arr</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">bubbleSort</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">if</span> (!<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(arr) || arr.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
 	<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-comment">// 外层循环是冒泡范围</span>
@@ -485,7 +524,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><blockquote>
 <p>O(n^2)</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertSort</span>(<span class="hljs-params">arr</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">insertSort</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">if</span> (!<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(arr) || arr.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
 	<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>;
 
@@ -517,7 +556,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><blockquote>
 <p>O(n^2) 不稳定</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">selectSort</span>(<span class="hljs-params">arr</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">selectSort</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(arr) !== <span class="hljs-literal">true</span> || arr.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
 	<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;
@@ -541,7 +580,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h4 id="并归排序"><a href="#并归排序" class="headerlink" title="并归排序"></a>并归排序</h4><blockquote>
 <p>O(n log n)</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeSort</span>(<span class="hljs-params">arr</span>) &#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeSort</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">if</span> (arr.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arr;
 	<span class="hljs-comment">// once function &#x27;mergeSort&#x27; run ,split arr to two group length equally</span>
 	<span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(arr.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>);
@@ -566,7 +605,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><blockquote>
 <p>平均 O(n log n)</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">quickSort</span>(<span class="hljs-params">arr</span>)&#123;
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">quickSort</span>(<span class="hljs-params">arr</span>)&#123;
   <span class="hljs-keyword">if</span> (arr.<span class="hljs-property">length</span> &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arr; <span class="hljs-comment">//一直排序到区间内只有一个数</span>
   <span class="hljs-keyword">var</span> pivotIndex = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(arr.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>); <span class="hljs-comment">//基准位置（可任意选取）</span>
   <span class="hljs-keyword">var</span> pivot = arr.<span class="hljs-title function_">splice</span>(pivotIndex, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">//找出基准数并把它从原数组删除</span>
@@ -588,7 +627,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">quickSort</span>(<span class="hljs-params">arr</span>) &#123;
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">quick</span>(<span class="hljs-params">arr,l,r</span>)&#123;
     <span class="hljs-keyword">const</span> index = <span class="hljs-title function_">partition</span>(arr,l,r)
-    <span class="hljs-comment">// partition函数取出一个基准索引，并会依据基准分为大于小于基准的两部分</span>
+    <span class="hljs-comment">// partition函数取出一个基准索引并将该索引的元素放到顺序正确的位置</span>
     <span class="hljs-keyword">if</span>(l&lt;index)&#123;
       <span class="hljs-title function_">quick</span>(arr,l,index-<span class="hljs-number">1</span>)
     &#125;
@@ -599,22 +638,24 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
   <span class="hljs-title function_">quick</span>(arr,<span class="hljs-number">0</span>,arr.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>)
   <span class="hljs-keyword">return</span> arr
 &#125;
+<span class="hljs-comment">// 选取一个参考位置，并将该位置的元素移动到排序后的位置，即左边都小于他右边都大于他</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">partition</span>(<span class="hljs-params">arr,l,r</span>)&#123;
   <span class="hljs-comment">// 这里直接使用r作为基准，不用随机值</span>
+	<span class="hljs-keyword">const</span> pivotValue = arr[r]
+	<span class="hljs-keyword">const</span> pivotIndex = l
 
-  <span class="hljs-comment">// i 是排序后pivot的正确位置，初始设置为最左</span>
-  <span class="hljs-keyword">let</span> i = l
+  <span class="hljs-comment">// pivotIndex 是排序后pivot的正确位置，初始设置为最左</span>
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j = l ; j&lt;r ; j++)&#123;
     <span class="hljs-comment">// 判断相对于基准的大小并更新i的位置</span>
     <span class="hljs-comment">// i左边是已经比较完的区间,都比arr[r]小</span>
-    <span class="hljs-keyword">if</span>(arr[j]&lt;arr[r])&#123;
-      [arr[j],arr[i]] = [arr[i],arr[j]]<span class="hljs-comment">// j向右扫的过程中遇到比基准小的值时,i停留在上一个比基准大的位置,则对他两进行交换</span>
-      i++
+    <span class="hljs-keyword">if</span>(arr[j]&lt;pivotValue)&#123;
+      [arr[j],arr[pivotIndex]] = [arr[pivotIndex],arr[j]]<span class="hljs-comment">// j向右扫的过程中遇到比基准小的值时,i停留在上一个比基准大的位置,则对他两进行交换</span>
+      pivotIndex++
     &#125;
   &#125;
   <span class="hljs-comment">// pivot归位,最后以i位置完成分界</span>
-  [arr[i],arr[r]] = [arr[r],arr[i]]
-  <span class="hljs-keyword">return</span> i
+  [arr[pivotIndex],arr[r]] = [arr[r],arr[pivotIndex]]
+  <span class="hljs-keyword">return</span> pivotIndex
 &#125;
 
 </code></pre></div>
@@ -622,7 +663,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><blockquote>
 <p>平均 O(n log 2n) 最坏 O(n^2)<br>相当于设置动态间隔的插入排序</p>
 </blockquote>
-<div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 移动</span>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 移动</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">shellSort1</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">const</span> len = arr.<span class="hljs-property">length</span>;
 	<span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> arr;
@@ -643,7 +684,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	<span class="hljs-keyword">return</span> arr;
 &#125;</code></pre></div>
 
-<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 建立大顶堆</span>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 建立大顶堆</span>
 <span class="hljs-comment">// 依次将末尾元素与heap[1]交换位置并调整堆，同时缩小堆的大小（排除最后的大数）</span>
 <span class="hljs-comment">// heap[2]和heap[1]交换完成后就是升序排序</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">heapSort</span>(<span class="hljs-params">arr</span>) &#123;
@@ -674,7 +715,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	&#125;
 &#125;</code></pre></div>
 
-<h4 id="记数排序🤯"><a href="#记数排序🤯" class="headerlink" title="记数排序🤯"></a>记数排序🤯</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">countSort</span>(<span class="hljs-params">arr</span>) &#123;
+<h4 id="记数排序🤯"><a href="#记数排序🤯" class="headerlink" title="记数排序🤯"></a>记数排序🤯</h4><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">countSort</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">let</span> maxValue = arr[<span class="hljs-number">0</span>];
 	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n <span class="hljs-keyword">of</span> arr) &#123;
 		<span class="hljs-keyword">if</span> (n &gt; maxValue) maxValue = n;
@@ -707,7 +748,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	<span class="hljs-keyword">return</span> temp; <span class="hljs-comment">// or copy temp to origin arr</span>
 &#125;</code></pre></div>
 
-<h4 id="洗牌算法"><a href="#洗牌算法" class="headerlink" title="洗牌算法"></a>洗牌算法</h4><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">shuffle</span>(<span class="hljs-params">arr</span>) &#123;
+<h4 id="洗牌算法"><a href="#洗牌算法" class="headerlink" title="洗牌算法"></a>洗牌算法</h4><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">shuffle</span>(<span class="hljs-params">arr</span>) &#123;
 	<span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">sort</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() - <span class="hljs-number">0.5</span>);
 	<span class="hljs-comment">//由于js中sort方法的特殊性，对于数据量小于10和大于10的排序方法不一样</span>
 	<span class="hljs-comment">// Math.random()-0.5不能做到真正意义上的完全随机</span>
@@ -726,33 +767,72 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 	<span class="hljs-keyword">return</span> arr;
 &#125;</code></pre></div>
 
+              
             </div>
-            <hr>
+            <hr/>
             <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                    
-                  </div>
-                
-              </div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/">#javascript</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数组</div>
+      <div>http://yoursite.com/2022/02/24/数组/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>tatekii</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
               
-              
-                <div class="post-prevnext">
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/">
+                      <a href="/2022/02/24/%E6%89%B9%E9%87%8F%E6%98%A0%E5%B0%84%E6%A8%A1%E5%9D%97/" title="工程化批处理">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">工程化批处理</span>
                         <span class="visible-mobile">上一篇</span>
@@ -762,7 +842,7 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">
+                      <a href="/2022/02/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/" title="浏览器缓存策略">
                         <span class="hidden-mobile">浏览器缓存策略</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -774,12 +854,8 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="twikoo"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#comments', function() {
@@ -790,7 +866,9 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
             el: '#twikoo',
             path: 'window.location.pathname',
             onCommentLoaded: function() {
-              Fluid.plugins.initFancyBox('#twikoo .tk-content img:not(.tk-owo-emotion)');
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
             }
           }
         )
@@ -801,25 +879,56 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
 
 
     
@@ -844,66 +953,69 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
 
   
-  <!-- 备案信息 -->
-  <div class="beian">
-    <span>
-      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
-        粤ICP备2020115702号
-      </a>
-    </span>
     
-  </div>
-
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
   
-</footer>
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备2020115702号
+    </a>
+  </span>
+  
+</div>
 
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -922,50 +1034,18 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-  
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -975,18 +1055,161 @@ notArr <span class="hljs-keyword">instanceof</span> <span class="hljs-title clas
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
